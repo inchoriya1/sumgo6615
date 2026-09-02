@@ -1,0 +1,11 @@
+# 이 저장소는 줄바꿈을 LF로 통일합니다.
+# Windows의 core.autocrlf=true 때문에 체크아웃 때 CRLF로 바뀌는 것을 막습니다.
+* text=auto eol=lf
+
+# 오피스 파일은 바이너리 — 건드리지 않습니다.
+*.pptx binary
+*.xlsx binary
+*.docx binary
+*.hwp  binary
+*.hwpx binary
+*.pdf  binary

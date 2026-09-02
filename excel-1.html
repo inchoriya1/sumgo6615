@@ -1,0 +1,1233 @@
+<!doctype html>
+<html lang="ko" data-subject="excel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>엑셀 1부 — 처음 켜고, 표 하나 만들기</title>
+<meta name="description" content="엑셀을 처음 켜보는 분을 위한 1부. 화면 이름 익히기, 표 만들기, 잘못 친 것 고치기, 행과 열 다루기, 저장하기.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="excel.html">← 엑셀 과목 첫 화면으로</a>
+    <p class="eyebrow">1과목 · 엑셀 · 1부</p>
+    <h1>처음 켜고,<br><em>표 하나 만들기</em></h1>
+    <p class="lede">
+      엑셀은 어려운 프로그램이 아닙니다.
+      네모 칸이 잔뜩 그려진 종이라고 생각하시면 됩니다.
+      1부에서는 그 종이를 <b>펴고, 글자를 넣고, 이름을 붙여 두는 것</b>까지 합니다.
+      계산은 2부에서 합니다.
+    </p>
+    <div class="facts">
+      <span><b>대상</b> 엑셀을 처음 켜보는 분</span>
+      <span><b>소요</b> 100분</span>
+      <span><b>결과물</b> 바탕 화면에 저장된 표 하나</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#what">엑셀이 뭐 하는 것인가</a></li>
+      <li><a href="#screen">화면 이름 익히기</a></li>
+      <li><a href="#make">표 하나 만들기</a></li>
+      <li><a href="#fix">잘못 친 것 고치기</a></li>
+      <li><a href="#rowcol">행과 열 다루기</a></li>
+      <li><a href="#save">저장하기</a></li>
+      <li><a href="#trouble">이럴 땐 이렇게</a></li>
+      <li><a href="#check">1부 확인 목록</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════
+         네 과목 어느 것부터 봐도 되도록, 이 장은 과목마다 똑같이 들어 있습니다.
+         고칠 때는 네 곳을 함께 고쳐 주세요. -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에, 손동작 세 가지</h2>
+      <p class="sub">
+        이 세 가지만 알면 무엇을 눌러도 겁낼 것이 없습니다.
+        네 과목 모두에서 똑같이 씁니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">다른 과목에서 이미 보셨다면</span>
+        <p>
+          같은 장이 과목마다 들어 있습니다.
+          이미 읽으셨으면 <a href="#what">01장</a>으로 건너뛰세요.
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>손동작</th><th>하는 일</th><th>언제 쓰나</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></td>
+              <td>방금 한 일을 되돌립니다</td>
+              <td>잘못 눌렀을 때. 여러 번 눌러도 됩니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">S</span></td>
+              <td>저장합니다</td>
+              <td>수시로. 한 줄 쓸 때마다 눌러도 좋습니다</td>
+            </tr>
+            <tr>
+              <td>마우스 <b>오른쪽</b> 단추</td>
+              <td>지금 고른 것에 할 수 있는 일 목록을 띄웁니다</td>
+              <td>무엇을 눌러야 할지 모를 때</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">가장 중요한 이야기</span>
+        <p>
+          <b>잘못 눌러서 컴퓨터가 고장 나는 일은 없습니다.</b>
+          지금부터 하는 모든 것은 되돌릴 수 있습니다.
+          겁내지 말고 여기저기 눌러보세요. 그게 가장 빨리 배우는 방법입니다.
+        </p>
+      </div>
+
+      <p>
+        <span class="kbd">Ctrl</span> + <span class="kbd">Z</span> 는
+        "컨트롤 키를 <b>누른 채로</b> Z를 한 번 누른다"는 뜻입니다.
+        두 개를 동시에 탁 치는 게 아니라, 왼손으로 Ctrl을 꾹 누르고 있는 상태에서
+        오른손으로 Z를 톡 누른 뒤 둘 다 놓으면 됩니다.
+      </p>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="what">
+      <span class="sec-tag">01 — 이해</span>
+      <h2>엑셀이 뭐 하는 것인가</h2>
+      <p class="sub">
+        "표 만드는 프로그램"이라고들 하는데, 절반만 맞는 말입니다.
+      </p>
+
+      <p>
+        엑셀은 <b>칸이 그려진 종이</b>입니다.
+        여기까지는 공책과 다를 게 없습니다.
+        다른 점은 딱 하나입니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">엑셀의 전부</span>
+        <p>
+          이 종이는 <b>"저 칸과 저 칸을 더해라"라고 시켜 둘 수 있습니다.</b>
+          한 번 시켜 두면, 나중에 숫자를 고쳐도 <b>답이 저절로 다시 나옵니다.</b>
+        </p>
+      </div>
+
+      <p>
+        계산기와 무엇이 다른지가 여기서 갈립니다.
+        계산기는 숫자를 바꾸면 <b>처음부터 다시 눌러야</b> 합니다.
+        엑셀은 숫자만 바꾸면 <b>아래 합계가 알아서 바뀝니다.</b>
+      </p>
+
+      <h3>이런 일에 씁니다</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이런 것을</th><th>엑셀로 하면</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>모임 회비 걷은 것 정리</td>
+              <td>낸 사람에 금액을 적으면 <b>모인 돈이 저절로</b> 나옵니다</td>
+            </tr>
+            <tr>
+              <td>가게 하루 매출 적기</td>
+              <td>날마다 한 줄씩 적으면 <b>한 달 합계</b>가 따라 올라갑니다</td>
+            </tr>
+            <tr>
+              <td>주소·연락처 명단</td>
+              <td>가나다순으로 <b>줄 세우고</b>, 찾고 싶은 사람만 볼 수 있습니다</td>
+            </tr>
+            <tr>
+              <td>물건 목록과 값</td>
+              <td>수량과 단가를 적으면 <b>금액이 저절로</b> 계산됩니다</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>세 부로 나누어 배웁니다</h3>
+      <p>
+        엑셀은 단추가 많아 보이지만, 배우는 순서는 늘 같습니다.
+        <b>적는 법 → 시키는 법 → 보기 좋게 하는 법</b> 순서입니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>부</th><th>여기서 하는 일</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>1부</b> (지금)</td>
+              <td>엑셀을 켜고, 표를 적고, 고치고, 이름 붙여 저장합니다</td>
+            </tr>
+            <tr>
+              <td><b>2부</b></td>
+              <td>합계·평균을 <b>컴퓨터에게 시킵니다.</b> 엑셀의 핵심입니다</td>
+            </tr>
+            <tr>
+              <td><b>3부</b></td>
+              <td>보기 좋게 꾸미고, 줄 세우고, 그림으로 만들고, 인쇄합니다</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">1부에서는 계산을 하지 않습니다</span>
+        <p>
+          이상하게 들리시겠지만, <b>일부러</b> 그렇습니다.
+          계산부터 배우면 손이 못 따라옵니다.
+          먼저 <b>글자와 숫자를 마음대로 넣고 고칠 수 있게</b> 되는 것이 순서입니다.
+          그게 되면 2부의 계산은 단추 한 번입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="screen">
+      <span class="sec-tag">02 — 화면</span>
+      <h2>화면 이름 익히기</h2>
+      <p class="sub">
+        이름을 알아야 설명을 알아들을 수 있습니다.
+        여섯 군데만 외우면 됩니다. 아니, 외우지 말고 그냥 한 번 보세요.
+      </p>
+
+      <figure>
+        <div class="fig-frame">
+          <svg viewBox="0 0 760 392" role="img"
+               aria-label="엑셀 화면 그림. 리본, 수식 입력줄, 열 이름, 행 번호, 셀, 시트 탭의 위치를 번호로 표시했습니다.">
+
+            <!-- 창 테두리 -->
+            <rect x="60" y="16" width="520" height="280" rx="8"
+                  fill="var(--panel)" stroke="var(--rule-2)" stroke-width="1.5"/>
+
+            <!-- ① 리본 -->
+            <rect x="60.75" y="16.75" width="518.5" height="41.5" rx="7"
+                  fill="var(--code-bg)"/>
+            <rect x="60.75" y="40" width="518.5" height="18" fill="var(--code-bg)"/>
+            <line x1="60" y1="58" x2="580" y2="58" stroke="var(--rule)" stroke-width="1"/>
+            <text x="78" y="42" font-size="12.5" class="mid">홈</text>
+            <text x="112" y="42" font-size="12.5" class="dim">삽입</text>
+            <text x="158" y="42" font-size="12.5" class="dim">페이지 레이아웃</text>
+            <text x="268" y="42" font-size="12.5" class="dim">수식</text>
+            <text x="314" y="42" font-size="12.5" class="dim">데이터</text>
+            <text x="374" y="42" font-size="12.5" class="dim">검토</text>
+            <text x="420" y="42" font-size="12.5" class="dim">보기</text>
+            <line x1="72" y1="50" x2="96" y2="50" stroke="var(--accent)" stroke-width="2.5"/>
+
+            <!-- ② 수식 입력줄 -->
+            <line x1="60" y1="86" x2="580" y2="86" stroke="var(--rule)" stroke-width="1"/>
+            <text x="74" y="77" font-size="12" class="dim" font-style="italic">fx</text>
+            <rect x="96" y="64" width="472" height="17" rx="3"
+                  fill="var(--paper)" stroke="var(--rule)" stroke-width="1"/>
+            <text x="104" y="77" font-size="12" fill="var(--accent)">=SUM(D2:D3)</text>
+
+            <!-- ③ 열 이름 -->
+            <rect x="60" y="86" width="520" height="22" fill="var(--code-bg)"/>
+            <text x="156" y="102" font-size="12" text-anchor="middle" class="mid">A</text>
+            <text x="277" y="102" font-size="12" text-anchor="middle" class="mid">B</text>
+            <text x="398" y="102" font-size="12" text-anchor="middle" class="mid">C</text>
+            <text x="519" y="102" font-size="12" text-anchor="middle" font-weight="700"
+                  fill="var(--accent)">D</text>
+
+            <!-- ④ 행 번호 -->
+            <rect x="60" y="108" width="36" height="160" fill="var(--code-bg)"/>
+            <text x="78" y="133" font-size="12" text-anchor="middle" class="mid">1</text>
+            <text x="78" y="173" font-size="12" text-anchor="middle" class="mid">2</text>
+            <text x="78" y="213" font-size="12" text-anchor="middle" class="mid">3</text>
+            <text x="78" y="253" font-size="12" text-anchor="middle" font-weight="700"
+                  fill="var(--accent)">4</text>
+
+            <!-- 표 머리 줄(1행) 바탕 -->
+            <rect x="96" y="108" width="484" height="40" fill="var(--accent-dim)"/>
+
+            <!-- 격자 -->
+            <g stroke="var(--rule)" stroke-width="1">
+              <line x1="96"  y1="148" x2="580" y2="148"/>
+              <line x1="96"  y1="188" x2="580" y2="188"/>
+              <line x1="96"  y1="228" x2="580" y2="228"/>
+              <line x1="60"  y1="268" x2="580" y2="268"/>
+              <line x1="96"  y1="86"  x2="96"  y2="268"/>
+              <line x1="217" y1="86"  x2="217" y2="268"/>
+              <line x1="338" y1="86"  x2="338" y2="268"/>
+              <line x1="459" y1="86"  x2="459" y2="268"/>
+            </g>
+
+            <!-- 표 내용 -->
+            <g font-size="12.5">
+              <text x="108" y="133" font-weight="700">품목</text>
+              <text x="229" y="133" font-weight="700">수량</text>
+              <text x="350" y="133" font-weight="700">단가</text>
+              <text x="471" y="133" font-weight="700">금액</text>
+
+              <text x="108" y="173">사과</text>
+              <text x="325" y="173" text-anchor="end">3</text>
+              <text x="446" y="173" text-anchor="end">1,000</text>
+              <text x="567" y="173" text-anchor="end">3,000</text>
+
+              <text x="108" y="213">배</text>
+              <text x="325" y="213" text-anchor="end">2</text>
+              <text x="446" y="213" text-anchor="end">2,000</text>
+              <text x="567" y="213" text-anchor="end">4,000</text>
+
+              <text x="108" y="253" font-weight="700">합계</text>
+              <text x="567" y="253" text-anchor="end" font-weight="700"
+                    fill="var(--accent)">7,000</text>
+            </g>
+
+            <!-- ⑤ 선택된 셀 D4 -->
+            <rect x="459.5" y="228.5" width="120" height="39"
+                  fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+
+            <!-- ⑥ 시트 탭 -->
+            <rect x="68" y="274" width="82" height="18" rx="4"
+                  fill="var(--paper)" stroke="var(--rule-2)" stroke-width="1"/>
+            <text x="109" y="287" font-size="11.5" text-anchor="middle" class="mid">Sheet1</text>
+            <text x="164" y="287" font-size="13" class="dim">＋</text>
+
+            <!-- 번호 배지 + 지시선 -->
+            <g stroke="var(--rule-2)" stroke-width="1.2">
+              <line x1="580" y1="37"  x2="592" y2="37"/>
+              <line x1="580" y1="72"  x2="592" y2="72"/>
+              <line x1="580" y1="97"  x2="592" y2="97"/>
+              <line x1="580" y1="248" x2="592" y2="248"/>
+              <line x1="48"  y1="188" x2="60"  y2="188"/>
+              <line x1="48"  y1="283" x2="68"  y2="283"/>
+            </g>
+            <g fill="var(--accent)">
+              <circle cx="604" cy="37"  r="11"/>
+              <circle cx="604" cy="72"  r="11"/>
+              <circle cx="604" cy="97"  r="11"/>
+              <circle cx="604" cy="248" r="11"/>
+              <circle cx="36"  cy="188" r="11"/>
+              <circle cx="36"  cy="283" r="11"/>
+            </g>
+            <g font-size="12" font-weight="700" text-anchor="middle" fill="var(--paper)">
+              <text x="604" y="41.5">1</text>
+              <text x="604" y="76.5">2</text>
+              <text x="604" y="101.5">3</text>
+              <text x="604" y="252.5">5</text>
+              <text x="36"  y="192.5">4</text>
+              <text x="36"  y="287.5">6</text>
+            </g>
+
+            <!-- 아래 설명 -->
+            <line x1="36" y1="316" x2="724" y2="316" stroke="var(--rule)" stroke-width="1"/>
+            <g font-size="13">
+              <g fill="var(--accent)">
+                <circle cx="44" cy="336" r="8"/>
+                <circle cx="44" cy="360" r="8"/>
+                <circle cx="44" cy="384" r="8"/>
+                <circle cx="394" cy="336" r="8"/>
+                <circle cx="394" cy="360" r="8"/>
+                <circle cx="394" cy="384" r="8"/>
+              </g>
+              <g font-size="11" font-weight="700" text-anchor="middle" fill="var(--paper)">
+                <text x="44"  y="339.5">1</text>
+                <text x="44"  y="363.5">2</text>
+                <text x="44"  y="387.5">3</text>
+                <text x="394" y="339.5">4</text>
+                <text x="394" y="363.5">5</text>
+                <text x="394" y="387.5">6</text>
+              </g>
+              <text x="60"  y="340">리본 — 단추가 모여 있는 곳</text>
+              <text x="60"  y="364">수식 입력줄 — 이 칸에 든 진짜 내용</text>
+              <text x="60"  y="388">열 이름 — 세로줄. A, B, C …</text>
+              <text x="410" y="340">행 번호 — 가로줄. 1, 2, 3 …</text>
+              <text x="410" y="364">셀 — 칸 하나. 지금은 D4 칸이 선택됨</text>
+              <text x="410" y="388">시트 — 종이 한 장. 여러 장 만들 수 있음</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption>
+          <b>칸 하나하나를 '셀'</b>이라고 부릅니다. 셀에는 이름이 있습니다.
+          세로줄 이름(D)과 가로줄 번호(4)를 붙여서 <b>D4</b>라고 부릅니다.
+          자리 번호 같은 것입니다. 앞으로 "D4에 적으세요"라는 말이 계속 나옵니다.
+        </figcaption>
+      </figure>
+
+      <h3>수식 입력줄이 왜 따로 있나요</h3>
+      <p>
+        칸에는 <b>7,000</b>이라고 보이는데 수식 입력줄에는
+        <code>=SUM(D2:D3)</code> 이라고 적혀 있을 수 있습니다.
+        둘 다 맞습니다.
+      </p>
+      <p>
+        칸에 보이는 것은 <b>계산 결과</b>이고,
+        수식 입력줄에 있는 것은 <b>어떻게 계산하라고 시켰는지</b>입니다.
+        칸을 하나 눌러놓고 수식 입력줄을 보는 습관을 들이면,
+        남이 만든 엑셀 파일도 읽을 수 있게 됩니다.
+      </p>
+
+      <h3>칸 이름 읽는 법 — 자리 번호입니다</h3>
+      <p>
+        극장 좌석표를 떠올리시면 됩니다. <b>다열 4번</b> 하듯이,
+        엑셀은 <b>세로줄 이름</b>과 <b>가로줄 번호</b>를 붙여서 칸을 부릅니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이렇게 부르면</th><th>이 자리입니다</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>A1</b></td><td>맨 왼쪽 위, 첫 칸</td></tr>
+            <tr><td><b>B1</b></td><td>A1의 <b>오른쪽</b> 칸</td></tr>
+            <tr><td><b>A2</b></td><td>A1의 <b>아래</b> 칸</td></tr>
+            <tr><td><b>D4</b></td><td>왼쪽에서 네 번째 줄, 위에서 네 번째 칸</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">헷갈릴 때 확인하는 법</span>
+        <p>
+          지금 고른 칸의 이름은 <b>화면 왼쪽 위 작은 상자</b>(이름 상자)에 늘 떠 있습니다.
+          "D4에 적으세요"라는 말이 나오면, 아무 칸이나 누르고
+          그 상자가 <b>D4</b>가 될 때까지 옮기면 됩니다.
+        </p>
+      </div>
+
+      <h3>움직이는 법 — 마우스 말고도 있습니다</h3>
+      <p>
+        칸을 옮길 때 꼭 마우스를 쓸 필요는 없습니다.
+        손이 키보드에 있을 때는 이쪽이 훨씬 빠릅니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>누르면</th><th>이렇게 됩니다</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>화살표 키 <span class="kbd">↑</span> <span class="kbd">↓</span> <span class="kbd">←</span> <span class="kbd">→</span></td>
+              <td>한 칸씩 옮겨 갑니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Tab</span></td>
+              <td><b>오른쪽</b> 칸으로 갑니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Enter</span></td>
+              <td><b>아래</b> 칸으로 갑니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Home</span></td>
+              <td>맨 처음 칸(A1)으로 한 번에 돌아옵니다</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">멀리 갔을 때 돌아오는 법</span>
+        <p>
+          화살표 키를 오래 누르고 있으면 화면이 <b>저 멀리</b>까지 갑니다.
+          칸 이름이 <b>BQ3400</b> 같은 것이 되어도 고장이 아닙니다.
+          엑셀 종이가 그만큼 큰 것뿐입니다.
+        </p>
+        <p>
+          <span class="kbd">Ctrl</span> + <span class="kbd">Home</span> 을 누르면
+          <b>맨 처음 칸으로 즉시 돌아옵니다.</b> 이것만 알아 두시면 됩니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="make">
+      <span class="sec-tag">03 — 실습</span>
+      <h2>표 하나 만들기</h2>
+      <p class="sub">
+        위 그림과 똑같은 표를 직접 만들어 보겠습니다.
+        여기서부터는 읽지만 마시고 <b>손을 움직여 주세요.</b>
+      </p>
+
+      <div class="note warn">
+        <span class="note-label">먼저 — 엑셀이 컴퓨터에 없다면</span>
+        <p>
+          엑셀은 <b>돈을 내고 사는 프로그램</b>입니다. 그래서 컴퓨터에 없는 분도 많습니다.
+          아래 1번을 해봤는데 <b>목록에 아무것도 안 뜨면</b> 없는 것입니다.
+          고장이 아니니 걱정하지 마세요.
+        </p>
+        <p>
+          <b>강의 중이라면</b> 그냥 손을 들고 강사에게 말씀하세요.
+          <b>혼자 보고 계시다면</b> 아래 둘 중 하나로 하시면 됩니다. 둘 다 무료입니다.
+        </p>
+        <ul>
+          <li><b>구글 스프레드시트</b> — 인터넷 주소창에
+            <code class="nb">sheets.google.com</code> 을 칩니다.
+            구글 계정(지메일)이 있으면 바로 됩니다.</li>
+          <li><b>웹에서 쓰는 엑셀</b> — 주소창에
+            <code class="nb">office.com</code> 을 치고 마이크로소프트 계정으로 들어갑니다.</li>
+        </ul>
+        <p>
+          둘 다 <b>인터넷 화면 안에서</b> 돌아갑니다. 설치할 것이 없습니다.
+          단추 위치와 이름이 조금씩 다르지만,
+          <b>칸에 숫자를 넣고 합계를 내는 것은 똑같습니다.</b>
+          1부와 2부는 그대로 따라 하실 수 있습니다.
+        </p>
+      </div>
+
+      <ol class="steps">
+        <li>
+          <b>엑셀을 켭니다</b>
+          <p>
+            화면 왼쪽 아래 <b>시작</b>(창문 모양) 단추를 누르고
+            <b>excel</b>이라고 글자를 칩니다. 검색창이 저절로 나옵니다.
+            목록에 뜨는 <b>Excel</b>을 누르세요.
+          </p>
+          <p>
+            그다음 화면에서 <b>새 통합 문서</b>(또는 <b>빈 통합 문서</b>)를 누릅니다.
+            빈 칸이 잔뜩 나오면 성공입니다.
+          </p>
+        </li>
+
+        <li>
+          <b>맨 왼쪽 위 칸(A1)을 누릅니다</b>
+          <p>
+            칸을 마우스로 한 번 누르면 테두리가 굵어집니다.
+            <b>"여기에 쓰겠다"</b>는 표시입니다.
+          </p>
+        </li>
+
+        <li>
+          <b>표의 머리글을 적습니다</b>
+          <p>
+            <b>품목</b>이라고 치고 키보드의 <span class="kbd">Tab</span> 키를 누르세요.
+            선택 칸이 <b>오른쪽으로</b> 한 칸 옮겨 갑니다.
+          </p>
+          <p>
+            같은 식으로 <b>수량</b> → <span class="kbd">Tab</span> →
+            <b>단가</b> → <span class="kbd">Tab</span> → <b>금액</b>을 적습니다.
+            다 적었으면 <span class="kbd">Enter</span> 를 누르세요.
+            <b>다음 줄 맨 앞</b>으로 돌아갑니다.
+          </p>
+        </li>
+
+        <li>
+          <b>내용을 두 줄 적습니다</b>
+          <p>같은 방법으로 아래처럼 채웁니다. <span class="kbd">Tab</span> 으로 옆 칸, <span class="kbd">Enter</span> 로 다음 줄입니다.</p>
+          <ul>
+            <li>사과 · 3 · 1000 · 3000</li>
+            <li>배 · 2 · 2000 · 4000</li>
+          </ul>
+        </li>
+
+        <li>
+          <b>마지막 줄 맨 앞에 '합계'라고 적습니다</b>
+          <p>
+            A4 칸입니다. 아직 옆 칸은 비워 두세요.
+            <b>합계는 2부에서 컴퓨터에게 시킬 겁니다.</b>
+          </p>
+        </li>
+      </ol>
+
+      <div class="note warn">
+        <span class="note-label">잘 안 될 때</span>
+        <p>
+          글자를 치는데 엉뚱한 칸에 들어간다면, 지금 선택된 칸이 다른 곳입니다.
+          <span class="kbd">Ctrl</span> + <span class="kbd">Z</span> 로 되돌리고
+          원하는 칸을 <b>마우스로 한 번 누른 뒤</b> 다시 치세요.
+        </p>
+      </div>
+
+      <h3>숫자에 쉼표를 넣지 마세요</h3>
+      <p>
+        <b>1000</b>이라고 쳐야 합니다. <b>1,000</b>이라고 치면 안 되는 건 아니지만,
+        엑셀이 이걸 숫자가 아니라 <b>글자</b>로 볼 수 있습니다.
+        글자가 되면 더하기가 안 됩니다.
+      </p>
+      <p>
+        쉼표는 <b>나중에 보기 좋게 붙이는 것</b>이지 직접 치는 게 아닙니다.
+        붙이는 방법은 <b>3부</b>에서 합니다.
+      </p>
+
+      <h3>숫자인지 글자인지 알아보는 법</h3>
+      <div class="note">
+        <span class="note-label">이것만 기억하시면 됩니다</span>
+        <p>
+          엑셀은 <b>숫자를 칸의 오른쪽에, 글자를 칸의 왼쪽에</b> 붙여서 보여줍니다.
+          아무것도 안 했는데 그렇게 됩니다.
+        </p>
+        <p>
+          그러니 <b>1000</b>을 넣었는데 <b>왼쪽에 붙어 있다면</b>,
+          엑셀은 그것을 글자로 보고 있는 것입니다.
+          나중에 합계가 0으로 나오는 이유는 십중팔구 이것입니다.
+        </p>
+      </div>
+
+      <h3>날짜와 전화번호는 조심하세요</h3>
+      <p>
+        엑셀은 친절한 척하다가 가끔 엉뚱한 짓을 합니다.
+        처음 배우는 분들이 반드시 한 번은 겪는 두 가지입니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이렇게 쳤는데</th><th>이렇게 나옵니다</th><th>이렇게 하세요</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>1-3</code></td>
+              <td><b>2026-01-03</b> 날짜로 바뀜</td>
+              <td>칸을 고르고 오른쪽 단추 → <b>셀 서식</b> → <b>텍스트</b>로 바꾼 뒤 다시 치기</td>
+            </tr>
+            <tr>
+              <td><code>010</code></td>
+              <td><b>10</b> — 앞의 0이 사라짐</td>
+              <td>치기 전에 <b>작은따옴표</b>를 먼저: <code>'010</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        <code>'010</code> 처럼 작은따옴표를 앞에 붙이면
+        <b>"이건 계산할 숫자가 아니라 글자다"</b>라고 알려주는 것입니다.
+        작은따옴표는 화면에 보이지 않습니다.
+        전화번호·주민번호·우편번호처럼 <b>계산할 일이 없는 숫자</b>에 쓰시면 됩니다.
+      </p>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="fix">
+      <span class="sec-tag">04 — 고치기</span>
+      <h2>잘못 친 것 고치기</h2>
+      <p class="sub">
+        새로 배우는 분들이 가장 답답해하는 부분입니다.
+        <b>고치는 법을 알면 그때부터 겁이 없어집니다.</b>
+      </p>
+
+      <h3>통째로 바꿀 때 — 그냥 다시 치세요</h3>
+      <p>
+        칸을 한 번 누르고 <b>새 내용을 그대로 치면</b> 옛 내용이 지워지고 새것이 들어갑니다.
+        먼저 지울 필요가 없습니다. 짧은 내용은 이 방법이 가장 빠릅니다.
+      </p>
+
+      <h3>일부만 고칠 때 — 칸 안으로 들어갑니다</h3>
+      <p>
+        <b>사과주스</b>를 <b>사과쥬스</b>로 고치는 것처럼 한 글자만 바꾸고 싶을 때가 있습니다.
+        이때는 <b>칸 안으로 들어가야</b> 합니다. 방법은 셋인데 아무거나 편한 것을 쓰세요.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>방법</th><th>어떻게</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>두 번 누르기</b></td>
+              <td>칸을 마우스로 <b>두 번 빠르게</b> 누릅니다. 글자 사이에 막대기가 깜빡입니다</td>
+            </tr>
+            <tr>
+              <td><b>수식 입력줄에서</b></td>
+              <td>칸을 한 번 누르고, 화면 위 <b>수식 입력줄</b>의 글자를 누릅니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">F2</span></td>
+              <td>칸을 한 번 누르고 <span class="kbd">F2</span> 를 누릅니다. 손에 익으면 가장 빠릅니다</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        막대기가 깜빡이면 <b>칸 안에 들어간 것</b>입니다.
+        화살표 키로 자리를 옮기고, <span class="kbd">Backspace</span> 로 왼쪽 글자를 지우고,
+        다 고쳤으면 <span class="kbd">Enter</span> 를 누르세요.
+      </p>
+
+      <div class="note warn">
+        <span class="note-label">칸 안에 있을 때는 화살표 키가 다릅니다</span>
+        <p>
+          평소에 화살표 키는 <b>옆 칸으로</b> 옮겨 갑니다.
+          그런데 칸 안에 들어가 있을 때(막대기가 깜빡일 때)는
+          <b>글자 사이를</b> 옮겨 다닙니다.
+        </p>
+        <p>
+          "화살표를 눌렀는데 칸이 안 움직인다"면 지금 칸 안에 들어와 있는 것입니다.
+          <span class="kbd">Enter</span> 나 <span class="kbd">Esc</span> 로 빠져나오세요.
+        </p>
+      </div>
+
+      <h3>지우기 — Delete 와 Backspace</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>키</th><th>칸을 고른 상태에서</th><th>칸 안에 들어간 상태에서</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="kbd">Delete</span></td>
+              <td>칸 내용이 <b>통째로</b> 지워집니다</td>
+              <td>막대기 <b>오른쪽</b> 글자가 지워집니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Backspace</span></td>
+              <td>내용이 지워지고 <b>칸 안으로 들어갑니다</b></td>
+              <td>막대기 <b>왼쪽</b> 글자가 지워집니다</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        여러 칸을 한꺼번에 지우려면 <b>마우스로 죽 끌어서</b> 여러 칸을 고른 뒤
+        <span class="kbd">Delete</span> 를 누르면 됩니다.
+      </p>
+
+      <h3>되돌리기와 다시 하기</h3>
+      <p>
+        엑셀은 <b>내가 한 일을 순서대로 기억하고 있습니다.</b>
+        그래서 몇 단계든 거슬러 올라갈 수 있습니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>하고 싶은 일</th><th>메뉴로</th><th>손에 익으면</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>방금 한 일 <b>되돌리기</b></td>
+              <td>화면 <b>맨 위 왼쪽</b>의 <b>왼쪽으로 굽은 화살표</b></td>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></td>
+            </tr>
+            <tr>
+              <td>되돌린 것 <b>다시 하기</b></td>
+              <td>그 <b>오른쪽</b>의 <b>오른쪽으로 굽은 화살표</b></td>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Y</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">지금 한 번 해보세요</span>
+        <p>
+          아무 칸이나 눌러서 <b>Delete</b> 로 지워 보세요. 내용이 사라집니다.
+          그다음 <span class="kbd">Ctrl</span> + <span class="kbd">Z</span> 를 누르세요.
+          <b>그대로 돌아옵니다.</b>
+        </p>
+        <p>
+          이걸 한 번 눈으로 보고 나면, 앞으로 무엇을 눌러도 무섭지 않습니다.
+          이 강의에서 가장 중요한 실습입니다.
+        </p>
+      </div>
+
+      <div class="note stop">
+        <span class="note-label">되돌리기가 안 되는 경우</span>
+        <p>
+          <b>파일을 저장하고 창을 닫은 뒤</b>에는 되돌릴 수 없습니다.
+          되돌리기 기억은 <b>창을 닫으면 사라집니다.</b>
+        </p>
+        <p>
+          그래서 크게 뜯어고칠 일이 있으면, 먼저
+          <b>파일 → 다른 이름으로 저장</b>으로 <b>사본을 하나 만들어 두고</b> 시작하세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 ═══════════ -->
+    <section id="rowcol">
+      <span class="sec-tag">05 — 다루기</span>
+      <h2>행과 열 다루기</h2>
+      <p class="sub">
+        줄을 넓히고, 사이에 끼워 넣고, 지우는 법입니다.
+        표를 만들다 보면 반드시 필요해집니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">이름부터</span>
+        <p>
+          <b>행</b>은 <b>가로줄</b>입니다. 왼쪽에 <b>1, 2, 3</b> 번호가 붙어 있습니다.<br>
+          <b>열</b>은 <b>세로줄</b>입니다. 위에 <b>A, B, C</b> 이름이 붙어 있습니다.
+        </p>
+        <p>
+          헷갈리시면 이렇게 외우세요. <b>행</b>은 사람이 <b>줄 서 있는</b> 모양(가로),
+          <b>열</b>은 기둥이 <b>서 있는</b> 모양(세로)입니다.
+        </p>
+      </div>
+
+      <h3>줄 전체를 고르기</h3>
+      <p>
+        위쪽의 <b>A</b>, <b>B</b> 같은 <b>글자를 한 번 누르면</b> 그 세로줄 전체가 선택됩니다.
+        왼쪽의 <b>1</b>, <b>2</b> 같은 <b>번호를 누르면</b> 그 가로줄 전체가 선택됩니다.
+      </p>
+      <p>
+        줄 전체를 고른 뒤에 글자를 굵게 하거나 색을 넣으면
+        <b>그 줄 전부에</b> 한꺼번에 적용됩니다. 하나씩 할 필요가 없습니다.
+      </p>
+
+      <h3>칸 너비 넓히기 — 글자가 잘려 보일 때</h3>
+      <ol class="steps">
+        <li>
+          <b>글자 사이의 경계선에 마우스를 올립니다</b>
+          <p>
+            위쪽 <b>A</b>와 <b>B</b> 글자 <b>사이의 세로 선</b>입니다.
+            마우스 모양이 <b>좌우 화살표</b>로 바뀌는 자리가 있습니다.
+          </p>
+        </li>
+        <li>
+          <b>그 자리를 두 번 빠르게 누릅니다</b>
+          <p>
+            <b>가장 긴 글자에 딱 맞게</b> 저절로 넓어집니다.
+            이 방법이 가장 편합니다.
+          </p>
+        </li>
+        <li>
+          <b>직접 정하고 싶으면 끌어서 옮깁니다</b>
+          <p>
+            같은 자리에서 마우스 왼쪽 단추를 <b>누른 채로</b> 좌우로 끌면
+            원하는 너비로 맞출 수 있습니다.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">여러 줄을 한꺼번에 맞추기</span>
+        <p>
+          위쪽 <b>A</b>를 누르고 <b>D</b>까지 죽 끈 다음, 아무 경계선이나 <b>두 번 누르면</b>
+          고른 줄이 <b>전부 제 너비로</b> 맞춰집니다.
+        </p>
+      </div>
+
+      <h3>사이에 줄 끼워 넣기</h3>
+      <ol class="steps">
+        <li>
+          <b>끼워 넣을 자리의 줄을 고릅니다</b>
+          <p>
+            <b>새 줄이 들어갈 자리</b>의 번호(또는 글자)를 누릅니다.
+            새 줄은 <b>고른 줄의 위쪽</b>(세로줄이면 왼쪽)에 생깁니다.
+          </p>
+        </li>
+        <li>
+          <b>마우스 오른쪽 단추를 누릅니다</b>
+          <p>할 수 있는 일 목록이 나옵니다.</p>
+        </li>
+        <li>
+          <b>삽입을 누릅니다</b>
+          <p>
+            빈 줄이 하나 생기고, 아래 내용은 <b>한 칸씩 밀려 내려갑니다.</b>
+            내용이 사라지는 것이 아니니 안심하세요.
+          </p>
+        </li>
+      </ol>
+
+      <h3>줄 지우기 — 두 가지가 다릅니다</h3>
+      <div class="note warn">
+        <span class="note-label">헷갈리기 쉬운 곳입니다</span>
+        <p>
+          <b>Delete 로 지우기</b>는 <b>내용만</b> 지웁니다. 빈 줄은 그대로 남습니다.<br>
+          <b>오른쪽 단추 → 삭제</b>는 <b>줄 자체를</b> 없앱니다. 아래 내용이 위로 올라옵니다.
+        </p>
+        <p>
+          "지웠는데 빈 줄이 남아 있다"면 앞의 것을 쓰신 겁니다.
+          줄을 아예 없애려면 <b>오른쪽 단추 → 삭제</b>를 쓰세요.
+        </p>
+      </div>
+
+      <h3>줄 옮기기</h3>
+      <p>
+        순서를 바꾸고 싶을 때는 <b>잘라내서 붙이는 것</b>이 가장 안전합니다.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>옮길 줄을 고르고 오른쪽 단추 → 잘라내기</b>
+          <p>줄 둘레에 점선이 움직입니다. 아직 사라지지 않았습니다.</p>
+        </li>
+        <li>
+          <b>새로 들어갈 자리의 줄을 고릅니다</b>
+        </li>
+        <li>
+          <b>오른쪽 단추 → 잘라낸 셀 삽입</b>
+          <p>
+            그냥 <b>붙여넣기</b>를 누르면 <b>그 자리에 있던 내용을 덮어씁니다.</b>
+            줄을 밀어 넣고 싶으면 반드시 <b>잘라낸 셀 삽입</b>을 고르세요.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">손에 익으면</span>
+        <p>
+          <span class="kbd">Ctrl</span> + <span class="kbd">X</span> 잘라내기,
+          <span class="kbd">Ctrl</span> + <span class="kbd">C</span> 복사,
+          <span class="kbd">Ctrl</span> + <span class="kbd">V</span> 붙여넣기입니다.
+          급하지 않습니다. 오른쪽 단추로도 전부 됩니다.
+        </p>
+      </div>
+
+      <h3>시트 — 종이를 여러 장 쓰기</h3>
+      <p>
+        화면 <b>맨 아래</b>에 <b>Sheet1</b> 같은 작은 딱지가 있습니다.
+        이것이 <b>종이 한 장</b>입니다. 한 파일 안에 여러 장을 둘 수 있습니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>하고 싶은 일</th><th>이렇게</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>새 종이 <b>추가</b></td>
+              <td>딱지 옆의 <b>＋</b> 를 누릅니다</td>
+            </tr>
+            <tr>
+              <td>이름 <b>바꾸기</b></td>
+              <td>딱지를 <b>두 번 누르고</b> 새 이름을 칩니다</td>
+            </tr>
+            <tr>
+              <td><b>지우기</b></td>
+              <td>딱지에 <b>오른쪽 단추</b> → <b>삭제</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note stop">
+        <span class="note-label">시트 삭제는 되돌릴 수 없습니다</span>
+        <p>
+          거의 모든 것을 <span class="kbd">Ctrl</span> + <span class="kbd">Z</span> 로 되돌릴 수 있지만,
+          <b>시트를 지운 것만은 되돌아오지 않습니다.</b>
+          지우기 전에 한 번 더 확인하세요.
+        </p>
+      </div>
+
+      <p>
+        <b>1월</b>, <b>2월</b>처럼 이름을 붙여 쓰면 편합니다.
+        다만 처음에는 <b>한 장으로 충분합니다.</b> 이런 게 있다는 것만 알아 두세요.
+      </p>
+    </section>
+
+    <!-- ═══════════ 06 ═══════════ -->
+    <section id="save">
+      <span class="sec-tag">06 — 저장</span>
+      <h2>저장하기</h2>
+      <p class="sub">
+        만든 것을 컴퓨터에 남기는 일입니다.
+        저장하지 않고 창을 닫으면 <b>전부 사라집니다.</b>
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>파일 → 저장을 누릅니다</b>
+          <p>
+            화면 <b>맨 위 왼쪽</b>의 <b>파일</b>을 누르면 큰 화면이 나옵니다.
+            거기서 <b>저장</b>(또는 <b>다른 이름으로 저장</b>)을 누르세요.
+          </p>
+          <p>
+            처음 저장하는 파일이면 "어디에 저장할까요" 화면이 나옵니다.
+          </p>
+        </li>
+        <li>
+          <b>저장할 곳을 고릅니다</b>
+          <p>
+            처음에는 <b>바탕 화면</b>을 고르세요. 눈에 보이는 곳에 있어야
+            나중에 찾을 수 있습니다.
+          </p>
+        </li>
+        <li>
+          <b>파일 이름을 적습니다</b>
+          <p>
+            <b>과일_판매표</b>처럼 <b>나중의 내가 알아볼 이름</b>으로 적으세요.
+            "문서1", "새 파일"은 일주일 뒤에 무엇인지 모릅니다.
+          </p>
+        </li>
+        <li>
+          <b>저장 단추를 누릅니다</b>
+          <p>
+            창 맨 위에 방금 적은 이름이 뜨면 끝났습니다.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">손에 익으면</span>
+        <p>
+          <span class="kbd">Ctrl</span> + <span class="kbd">S</span> 를 누르면
+          파일 메뉴를 거치지 않고 바로 저장됩니다.
+          이 강의에서 <b>가장 자주 쓰게 될 손동작</b>입니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">그다음부터는</span>
+        <p>
+          한 번 저장한 뒤로는 <span class="kbd">Ctrl</span> + <span class="kbd">S</span> 를
+          눌러도 <b>아무 화면도 안 나옵니다.</b> 고장이 아닙니다.
+          <b>조용히 덮어써서 저장된 것</b>입니다. 자주 눌러 주세요.
+        </p>
+      </div>
+
+      <h3>저장과 다른 이름으로 저장</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>메뉴</th><th>하는 일</th><th>언제</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>저장</b></td>
+              <td>지금 파일에 <b>덮어씁니다.</b> 옛 내용은 없어집니다</td>
+              <td>평소에. 수시로</td>
+            </tr>
+            <tr>
+              <td><b>다른 이름으로 저장</b></td>
+              <td><b>새 파일을 하나 더</b> 만듭니다. 원래 파일은 그대로 남습니다</td>
+              <td>크게 고치기 전, 사본을 남겨 둘 때</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">권해 드리는 습관</span>
+        <p>
+          중요한 파일을 크게 뜯어고치기 전에는
+          <b>다른 이름으로 저장</b>으로 <code>과일_판매표_2.xlsx</code> 처럼
+          사본을 하나 만들어 두고 시작하세요.
+        </p>
+        <p>
+          망쳐도 원래 파일이 그대로 있으니 마음 편히 해보실 수 있습니다.
+        </p>
+      </div>
+
+      <h3>파일 이름 뒤에 붙는 글자 — 확장자</h3>
+      <p>
+        <code>과일_판매표.xlsx</code> 에서 점 뒤의 <b>xlsx</b>를 확장자라고 합니다.
+        <b>이 파일이 어떤 프로그램의 것인지</b> 알려주는 꼬리표입니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>확장자</th><th>무엇</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>.xlsx</code></td><td>엑셀 파일. 보통 이것을 씁니다</td></tr>
+            <tr><td><code>.xls</code></td><td>아주 옛날 엑셀 파일. 요즘은 잘 안 씁니다</td></tr>
+            <tr><td><code>.csv</code></td><td>글자만 든 간단한 표. 색·수식이 <b>다 사라집니다</b></td></tr>
+            <tr><td><code>.pdf</code></td><td>고칠 수 없는 종이 같은 파일. 남에게 보낼 때</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note stop">
+        <span class="note-label">가장 흔한 사고</span>
+        <p>
+          저장할 때 아래쪽 <b>파일 형식</b>을 건드려서 <code>.csv</code>로 저장하면,
+          색과 수식이 <b>전부 없어집니다.</b> 그리고 되돌릴 수 없습니다.
+        </p>
+        <p>
+          파일 형식 칸은 <b>건드리지 마세요.</b> 기본값이 <code>.xlsx</code>입니다.
+        </p>
+      </div>
+
+      <h3>저장하지 않고 닫아 버렸을 때</h3>
+      <p>
+        요즘 엑셀은 <b>스스로 몰래 백업</b>을 해 둡니다. 완전히 포기하지 마세요.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>엑셀을 다시 켭니다</b>
+          <p>운이 좋으면 왼쪽에 <b>문서 복구</b> 목록이 저절로 뜹니다.</p>
+        </li>
+        <li>
+          <b>안 뜨면 파일 → 정보로 갑니다</b>
+          <p>
+            <b>통합 문서 관리</b> → <b>저장하지 않은 통합 문서 복구</b>를 눌러 보세요.
+          </p>
+        </li>
+      </ol>
+      <p>
+        <b>늘 되는 것은 아닙니다.</b> 그러니 역시
+        <span class="kbd">Ctrl</span> + <span class="kbd">S</span> 를 자주 누르는 것이 답입니다.
+      </p>
+
+      <h3>남에게 보낼 때는 PDF로</h3>
+      <p>
+        받는 사람 컴퓨터에 엑셀이 없을 수도 있고, 받은 사람이 실수로
+        내용을 고칠 수도 있습니다. 그럴 땐 PDF로 한 부 더 만들어 보내세요.
+      </p>
+      <p>
+        <b>파일 → 다른 이름으로 저장 → 파일 형식에서 PDF</b>를 고르면 됩니다.
+        원래 엑셀 파일은 그대로 남아 있으니 안심하셔도 됩니다.
+        인쇄 모양을 다듬는 방법은 <b>3부</b>에서 합니다.
+      </p>
+    </section>
+
+    <!-- ═══════════ 07 ═══════════ -->
+    <section id="trouble">
+      <span class="sec-tag">07 — 문제 해결</span>
+      <h2>이럴 땐 이렇게</h2>
+      <p class="sub">
+        1부에서 처음 배우는 분들이 거의 다 겪는 것들입니다.
+        고장이 아니니 당황하지 마세요.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이런 일이</th><th>왜</th><th>이렇게</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>칸에 <b>#####</b> 만 보임</td>
+              <td>숫자가 칸보다 길어서</td>
+              <td>열 경계선을 <b>두 번 눌러</b> 넓히기</td>
+            </tr>
+            <tr>
+              <td><b>2026-01-03</b> 처럼 날짜로 바뀜</td>
+              <td><code>1-3</code> 을 날짜로 알아들음</td>
+              <td>칸을 고르고 오른쪽 단추 → <b>셀 서식</b> → <b>텍스트</b></td>
+            </tr>
+            <tr>
+              <td>앞의 <b>0이 사라짐</b><br>(010 → 10)</td>
+              <td>숫자 앞의 0은 뜻이 없다고 봄</td>
+              <td>치기 전에 <b>작은따옴표</b>를 먼저: <code>'010</code></td>
+            </tr>
+            <tr>
+              <td>글자가 <b>옆 칸까지</b> 넘어가 보임</td>
+              <td>옆 칸이 비어 있으면 넘겨서 보여줌</td>
+              <td>고장이 아닙니다. 칸을 넓히면 깔끔해집니다</td>
+            </tr>
+            <tr>
+              <td>화살표를 눌러도 <b>칸이 안 옮겨감</b></td>
+              <td>지금 <b>칸 안에</b> 들어가 있음</td>
+              <td><span class="kbd">Enter</span> 나 <span class="kbd">Esc</span> 로 빠져나오기</td>
+            </tr>
+            <tr>
+              <td>화살표를 누르면 <b>화면 전체가</b> 움직임</td>
+              <td><b>스크롤 락</b> 키가 켜져 있음</td>
+              <td>키보드의 <b>Scroll Lock</b> 키를 한 번 누르기</td>
+            </tr>
+            <tr>
+              <td>글자를 치면 <b>옆 글자가 지워짐</b></td>
+              <td><b>Insert</b> 키가 눌려 덮어쓰기 상태</td>
+              <td>키보드의 <b>Insert</b> 키를 한 번 누르기</td>
+            </tr>
+            <tr>
+              <td>표가 <b>저 아래</b>에 있어 안 보임</td>
+              <td>화면이 멀리 가 있음</td>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Home</span> 으로 첫 칸 복귀</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">기억해 두면 좋은 것</span>
+        <p>
+          엑셀에서 <b>숫자는 오른쪽에, 글자는 왼쪽에</b> 붙어서 표시됩니다.
+          숫자를 넣었는데 왼쪽에 붙어 있다면, 엑셀은 그것을 글자로 보고 있는 것입니다.
+          2부에서 계산이 안 되는 이유는 십중팔구 이것입니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">막혔을 때 순서</span>
+        <p>
+          무엇을 눌렀는지 모르겠고 화면이 이상해졌다면, 이 순서로 해보세요.
+        </p>
+        <ul>
+          <li><span class="kbd">Esc</span> — 하던 것을 취소합니다</li>
+          <li><span class="kbd">Ctrl</span> + <span class="kbd">Z</span> — 여러 번 눌러도 됩니다</li>
+          <li><span class="kbd">Ctrl</span> + <span class="kbd">Home</span> — 첫 칸으로 돌아옵니다</li>
+        </ul>
+        <p>
+          이 셋으로 대부분 제자리로 돌아옵니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 08 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">08 — 마무리</span>
+      <h2>1부 확인 목록</h2>
+      <p class="sub">
+        직접 해본 것에 체크하세요. 체크한 것은 다음에 들어와도 그대로 남아 있습니다.
+      </p>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span>엑셀을 켜서 빈 통합 문서를 열었다</span></label></li>
+        <li><label><input type="checkbox"><span>칸(셀) 하나를 눌러 글자를 넣어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><span class="kbd">Tab</span> 은 옆 칸, <span class="kbd">Enter</span> 는 다음 줄이라는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>D4 같은 칸 이름이 무슨 뜻인지 안다</span></label></li>
+        <li><label><input type="checkbox"><span>이름 상자에서 지금 고른 칸 이름을 확인해 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><span class="kbd">Ctrl</span>+<span class="kbd">Home</span> 으로 첫 칸에 돌아와 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>품목·수량·단가·금액 표를 두 줄까지 적었다</span></label></li>
+        <li><label><input type="checkbox"><span>칸을 두 번 눌러 <b>일부 글자만</b> 고쳐 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>지워 놓고 <span class="kbd">Ctrl</span>+<span class="kbd">Z</span> 로 되돌려 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>열 경계선을 두 번 눌러 너비를 맞춰 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>줄을 하나 끼워 넣어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>내용만 지우는 것과 줄을 없애는 것의 차이를 안다</span></label></li>
+        <li><label><input type="checkbox"><span>이름을 정해서 바탕 화면에 저장했다</span></label></li>
+        <li><label><input type="checkbox"><span>숫자는 오른쪽, 글자는 왼쪽에 붙는다는 것을 안다</span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">여기까지 하셨으면</span>
+        <p>
+          엑셀에 <b>내용을 넣고 고치는 일은 이제 다 하실 수 있습니다.</b>
+          여기가 가장 손이 안 따라오는 구간이었습니다.
+        </p>
+        <p>
+          2부는 훨씬 재미있습니다. 방금 만든 표에서
+          <b>합계를 단추 한 번으로</b> 내고, 숫자를 고치면
+          합계가 저절로 바뀌는 것을 보시게 됩니다.
+        </p>
+      </div>
+
+      <div class="next-up">
+        <a href="excel.html">← 엑셀 과목 첫 화면</a>
+        <a href="excel-2.html">2부: 계산을 시키기 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="ko" data-subject="word">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>워드 2부 — 스타일로 문서 짜기</title>
+<meta name="description" content="워드 2부. 스타일이 무엇인지, 제목 스타일 쓰기와 고치기, 목록과 번호, 표 넣기, 사진 넣기와 배치.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="word.html">← 워드 과목 첫 화면으로</a>
+    <p class="eyebrow">4과목 · 워드 · 2부</p>
+    <h1>스타일로<br><em>문서 짜기</em></h1>
+    <p class="lede">
+      <b>이 부 하나가 워드를 배우는 이유입니다.</b>
+      제목을 크게 만드는 것과 <b>"이건 제목이다"라고 알려주는 것</b>은 다릅니다.
+      이 차이를 알면 긴 문서를 다루는 힘이 완전히 달라집니다.
+    </p>
+    <div class="facts">
+      <span><b>먼저</b> 1부를 마치셨다면</span>
+      <span><b>소요</b> 90분</span>
+      <span><b>결과물</b> 제목이 제대로 잡힌 보고서</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#why">스타일이 무엇인가</a></li>
+      <li><a href="#use">제목 스타일 쓰기</a></li>
+      <li><a href="#edit">스타일 고치기</a></li>
+      <li><a href="#list">목록과 번호</a></li>
+      <li><a href="#table">표 넣기</a></li>
+      <li><a href="#image">사진 넣기</a></li>
+      <li><a href="#trouble">이럴 땐 이렇게</a></li>
+      <li><a href="#check">2부 확인 목록</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════
+         네 과목 어느 것부터 봐도 되도록, 이 장은 과목마다 똑같이 들어 있습니다.
+         고칠 때는 여섯 곳을 함께 고쳐 주세요. -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에, 손동작 세 가지</h2>
+      <p class="sub">
+        이 세 가지만 알면 무엇을 눌러도 겁낼 것이 없습니다.
+        네 과목 모두에서 똑같이 씁니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">다른 과목에서 이미 보셨다면</span>
+        <p>
+          같은 장이 과목마다 들어 있습니다.
+          이미 읽으셨으면 <a href="#why">01장</a>으로 건너뛰세요.
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>손동작</th><th>하는 일</th><th>언제 쓰나</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></td>
+              <td>방금 한 일을 되돌립니다</td>
+              <td>잘못 눌렀을 때. 여러 번 눌러도 됩니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">S</span></td>
+              <td>저장합니다</td>
+              <td>수시로. 한 줄 쓸 때마다 눌러도 좋습니다</td>
+            </tr>
+            <tr>
+              <td>마우스 <b>오른쪽</b> 단추</td>
+              <td>지금 고른 것에 할 수 있는 일 목록을 띄웁니다</td>
+              <td>무엇을 눌러야 할지 모를 때</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">가장 중요한 이야기</span>
+        <p>
+          <b>잘못 눌러서 컴퓨터가 고장 나는 일은 없습니다.</b>
+          지금부터 하는 모든 것은 되돌릴 수 있습니다.
+          겁내지 말고 여기저기 눌러보세요. 그게 가장 빨리 배우는 방법입니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">2부에서 쓸 문서</span>
+        <p>
+          1부에서 만든 <b>상반기활동보고</b>를 그대로 씁니다.
+          바탕 화면에서 두 번 눌러 여세요.
+        </p>
+        <p>
+          없으셔도 괜찮습니다. 새 문서를 열고 아래처럼 여섯 줄만 적으면 됩니다.
+          <b>모양은 신경 쓰지 마세요.</b>
+        </p>
+        <ul>
+          <li>상반기 활동 보고</li>
+          <li>1. 무엇을 했나</li>
+          <li>지난 1월부터 6월까지 모임을 열두 번 열었습니다.</li>
+          <li>참여한 분은 모두 마흔여덟 분입니다.</li>
+          <li>2. 앞으로 할 일</li>
+          <li>하반기에는 야외 모임을 두 번 넣기로 했습니다.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="why">
+      <span class="sec-tag">01 — 핵심</span>
+      <h2>스타일이 무엇인가</h2>
+      <p class="sub">
+        이 장 하나가 워드를 배우는 이유입니다.
+        긴 문서를 다룰 때 힘이 완전히 달라집니다.
+      </p>
+
+      <h3>글자를 크게 하는 것과 '제목이라고 알려주는 것'은 다릅니다</h3>
+      <p>
+        보통은 제목 줄을 골라서 <b>크기를 20으로 키우고 굵게</b> 합니다.
+        보기에는 제목 같지만, 워드는 그것을 여전히
+        <b>"크고 굵은 보통 글"</b>이라고만 알고 있습니다.
+      </p>
+      <p>
+        대신 그 줄을 고르고 리본의 <b>제목 1</b>을 누르면,
+        워드는 <b>"이 줄은 제목이다"</b>라고 이해합니다.
+        모양이 바뀌는 건 덤입니다.
+      </p>
+
+      <div class="duo">
+        <div class="duo-dim">
+          <span class="duo-label">크기만 키우면</span>
+          <p>워드가 보기에 <b>"큰 글씨"</b></p>
+          <p>목차에 안 잡힙니다. 한 번에 못 바꿉니다</p>
+        </div>
+        <div class="duo-say">
+          <span class="duo-label">제목 1을 누르면</span>
+          <p>워드가 보기에 <b>"제목"</b></p>
+          <p>목차에 잡힙니다. 한 번에 바꿉니다</p>
+        </div>
+      </div>
+
+      <div class="note">
+        <span class="note-label">겉모습이 아니라 뜻을 알려주는 것</span>
+        <p>
+          스타일은 <b>"이 줄이 무엇인지"</b>를 워드에게 알려주는 이름표입니다.
+          제목인지, 본문인지, 인용문인지.
+        </p>
+        <p>
+          이름표를 붙여 두면 워드가 <b>알아서 해주는 일</b>이 많아집니다.
+          다음 장에서 그게 무엇인지 보시게 됩니다.
+        </p>
+      </div>
+
+      <h3>이렇게 해두면 생기는 일</h3>
+      <ul>
+        <li>
+          <b>목차가 저절로 만들어집니다.</b>
+          <span class="nb">참조 → 목차 → 자동 목차</span>를 누르면
+          제목들이 쪽 번호와 함께 쭉 뽑혀 나옵니다. <b>3부에서 해봅니다.</b>
+        </li>
+        <li>
+          <b>제목 모양을 한 번에 바꿀 수 있습니다.</b>
+          제목 1 스타일 하나만 고치면 문서 안의 <b>모든 제목 1</b>이 같이 바뀝니다.
+        </li>
+        <li>
+          <b>긴 문서에서 길을 잃지 않습니다.</b>
+          <span class="nb">보기 → 탐색 창</span>에 체크하면 왼쪽에 제목 목록이 나옵니다.
+          누르면 그 자리로 바로 갑니다.
+        </li>
+        <li>
+          <b>제목 순서를 통째로 옮길 수 있습니다.</b>
+          탐색 창에서 제목을 끌면 <b>그 아래 본문까지 같이</b> 움직입니다.
+        </li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">한 줄로 정리하면</span>
+        <p>
+          <b>제목은 크기를 키우지 말고 '제목 1'을 누르세요.</b>
+          당장은 결과가 비슷해 보여도, 문서가 열 쪽을 넘어가는 순간
+          차이가 확 벌어집니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="use">
+      <span class="sec-tag">02 — 실습</span>
+      <h2>제목 스타일 쓰기</h2>
+      <p class="sub">
+        1부에서 적어 둔 제목들을 <b>진짜 제목</b>으로 만들어 보겠습니다.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>제목 줄에 커서를 둡니다</b>
+          <p>
+            <b>상반기 활동 보고</b> 줄 아무 데나 한 번 누르면 됩니다.
+            드래그로 다 고를 필요도 없습니다. 스타일은 <b>줄 전체</b>에 걸립니다.
+          </p>
+        </li>
+        <li>
+          <b>리본 <span class="nb">홈 → 스타일 모음</span>에서 '제목 1'을 누릅니다</b>
+          <p>
+            홈 탭 오른쪽에 <b>표준 · 제목 1 · 제목 2</b> 같은 것이
+            네모 칸으로 늘어서 있습니다. 글자가 커지고 색이 바뀝니다.
+          </p>
+          <p>
+            칸이 좁아 안 보이면 <b>오른쪽 아래 작은 화살표</b>를 눌러 펼치세요.
+          </p>
+        </li>
+        <li>
+          <b>작은 제목에는 '제목 2'를 누릅니다</b>
+          <p><b>1. 무엇을 했나</b>와 <b>2. 앞으로 할 일</b> 두 줄입니다.</p>
+        </li>
+        <li>
+          <b>나머지 본문은 '표준' 그대로 둡니다</b>
+          <p>
+            본문에는 아무것도 안 하셔도 됩니다.
+            이미 <b>표준</b> 스타일이 걸려 있습니다.
+          </p>
+        </li>
+        <li>
+          <b>저장합니다</b>
+          <p><span class="kbd">Ctrl</span> + <span class="kbd">S</span> 를 누르세요.</p>
+        </li>
+      </ol>
+
+      <h3>제목 1과 제목 2의 차이</h3>
+      <div class="note">
+        <span class="note-label">큰 제목과 작은 제목입니다</span>
+        <p>
+          책의 <b>장 제목</b>이 제목 1이라면, 그 안의 <b>절 제목</b>이 제목 2입니다.
+          제목 3, 제목 4까지 있지만 <b>보통 둘이면 충분합니다.</b>
+        </p>
+        <p>
+          순서를 건너뛰지 마세요. 제목 1 없이 제목 2부터 쓰면
+          나중에 목차가 이상해집니다.
+        </p>
+      </div>
+
+      <h3>지금 바로 보람을 확인하세요</h3>
+      <ol class="steps">
+        <li>
+          <b>리본 <span class="nb">보기 → 탐색 창</span>에 체크합니다</b>
+          <p>
+            화면 <b>왼쪽</b>에 새 칸이 하나 생깁니다.
+          </p>
+        </li>
+        <li>
+          <b>거기 적힌 제목 목록을 봅니다</b>
+          <p>
+            방금 스타일을 건 제목들이 <b>목록으로 정리되어</b> 있습니다.
+            누르면 그 자리로 바로 갑니다.
+          </p>
+        </li>
+        <li>
+          <b>제목을 끌어서 순서를 바꿔 보세요</b>
+          <p>
+            <b>2. 앞으로 할 일</b>을 위로 끌어 보세요.
+            <b>그 아래 본문까지 통째로</b> 따라 올라갑니다.
+          </p>
+          <p>
+            확인하셨으면 <span class="kbd">Ctrl</span>+<span class="kbd">Z</span> 로 되돌리세요.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">이게 스타일의 값어치입니다</span>
+        <p>
+          크기만 키운 제목은 <b>탐색 창에 나오지 않습니다.</b>
+          워드가 그걸 제목으로 모르기 때문입니다.
+        </p>
+        <p>
+          지금은 여섯 줄짜리라 별것 아니게 보이지만,
+          <b>서른 쪽짜리 보고서</b>에서는 이게 없으면 길을 잃습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="edit">
+      <span class="sec-tag">03 — 실습</span>
+      <h2>스타일 고치기</h2>
+      <p class="sub">
+        기본 제목 모양이 마음에 안 들 때, <b>제목 하나하나가 아니라
+        스타일 자체를</b> 고칩니다. 그러면 모든 제목이 같이 바뀝니다.
+      </p>
+
+      <div class="note warn">
+        <span class="note-label">먼저 — 워드가 컴퓨터에 없다면</span>
+        <p>
+          워드는 <b>돈을 내고 사는 프로그램</b>입니다. 없으셔도 무료로 대신할 수 있습니다.
+          주소창에 <code class="nb">docs.google.com</code>(구글 문서) 또는
+          <code class="nb">office.com</code>(웹에서 쓰는 워드)을 치세요.
+          자세한 안내는 <a href="word-1.html#make">1부 03장</a>에 있습니다.
+        </p>
+        <p>
+          <b>스타일·목차·표·사진은 둘 다에 있습니다.</b>
+          구글 문서에서는 스타일이 <b>일반 텍스트 / 제목 1 / 제목 2</b> 라는
+          목록으로 나옵니다. 이름만 조금 다릅니다.
+        </p>
+      </div>
+
+      <h3>제목 모양 바꾸기</h3>
+      <ol class="steps">
+        <li>
+          <b>제목 1이 걸린 줄을 원하는 모양으로 고칩니다</b>
+          <p>
+            글꼴·크기·색을 바꾸고, 가운데 정렬을 해보세요.
+            <b>지금은 그 줄 하나만</b> 바뀝니다.
+          </p>
+        </li>
+        <li>
+          <b>그 줄에 커서를 둔 채 스타일 모음의 '제목 1'에 오른쪽 단추</b>
+          <p>목록이 나옵니다.</p>
+        </li>
+        <li>
+          <b>선택 영역과 일치하도록 제목 1 업데이트를 누릅니다</b>
+          <p>
+            이름이 깁니다. <b>"지금 이 모양으로 제목 1을 바꿔라"</b>는 뜻입니다.
+          </p>
+        </li>
+        <li>
+          <b>다른 제목 1도 같이 바뀌는지 봅니다</b>
+          <p>
+            문서에 제목 1이 여럿이면 <b>전부 한꺼번에</b> 바뀝니다.
+            이게 스타일을 쓰는 이유입니다.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">다른 방법</span>
+        <p>
+          스타일 이름에 오른쪽 단추 → <b>수정</b>을 누르면
+          <b>창에서 직접</b> 글꼴·크기·간격을 정할 수도 있습니다.
+        </p>
+        <p>
+          앞의 방법(눈으로 보면서 고치고 업데이트)이 <b>훨씬 쉽습니다.</b>
+        </p>
+      </div>
+
+      <h3>문서 전체 분위기 한 번에 바꾸기</h3>
+      <p>
+        리본 <b>디자인</b> 탭을 누르면 완성된 <b>문서 모양</b>이 죽 나옵니다.
+        하나 누르면 <b>제목·본문 글꼴과 색이 한꺼번에</b> 바뀝니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">스타일을 써야만 되는 일입니다</span>
+        <p>
+          디자인 탭은 <b>스타일이 걸린 부분만</b> 바꿉니다.
+          손으로 크기를 키운 제목은 <b>그대로 남습니다.</b>
+        </p>
+        <p>
+          파워포인트의 <b>디자인 탭</b>과 같은 생각입니다.
+          한 번 눌러서 문서 전체가 달라지는 것을 보세요.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">스타일이 이상해졌을 때</span>
+        <p>
+          이것저것 만지다 엉망이 되면, 그 문단에 커서를 두고
+          <span class="kbd">Ctrl</span> + <span class="kbd">Space</span> 를 누르세요.
+          <b>손으로 건 글자 모양이 벗겨지고</b> 스타일 기본으로 돌아갑니다.
+        </p>
+        <p>
+          문단 모양까지 되돌리려면
+          <span class="kbd">Ctrl</span> + <span class="kbd">Q</span> 입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="list">
+      <span class="sec-tag">04 — 목록</span>
+      <h2>목록과 번호</h2>
+      <p class="sub">
+        <b>1. 2. 3.</b> 이나 <b>• • •</b> 을 줄 앞에 붙이는 것입니다.
+        직접 치지 마시고 <b>기능을 쓰세요.</b>
+      </p>
+
+      <div class="note">
+        <span class="note-label">왜 직접 치면 안 되나</span>
+        <p>
+          손으로 <b>1.</b> <b>2.</b> <b>3.</b> 을 쳐 놓으면,
+          가운데에 항목을 하나 끼워 넣을 때 <b>아래 번호를 전부 고쳐야</b> 합니다.
+        </p>
+        <p>
+          기능을 쓰면 <b>저절로 다시 매겨집니다.</b> 열 개든 백 개든 마찬가지입니다.
+        </p>
+      </div>
+
+      <ol class="steps">
+        <li>
+          <b>목록으로 만들 줄들을 드래그해서 고릅니다</b>
+        </li>
+        <li>
+          <b>홈 탭의 목록 단추를 누릅니다</b>
+          <p>
+            점이 찍힌 단추는 <b>글머리 기호</b>(•),
+            숫자가 적힌 단추는 <b>번호 매기기</b>(1. 2. 3.)입니다.
+          </p>
+          <p>
+            단추 <b>오른쪽 작은 화살표</b>를 누르면 모양을 고를 수 있습니다.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">단계 넣기</span>
+        <p>
+          줄 맨 앞에서 <span class="kbd">Tab</span> 을 누르면 <b>한 단계 안으로</b>,
+          <span class="kbd">Shift</span>+<span class="kbd">Tab</span> 을 누르면 <b>밖으로</b> 나갑니다.
+        </p>
+        <p>
+          안으로 들어가면 기호나 번호 모양이 <b>저절로 바뀝니다</b>(1 → 가 → ①).
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">워드가 멋대로 번호를 붙일 때</span>
+        <p>
+          줄 앞에 <b>1.</b> 을 치고 <span class="kbd">Enter</span> 를 누르면
+          워드가 <b>알아서 번호 목록으로</b> 바꿔 버립니다.
+        </p>
+        <p>
+          원하지 않으면 <b>그 직후에</b> <span class="kbd">Ctrl</span>+<span class="kbd">Z</span> 를
+          <b>한 번</b> 누르세요. 자동 고침만 취소되고 글자는 남습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 ═══════════ -->
+    <section id="table">
+      <span class="sec-tag">05 — 표</span>
+      <h2>표 넣기</h2>
+      <p class="sub">
+        리본의 <b>삽입</b> 탭에 있습니다.
+        "없던 것을 새로 넣는다" 싶으면 <b>삽입</b>을 보시면 됩니다.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>표가 들어갈 자리에 커서를 둡니다</b>
+        </li>
+        <li>
+          <b>리본 <span class="nb">삽입 → 표</span>를 누릅니다</b>
+          <p>작은 네모 칸이 격자로 나옵니다.</p>
+        </li>
+        <li>
+          <b>마우스를 끌어 크기를 고릅니다</b>
+          <p>
+            <b>2×3</b>처럼 <b>가로 칸 수 × 세로 줄 수</b>가 위에 표시됩니다.
+            누르면 표가 들어갑니다.
+          </p>
+        </li>
+        <li>
+          <b>칸을 눌러 글자를 적습니다</b>
+          <p>
+            <span class="kbd">Tab</span> 으로 다음 칸입니다. 엑셀·한글과 같습니다.
+            <b>맨 마지막 칸</b>에서 <span class="kbd">Tab</span> 을 누르면 줄이 하나 더 생깁니다.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">표를 고칠 때는 오른쪽 단추</span>
+        <p>
+          표 안에서 <b>마우스 오른쪽 단추</b>를 누르면
+          줄 삽입·삭제·셀 병합이 전부 나옵니다.
+          한글과 마찬가지로 <b>오른쪽 단추를 누르는 습관</b>만 들이세요.
+        </p>
+      </div>
+
+      <h3>표를 고르면 탭이 두 개 나타납니다</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>탭</th><th>여기서 하는 일</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>테이블 디자인</b></td>
+              <td>완성된 표 모양 고르기, 테두리, 음영</td>
+            </tr>
+            <tr>
+              <td><b>레이아웃</b></td>
+              <td>줄·칸 넣고 지우기, 셀 병합, 너비 맞추기, 글자 위치</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">가장 빠른 꾸미기</span>
+        <p>
+          <b>테이블 디자인</b> 탭 가운데의 완성된 모양 중 하나를 누르면
+          머리 줄 색과 테두리가 <b>한꺼번에</b> 입혀집니다.
+        </p>
+        <p>
+          보고서라면 <b>단순한 것</b>을 고르세요. 화려하면 읽기 나빠집니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">표가 종이 밖으로 나갈 때</span>
+        <p>
+          <b>레이아웃</b> 탭 → <b>자동 맞춤</b> → <b>창에 자동으로 맞춤</b>을 누르면
+          표가 여백 안으로 들어옵니다.
+        </p>
+      </div>
+
+      <h3>엑셀에서 가져오기</h3>
+      <p>
+        엑셀에서 표를 드래그해서 고르고
+        <span class="kbd">Ctrl</span> + <span class="kbd">C</span> 로 복사한 뒤,
+        워드에서 <span class="kbd">Ctrl</span> + <span class="kbd">V</span> 로 붙여넣으면
+        <b>표 모양 그대로</b> 들어옵니다.
+      </p>
+    </section>
+
+    <!-- ═══════════ 06 ═══════════ -->
+    <section id="image">
+      <span class="sec-tag">06 — 그림</span>
+      <h2>사진 넣기</h2>
+      <p class="sub">
+        넣는 것은 쉽습니다. <b>어려운 것은 자리를 잡는 일</b>입니다.
+        한글의 <b>본문과의 배치</b>와 같은 이야기입니다.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>사진이 들어갈 자리에 커서를 둡니다</b>
+        </li>
+        <li>
+          <b>리본 <span class="nb">삽입 → 그림 → 이 디바이스</span>를 누릅니다</b>
+          <p>"이 디바이스"는 <b>내 컴퓨터에 있는 사진</b>이라는 뜻입니다.</p>
+        </li>
+        <li>
+          <b>사진을 찾아서 두 번 누릅니다</b>
+        </li>
+        <li>
+          <b>크기를 줄입니다</b>
+          <p>
+            사진을 누르면 테두리에 <b>동그란 손잡이</b>가 생깁니다.
+            <b>반드시 모서리</b> 손잡이를 잡고 끄세요.
+            옆면을 잡으면 <b>찌그러집니다.</b>
+          </p>
+        </li>
+      </ol>
+
+      <h3>글과 어떻게 어울릴지 정하기</h3>
+      <p>
+        사진을 누르면 <b>오른쪽 위에 작은 단추</b>가 하나 붙습니다.
+        <b>레이아웃 옵션</b>입니다. 여기서 정합니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>배치</th><th>이렇게 됩니다</th><th>언제</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>텍스트 줄 안</b></td>
+              <td>사진이 <b>큰 글자 하나처럼</b> 행동합니다</td>
+              <td><b>가장 안전합니다.</b> 기본값</td>
+            </tr>
+            <tr>
+              <td><b>정사각형</b></td>
+              <td>글이 사진을 <b>네모나게 피해</b> 흐릅니다</td>
+              <td>글 옆에 작은 사진</td>
+            </tr>
+            <tr>
+              <td><b>텍스트 뒤</b></td>
+              <td>사진이 글자 <b>뒤에</b> 깔립니다</td>
+              <td>배경 무늬</td>
+            </tr>
+            <tr>
+              <td><b>텍스트 앞</b></td>
+              <td>사진이 글자를 <b>덮습니다</b></td>
+              <td>도장 이미지</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">처음에는 텍스트 줄 안으로</span>
+        <p>
+          <b>텍스트 줄 안</b>으로 두면 사진이 <b>글자와 똑같이</b> 다뤄집니다.
+          가운데로 놓고 싶으면 <b>가운데 정렬</b> 단추를 누르면 됩니다.
+        </p>
+        <p>
+          다른 배치는 사진이 <b>제멋대로 움직이는 것처럼</b> 느껴집니다.
+          익숙해진 뒤에 쓰세요.
+        </p>
+      </div>
+
+      <h3>사진 다듬기</h3>
+      <p>
+        사진을 누르면 리본에 <b>그림 서식</b> 탭이 나타납니다.
+      </p>
+      <ul>
+        <li><b>자르기</b> — 필요한 부분만 남깁니다. 지우는 게 아니라 <b>가려 두는 것</b>입니다</li>
+        <li><b>그림 스타일</b> — 테두리와 그림자를 한 번에 입힙니다</li>
+        <li><b>그림 압축</b> — 파일이 무거우면 가볍게 만듭니다</li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">파워포인트와 똑같습니다</span>
+        <p>
+          파워포인트 2부를 보셨다면 <b>전부 아시는 내용</b>입니다.
+          같은 회사 프로그램이라 사진 다루는 법이 같습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 07 ═══════════ -->
+    <section id="trouble">
+      <span class="sec-tag">07 — 문제 해결</span>
+      <h2>이럴 땐 이렇게</h2>
+      <p class="sub">
+        2부에서 처음 배우는 분들이 거의 다 겪는 것들입니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이런 일이</th><th>왜</th><th>이렇게</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>탐색 창에 <b>제목이 안 나옴</b></td>
+              <td>크기만 키우고 스타일을 안 검</td>
+              <td>그 줄에 커서를 두고 <b>제목 1</b> 누르기</td>
+            </tr>
+            <tr>
+              <td>스타일 모음이 <b>안 보임</b></td>
+              <td>창이 좁아 접힘</td>
+              <td>오른쪽 아래 <b>작은 화살표</b>를 눌러 펼치기</td>
+            </tr>
+            <tr>
+              <td>제목 하나만 고쳤는데<br><b>전부 바뀜</b></td>
+              <td>스타일 자체를 업데이트함</td>
+              <td>의도한 것이면 정상입니다. 아니면 <span class="kbd">Ctrl</span>+<span class="kbd">Z</span></td>
+            </tr>
+            <tr>
+              <td>디자인 탭을 눌러도<br><b>제목이 안 바뀜</b></td>
+              <td>손으로 크기를 키운 제목</td>
+              <td>스타일을 걸어야 바뀝니다 (<a href="#use">02장</a>)</td>
+            </tr>
+            <tr>
+              <td>글자 모양이 <b>엉망이 됨</b></td>
+              <td>이것저것 손으로 걸어 놓음</td>
+              <td><span class="kbd">Ctrl</span>+<span class="kbd">Space</span> 로 스타일 기본으로</td>
+            </tr>
+            <tr>
+              <td>번호가 <b>제멋대로</b> 붙음</td>
+              <td>자동 서식이 알아서 매김</td>
+              <td>바로 <span class="kbd">Ctrl</span>+<span class="kbd">Z</span> 한 번</td>
+            </tr>
+            <tr>
+              <td>번호가 <b>1부터 다시</b> 시작함</td>
+              <td>목록이 끊어짐</td>
+              <td>번호에 오른쪽 단추 → <b>이전 목록에 계속</b></td>
+            </tr>
+            <tr>
+              <td>표가 <b>종이 밖으로</b> 나감</td>
+              <td>표 너비가 여백보다 큼</td>
+              <td>레이아웃 → <b>자동 맞춤</b> → <b>창에 자동으로 맞춤</b></td>
+            </tr>
+            <tr>
+              <td>사진이 <b>찌그러짐</b></td>
+              <td>옆면 손잡이로 줄임</td>
+              <td><span class="kbd">Ctrl</span>+<span class="kbd">Z</span> 후 <b>모서리</b>를 잡기</td>
+            </tr>
+            <tr>
+              <td>사진이 <b>제멋대로 움직임</b></td>
+              <td>배치가 텍스트 줄 안이 아님</td>
+              <td>레이아웃 옵션 → <b>텍스트 줄 안</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">2부에서 기억할 한 가지</span>
+        <p>
+          <b>제목은 크기를 키우지 말고 '제목 1'을 누른다.</b>
+        </p>
+        <p>
+          이 습관 하나가 3부의 <b>자동 목차</b>를 가능하게 합니다.
+          워드를 쓰는 사람과 안 쓰는 사람의 차이가 여기서 갈립니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 08 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">08 — 마무리</span>
+      <h2>2부 확인 목록</h2>
+      <p class="sub">
+        직접 해본 것에 체크하세요. 체크한 것은 다음에 들어와도 그대로 남아 있습니다.
+      </p>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span>크기를 키우는 것과 <b>제목 1</b>을 누르는 것의 차이를 안다</span></label></li>
+        <li><label><input type="checkbox"><span>큰 제목에 <b>제목 1</b>을 걸었다</span></label></li>
+        <li><label><input type="checkbox"><span>작은 제목에 <b>제목 2</b>를 걸었다</span></label></li>
+        <li><label><input type="checkbox"><span>스타일은 드래그 없이 <b>커서만 두면</b> 걸린다는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><span class="nb">보기 → 탐색 창</span>에서 제목 목록을 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>탐색 창에서 제목을 끌어 순서를 바꿔 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>제목 1 스타일을 고쳐서 <b>모든 제목이</b> 바뀌는 것을 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>디자인</b> 탭으로 문서 분위기를 바꿔 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>번호 매기기 단추로 목록을 만들었다</span></label></li>
+        <li><label><input type="checkbox"><span>번호를 직접 치면 안 되는 이유를 안다</span></label></li>
+        <li><label><input type="checkbox"><span><span class="nb">삽입 → 표</span>로 표를 넣었다</span></label></li>
+        <li><label><input type="checkbox"><span>사진을 넣고 <b>모서리</b>로 크기를 줄였다</span></label></li>
+        <li><label><input type="checkbox"><span>사진 배치를 <b>텍스트 줄 안</b>으로 두었다</span></label></li>
+        <li><label><input type="checkbox"><span>파일을 저장했다</span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">여기까지 하셨으면</span>
+        <p>
+          <b>워드의 핵심은 이미 넘으신 것입니다.</b>
+          스타일을 걸어 둔 문서는 이제 워드가 <b>구조를 알고 있는</b> 문서입니다.
+        </p>
+        <p>
+          3부에서 그 보람을 확인하십니다.
+          <b>단추 두 번</b>으로 목차가 만들어지고, 쪽 번호가 붙고,
+          내용을 고치면 목차가 <b>저절로 따라 바뀝니다.</b>
+        </p>
+      </div>
+
+      <div class="next-up">
+        <a href="word-1.html">← 1부: 문서를 쓰고 모양 잡기</a>
+        <a href="word-3.html">3부: 긴 문서 다루고 인쇄하기 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

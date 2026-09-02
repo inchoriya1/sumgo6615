@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>나는 지금 어디쯤인가 — 실력 알아보기</title>
+<meta name="description" content="문제를 푸는 시험이 아닙니다. 할 수 있는 것에 표시만 하면, 어느 과목의 몇 부부터 보면 좋을지 알려드립니다.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell">
+
+  <header class="masthead">
+    <a class="back" href="index.html">← 처음 화면으로</a>
+    <p class="eyebrow">시작하기 전에</p>
+    <h1>나는 지금<br><em>어디쯤인가</em></h1>
+    <p class="lede">
+      <b>문제를 푸는 시험이 아닙니다.</b> 맞고 틀리는 것도 없고, 점수를 남에게 보이지도 않습니다.
+      "이건 할 수 있다 / 이건 모르겠다"에 표시만 하시면 됩니다.
+      다 하시면 <b>어느 과목의 몇 부부터 보면 좋을지</b> 알려드립니다.
+    </p>
+    <div class="facts">
+      <span><b>걸리는 시간</b> 5분쯤</span>
+      <span><b>문항</b> 35개</span>
+      <span><b>결과</b> 종이·사진으로 저장</span>
+    </div>
+
+    <div class="prefs" style="margin-left:0;margin-top:30px">
+      <p class="prefs-title">글자가 작으면 눌러서 키우세요</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </header>
+
+  <div class="guide">
+    <h2>어떻게 하면 되나</h2>
+    <p>
+      아래에 <b>"이런 걸 할 수 있습니까"</b>라는 문장이 죽 나옵니다.
+      각 문장 아래의 다섯 칸 중 <b>지금 내 형편에 가장 가까운 것</b>을 하나 누르세요.
+    </p>
+    <p>
+      <b>모르는 낱말이 나오면 그게 바로 "전혀 모름"입니다.</b>
+      부끄러워할 것이 하나도 없습니다. 그 낱말을 배우려고 이 사이트가 있는 것입니다.
+    </p>
+    <p>
+      <b>모든 문항에 답하지 않아도 됩니다.</b> 아는 과목만 답하셔도 결과가 나옵니다.
+      답한 것은 이 컴퓨터에 저장되어, 창을 닫았다 다시 열어도 그대로 있습니다.
+    </p>
+    <p>
+      다 하셨으면 맨 아래 <b>결과 보기</b> 단추를 누르세요.
+    </p>
+  </div>
+
+  <form id="quiz">
+
+    <!-- ═══════════ 컴퓨터 기본 ═══════════ -->
+    <section class="q-group">
+      <div class="band">
+        <h2>컴퓨터 기본</h2>
+        <span class="hint">네 과목에서 공통으로 씁니다</span>
+      </div>
+
+      <div class="q-item" data-subject="basic" data-part="basic">
+        <p class="q-text"><span class="q-label">마우스 오른쪽 단추를 눌러 할 일을 고를 수 있다</span>
+          <span class="q-hint">무엇을 눌러야 할지 모를 때 가장 먼저 쓰는 손동작입니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="b1" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="b1" value="1"><span>못함</span></label>
+          <label><input type="radio" name="b1" value="2"><span>보통</span></label>
+          <label><input type="radio" name="b1" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="b1" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="basic" data-part="basic">
+        <p class="q-text"><span class="q-label">잘못 눌렀을 때 되돌리기(Ctrl+Z)를 쓸 줄 안다</span>
+          <span class="q-hint">이 강의에서 가장 자주 쓰는 손동작입니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="b2" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="b2" value="1"><span>못함</span></label>
+          <label><input type="radio" name="b2" value="2"><span>보통</span></label>
+          <label><input type="radio" name="b2" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="b2" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="basic" data-part="basic">
+        <p class="q-text"><span class="q-label">파일을 이름 붙여 저장하고, 나중에 다시 찾을 수 있다</span>
+          <span class="q-hint">바탕 화면이든 문서 폴더든, 어디에 뒀는지 알고 여는 것입니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="b3" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="b3" value="1"><span>못함</span></label>
+          <label><input type="radio" name="b3" value="2"><span>보통</span></label>
+          <label><input type="radio" name="b3" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="b3" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="basic" data-part="basic">
+        <p class="q-text"><span class="q-label">파일 이름 뒤의 <code>.xlsx</code> 같은 꼬리표가 무엇인지 안다</span>
+          <span class="q-hint">확장자라고 합니다. 어떤 프로그램의 파일인지 알려줍니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="b4" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="b4" value="1"><span>못함</span></label>
+          <label><input type="radio" name="b4" value="2"><span>보통</span></label>
+          <label><input type="radio" name="b4" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="b4" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 엑셀 ═══════════ -->
+    <section class="q-group">
+      <div class="band">
+        <h2>엑셀</h2>
+        <span class="hint">1과목 · 세 부</span>
+      </div>
+
+      <div class="q-item" data-subject="excel" data-part="excel-1">
+        <p class="q-text"><span class="q-label">칸(셀)에 글자와 숫자를 넣고, 일부만 고칠 수 있다</span>
+          <span class="q-hint">칸을 두 번 눌러 글자 하나만 바꾸는 것을 말합니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="e1" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="e1" value="1"><span>못함</span></label>
+          <label><input type="radio" name="e1" value="2"><span>보통</span></label>
+          <label><input type="radio" name="e1" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="e1" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="excel" data-part="excel-1">
+        <p class="q-text"><span class="q-label">줄을 사이에 끼워 넣고, 칸 너비를 맞출 수 있다</span>
+          <span class="q-hint"><code>#####</code> 만 보일 때 넓히는 것도 여기에 들어갑니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="e2" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="e2" value="1"><span>못함</span></label>
+          <label><input type="radio" name="e2" value="2"><span>보통</span></label>
+          <label><input type="radio" name="e2" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="e2" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="excel" data-part="excel-2">
+        <p class="q-text"><span class="q-label">등호(=)로 시작하는 수식을 직접 쓸 수 있다</span>
+          <span class="q-hint"><code>=B2*C2</code> 처럼 칸 이름으로 계산시키는 것입니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="e3" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="e3" value="1"><span>못함</span></label>
+          <label><input type="radio" name="e3" value="2"><span>보통</span></label>
+          <label><input type="radio" name="e3" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="e3" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="excel" data-part="excel-2">
+        <p class="q-text"><span class="q-label">자동 합계나 함수(SUM·AVERAGE)로 합계·평균을 낼 수 있다</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="e4" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="e4" value="1"><span>못함</span></label>
+          <label><input type="radio" name="e4" value="2"><span>보통</span></label>
+          <label><input type="radio" name="e4" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="e4" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="excel" data-part="excel-2">
+        <p class="q-text"><span class="q-label">수식을 끌어서 아래로 채울 수 있다 (채우기 핸들)</span>
+          <span class="q-hint">칸 오른쪽 아래 작은 네모를 잡고 끄는 것입니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="e5" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="e5" value="1"><span>못함</span></label>
+          <label><input type="radio" name="e5" value="2"><span>보통</span></label>
+          <label><input type="radio" name="e5" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="e5" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="excel" data-part="excel-3">
+        <p class="q-text"><span class="q-label">정렬·필터로 줄을 세우고 원하는 것만 볼 수 있다</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="e6" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="e6" value="1"><span>못함</span></label>
+          <label><input type="radio" name="e6" value="2"><span>보통</span></label>
+          <label><input type="radio" name="e6" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="e6" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="excel" data-part="excel-3">
+        <p class="q-text"><span class="q-label">표를 한 장에 맞춰 인쇄할 수 있다</span>
+          <span class="q-hint">여러 장으로 잘려 나오지 않게 맞추는 것입니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="e7" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="e7" value="1"><span>못함</span></label>
+          <label><input type="radio" name="e7" value="2"><span>보통</span></label>
+          <label><input type="radio" name="e7" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="e7" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 파워포인트 ═══════════ -->
+    <section class="q-group">
+      <div class="band">
+        <h2>파워포인트</h2>
+        <span class="hint">2과목 · 세 부</span>
+      </div>
+
+      <div class="q-item" data-subject="ppt" data-part="ppt-1">
+        <p class="q-text"><span class="q-label">장(슬라이드)을 늘리고 제목과 내용을 넣을 수 있다</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="p1" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="p1" value="1"><span>못함</span></label>
+          <label><input type="radio" name="p1" value="2"><span>보통</span></label>
+          <label><input type="radio" name="p1" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="p1" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="ppt" data-part="ppt-1">
+        <p class="q-text"><span class="q-label">모양(레이아웃)을 골라 쓰고, 장 순서를 바꿀 수 있다</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="p2" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="p2" value="1"><span>못함</span></label>
+          <label><input type="radio" name="p2" value="2"><span>보통</span></label>
+          <label><input type="radio" name="p2" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="p2" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="ppt" data-part="ppt-2">
+        <p class="q-text"><span class="q-label">사진을 찌그러뜨리지 않고 크기를 바꿀 수 있다</span>
+          <span class="q-hint">모서리 손잡이를 잡아야 하는 그 이야기입니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="p3" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="p3" value="1"><span>못함</span></label>
+          <label><input type="radio" name="p3" value="2"><span>보통</span></label>
+          <label><input type="radio" name="p3" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="p3" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="ppt" data-part="ppt-2">
+        <p class="q-text"><span class="q-label">도형 여러 개의 줄을 맞추고 묶을 수 있다</span>
+          <span class="q-hint">눈으로 맞추지 않고 맞춤 단추를 쓰는 것입니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="p4" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="p4" value="1"><span>못함</span></label>
+          <label><input type="radio" name="p4" value="2"><span>보통</span></label>
+          <label><input type="radio" name="p4" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="p4" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="ppt" data-part="ppt-3">
+        <p class="q-text"><span class="q-label">디자인 테마로 모든 장의 모양을 한 번에 통일할 수 있다</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="p5" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="p5" value="1"><span>못함</span></label>
+          <label><input type="radio" name="p5" value="2"><span>보통</span></label>
+          <label><input type="radio" name="p5" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="p5" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="ppt" data-part="ppt-3">
+        <p class="q-text"><span class="q-label">화면 가득 띄워 발표하고, 빠져나올 수 있다</span>
+          <span class="q-hint">F5로 띄우고 Esc로 나오는 것입니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="p6" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="p6" value="1"><span>못함</span></label>
+          <label><input type="radio" name="p6" value="2"><span>보통</span></label>
+          <label><input type="radio" name="p6" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="p6" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 한글 ═══════════ -->
+    <section class="q-group">
+      <div class="band">
+        <h2>한글</h2>
+        <span class="hint">3과목 · 세 부</span>
+      </div>
+
+      <div class="q-item" data-subject="hangul" data-part="hangul-1">
+        <p class="q-text"><span class="q-label">글자 모양과 문단 모양의 차이를 안다</span>
+          <span class="q-hint">글꼴·크기는 글자, 정렬·줄 간격은 문단입니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="h1" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="h1" value="1"><span>못함</span></label>
+          <label><input type="radio" name="h1" value="2"><span>보통</span></label>
+          <label><input type="radio" name="h1" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="h1" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="hangul" data-part="hangul-1">
+        <p class="q-text"><span class="q-label">제목을 가운데로 옮기고 줄 간격을 바꿀 수 있다</span>
+          <span class="q-hint">스페이스바를 여러 번 누르지 않고 단추로 하는 것입니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="h2" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="h2" value="1"><span>못함</span></label>
+          <label><input type="radio" name="h2" value="2"><span>보통</span></label>
+          <label><input type="radio" name="h2" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="h2" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="hangul" data-part="hangul-2">
+        <p class="q-text"><span class="q-label">표를 만들고 칸을 합치거나 나눌 수 있다</span>
+          <span class="q-hint">이력서·신청서 같은 서식이 다 이걸로 만들어집니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="h3" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="h3" value="1"><span>못함</span></label>
+          <label><input type="radio" name="h3" value="2"><span>보통</span></label>
+          <label><input type="radio" name="h3" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="h3" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="hangul" data-part="hangul-2">
+        <p class="q-text"><span class="q-label">그림을 넣고 글과 어울리게 자리를 잡을 수 있다</span>
+          <span class="q-hint">그림을 옮기면 글이 와르르 밀리는 그 문제입니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="h4" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="h4" value="1"><span>못함</span></label>
+          <label><input type="radio" name="h4" value="2"><span>보통</span></label>
+          <label><input type="radio" name="h4" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="h4" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="hangul" data-part="hangul-3">
+        <p class="q-text"><span class="q-label">쪽 번호와 머리말을 넣을 수 있다</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="h5" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="h5" value="1"><span>못함</span></label>
+          <label><input type="radio" name="h5" value="2"><span>보통</span></label>
+          <label><input type="radio" name="h5" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="h5" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="hangul" data-part="hangul-3">
+        <p class="q-text"><span class="q-label">PDF로 저장해서 남에게 보낼 수 있다</span>
+          <span class="q-hint">받는 사람에게 한글이 없어도 열리게 하는 것입니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="h6" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="h6" value="1"><span>못함</span></label>
+          <label><input type="radio" name="h6" value="2"><span>보통</span></label>
+          <label><input type="radio" name="h6" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="h6" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 워드 ═══════════ -->
+    <section class="q-group">
+      <div class="band">
+        <h2>워드</h2>
+        <span class="hint">4과목 · 세 부</span>
+      </div>
+
+      <div class="q-item" data-subject="word" data-part="word-1">
+        <p class="q-text"><span class="q-label">글자와 문단 모양을 바꾸고, 문서를 저장할 수 있다</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="w1" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="w1" value="1"><span>못함</span></label>
+          <label><input type="radio" name="w1" value="2"><span>보통</span></label>
+          <label><input type="radio" name="w1" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="w1" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="word" data-part="word-2">
+        <p class="q-text"><span class="q-label">제목에 '제목 1' 스타일을 걸 수 있다</span>
+          <span class="q-hint">글자를 크게 하는 것과 다릅니다. 워드의 핵심입니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="w2" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="w2" value="1"><span>못함</span></label>
+          <label><input type="radio" name="w2" value="2"><span>보통</span></label>
+          <label><input type="radio" name="w2" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="w2" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="word" data-part="word-2">
+        <p class="q-text"><span class="q-label">번호 목록을 손으로 치지 않고 기능으로 만들 수 있다</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="w3" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="w3" value="1"><span>못함</span></label>
+          <label><input type="radio" name="w3" value="2"><span>보통</span></label>
+          <label><input type="radio" name="w3" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="w3" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="word" data-part="word-3">
+        <p class="q-text"><span class="q-label">목차를 자동으로 만들고 업데이트할 수 있다</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="w4" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="w4" value="1"><span>못함</span></label>
+          <label><input type="radio" name="w4" value="2"><span>보통</span></label>
+          <label><input type="radio" name="w4" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="w4" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="word" data-part="word-3">
+        <p class="q-text"><span class="q-label">메모와 '고친 자국'(변경 내용 추적)을 다룰 수 있다</span>
+          <span class="q-hint">여럿이 한 문서를 돌려 볼 때 씁니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="w5" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="w5" value="1"><span>못함</span></label>
+          <label><input type="radio" name="w5" value="2"><span>보통</span></label>
+          <label><input type="radio" name="w5" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="w5" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ AI ═══════════ -->
+    <section class="q-group">
+      <div class="band">
+        <h2>AI에게 말로 시키기</h2>
+        <span class="hint">5과목 · 다섯 부</span>
+      </div>
+
+      <div class="q-item" data-subject="ai" data-part="ai-1">
+        <p class="q-text"><span class="q-label">AI에게 무엇을 시킬 수 있는지 대강 안다</span>
+          <span class="q-hint">클로드·커서·안티그라비티 같은 것을 말합니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="a1" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="a1" value="1"><span>못함</span></label>
+          <label><input type="radio" name="a1" value="2"><span>보통</span></label>
+          <label><input type="radio" name="a1" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="a1" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="ai" data-part="ai-1">
+        <p class="q-text"><span class="q-label">시킬 때 무엇을·어디에·어떻게·확인을 넣어 말할 수 있다</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="a2" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="a2" value="1"><span>못함</span></label>
+          <label><input type="radio" name="a2" value="2"><span>보통</span></label>
+          <label><input type="radio" name="a2" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="a2" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="ai" data-part="ai-2">
+        <p class="q-text"><span class="q-label">파일 정리나 이름 바꾸기를 맡겨 본 적 있다</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="a3" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="a3" value="1"><span>못함</span></label>
+          <label><input type="radio" name="a3" value="2"><span>보통</span></label>
+          <label><input type="radio" name="a3" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="a3" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="ai" data-part="ai-3">
+        <p class="q-text"><span class="q-label">엑셀 일(합계·정리·합치기)을 맡겨 본 적 있다</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="a4" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="a4" value="1"><span>못함</span></label>
+          <label><input type="radio" name="a4" value="2"><span>보통</span></label>
+          <label><input type="radio" name="a4" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="a4" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="ai" data-part="ai-4">
+        <p class="q-text"><span class="q-label">문서 요약이나 초안 쓰기를 맡겨 본 적 있다</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="a5" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="a5" value="1"><span>못함</span></label>
+          <label><input type="radio" name="a5" value="2"><span>보통</span></label>
+          <label><input type="radio" name="a5" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="a5" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="ai" data-part="ai-5">
+        <p class="q-text"><span class="q-label">발표 자료 초안을 맡겨 본 적 있다</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="a6" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="a6" value="1"><span>못함</span></label>
+          <label><input type="radio" name="a6" value="2"><span>보통</span></label>
+          <label><input type="radio" name="a6" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="a6" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+
+      <div class="q-item" data-subject="ai" data-part="ai-1">
+        <p class="q-text"><span class="q-label">AI가 잘못했을 때 되돌리는 법을 안다</span>
+          <span class="q-hint">되돌릴 수 있는 일과 없는 일을 가리는 것입니다.</span></p>
+        <div class="q-scale">
+          <label><input type="radio" name="a7" value="0"><span>전혀 모름</span></label>
+          <label><input type="radio" name="a7" value="1"><span>못함</span></label>
+          <label><input type="radio" name="a7" value="2"><span>보통</span></label>
+          <label><input type="radio" name="a7" value="3"><span>잘함</span></label>
+          <label><input type="radio" name="a7" value="4"><span>매우 잘함</span></label>
+        </div>
+      </div>
+    </section>
+
+    <div style="margin:34px 0 0">
+      <button type="button" class="big-btn" id="seeResult" disabled>결과 보기</button>
+      <span class="q-count" id="counter">35개 중 0개 답함</span>
+    </div>
+  </form>
+
+  <!-- ═══════════ 결과 ═══════════ -->
+  <div class="result" id="result" hidden>
+    <div class="res-head">
+      <h2>컴퓨터 실력 진단 결과</h2>
+      <p class="res-when" id="resWhen"></p>
+    </div>
+
+    <div class="band">
+      <h2>과목별로 지금 어디쯤인가</h2>
+      <span class="hint">답한 것만 셈합니다</span>
+    </div>
+    <div class="bars" id="bars"></div>
+
+    <div class="band">
+      <h2>먼저 볼 곳</h2>
+      <span class="hint">못한다고 답하신 것에서 뽑았습니다</span>
+    </div>
+    <ul class="res-list" id="resList"></ul>
+    <p id="resNote" style="color:var(--ink-2)"></p>
+
+    <div class="note">
+      <span class="note-label">이 종이를 어떻게 쓰나</span>
+      <p>
+        <b>점수표가 아닙니다.</b> 어디부터 보면 좋을지 알려주는 안내입니다.
+        낮게 나온 과목이 있어도 걱정하지 마세요. 그걸 배우려고 오신 것입니다.
+      </p>
+      <p>
+        <b>강의를 듣고 계시다면</b> 이 종이를 강사에게 보여 주세요.
+        어느 부분을 더 자세히 다룰지 정하는 데 씁니다.
+      </p>
+    </div>
+
+    <div class="res-acts">
+      <button type="button" id="savePdf">종이로 저장하기 (PDF)</button>
+      <button type="button" id="savePng">사진으로 저장하기 (PNG)</button>
+      <button type="button" id="resetAll">처음부터 다시 하기</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>
+      <b>이 결과는 이 컴퓨터에만 남습니다.</b> 어디로도 보내지지 않습니다.
+      다른 사람에게 보여주고 싶으면 위의 <b>종이로 저장하기</b>나
+      <b>사진으로 저장하기</b>를 쓰세요.
+    </p>
+    <p>
+      시간이 지나 실력이 늘면 다시 해보세요.
+      막대가 올라가는 것이 눈에 보입니다.
+    </p>
+    <div class="next-up">
+      <a href="index.html">← 처음 화면으로</a>
+      <a href="excel.html">엑셀부터 시작하기 →</a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+<script src="check.js"></script>
+</body>
+</html>

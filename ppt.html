@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ko" data-subject="ppt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>파워포인트 기초 — 넘기면서 보여주는 자료 만들기</title>
+<meta name="description" content="파워포인트를 처음 켜보는 분을 위한 기초. 세 부로 나누어 장 만들기, 사진과 도형 넣기, 발표와 인쇄까지.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell">
+
+  <header class="masthead">
+    <a class="back" href="index.html">← 처음 화면으로</a>
+    <p class="eyebrow">2과목 · 파워포인트</p>
+    <h1>넘기면서<br><em>보여주는 자료</em></h1>
+    <p class="lede">
+      앞에 나가서 설명할 때, 뒤 화면에 띄워 놓는 그것입니다.
+      종이 한 장을 <b>슬라이드</b>라고 부릅니다.
+      슬라이드를 여러 장 만들어 순서대로 넘기면 됩니다.
+    </p>
+    <div class="facts">
+      <span><b>대상</b> 파워포인트를 처음 켜보는 분</span>
+      <span><b>구성</b> 세 부</span>
+      <span><b>준비물</b> 컴퓨터 한 대, 사진 몇 장</span>
+    </div>
+
+    <div class="prefs" style="margin-left:0;margin-top:30px">
+      <p class="prefs-title">글자가 작으면 눌러서 키우세요</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </header>
+
+  <div class="guide">
+    <h2>세 부로 나누어 배웁니다</h2>
+    <p>
+      발표 자료를 만드는 순서는 늘 같습니다.
+      <b>할 말을 적고 → 보여줄 것을 넣고 → 모양을 통일해서 발표합니다.</b>
+      그래서 세 부로 나누었습니다.
+    </p>
+    <p>
+      <b>1부부터 차례대로 보시길 권합니다.</b> 뒤의 부는 앞의 부에서 만든
+      자료를 그대로 이어서 씁니다. 한 부가 <b>한 번 앉은 자리에서 끝낼 분량</b>입니다.
+    </p>
+    <p>
+      <b>엑셀을 먼저 보셨다면 훨씬 쉽습니다.</b> 위쪽 리본이 거의 똑같고,
+      저장과 되돌리기도 같은 손동작입니다. 이미 절반은 아시는 셈입니다.
+    </p>
+    <p>
+      <b>파워포인트가 컴퓨터에 없어도 괜찮습니다.</b>
+      <a href="ppt-1.html#make">1부 03장</a>에 무료로 대신하는 방법을 적어 두었습니다.
+    </p>
+    <p>
+      종이로 보고 싶으면 <span class="nb">키보드에서 <span class="kbd">Ctrl</span> + <span class="kbd">P</span></span>를
+      누르세요. 인쇄에 맞게 정리된 모양으로 나옵니다.
+    </p>
+  </div>
+
+  <!-- ═══════════ 세 부 ═══════════ -->
+  <section>
+    <div class="band">
+      <h2>차례</h2>
+      <span class="hint">누르면 강의안이 열립니다</span>
+    </div>
+
+    <div class="subjects">
+
+      <a class="card c-ppt" href="ppt-1.html">
+        <span class="badge">1부 · 90분</span>
+        <h3>장을 만들고 글자 넣기</h3>
+        <p>
+          화면의 이름부터 익히고, 첫 장을 만들어 제목을 답니다.
+          장을 늘리는 법, 모양(레이아웃)을 고르는 법,
+          글자를 읽기 좋게 다루는 법까지 합니다.
+        </p>
+        <span class="go">1부 시작하기 →</span>
+      </a>
+
+      <a class="card c-ppt" href="ppt-2.html">
+        <span class="badge">2부 · 100분</span>
+        <h3>보여줄 것 넣기</h3>
+        <p>
+          사진을 찌그러지지 않게 넣고 자릅니다. 도형을 그리고,
+          여러 개를 <b>줄 맞춰</b> 배치합니다.
+          표와 차트를 넣는 것까지 합니다.
+        </p>
+        <span class="go">2부 시작하기 →</span>
+      </a>
+
+      <a class="card c-ppt" href="ppt-3.html">
+        <span class="badge">3부 · 90분</span>
+        <h3>통일하고, 발표하기</h3>
+        <p>
+          디자인 단추 한 번으로 모양을 통일하고, 쪽 번호를 넣습니다.
+          화면 가득 띄워 발표하는 법, 발표자 도구,
+          나눠줄 종이를 뽑는 것까지 합니다.
+        </p>
+        <span class="go">3부 시작하기 →</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ 무엇을 배우나 ═══════════ -->
+  <section>
+    <div class="band">
+      <h2>무엇을 할 수 있게 되나</h2>
+      <span class="hint">세 부를 마치면</span>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>이런 것을</th><th>파워포인트로 하면</th><th>어디서</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>모임에서 발표하기</td>
+            <td>화면 가득 띄워 <b>한 장씩 넘기며</b> 설명합니다</td>
+            <td>3부</td>
+          </tr>
+          <tr>
+            <td>사진으로 소개 자료 만들기</td>
+            <td>사진을 <b>찌그러지지 않게</b> 넣고 다듬습니다</td>
+            <td>2부</td>
+          </tr>
+          <tr>
+            <td>순서를 그림으로 보여주기</td>
+            <td>도형과 화살표를 <b>줄 맞춰</b> 그립니다</td>
+            <td>2부</td>
+          </tr>
+          <tr>
+            <td>나눠줄 자료 만들기</td>
+            <td><b>한 장에 세 개씩</b> 넣어 필기 줄과 함께 뽑습니다</td>
+            <td>3부</td>
+          </tr>
+          <tr>
+            <td>남에게 파일 보내기</td>
+            <td>PDF로 만들어 <b>어느 컴퓨터에서나</b> 열리게 합니다</td>
+            <td>3부</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      <b>잘 만드는 규칙은 딱 하나입니다.</b> 한 장에 한 가지 이야기만.
+      글자를 빽빽하게 채우면 보는 사람도 못 읽고, 발표하는 사람도 읽느라 정신이 없습니다.
+      자세한 이야기는 입으로 하시면 됩니다.
+    </p>
+    <p>
+      막혀도 컴퓨터는 망가지지 않습니다. 잘못 눌렀으면
+      <span class="nb"><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></span>를 누르세요.
+      발표 화면에서 못 나오겠으면 <span class="kbd">Esc</span> 입니다.
+    </p>
+    <div class="next-up">
+      <a href="index.html">← 처음 화면으로</a>
+      <a href="ppt-1.html">1부 시작하기 →</a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

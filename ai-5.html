@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="ko" data-subject="ai">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 5부 — 파워포인트 맡기기</title>
+<meta name="description" content="AI 5부. 발표 자료 뼈대 짜기, 장별 초안 받기, 슬라이드로 옮기기, 발표 대본과 예상 질문.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="ai.html">← AI 과목 첫 화면으로</a>
+    <p class="eyebrow">5과목 · AI에게 말로 시키기 · 5부</p>
+    <h1>파워포인트<br><em>맡기기</em></h1>
+    <p class="lede">
+      발표 자료에서 가장 힘든 것은 꾸미기가 아니라 <b>무슨 이야기를 몇 장에 나눌지</b>입니다.
+      그 뼈대를 받아 놓고 시작하면 나머지는 쉽습니다.
+      마지막에는 <b>발표 대본</b>까지 받습니다.
+    </p>
+    <div class="facts">
+      <span><b>먼저</b> 1부를 마치셨다면</span>
+      <span><b>소요</b> 90분</span>
+      <span><b>결과물</b> 여섯 장짜리 발표 자료와 대본</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#why">발표 자료를 맡길 때</a></li>
+      <li><a href="#outline">뼈대부터 짜기</a></li>
+      <li><a href="#practice">장별 초안 받기</a></li>
+      <li><a href="#move">슬라이드로 옮기기</a></li>
+      <li><a href="#script">발표 대본과 예상 질문</a></li>
+      <li><a href="#trouble">이럴 땐 이렇게</a></li>
+      <li><a href="#copy">그대로 베껴 쓰는 말</a></li>
+      <li><a href="#check">5부 확인 목록</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════ -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에, 마음가짐 세 가지</h2>
+      <p class="sub">
+        1부에서 본 것과 같습니다.
+        발표 자료는 <b>내가 말할 것</b>이라 셋째가 특히 중요합니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">첫째 — 우리말로 하시면 됩니다</span>
+        <p>
+          "동호회 활동 보고 발표 자료 뼈대를 짜 줘"라고 말하면 됩니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">둘째 — 틀리게 말해도 됩니다</span>
+        <p>
+          <b>"장이 너무 많아. 여섯 장으로 줄여 줘"</b> 처럼 고쳐 가면 됩니다.
+        </p>
+      </div>
+
+      <div class="note stop">
+        <span class="note-label">셋째 — 내가 말할 수 있는 것만 넣으세요</span>
+        <p>
+          받은 자료에 <b>내가 설명 못 하는 내용</b>이 있으면 빼세요.
+          발표 중에 질문을 받으면 대답할 수 없습니다.
+        </p>
+        <p>
+          자료는 <b>내가 말하는 동안 사람들이 볼 것</b>이지,
+          내가 읽을 대본이 아닙니다(2과목 1부).
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">5부에서 쓸 것</span>
+        <p>
+          <b>발표할 거리 하나.</b> 동호회 활동 보고든, 제안이든, 소개든 무엇이든 됩니다.
+          자료가 없어도 됩니다. 머릿속에 있는 것만으로 시작합니다.
+        </p>
+        <p>
+          2과목(파워포인트)을 보셨다면 훨씬 수월합니다.
+          안 보셨어도 이 부는 <b>내용 만들기</b>가 중심이라 따라오실 수 있습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="why">
+      <span class="sec-tag">01 — 이해</span>
+      <h2>발표 자료를 맡길 때</h2>
+      <p class="sub">
+        <b>파워포인트 파일을 통째로 만들어 달라고 하지 마세요.</b>
+        그렇게 받은 것은 대개 못 씁니다. 이유가 있습니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">왜 통째로 시키면 안 되나</span>
+        <p>
+          <b>내가 무슨 말을 할지 아직 안 정했기 때문</b>입니다.
+          자료가 먼저 나오면 그 자료에 내 발표가 끌려다니게 됩니다.
+        </p>
+        <p>
+          그리고 꾸미기는 <b>디자인 단추 한 번</b>이면 됩니다(2과목 3부).
+          맡겨서 얻을 것이 별로 없습니다.
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>맡기면 좋은 일</th><th>직접 하는 게 나은 일</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>뼈대 짜기</b> — 몇 장에 무슨 이야기</td>
+              <td>슬라이드 꾸미기 (디자인 단추가 빠릅니다)</td>
+            </tr>
+            <tr>
+              <td>장마다 <b>제목과 세 줄</b> 뽑기</td>
+              <td>사진 고르기</td>
+            </tr>
+            <tr>
+              <td>긴 글을 <b>발표용으로 줄이기</b></td>
+              <td>실제로 말하는 연습</td>
+            </tr>
+            <tr>
+              <td><b>발표 대본</b> 쓰기</td>
+              <td>내가 확신 없는 내용 넣기</td>
+            </tr>
+            <tr>
+              <td><b>예상 질문</b> 뽑기</td>
+              <td>숫자·사실 확인</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>일하는 순서</h3>
+      <ol class="steps">
+        <li>
+          <b>뼈대를 받습니다</b>
+          <p>몇 장에 무슨 이야기를 넣을지. <b>여기가 가장 중요합니다.</b></p>
+        </li>
+        <li>
+          <b>장마다 내용을 받습니다</b>
+          <p>제목 한 줄 + 본문 세 줄. 그 이상은 넣지 않습니다.</p>
+        </li>
+        <li>
+          <b>내가 파워포인트에 옮깁니다</b>
+          <p>붙여 넣고 디자인 단추 한 번. 10분이면 됩니다.</p>
+        </li>
+        <li>
+          <b>대본과 예상 질문을 받습니다</b>
+          <p>슬라이드 노트에 넣어 두면 발표가 편합니다(2과목 3부).</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="outline">
+      <span class="sec-tag">02 — 뼈대</span>
+      <h2>뼈대부터 짜기</h2>
+      <p class="sub">
+        <b>이 장이 이 부의 핵심입니다.</b>
+        뼈대만 잘 나오면 나머지는 채우는 일입니다.
+      </p>
+
+      <h3>다섯 가지를 알려 줍니다</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>알려 줄 것</th><th>예</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>무엇을</b></td><td>동호회 상반기 활동 보고</td></tr>
+            <tr><td><b>누구에게</b></td><td>동호회 회원 서른 명. 어르신이 많음</td></tr>
+            <tr><td><b>몇 분</b></td><td>10분</td></tr>
+            <tr><td><b>몇 장</b></td><td>여섯 장 (표지 포함)</td></tr>
+            <tr><td><b>무엇을 얻고 싶은지</b></td><td>하반기 회비 인상에 동의를 받고 싶다</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">마지막 줄을 빼지 마세요</span>
+        <p>
+          <b>"이 발표로 무엇을 얻고 싶은가."</b>
+          이걸 알려 주면 자료의 방향이 완전히 달라집니다.
+        </p>
+        <p>
+          그냥 "활동 보고"라고만 하면 <b>나열</b>이 나오고,
+          "동의를 받고 싶다"고 하면 <b>설득</b>이 나옵니다.
+        </p>
+      </div>
+
+      <div class="say">
+        <span class="say-label">이렇게 말하세요 — 뼈대 부탁</span>
+        <p>발표 자료 <b>뼈대</b>를 짜 줘. 아직 슬라이드는 만들지 말고, 몇 장에 무슨 이야기를 넣을지만.</p>
+        <p><b>무엇을</b> — 동호회 상반기 활동 보고.<br>
+        <b>누구에게</b> — 동호회 회원 서른 명, 어르신이 많음.<br>
+        <b>몇 분</b> — 10분.<br>
+        <b>몇 장</b> — 여섯 장, 표지 포함.<br>
+        <b>얻고 싶은 것</b> — 하반기 회비 인상에 동의를 받는 것.</p>
+        <p>장마다 <b>제목 한 줄</b>과 <b>거기서 할 이야기 한 줄</b>만 표로 보여 줘. 내용은 아직 쓰지 말고.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <h3>뼈대를 받으면 이것부터 봅니다</h3>
+      <div class="note warn">
+        <span class="note-label">세 가지를 확인하세요</span>
+        <p>
+          <b>① 내가 말할 수 있는 내용인가</b> — 모르는 것이 있으면 그 장을 빼거나 바꿉니다.<br>
+          <b>② 한 장에 한 가지인가</b> — 두 가지가 섞인 장은 나눕니다.<br>
+          <b>③ 얻고 싶은 것에 닿는가</b> — 회비 이야기가 어디에도 없으면 헛돈 것입니다.
+        </p>
+      </div>
+
+      <div class="say">
+        <span class="say-label">이렇게 말하세요 — 뼈대 고치기</span>
+        <p>3번 장은 내가 잘 모르는 내용이라 뺄게. 대신 <b>회비를 왜 올려야 하는지</b>를 한 장 넣어 줘. 전체는 여섯 장 그대로 맞추고.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <div class="note">
+        <span class="note-label">장 수를 정하는 기준</span>
+        <p>
+          <b>1분에 한 장</b>이 편한 속도입니다.
+          10분 발표면 여덟 장에서 열 장. 표지와 맺음말을 빼면 여섯에서 여덟 장입니다.
+        </p>
+        <p>
+          장이 많으면 넘기기 바빠서 설명을 못 합니다.
+          <b>적은 쪽이 늘 낫습니다.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="practice">
+      <span class="sec-tag">03 — 실습</span>
+      <h2>장별 초안 받기</h2>
+      <p class="sub">
+        뼈대가 정해졌으면 이제 <b>장마다 들어갈 글</b>을 받습니다.
+      </p>
+
+      <div class="note warn">
+        <span class="note-label">먼저 — 아무것도 깔려 있지 않다면</span>
+        <p>
+          <b>클로드 · 커서 · 안티그라비티</b> 중 아무거나 하나면 됩니다.
+          자세한 안내는 <a href="ai-1.html#talk">1부 03장</a>에 있습니다.
+        </p>
+        <p>
+          <b>이 부는 파일을 못 읽는 것이어도 전부 됩니다.</b>
+          글로 받아서 내가 파워포인트에 붙여 넣기 때문입니다.
+        </p>
+        <p>
+          파워포인트가 없으면 <code class="nb">slides.google.com</code>(구글 슬라이드)에
+          붙여 넣으셔도 똑같습니다.
+        </p>
+      </div>
+
+      <div class="say">
+        <span class="say-label">이렇게 말하세요 — 장별 내용</span>
+        <p>이 뼈대대로 장마다 들어갈 글을 써 줘. 규칙은 이래.</p>
+        <p>장마다 <b>제목 한 줄</b>과 <b>본문 세 줄</b>. 세 줄을 넘기지 마. 한 줄은 <b>스무 글자 안쪽</b>으로 짧게.</p>
+        <p>문장이 아니라 <b>짧은 말토막</b>으로. 발표할 때 내가 말로 풀 거니까, 슬라이드에는 뼈만 있으면 돼.</p>
+        <p>내가 안 알려준 숫자나 날짜는 <b>[ ] 로 비워 두고</b> 지어내지 마.</p>
+        <span class="after"><b>왜 세 줄인가</b> — 2과목 1부에서 본 "한 장에 한 가지 이야기"입니다. 글자가 많으면 사람들이 읽느라 내 말을 안 듣습니다.</span>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <h3>글이 너무 많이 나왔을 때</h3>
+      <div class="say">
+        <span class="say-label">이렇게 말하세요</span>
+        <p>글이 너무 많아. 장마다 <b>세 줄로 줄이고</b>, 한 줄은 스무 글자 안쪽으로. 뺀 내용은 버리지 말고 <b>따로 모아서</b> 보여 줘 — 발표할 때 말로 할 거야.</p>
+        <span class="after"><b>뺀 것을 따로 받으세요</b> — 그게 그대로 발표 대본이 됩니다. 06장에서 씁니다.</span>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <h3>숫자를 보여줄 장</h3>
+      <div class="say">
+        <span class="say-label">이렇게 말하세요</span>
+        <p>4번 장은 숫자를 보여줄 거야. 아래 자료로 <b>표</b>를 만들어 줘. 다섯 줄, 세 칸을 넘기지 마. 발표 자료라 작으면 안 보이니까.</p>
+        <p>그리고 이 숫자를 <b>어떤 그림으로</b> 보여주면 좋을지도 한 줄로 알려 줘 — 막대인지 꺾은선인지 원형인지.</p>
+        <span class="after"><b>2과목 2부와 이어집니다</b> — 견줄 때는 막대, 변해 가는 것은 꺾은선, 몫은 원형입니다.</span>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <div class="note stop">
+        <span class="note-label">숫자는 반드시 내가 확인</span>
+        <p>
+          발표 중에 틀린 숫자가 나오면 <b>발표 전체를 못 믿게 됩니다.</b>
+          받은 표의 숫자를 <b>원본과 하나씩</b> 대조하세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="move">
+      <span class="sec-tag">04 — 옮기기</span>
+      <h2>슬라이드로 옮기기</h2>
+      <p class="sub">
+        받은 글을 파워포인트에 넣는 일입니다. <b>10분이면 됩니다.</b>
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>파워포인트를 켜고 장을 만듭니다</b>
+          <p>
+            뼈대의 장 수만큼 <span class="nb">홈 → 새 슬라이드</span>로 만들어 둡니다.
+            모양은 <b>제목 및 내용</b>으로(2과목 1부).
+          </p>
+        </li>
+        <li>
+          <b>제목과 본문을 붙여 넣습니다</b>
+          <p>
+            한 장씩 옮기면 됩니다. 붙여 넣을 때
+            <b>텍스트만 붙여넣기</b>를 쓰면 모양이 안 깨집니다.
+          </p>
+        </li>
+        <li>
+          <b>디자인 단추를 한 번 누릅니다</b>
+          <p>
+            리본 <b>디자인</b> 탭에서 아무거나 하나. 모든 장이 한꺼번에 예뻐집니다.
+            배경이 옅고 글자가 진한 것을 고르세요(2과목 3부).
+          </p>
+        </li>
+        <li>
+          <b>글자 크기를 확인합니다</b>
+          <p>
+            제목 32 이상, 본문 24 이상. 화면 가득 띄워 놓고 세 걸음 물러나 보세요.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">한 번에 붙여 넣고 싶으면</span>
+        <p>
+          받은 글을 <b>개요 모양</b>으로 달라고 하면 여러 장을 한꺼번에 넣을 수 있습니다.
+        </p>
+        <p>
+          <b>"장 제목은 맨 앞에, 본문은 탭 하나 들여쓴 모양으로 줘."</b>
+        </p>
+        <p>
+          그것을 <span class="nb">보기 → 개요 보기</span>에 붙여 넣으면
+          <b>장이 저절로 나뉘어</b> 만들어집니다.
+          어려우면 그냥 한 장씩 옮기셔도 됩니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">붙여 넣은 뒤 반드시 볼 것</span>
+        <p>
+          <b>글자가 저절로 작아졌는지</b> 보세요.
+          상자에 글이 넘치면 파워포인트가 슬쩍 줄여 버립니다(2과목 1부).
+        </p>
+        <p>
+          작아졌으면 글이 많다는 뜻입니다.
+          <b>줄이거나 장을 하나 더 만드세요.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 ═══════════ -->
+    <section id="script">
+      <span class="sec-tag">05 — 발표</span>
+      <h2>발표 대본과 예상 질문</h2>
+      <p class="sub">
+        <b>여기가 이 부에서 가장 값어치 있는 부분</b>일 수 있습니다.
+        발표가 무서운 이유는 대개 "무슨 말을 하지"와 "질문 받으면 어쩌지"입니다.
+      </p>
+
+      <h3>장마다 할 말 받기</h3>
+      <div class="say">
+        <span class="say-label">이렇게 말하세요</span>
+        <p>이 발표 자료로 10분간 발표할 거야. 장마다 <b>내가 할 말</b>을 써 줘.</p>
+        <p>읽는 대본이 아니라 <b>기억을 도와줄 쪽지</b>로. 문장을 다 쓰지 말고 <b>핵심 낱말 위주</b>로, 장마다 다섯 줄 안쪽.</p>
+        <p>장이 넘어갈 때 <b>이어 주는 한마디</b>도 넣어 줘. "다음은…" 같은.</p>
+        <p>슬라이드에 없는 내용은 넣지 마. 내가 모르는 걸 말하게 되니까.</p>
+        <span class="after"><b>이걸 어디에 넣나</b> — 파워포인트 아래쪽 <b>슬라이드 노트</b>에 붙여 넣으세요. 발표할 때 내 화면에만 보입니다(2과목 3부).</span>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <h3>예상 질문 뽑기</h3>
+      <div class="say">
+        <span class="say-label">이렇게 말하세요</span>
+        <p>이 발표를 듣고 사람들이 물어볼 만한 질문을 <b>열 개</b> 뽑아 줘. 특히 <b>답하기 곤란한 것</b>부터.</p>
+        <p>질문마다 <b>어떻게 답하면 좋을지</b>도 두 줄로. 내가 모르는 것을 물으면 뭐라고 해야 할지도 알려 줘.</p>
+        <span class="after"><b>곤란한 것부터 뽑으라고 하세요</b> — 쉬운 질문은 준비 안 해도 됩니다. 준비가 필요한 건 아픈 질문입니다.</span>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <div class="note">
+        <span class="note-label">모르는 질문을 받으면</span>
+        <p>
+          지어내지 마세요. <b>"그건 제가 확인해서 알려드리겠습니다."</b>
+          이 한마디면 충분합니다.
+        </p>
+        <p>
+          발표에서 신뢰를 잃는 가장 빠른 길이 <b>모르는 것을 아는 척하는 것</b>입니다.
+        </p>
+      </div>
+
+      <h3>시간 맞추기</h3>
+      <div class="say">
+        <span class="say-label">이렇게 말하세요</span>
+        <p>이 대본을 보통 속도로 말하면 몇 분쯤 걸릴지 알려 줘. 10분을 넘으면 <b>어느 장을 줄이면 좋을지</b> 알려 줘.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">나눠줄 종이는 따로</span>
+        <p>
+          슬라이드는 <b>세 줄</b>뿐이라 나중에 보면 무슨 말인지 모릅니다.
+          나눠줄 것이 필요하면 따로 만드세요.
+        </p>
+        <p>
+          <b>"이 발표 내용을 A4 한 장짜리 요약으로 만들어 줘. 못 온 사람이 읽어도 알 수 있게."</b>
+        </p>
+        <p>
+          인쇄는 <b>유인물 3슬라이드</b>로 하시면 됩니다(2과목 3부).
+          <b>슬라이드 노트로 인쇄하면 내 대본이 다 찍히니 조심하세요.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 06 ═══════════ -->
+    <section id="trouble">
+      <span class="sec-tag">06 — 문제 해결</span>
+      <h2>이럴 땐 이렇게</h2>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이런 일이</th><th>왜</th><th>이렇게</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>장에 <b>글이 너무 많음</b></td>
+              <td>줄 수를 안 정해 줌</td>
+              <td>"장마다 세 줄, 한 줄 스무 글자 안쪽으로"</td>
+            </tr>
+            <tr>
+              <td>내가 <b>모르는 내용</b>이 들어감</td>
+              <td>알아서 채워 넣음</td>
+              <td>그 장을 빼거나 "내가 아는 것만" 다시</td>
+            </tr>
+            <tr>
+              <td>숫자를 <b>지어냄</b></td>
+              <td>빈칸을 채우려 함</td>
+              <td>"모르는 숫자는 [ ] 로 비워 두고"</td>
+            </tr>
+            <tr>
+              <td>장이 <b>너무 많음</b></td>
+              <td>장 수를 안 정해 줌</td>
+              <td>"여섯 장으로 맞춰 줘. 1분에 한 장이야"</td>
+            </tr>
+            <tr>
+              <td>붙여 넣으니 <b>모양이 깨짐</b></td>
+              <td>꾸미기까지 따라옴</td>
+              <td><b>텍스트만 붙여넣기</b></td>
+            </tr>
+            <tr>
+              <td>글자가 <b>저절로 작아짐</b></td>
+              <td>상자에 글이 넘침</td>
+              <td>내용을 줄이거나 장을 나누기</td>
+            </tr>
+            <tr>
+              <td>대본이 <b>읽는 문장</b>임</td>
+              <td>"쪽지로"를 안 말함</td>
+              <td>"문장 말고 핵심 낱말 위주로 다시"</td>
+            </tr>
+            <tr>
+              <td>발표가 <b>시간을 넘김</b></td>
+              <td>장이 많거나 말이 김</td>
+              <td>"어느 장을 줄이면 좋을지 알려 줘"</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">이 부에서 기억할 한 가지</span>
+        <p>
+          <b>"내가 말할 수 있는 것만 슬라이드에 넣는다."</b>
+        </p>
+        <p>
+          자료가 아무리 그럴듯해도 내가 설명 못 하면 소용없습니다.
+          <b>빼는 것이 언제나 안전합니다.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 07 ═══════════ -->
+    <section id="copy">
+      <span class="sec-tag">07 — 모음</span>
+      <h2>그대로 베껴 쓰는 말</h2>
+
+      <div class="note">
+        <span class="note-label">발표 자료에 늘 붙이는 두 마디</span>
+        <p>
+          <b>"장마다 제목 한 줄과 본문 세 줄. 그 이상 넣지 마."</b><br>
+          <b>"내가 안 알려준 숫자나 날짜는 [ ] 로 비워 두고 지어내지 마."</b>
+        </p>
+      </div>
+
+      <h3>뼈대 짤 때</h3>
+      <div class="say">
+        <span class="say-label">뼈대 부탁</span>
+        <p>발표 자료 뼈대를 짜 줘. 아직 슬라이드는 만들지 말고 몇 장에 무슨 이야기를 넣을지만. 무엇을 — [주제]. 누구에게 — [듣는 사람]. 몇 분 — [시간]. 몇 장 — [장 수]. 얻고 싶은 것 — [목표]. 장마다 제목 한 줄과 거기서 할 이야기 한 줄만 표로 보여 줘.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <h3>내용 받을 때</h3>
+      <div class="say">
+        <span class="say-label">장별 초안</span>
+        <p>이 뼈대대로 장마다 들어갈 글을 써 줘. 장마다 제목 한 줄과 본문 세 줄, 한 줄은 스무 글자 안쪽. 문장이 아니라 짧은 말토막으로. 내가 안 알려준 숫자나 날짜는 [ ] 로 비워 두고 지어내지 마.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <div class="say">
+        <span class="say-label">글 줄이기</span>
+        <p>글이 너무 많아. 장마다 세 줄로 줄이고 한 줄은 스무 글자 안쪽으로. 뺀 내용은 버리지 말고 따로 모아서 보여 줘 — 발표할 때 말로 할 거야.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <h3>발표 준비할 때</h3>
+      <div class="say">
+        <span class="say-label">대본 받기</span>
+        <p>이 자료로 [시간]분간 발표할 거야. 장마다 내가 할 말을 써 줘. 읽는 대본이 아니라 기억을 도와줄 쪽지로, 핵심 낱말 위주로 장마다 다섯 줄 안쪽. 장이 넘어갈 때 이어 주는 한마디도. 슬라이드에 없는 내용은 넣지 마.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <div class="say">
+        <span class="say-label">예상 질문</span>
+        <p>이 발표를 듣고 사람들이 물어볼 만한 질문을 열 개 뽑아 줘. 답하기 곤란한 것부터. 질문마다 어떻게 답하면 좋을지도 두 줄로. 내가 모르는 것을 물으면 뭐라고 해야 할지도 알려 줘.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <div class="say">
+        <span class="say-label">나눠줄 요약</span>
+        <p>이 발표 내용을 A4 한 장짜리 요약으로 만들어 줘. 발표에 못 온 사람이 읽어도 알 수 있게. 슬라이드에 없는 설명도 넣어서.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+    </section>
+
+    <!-- ═══════════ 08 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">08 — 마무리</span>
+      <h2>5부 확인 목록</h2>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span>파워포인트 파일을 통째로 시키지 않는 이유를 안다</span></label></li>
+        <li><label><input type="checkbox"><span><b>뼈대 → 내용 → 옮기기 → 대본</b> 순서를 안다</span></label></li>
+        <li><label><input type="checkbox"><span>뼈대를 받을 때 <b>얻고 싶은 것</b>을 알려 줬다</span></label></li>
+        <li><label><input type="checkbox"><span>받은 뼈대에서 <b>내가 모르는 장</b>을 빼 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>"장마다 세 줄"로 못박아 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>뺀 내용을 따로 모아 받아 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>파워포인트에 붙여 넣고 디자인 단추를 눌렀다</span></label></li>
+        <li><label><input type="checkbox"><span>글자가 저절로 작아졌는지 확인했다</span></label></li>
+        <li><label><input type="checkbox"><span>발표 대본을 받아 <b>슬라이드 노트</b>에 넣었다</span></label></li>
+        <li><label><input type="checkbox"><span>예상 질문을 열 개 받아 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>나눠줄 요약을 따로 만들어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>슬라이드 노트로 인쇄하면 안 되는 이유를 안다</span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">AI 과목을 마치셨습니다</span>
+        <p>
+          파일 정리, 엑셀, 문서, 발표 자료 — <b>네 가지를 다 맡겨 보셨습니다.</b>
+          쓰는 프로그램이 무엇이든 시키는 말은 같다는 것도 확인하셨을 겁니다.
+        </p>
+        <p>
+          기억할 것은 결국 <b>1부의 네 조각</b>입니다.
+          <b>무엇을 · 어떻게 · 어디까지 · 먼저 보여 줘.</b>
+          새로운 일을 맡길 때도 이 넷으로 말을 지으시면 됩니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">이 사이트를 다 보셨다면</span>
+        <p>
+          다섯 과목을 전부 마치셨습니다.
+          <b><a href="check.html">실력 알아보기</a></b>를 다시 해보세요.
+          처음 했을 때와 막대가 얼마나 달라졌는지 눈에 보입니다.
+        </p>
+      </div>
+
+      <div class="next-up">
+        <a href="ai-4.html">← 4부: 한글·워드 맡기기</a>
+        <a href="check.html">실력 다시 알아보기 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

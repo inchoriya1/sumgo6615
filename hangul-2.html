@@ -1,0 +1,898 @@
+<!doctype html>
+<html lang="ko" data-subject="hangul">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>한글 2부 — 표와 그림 넣기</title>
+<meta name="description" content="한글 2부. 표 만들기, 셀 합치기와 나누기, 표 꾸미기, 그림 넣기와 글 어울림, 글상자와 도형.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="hangul.html">← 한글 과목 첫 화면으로</a>
+    <p class="eyebrow">3과목 · 한글 · 2부</p>
+    <h1>표와 그림<br><em>넣기</em></h1>
+    <p class="lede">
+      한글에서 <b>표는 아주 자주 씁니다.</b>
+      공문과 안내문의 절반은 표로 되어 있다고 해도 지나치지 않습니다.
+      2부에서는 표를 만들고 꾸미고, 그림을 넣습니다.
+    </p>
+    <div class="facts">
+      <span><b>먼저</b> 1부를 마치셨다면</span>
+      <span><b>소요</b> 100분</span>
+      <span><b>결과물</b> 표가 든 안내문 한 장</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#what">무엇을 넣을 수 있나</a></li>
+      <li><a href="#table">표 만들기</a></li>
+      <li><a href="#cell">표 꾸미기</a></li>
+      <li><a href="#merge">칸 합치고 나누기</a></li>
+      <li><a href="#image">그림 넣기</a></li>
+      <li><a href="#wrap">글과 어울리게 놓기</a></li>
+      <li><a href="#box">글상자와 도형</a></li>
+      <li><a href="#trouble">이럴 땐 이렇게</a></li>
+      <li><a href="#check">2부 확인 목록</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════
+         네 과목 어느 것부터 봐도 되도록, 이 장은 과목마다 똑같이 들어 있습니다.
+         고칠 때는 여섯 곳을 함께 고쳐 주세요. -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에, 손동작 세 가지</h2>
+      <p class="sub">
+        이 세 가지만 알면 무엇을 눌러도 겁낼 것이 없습니다.
+        네 과목 모두에서 똑같이 씁니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">다른 과목에서 이미 보셨다면</span>
+        <p>
+          같은 장이 과목마다 들어 있습니다.
+          이미 읽으셨으면 <a href="#what">01장</a>으로 건너뛰세요.
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>손동작</th><th>하는 일</th><th>언제 쓰나</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></td>
+              <td>방금 한 일을 되돌립니다</td>
+              <td>잘못 눌렀을 때. 여러 번 눌러도 됩니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">S</span></td>
+              <td>저장합니다</td>
+              <td>수시로. 한 줄 쓸 때마다 눌러도 좋습니다</td>
+            </tr>
+            <tr>
+              <td>마우스 <b>오른쪽</b> 단추</td>
+              <td>지금 고른 것에 할 수 있는 일 목록을 띄웁니다</td>
+              <td>무엇을 눌러야 할지 모를 때</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">가장 중요한 이야기</span>
+        <p>
+          <b>잘못 눌러서 컴퓨터가 고장 나는 일은 없습니다.</b>
+          지금부터 하는 모든 것은 되돌릴 수 있습니다.
+          겁내지 말고 여기저기 눌러보세요. 그게 가장 빨리 배우는 방법입니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">2부에서 쓸 문서</span>
+        <p>
+          1부에서 만든 <b>여름휴가안내</b>를 그대로 씁니다.
+          바탕 화면에서 두 번 눌러 여세요.
+        </p>
+        <p>
+          없으셔도 괜찮습니다. 새 문서를 열고
+          <b>여름 휴가 안내</b>라는 제목과 본문 두어 줄만 적어 두시면 됩니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">2부에서 특히 유용한 습관</span>
+        <p>
+          표와 그림은 <b>마우스 오른쪽 단추</b>에 거의 모든 것이 들어 있습니다.
+          메뉴에서 찾지 마시고 <b>일단 오른쪽 단추부터</b> 눌러 보세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="what">
+      <span class="sec-tag">01 — 이해</span>
+      <h2>무엇을 넣을 수 있나</h2>
+      <p class="sub">
+        전부 메뉴 <b>입력</b> 하나에 모여 있습니다.
+        무엇을 넣든 <b>넣는 순서는 같습니다.</b>
+      </p>
+
+      <div class="note">
+        <span class="note-label">넣는 순서는 늘 같습니다</span>
+        <p>
+          <b>① 들어갈 자리에 커서를 둔다 → ② 메뉴 입력에서 무엇을 넣을지 고른다
+          → ③ 크기와 자리를 맞춘다.</b>
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>넣을 것</th><th>이럴 때</th><th>어디서</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>표</b></td>
+              <td>항목이 여럿이고 <b>가지런히</b> 보여야 할 때</td>
+              <td>2부 02~04장</td>
+            </tr>
+            <tr>
+              <td><b>그림</b></td>
+              <td>사진이나 도장 이미지를 넣을 때</td>
+              <td>2부 05장</td>
+            </tr>
+            <tr>
+              <td><b>글상자</b></td>
+              <td>본문과 <b>떨어진 자리</b>에 글을 둘 때</td>
+              <td>2부 07장</td>
+            </tr>
+            <tr>
+              <td><b>도형</b></td>
+              <td>선을 긋거나 네모로 강조할 때</td>
+              <td>2부 07장</td>
+            </tr>
+            <tr>
+              <td><b>특수 문자</b></td>
+              <td>※ ○ ● ▶ 같은 기호</td>
+              <td>2부 07장</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>표가 특히 중요한 이유</h3>
+      <div class="note">
+        <span class="note-label">한글 문서의 절반은 표입니다</span>
+        <p>
+          관공서 서류를 떠올려 보세요. 신청서, 이력서, 회의록 —
+          <b>거의 전부 표로 만들어져 있습니다.</b>
+        </p>
+        <p>
+          한글에서 표는 숫자를 담는 그릇이 아니라
+          <b>칸을 가지런히 나누는 도구</b>로 더 많이 쓰입니다.
+          그래서 이 과목에서는 표에 세 장을 씁니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">스페이스바로 칸을 맞추지 마세요</span>
+        <p>
+          <b>이름 : 홍길동</b> 처럼 칸을 맞추려고 스페이스바를 여러 번 누르면,
+          글자를 조금만 고쳐도 <b>전부 어긋납니다.</b>
+        </p>
+        <p>
+          가지런히 놓아야 할 것이 있으면 <b>표를 쓰세요.</b>
+          표 선을 안 보이게 할 수도 있어서, <b>겉보기에는 표인지 모릅니다.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="table">
+      <span class="sec-tag">02 — 표</span>
+      <h2>표 만들기</h2>
+      <p class="sub">
+        안내문에 <b>운영 시간 표</b>를 넣겠습니다.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>표가 들어갈 자리에 커서를 둡니다</b>
+          <p>본문 마지막 줄 끝에서 <span class="kbd">Enter</span> 를 한 번 누르세요.</p>
+        </li>
+
+        <li>
+          <b>메뉴 <span class="nb">입력 → 표 → 표 만들기</span>를 누릅니다</b>
+          <p>
+            화면 맨 위의 <b>입력</b> 글자를 누르면 목록이 펼쳐집니다.
+            그 안에서 <b>표</b>를 찾아 누르세요.
+          </p>
+          <p>
+            표를 몇 줄 몇 칸으로 만들지 묻는 창이 뜨면 제대로 온 것입니다.
+          </p>
+        </li>
+
+        <li>
+          <b>줄과 칸 수를 정합니다</b>
+          <p>
+            <b>줄 개수 3</b>, <b>칸 개수 2</b>로 넣고 <b>만들기</b>를 누르세요.
+            (줄 = 가로, 칸 = 세로입니다.)
+          </p>
+        </li>
+
+        <li>
+          <b>표 안에 내용을 채웁니다</b>
+          <p>
+            칸 안을 누르고 글자를 칩니다.
+            <span class="kbd">Tab</span> 을 누르면 <b>다음 칸</b>으로 넘어갑니다. 엑셀과 같습니다.
+          </p>
+          <ul>
+            <li>구분 / 운영 시간</li>
+            <li>평일 / 09:00 ~ 16:00</li>
+            <li>휴가 기간 / 10:00 ~ 15:00</li>
+          </ul>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">표를 고치고 싶을 때</span>
+        <p>
+          표 안에서 <b>마우스 오른쪽 단추</b>를 누르면
+          줄 추가·칸 추가·셀 합치기 같은 것이 전부 나옵니다.
+          외우지 마시고 <b>오른쪽 단추를 누르는 습관</b>만 들이세요.
+        </p>
+        <p>
+          표 전체를 옮기거나 지우려면 표 바깥 테두리를 눌러 표를 고른 뒤
+          <span class="kbd">Delete</span> 를 누릅니다.
+        </p>
+      </div>
+
+      <h3>맨 마지막 칸에서 <span class="kbd">Tab</span> 을 누르면</h3>
+      <p>
+        표에 <b>줄이 하나 더 생깁니다.</b> 고장이 아닙니다.
+        오히려 <b>줄을 늘리는 가장 빠른 방법</b>입니다.
+        필요 없으면 <span class="kbd">Ctrl</span>+<span class="kbd">Z</span> 로 되돌리세요.
+      </p>
+
+      <h3>줄과 칸 늘리고 줄이기</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>하고 싶은 일</th><th>이렇게</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>줄·칸 <b>추가</b></td>
+              <td>그 자리에 커서를 두고 오른쪽 단추 → <b>줄/칸 추가하기</b></td>
+            </tr>
+            <tr>
+              <td>줄·칸 <b>지우기</b></td>
+              <td>오른쪽 단추 → <b>줄/칸 지우기</b></td>
+            </tr>
+            <tr>
+              <td>칸 <b>너비</b> 바꾸기</td>
+              <td>칸 사이 <b>세로 선</b>을 마우스로 끌기</td>
+            </tr>
+            <tr>
+              <td>줄 <b>높이</b> 바꾸기</td>
+              <td>줄 사이 <b>가로 선</b>을 마우스로 끌기</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">Delete 로는 줄이 안 없어집니다</span>
+        <p>
+          칸을 고르고 <span class="kbd">Delete</span> 를 누르면 <b>내용만</b> 지워집니다.
+          빈 줄은 그대로 남습니다.
+        </p>
+        <p>
+          줄 자체를 없애려면 반드시 <b>오른쪽 단추 → 줄 지우기</b>를 쓰세요.
+          엑셀에서와 같은 구분입니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">손에 익으면 — 단축키로도 됩니다</span>
+        <p>
+          표 만들기는 <span class="kbd">Ctrl</span>+<span class="kbd">N</span> 을 누르고
+          <b>손을 뗀 뒤</b> <span class="kbd">T</span> 를 눌러도 됩니다.
+          <b>동시에 누르는 게 아닙니다</b> — Ctrl+N을 누르고 → 놓고 → T 순서입니다.
+        </p>
+        <p>
+          한글에서 무언가를 <b>새로 만들 때(N)</b> 쓰는 방식인데,
+          익숙해지기 전에는 <b>메뉴가 훨씬 편합니다.</b>
+          지금은 몰라도 되고, 나중에 표를 자주 만들게 되면 그때 써보세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="cell">
+      <span class="sec-tag">03 — 실습</span>
+      <h2>표 꾸미기</h2>
+      <p class="sub">
+        방금 만든 표를 <b>안내문에 어울리게</b> 다듬습니다.
+        머리 줄에 색을 넣고, 글자를 가운데로 모으고, 선을 정리합니다.
+      </p>
+
+      <div class="note warn">
+        <span class="note-label">먼저 — 한글이 컴퓨터에 없다면</span>
+        <p>
+          한글은 <b>돈을 내고 사는 프로그램</b>이고,
+          <b>무료로 대신할 방법이 마땅치 않습니다.</b>
+          무료 <b>한글 뷰어</b>는 보기만 되고 고칠 수 없습니다.
+        </p>
+        <p>
+          한글이 없는 분은 <b><a href="word.html">4과목 워드</a>로 건너뛰세요.</b>
+          워드도 없으면 <b>구글 문서</b>(<code class="nb">docs.google.com</code>)로 하시면 됩니다.
+          무료입니다. 자세한 안내는 <a href="hangul-1.html#make">1부 03장</a>에 있습니다.
+        </p>
+        <p>
+          <b>표를 만들고 꾸미는 일은 워드와 구글 문서에도 그대로 있습니다.</b>
+          이름과 자리만 조금 다릅니다.
+        </p>
+      </div>
+
+      <h3>칸을 고르는 법</h3>
+      <div class="note">
+        <span class="note-label">글자를 고르는 것과 다릅니다</span>
+        <p>
+          칸 <b>안의 글자</b>를 고르는 것과 <b>칸 자체</b>를 고르는 것은 다릅니다.
+          색을 칠하거나 선을 바꾸려면 <b>칸 자체</b>를 골라야 합니다.
+        </p>
+        <p>
+          칸 안에 커서를 두고 <span class="kbd">F5</span> 를 누르면 <b>그 칸</b>이 골라집니다.
+          한 번 더 누르면 <b>줄 전체</b>, 또 누르면 <b>표 전체</b>가 골라집니다.
+        </p>
+        <p>
+          마우스로는 칸 안을 누른 채 <b>옆 칸으로 끌면</b> 여러 칸이 골라집니다.
+        </p>
+      </div>
+
+      <ol class="steps">
+        <li>
+          <b>머리 줄(구분 · 운영 시간)을 고릅니다</b>
+          <p>
+            첫 줄 왼쪽 칸을 누른 채 오른쪽 칸까지 끄세요.
+            두 칸이 색으로 덮이면 잘 된 것입니다.
+          </p>
+        </li>
+        <li>
+          <b>배경색을 넣습니다</b>
+          <p>
+            오른쪽 단추 → <b>셀 테두리/배경</b> → <b>배경</b> 쪽으로 갑니다.
+            <b>색</b>을 고르고 <b>연한 색</b>을 하나 고른 뒤 <b>설정</b>을 누르세요.
+          </p>
+        </li>
+        <li>
+          <b>글자를 굵게 하고 가운데로 모읍니다</b>
+          <p>
+            고른 상태에서 굵게 단추와 가운데 정렬 단추를 누릅니다.
+            1부에서 배운 것과 같습니다.
+          </p>
+        </li>
+        <li>
+          <b>표 전체의 글자를 가운데로</b>
+          <p>
+            표 안에 커서를 두고 <span class="kbd">F5</span> 를 세 번 눌러 표 전체를 고른 뒤
+            가운데 정렬을 누르세요. 시간 표는 가운데가 보기 좋습니다.
+          </p>
+        </li>
+        <li>
+          <b>저장합니다</b>
+          <p>메뉴 <b>파일 → 저장하기</b>를 누르세요.</p>
+        </li>
+      </ol>
+
+      <h3>선 굵기와 종류 바꾸기</h3>
+      <p>
+        같은 <b>셀 테두리/배경</b> 창의 <b>테두리</b> 쪽에서 정합니다.
+      </p>
+      <ul>
+        <li><b>종류</b>에서 실선·점선·이중선을 고릅니다</li>
+        <li><b>굵기</b>를 고릅니다</li>
+        <li>오른쪽 <b>미리 보기 그림</b>에서 <b>어느 선에 적용할지</b> 누릅니다</li>
+      </ul>
+
+      <div class="note warn">
+        <span class="note-label">여기서 많이 헤맵니다</span>
+        <p>
+          종류와 굵기만 고르고 <b>설정</b>을 누르면 <b>아무 변화가 없습니다.</b>
+          미리 보기 그림에서 <b>바깥쪽</b>이나 <b>안쪽</b> 단추를 눌러
+          <b>어느 선에 걸지 지정해야</b> 적용됩니다.
+        </p>
+      </div>
+
+      <h3>완성된 모양 한 번에 — 표 마당</h3>
+      <p>
+        표 안에 커서를 두고 오른쪽 단추 → <b>표 마당</b>(또는 <b>표 디자인</b>)을 누르면
+        <b>이미 꾸며진 표 모양</b>이 죽 나옵니다. 하나 고르면 끝입니다.
+      </p>
+      <p>
+        직접 꾸미기가 번거로우면 이쪽이 훨씬 빠릅니다.
+        다만 <b>공문에는 대개 단순한 선</b>이 어울립니다.
+      </p>
+
+      <h3>선을 안 보이게 하기</h3>
+      <div class="note">
+        <span class="note-label">칸 맞추기 용도로 쓸 때</span>
+        <p>
+          앞서 말한 <b>이름 : 홍길동</b> 같은 칸 맞추기에 표를 쓸 때는
+          <b>선이 안 보여야</b> 자연스럽습니다.
+        </p>
+        <p>
+          표 전체를 고르고 <b>셀 테두리/배경</b> → <b>테두리</b>에서
+          종류를 <b>없음</b>으로 하고 미리 보기의 <b>바깥쪽·안쪽</b>을 모두 누른 뒤 설정하세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="merge">
+      <span class="sec-tag">04 — 표</span>
+      <h2>칸 합치고 나누기</h2>
+      <p class="sub">
+        신청서나 이력서 같은 서식을 만들 때 <b>반드시 필요합니다.</b>
+        칸 모양이 들쭉날쭉한 서류는 전부 이걸로 만듭니다.
+      </p>
+
+      <h3>합치기</h3>
+      <ol class="steps">
+        <li>
+          <b>합칠 칸들을 마우스로 끌어 고릅니다</b>
+          <p>붙어 있는 칸들이어야 합니다.</p>
+        </li>
+        <li>
+          <b>오른쪽 단추 → 셀 합치기</b>
+          <p>
+            여러 칸이 <b>하나의 큰 칸</b>이 됩니다.
+            안에 있던 글자는 <b>모두 남습니다.</b>
+          </p>
+        </li>
+      </ol>
+
+      <h3>나누기</h3>
+      <ol class="steps">
+        <li>
+          <b>나눌 칸에 커서를 둡니다</b>
+        </li>
+        <li>
+          <b>오른쪽 단추 → 셀 나누기</b>
+          <p>
+            몇 줄 몇 칸으로 나눌지 묻는 창이 뜹니다.
+            숫자를 넣고 <b>나누기</b>를 누르세요.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">손에 익으면</span>
+        <p>
+          칸을 고른 상태에서 <span class="kbd">M</span> 을 누르면 합쳐지고,
+          <span class="kbd">S</span> 를 누르면 나누는 창이 뜹니다.
+        </p>
+        <p>
+          <b>급하지 않습니다.</b> 오른쪽 단추로 전부 됩니다.
+        </p>
+      </div>
+
+      <h3>칸 크기를 고르게 맞추기</h3>
+      <p>
+        칸 너비가 들쭉날쭉해지면, 맞출 칸들을 고르고
+        오른쪽 단추 → <b>셀 너비를 같게</b>를 누르세요.
+        <b>셀 높이를 같게</b>도 있습니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">이걸로 만들 수 있는 것</span>
+        <p>
+          합치기와 나누기만 알면 <b>웬만한 서식은 다 만듭니다.</b>
+        </p>
+        <ul>
+          <li><b>이력서</b> — 사진 자리는 여러 줄을 합쳐서 만듭니다</li>
+          <li><b>신청서</b> — 항목마다 칸 수가 다른 것을 나누기로 만듭니다</li>
+          <li><b>회의록</b> — 제목 줄은 가로로 합치고, 아래는 나눕니다</li>
+        </ul>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">표가 다음 쪽으로 잘릴 때</span>
+        <p>
+          표가 길어져 종이 끝에 걸리면 <b>중간이 잘려서</b> 다음 쪽으로 넘어갑니다.
+        </p>
+        <p>
+          표 안에 커서를 두고 오른쪽 단추 → <b>표/셀 속성</b>에서
+          <b>제목 줄 반복</b>에 체크하면, 다음 쪽에도 <b>머리 줄이 다시</b> 나옵니다.
+          엑셀 3부의 <b>인쇄 제목</b>과 같은 기능입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 ═══════════ -->
+    <section id="image">
+      <span class="sec-tag">05 — 그림</span>
+      <h2>그림 넣기</h2>
+      <p class="sub">
+        사진이나 도장 이미지를 넣는 법입니다.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>그림이 들어갈 자리에 커서를 둡니다</b>
+        </li>
+        <li>
+          <b>메뉴 <span class="nb">입력 → 그림 → 그림</span>을 누릅니다</b>
+          <p>파일 고르는 창이 뜹니다.</p>
+        </li>
+        <li>
+          <b>사진을 찾아 고릅니다</b>
+          <p>
+            창 아래쪽에 체크 상자가 몇 개 있습니다.
+            <b>문서에 포함</b>에 체크가 되어 있는지 확인하세요.
+          </p>
+        </li>
+        <li>
+          <b>넣기를 누릅니다</b>
+        </li>
+        <li>
+          <b>크기를 줄입니다</b>
+          <p>
+            그림을 누르면 테두리에 <b>손잡이</b>가 생깁니다.
+            <b>반드시 모서리</b> 손잡이를 잡고 끄세요.
+            옆면을 잡으면 <b>찌그러집니다.</b>
+          </p>
+        </li>
+      </ol>
+
+      <div class="note stop">
+        <span class="note-label">문서에 포함 — 반드시 체크</span>
+        <p>
+          이 체크를 <b>끄면</b> 한글은 사진을 넣는 대신
+          <b>"내 컴퓨터 어디에 있다"는 주소만</b> 적어 둡니다.
+        </p>
+        <p>
+          그러면 그 파일을 <b>남에게 보냈을 때 그림이 안 보입니다.</b>
+          받는 사람 컴퓨터에는 그 사진이 없기 때문입니다.
+        </p>
+        <p>
+          <b>반드시 문서에 포함에 체크하세요.</b> 파일은 무거워지지만 안전합니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">파일이 너무 무거워지면</span>
+        <p>
+          그림에 오른쪽 단추 → <b>개체 속성</b>에서 크기를 줄이거나,
+          사진을 넣기 전에 <b>그림판 등으로 작게 만들어</b> 두면 됩니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 06 ═══════════ -->
+    <section id="wrap">
+      <span class="sec-tag">06 — 핵심</span>
+      <h2>글과 어울리게 놓기</h2>
+      <p class="sub">
+        <b>한글에서 그림 때문에 가장 많이 헤매는 곳입니다.</b>
+        그림을 옮겼더니 글이 와르르 밀리는 그 문제입니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">본문과의 배치가 무엇인가</span>
+        <p>
+          그림이 <b>글과 어떤 사이로 지낼지</b>를 정하는 설정입니다.
+          한글은 이걸 <b>본문과의 배치</b>라고 부릅니다.
+        </p>
+        <p>
+          기본값은 <b>어울림</b>인데, 처음 배우는 분에게는
+          이게 가장 헷갈리는 동작을 합니다.
+        </p>
+      </div>
+
+      <h3>네 가지</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>배치</th><th>이렇게 됩니다</th><th>언제</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>어울림</b></td>
+              <td>글이 그림을 <b>피해서</b> 옆으로 흐릅니다</td>
+              <td>글 옆에 작은 사진을 둘 때</td>
+            </tr>
+            <tr>
+              <td><b>자리 차지</b></td>
+              <td>그림이 <b>한 줄을 통째로</b> 차지합니다</td>
+              <td><b>가장 안전합니다.</b> 사진을 가운데 크게 둘 때</td>
+            </tr>
+            <tr>
+              <td><b>글 뒤로</b></td>
+              <td>그림이 글자 <b>뒤에</b> 깔립니다</td>
+              <td>배경 무늬, 흐린 도장</td>
+            </tr>
+            <tr>
+              <td><b>글 앞으로</b></td>
+              <td>그림이 글자를 <b>덮습니다</b></td>
+              <td>도장을 글자 위에 찍을 때</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>바꾸는 법</h3>
+      <ol class="steps">
+        <li>
+          <b>그림을 한 번 누릅니다</b>
+        </li>
+        <li>
+          <b>오른쪽 단추 → 개체 속성</b>
+          <p>창이 하나 열립니다.</p>
+        </li>
+        <li>
+          <b>기본 쪽의 본문과의 배치에서 고릅니다</b>
+          <p>
+            네 개의 그림 단추가 나란히 있습니다.
+            <b>자리 차지</b>를 고르고 <b>설정</b>을 누르세요.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">처음에는 자리 차지를 쓰세요</span>
+        <p>
+          <b>자리 차지</b>로 두면 그림이 <b>글의 한 줄처럼</b> 행동합니다.
+          위아래로만 움직이고, 글이 갑자기 밀려나지 않습니다.
+        </p>
+        <p>
+          그림을 가운데로 놓고 싶으면 <b>가운데 정렬</b> 단추를 누르면 됩니다.
+          글자와 똑같이 다뤄집니다. <b>훨씬 다루기 쉽습니다.</b>
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">그림이 자꾸 도망갈 때</span>
+        <p>
+          <b>어울림</b> 상태에서는 그림이 <b>글자에 매여</b> 있어서,
+          위쪽 글을 고치면 <b>그림도 따라 움직입니다.</b>
+        </p>
+        <p>
+          자리를 고정하고 싶으면 <b>개체 속성</b>에서
+          <b>글자처럼 취급</b> 체크를 끄고,
+          <b>가로·세로 기준</b>을 <b>종이</b>로 바꾸세요.
+          그러면 <b>종이의 그 자리에</b> 붙박입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 07 ═══════════ -->
+    <section id="box">
+      <span class="sec-tag">07 — 곁가지</span>
+      <h2>글상자와 도형</h2>
+      <p class="sub">
+        본문과 떨어진 자리에 글을 두거나, 선을 긋고 네모로 강조할 때 씁니다.
+        <b>어려우면 건너뛰셔도 됩니다.</b>
+      </p>
+
+      <h3>글상자 — 원하는 자리에 글 두기</h3>
+      <ol class="steps">
+        <li>
+          <b>메뉴 <span class="nb">입력 → 글상자</span>를 누릅니다</b>
+        </li>
+        <li>
+          <b>종이에서 마우스를 끌어 네모를 그립니다</b>
+        </li>
+        <li>
+          <b>안에 글자를 칩니다</b>
+          <p>다 쳤으면 바깥을 한 번 누르세요.</p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">언제 쓰나</span>
+        <p>
+          안내문 아래쪽 <b>"문의: 관리사무소 02-000-0000"</b> 같은 것을
+          네모 안에 넣어 눈에 띄게 할 때 씁니다.
+        </p>
+        <p>
+          글상자도 <b>개체 속성</b>에서 <b>본문과의 배치</b>를 정할 수 있습니다.
+          그림과 똑같습니다.
+        </p>
+      </div>
+
+      <h3>도형 그리기</h3>
+      <p>
+        메뉴 <b>입력 → 도형</b>에서 선·네모·동그라미·화살표를 고르고
+        종이에서 끌면 그려집니다.
+      </p>
+      <p>
+        <span class="kbd">Shift</span> 를 <b>누른 채로</b> 끌면
+        <b>정사각형·정원</b>이 되고, 선은 <b>수평·수직</b>으로 그어집니다.
+      </p>
+
+      <h3>특수 문자 — ※ ○ ● ▶</h3>
+      <ol class="steps">
+        <li>
+          <b>넣을 자리에 커서를 둡니다</b>
+        </li>
+        <li>
+          <b>메뉴 <span class="nb">입력 → 문자표</span>를 누릅니다</b>
+          <p>손에 익으면 <span class="kbd">Ctrl</span>+<span class="kbd">F10</span> 입니다.</p>
+        </li>
+        <li>
+          <b>기호를 찾아 고르고 넣기를 누릅니다</b>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">더 빠른 방법</span>
+        <p>
+          <b>ㅁ</b> 을 치고 <b>한자</b> 키를 누르면 <b>네모·동그라미 기호</b>가,
+          <b>ㅇ</b> 을 치고 <b>한자</b> 키를 누르면 <b>원 기호</b>가 목록으로 나옵니다.
+        </p>
+        <p>
+          자음마다 다른 기호 묶음이 나옵니다.
+          <b>ㅁ</b> 과 <b>ㅅ</b> 정도만 알아 두시면 대부분 해결됩니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 08 ═══════════ -->
+    <section id="trouble">
+      <span class="sec-tag">08 — 문제 해결</span>
+      <h2>이럴 땐 이렇게</h2>
+      <p class="sub">
+        2부에서 처음 배우는 분들이 거의 다 겪는 것들입니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이런 일이</th><th>왜</th><th>이렇게</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>표에 색이 <b>안 칠해짐</b></td>
+              <td>칸이 아니라 글자를 고름</td>
+              <td><span class="kbd">F5</span> 로 <b>칸 자체</b>를 고르고 다시</td>
+            </tr>
+            <tr>
+              <td>선 굵기를 바꿔도 <b>그대로</b></td>
+              <td>어느 선에 걸지 안 지정함</td>
+              <td>미리 보기에서 <b>바깥쪽·안쪽</b> 단추를 누르고 설정</td>
+            </tr>
+            <tr>
+              <td>줄을 지웠는데 <b>빈 줄이 남음</b></td>
+              <td>Delete는 내용만 지움</td>
+              <td>오른쪽 단추 → <b>줄 지우기</b></td>
+            </tr>
+            <tr>
+              <td>표가 <b>종이 밖으로</b> 나감</td>
+              <td>칸 너비 합이 여백보다 큼</td>
+              <td>칸 사이 선을 끌어 줄이거나, 표를 고르고 <b>셀 너비를 같게</b></td>
+            </tr>
+            <tr>
+              <td>다음 쪽에 <b>머리 줄이 없음</b></td>
+              <td>제목 줄 반복이 꺼져 있음</td>
+              <td>오른쪽 단추 → <b>표/셀 속성</b> → <b>제목 줄 반복</b></td>
+            </tr>
+            <tr>
+              <td>그림이 <b>찌그러짐</b></td>
+              <td>옆면 손잡이로 줄임</td>
+              <td><span class="kbd">Ctrl</span>+<span class="kbd">Z</span> 후 <b>모서리</b>를 잡기</td>
+            </tr>
+            <tr>
+              <td>그림을 옮기면 <b>글이 밀림</b></td>
+              <td>배치가 <b>어울림</b>으로 되어 있음</td>
+              <td>개체 속성 → <b>자리 차지</b>로 바꾸기 (<a href="#wrap">06장</a>)</td>
+            </tr>
+            <tr>
+              <td>보낸 파일에 <b>그림이 안 보임</b></td>
+              <td><b>문서에 포함</b>을 안 함</td>
+              <td>그림을 지우고 <b>문서에 포함</b> 체크 후 다시 넣기</td>
+            </tr>
+            <tr>
+              <td>그림이 <b>혼자 움직임</b></td>
+              <td>글자에 매여 있음</td>
+              <td>개체 속성에서 기준을 <b>종이</b>로 바꾸기</td>
+            </tr>
+            <tr>
+              <td>표 안에서 <span class="kbd">Tab</span> 이<br><b>들여쓰기가 안 됨</b></td>
+              <td>표에서 Tab은 다음 칸 이동</td>
+              <td>고장이 아닙니다. 들여쓰기는 문단 모양에서</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">2부에서 기억할 두 가지</span>
+        <p>
+          <b>① 표에서는 오른쪽 단추. 거기 다 있습니다.</b><br>
+          <b>② 그림은 자리 차지로 두면 다루기 쉽습니다.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 09 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">09 — 마무리</span>
+      <h2>2부 확인 목록</h2>
+      <p class="sub">
+        직접 해본 것에 체크하세요. 체크한 것은 다음에 들어와도 그대로 남아 있습니다.
+      </p>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span><span class="nb">입력 → 표 → 표 만들기</span>로 표를 넣었다</span></label></li>
+        <li><label><input type="checkbox"><span>표 안에서 <span class="kbd">Tab</span> 으로 다음 칸에 갔다</span></label></li>
+        <li><label><input type="checkbox"><span>마지막 칸에서 <span class="kbd">Tab</span> 을 누르면 줄이 늘어나는 것을 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><span class="kbd">F5</span> 로 칸·줄·표 전체를 골라 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>머리 줄에 배경색을 넣었다</span></label></li>
+        <li><label><input type="checkbox"><span>선 바꾸기는 <b>어느 선에 걸지</b> 눌러야 한다는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>칸을 <b>합쳐</b> 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>칸을 <b>나눠</b> 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>내용만 지우는 것과 줄을 없애는 것의 차이를 안다</span></label></li>
+        <li><label><input type="checkbox"><span>그림을 넣을 때 <b>문서에 포함</b>에 체크했다</span></label></li>
+        <li><label><input type="checkbox"><span>그림을 <b>모서리</b>로 줄여 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>배치를 <b>자리 차지</b>로 바꿔 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>스페이스바로 칸을 맞추면 안 되는 이유를 안다</span></label></li>
+        <li><label><input type="checkbox"><span>파일을 저장했다</span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">여기까지 하셨으면</span>
+        <p>
+          <b>한글에서 어려운 부분은 다 넘으신 것</b>입니다.
+          표와 그림이 한글에서 가장 손이 많이 가는 두 가지입니다.
+        </p>
+        <p>
+          3부에서는 이 문서를 <b>공문답게</b> 만듭니다.
+          여백을 잡고, 쪽 번호와 머리말을 넣고, 인쇄합니다.
+          <b>스타일</b>로 같은 모양을 한 번에 거는 법도 배웁니다.
+        </p>
+      </div>
+
+      <div class="next-up">
+        <a href="hangul-1.html">← 1부: 글을 쓰고 모양 잡기</a>
+        <a href="hangul-3.html">3부: 문서답게 만들기 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

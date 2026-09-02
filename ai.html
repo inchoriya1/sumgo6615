@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ko" data-subject="ai">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI에게 말로 시키기 — 파일 정리부터 엑셀·발표 자료까지</title>
+<meta name="description" content="클로드·커서·안티그라비티에게 우리말로 시키는 법. 다섯 부로 나누어 파일 정리, 엑셀, 한글·워드, 파워포인트를 맡깁니다.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell">
+
+  <header class="masthead">
+    <a class="back" href="index.html">← 처음 화면으로</a>
+    <p class="eyebrow">5과목 · AI에게 말로 시키기</p>
+    <h1>말로 시키면<br><em>컴퓨터가 합니다</em></h1>
+    <p class="lede">
+      "이 엑셀에서 부서별 합계를 내 줘"라고 <b>우리말로 말하면</b> 알아서 해줍니다.
+      명령어를 외울 필요도, 어디를 누를지 외울 필요도 없습니다.
+      <b>클로드 · 커서 · 안티그라비티</b> 중 아무거나 하나만 있으면 됩니다.
+    </p>
+    <div class="facts">
+      <span><b>대상</b> 앞의 네 과목을 익히신 분</span>
+      <span><b>구성</b> 다섯 부</span>
+      <span><b>준비물</b> 셋 중 하나</span>
+    </div>
+
+    <div class="prefs" style="margin-left:0;margin-top:30px">
+      <p class="prefs-title">글자가 작으면 눌러서 키우세요</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </header>
+
+  <div class="guide">
+    <h2>맡기는 일의 종류로 나눴습니다</h2>
+    <p>
+      앞의 네 과목은 <b>내가 직접 손을 움직이는</b> 프로그램이었습니다.
+      이 과목은 <b>시키면 대신 해주는</b> 것이라, 배울 것이 단추 위치가 아니라
+      <b>부탁하는 말</b>입니다.
+    </p>
+    <p>
+      <b>1부는 반드시 먼저 보세요.</b> 거기서 배우는 <b>네 조각</b>이 이 과목의 전부입니다.
+      2부부터는 그 네 조각을 상황마다 바꿔 넣는 연습이라,
+      <b>필요한 것만 골라 보셔도 됩니다.</b>
+    </p>
+    <p>
+      <b>앞의 네 과목을 알아야 합니다.</b> 무엇을 시킬지 모르면 시킬 수가 없고,
+      결과가 맞는지 볼 줄 알아야 하기 때문입니다.
+      AI는 틀리기도 하는데, 아무것도 모르면 틀린 줄도 모릅니다.
+    </p>
+    <p>
+      <b>연습은 진짜 파일로 하지 마세요.</b> 바탕 화면에 <b>연습</b> 폴더를 만들고
+      파일을 <span class="nb">복사해서</span> 넣은 뒤 거기서 하세요.
+      만드는 법은 <a href="ai-1.html#start">1부 00장</a>에 있습니다.
+    </p>
+    <p>
+      종이로 보고 싶으면 <span class="nb">키보드에서 <span class="kbd">Ctrl</span> + <span class="kbd">P</span></span>를
+      누르세요. 인쇄에 맞게 정리된 모양으로 나옵니다.
+    </p>
+  </div>
+
+  <!-- ═══════════ 다섯 부 ═══════════ -->
+  <section>
+    <div class="band">
+      <h2>차례</h2>
+      <span class="hint">누르면 강의안이 열립니다</span>
+    </div>
+
+    <div class="subjects">
+
+      <a class="card c-ai" href="ai-1.html">
+        <span class="badge">1부 · 90분 · 먼저 보세요</span>
+        <h3>시작하기</h3>
+        <p>
+          셋이 왜 같은 물건인지, 어느 것을 켜든 확인할 세 가지,
+          <b>시키는 말의 네 조각</b>, 어디에나 붙여 쓰는 다섯 마디,
+          잘못됐을 때 되돌리는 법.
+        </p>
+        <span class="go">1부 시작하기 →</span>
+      </a>
+
+      <a class="card c-ai" href="ai-2.html">
+        <span class="badge">2부 · 90분</span>
+        <h3>파일과 폴더 맡기기</h3>
+        <p>
+          바탕 화면 정리, 파일 이름 한꺼번에 바꾸기, 어디 뒀는지 모를 때 찾기,
+          같은 파일 골라내기. <b>가장 자주 쓰게 되는 부</b>입니다.
+        </p>
+        <span class="go">2부 시작하기 →</span>
+      </a>
+
+      <a class="card c-ai" href="ai-3.html">
+        <span class="badge">3부 · 100분</span>
+        <h3>엑셀 맡기기</h3>
+        <p>
+          흩어진 글을 표로 만들기, 지저분한 표 정리, 묶어서 합계 내기,
+          여러 파일 한 장으로 합치기. 엑셀이 부리는 심술을 미리 막는 법까지.
+        </p>
+        <span class="go">3부 시작하기 →</span>
+      </a>
+
+      <a class="card c-ai" href="ai-4.html">
+        <span class="badge">4부 · 100분</span>
+        <h3>한글·워드 맡기기</h3>
+        <p>
+          긴 문서 요약, 안내문 초안 받기, 내가 쓴 글 다듬기,
+          공문투와 쉬운 말 사이 바꾸기, PDF에서 필요한 것만 꺼내기.
+        </p>
+        <span class="go">4부 시작하기 →</span>
+      </a>
+
+      <a class="card c-ai" href="ai-5.html">
+        <span class="badge">5부 · 90분</span>
+        <h3>파워포인트 맡기기</h3>
+        <p>
+          발표 자료 뼈대 짜기, 장마다 들어갈 글 받기, 슬라이드로 옮기기,
+          <b>발표 대본과 예상 질문</b>까지.
+        </p>
+        <span class="go">5부 시작하기 →</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ 셋을 하나로 ═══════════ -->
+  <section>
+    <div class="band">
+      <h2>왜 셋을 한 과목으로 묶었나</h2>
+      <span class="hint">따로 배우지 않아도 됩니다</span>
+    </div>
+
+    <p>
+      <b>클로드 · 커서 · 안티그라비티</b> — 이름은 셋이지만 하는 일이 같습니다.
+      <b>내 폴더를 읽고, 무엇을 할지 정하고, 해도 되냐고 물어보고, 그렇다고 하면 합니다.</b>
+      그래서 이 과목에 나오는 말은 셋 어디에 넣어도 그대로 통합니다.
+    </p>
+    <p>
+      <b>이미 깔려 있는 것</b>을 쓰세요. 그것이 정답입니다.
+      아무것도 없다면 주변에서 많이 쓰는 것으로 시작하시면 되고,
+      나중에 다른 것으로 옮겨도 <b>오늘 배운 말이 그대로 통합니다.</b>
+    </p>
+    <p>
+      이 과목은 <b>특정 프로그램의 화면을 설명하지 않습니다.</b>
+      화면은 몇 달마다 바뀌지만, <b>부탁하는 말은 바뀌지 않기</b> 때문입니다.
+    </p>
+  </section>
+
+  <!-- ═══════════ 무엇을 배우나 ═══════════ -->
+  <section>
+    <div class="band">
+      <h2>무엇을 맡길 수 있게 되나</h2>
+      <span class="hint">다섯 부를 마치면</span>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>이런 일을</th><th>말로 시키면</th><th>어디서</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>바탕 화면에 쌓인 파일 300개</td>
+            <td>종류별로 나눠 <b>몇 분에</b> 정리됩니다</td>
+            <td>2부</td>
+          </tr>
+          <tr>
+            <td>사진 이름 한꺼번에 바꾸기</td>
+            <td>날짜가 앞에 오게 <b>규칙대로</b> 바뀝니다</td>
+            <td>2부</td>
+          </tr>
+          <tr>
+            <td>메일로 온 신청 명단</td>
+            <td>엑셀에 붙일 수 있는 <b>표</b>가 됩니다</td>
+            <td>3부</td>
+          </tr>
+          <tr>
+            <td>달마다 따로 있는 파일 열두 개</td>
+            <td><b>한 장으로</b> 합쳐집니다</td>
+            <td>3부</td>
+          </tr>
+          <tr>
+            <td>스무 쪽짜리 회의록</td>
+            <td>다섯 줄 <b>요약</b>이 나옵니다</td>
+            <td>4부</td>
+          </tr>
+          <tr>
+            <td>안내문 쓰기가 막막할 때</td>
+            <td><b>초안</b>에서 시작해 고쳐 갑니다</td>
+            <td>4부</td>
+          </tr>
+          <tr>
+            <td>10분 발표 준비</td>
+            <td>뼈대·내용·<b>대본·예상 질문</b>까지</td>
+            <td>5부</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      <b>이 과목에서 기억할 한 가지</b> — 무엇을 시키든 끝에
+      <b>"먼저 보여 주고 잠깐 멈춰 줘"</b>를 붙이세요.
+      보여 주기만 한 상태에서는 파일이 하나도 안 바뀌었으니,
+      마음에 안 들면 몇 번을 다시 시켜도 아무 일이 없습니다.
+    </p>
+    <p>
+      그리고 <b>"지워 줘"라고 하지 마세요.</b>
+      대신 <b>"지울 것 폴더를 만들어서 거기로 옮겨 줘"</b>라고 하세요.
+      일주일 지나고 아쉽지 않으면 그때 내 손으로 비우면 됩니다.
+    </p>
+    <div class="next-up">
+      <a href="index.html">← 처음 화면으로</a>
+      <a href="ai-1.html">1부 시작하기 →</a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

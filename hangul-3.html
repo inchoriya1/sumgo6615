@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="ko" data-subject="hangul">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>한글 3부 — 문서답게 만들고 인쇄하기</title>
+<meta name="description" content="한글 3부. 편집 용지와 여백, 쪽 번호와 머리말, 스타일, 찾기와 바꾸기, 문서마당, 인쇄와 PDF.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="hangul.html">← 한글 과목 첫 화면으로</a>
+    <p class="eyebrow">3과목 · 한글 · 3부</p>
+    <h1>문서답게<br><em>만들고 인쇄하기</em></h1>
+    <p class="lede">
+      내용은 2부에서 다 만들었습니다.
+      3부는 여백을 잡고, 쪽 번호와 머리말을 넣어 <b>공문 모양을 갖추고</b>,
+      종이로 뽑는 일입니다.
+    </p>
+    <div class="facts">
+      <span><b>먼저</b> 2부를 마치셨다면</span>
+      <span><b>소요</b> 90분</span>
+      <span><b>결과물</b> 인쇄해서 붙일 수 있는 안내문</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#paper">종이와 여백</a></li>
+      <li><a href="#header">쪽 번호와 머리말</a></li>
+      <li><a href="#practice">공문 모양 갖추기</a></li>
+      <li><a href="#style">스타일</a></li>
+      <li><a href="#find">찾기와 바꾸기</a></li>
+      <li><a href="#template">문서마당</a></li>
+      <li><a href="#print">인쇄와 PDF</a></li>
+      <li><a href="#trouble">이럴 땐 이렇게</a></li>
+      <li><a href="#check">3부 확인 목록</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════
+         네 과목 어느 것부터 봐도 되도록, 이 장은 과목마다 똑같이 들어 있습니다.
+         고칠 때는 여섯 곳을 함께 고쳐 주세요. -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에, 손동작 세 가지</h2>
+      <p class="sub">
+        이 세 가지만 알면 무엇을 눌러도 겁낼 것이 없습니다.
+        네 과목 모두에서 똑같이 씁니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">다른 과목에서 이미 보셨다면</span>
+        <p>
+          같은 장이 과목마다 들어 있습니다.
+          이미 읽으셨으면 <a href="#paper">01장</a>으로 건너뛰세요.
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>손동작</th><th>하는 일</th><th>언제 쓰나</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></td>
+              <td>방금 한 일을 되돌립니다</td>
+              <td>잘못 눌렀을 때. 여러 번 눌러도 됩니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">S</span></td>
+              <td>저장합니다</td>
+              <td>수시로. 한 줄 쓸 때마다 눌러도 좋습니다</td>
+            </tr>
+            <tr>
+              <td>마우스 <b>오른쪽</b> 단추</td>
+              <td>지금 고른 것에 할 수 있는 일 목록을 띄웁니다</td>
+              <td>무엇을 눌러야 할지 모를 때</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">가장 중요한 이야기</span>
+        <p>
+          <b>잘못 눌러서 컴퓨터가 고장 나는 일은 없습니다.</b>
+          지금부터 하는 모든 것은 되돌릴 수 있습니다.
+          겁내지 말고 여기저기 눌러보세요. 그게 가장 빨리 배우는 방법입니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">3부에서 쓸 문서</span>
+        <p>
+          2부에서 만든 <b>여름휴가안내</b>를 그대로 씁니다.
+          표가 들어간 그 문서입니다.
+        </p>
+        <p>
+          3부에서는 <b>문서 전체의 모양을 바꾸는 일</b>을 합니다.
+          시작하기 전에 <b>파일 → 다른 이름으로 저장하기</b>로
+          사본을 하나 만들어 두시길 권합니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="paper">
+      <span class="sec-tag">01 — 쪽</span>
+      <h2>종이와 여백</h2>
+      <p class="sub">
+        종이 크기와 여백을 정하는 일입니다.
+        한글은 <b>화면에 보이는 그대로 인쇄되므로</b> 여기가 곧 결과물입니다.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>메뉴 <span class="nb">쪽 → 편집 용지</span>를 누릅니다</b>
+          <p>
+            <b>편집 용지</b> 창이 열립니다.
+            손에 익으면 <span class="kbd">F7</span> 한 번으로도 열립니다.
+          </p>
+        </li>
+        <li>
+          <b>용지 종류를 봅니다</b>
+          <p>
+            보통 <b>A4</b>로 되어 있습니다. 그대로 두세요.
+            <b>세로/가로</b>는 종이를 어느 방향으로 놓을지입니다.
+          </p>
+        </li>
+        <li>
+          <b>여백을 정합니다</b>
+          <p>
+            위·아래·왼쪽·오른쪽 <b>20mm</b> 정도가 무난합니다.
+            여백을 줄이면 한 장에 더 많이 들어가지만, 답답해 보입니다.
+          </p>
+        </li>
+        <li>
+          <b>설정을 누릅니다</b>
+          <p>종이 모양이 바로 바뀝니다.</p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">머리말·꼬리말 여백은 무엇인가</span>
+        <p>
+          편집 용지 창에 <b>머리말</b>과 <b>꼬리말</b> 여백 칸도 있습니다.
+          <b>위쪽 여백 안에서</b> 머리말이 차지할 자리입니다.
+        </p>
+        <p>
+          지금은 <b>건드리지 마세요.</b> 기본값으로 충분합니다.
+          다음 장에서 머리말을 넣어 보면 뜻을 알게 되십니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">가로로 놓아야 할 때</span>
+        <p>
+          표가 옆으로 넓어서 종이에 안 들어가면
+          <b>가로</b> 방향으로 바꾸세요. 훨씬 잘 들어갑니다.
+        </p>
+      </div>
+
+      <h3>다음 쪽으로 넘기기</h3>
+      <p>
+        새 쪽에서 시작하고 싶을 때 <span class="kbd">Enter</span> 를 여러 번 눌러
+        넘기는 분이 많습니다. <b>그러지 마세요.</b>
+        위쪽 글을 조금만 고쳐도 <b>전부 어긋납니다.</b>
+      </p>
+      <p>
+        메뉴 <b>쪽 → 쪽 나누기</b>를 쓰세요.
+        여기서부터 <b>반드시 새 쪽</b>에서 시작합니다.
+        손에 익으면 <span class="kbd">Ctrl</span> + <span class="kbd">Enter</span> 입니다.
+      </p>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="header">
+      <span class="sec-tag">02 — 쪽</span>
+      <h2>쪽 번호와 머리말</h2>
+      <p class="sub">
+        여러 장짜리 문서라면 <b>반드시 넣어야 합니다.</b>
+        나눠준 뒤 순서가 섞이면 아무도 못 맞춥니다.
+      </p>
+
+      <h3>쪽 번호 넣기</h3>
+      <ol class="steps">
+        <li>
+          <b>메뉴 <span class="nb">쪽 → 쪽 번호 매기기</span>를 누릅니다</b>
+        </li>
+        <li>
+          <b>번호가 들어갈 자리를 고릅니다</b>
+          <p>
+            아홉 개의 자리 중에서 고릅니다.
+            <b>아래 가운데</b>가 가장 무난합니다.
+          </p>
+        </li>
+        <li>
+          <b>번호 모양을 고르고 넣기를 누릅니다</b>
+          <p>
+            <b>1, 2, 3</b> 이 기본입니다.
+            모든 쪽에 저절로 매겨집니다.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">번호는 저절로 다시 매겨집니다</span>
+        <p>
+          가운데에 쪽이 하나 늘어나도 <b>번호가 알아서 다시 매겨집니다.</b>
+          손으로 적는 것과 다른 점입니다.
+        </p>
+      </div>
+
+      <h3>머리말과 꼬리말</h3>
+      <p>
+        <b>모든 쪽의 맨 위</b>에 같은 글을 넣는 것이 머리말,
+        <b>맨 아래</b>에 넣는 것이 꼬리말입니다.
+        기관 이름이나 문서 제목을 넣습니다.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>메뉴 <span class="nb">쪽 → 머리말/꼬리말</span>을 누릅니다</b>
+          <p>손에 익으면 <span class="kbd">Ctrl</span>+<span class="kbd">N</span> 을 누르고 놓은 뒤 <span class="kbd">H</span> 입니다.</p>
+        </li>
+        <li>
+          <b>머리말을 고르고 만들기를 누릅니다</b>
+          <p>
+            <b>양쪽</b>은 모든 쪽에, <b>홀수 쪽</b>·<b>짝수 쪽</b>은 그 쪽에만 들어갑니다.
+            보통 <b>양쪽</b>입니다.
+          </p>
+        </li>
+        <li>
+          <b>글자를 칩니다</b>
+          <p>
+            <b>○○아파트 관리사무소</b> 정도로 적어 보세요.
+            글자 크기를 <b>작게</b>(9 정도) 하는 것이 어울립니다.
+          </p>
+        </li>
+        <li>
+          <b>머리말/꼬리말 닫기를 누릅니다</b>
+          <p>
+            도구 상자에 <b>닫기</b> 단추가 나와 있습니다.
+            본문으로 돌아옵니다.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note warn">
+        <span class="note-label">가장 헷갈리는 곳</span>
+        <p>
+          머리말을 쓰다가 <b>닫기를 안 누르고</b> 본문을 고치려는 분이 많습니다.
+          여기서 친 글자는 <b>모든 쪽에</b> 나옵니다.
+        </p>
+        <p>
+          머리말 영역은 <b>흐린 회색</b>으로 표시되고,
+          본문은 <b>진하게</b> 보입니다. 지금 어디에 있는지 색으로 구분하세요.
+        </p>
+        <p>
+          본문으로 나오려면 반드시 <b>닫기</b>를 누르거나
+          본문 아무 곳이나 <b>두 번</b> 누르세요.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">파워포인트를 보셨다면</span>
+        <p>
+          파워포인트의 <b>슬라이드 마스터</b>와 같은 생각입니다.
+          <b>한 번 넣으면 모든 쪽에</b> 나온다는 것입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="practice">
+      <span class="sec-tag">03 — 실습</span>
+      <h2>공문 모양 갖추기</h2>
+      <p class="sub">
+        지금까지 배운 것을 <b>순서대로 한 번</b> 해봅니다.
+        다 하고 나면 게시판에 붙일 수 있는 안내문이 됩니다.
+      </p>
+
+      <div class="note warn">
+        <span class="note-label">먼저 — 한글이 컴퓨터에 없다면</span>
+        <p>
+          한글은 <b>돈을 내고 사는 프로그램</b>이고,
+          <b>무료로 대신할 방법이 마땅치 않습니다.</b>
+          무료 <b>한글 뷰어</b>는 보기만 되고 고칠 수 없습니다.
+        </p>
+        <p>
+          한글이 없는 분은 <b><a href="word.html">4과목 워드</a>로 건너뛰세요.</b>
+          워드도 없으면 <b>구글 문서</b>(<code class="nb">docs.google.com</code>)로 하시면 됩니다.
+          자세한 안내는 <a href="hangul-1.html#make">1부 03장</a>에 있습니다.
+        </p>
+        <p>
+          <b>여백·쪽 번호·머리말·스타일·인쇄는 워드에도 전부 있습니다.</b>
+          워드의 같은 기능은 <b>4과목</b>에서 다룹니다.
+        </p>
+      </div>
+
+      <ol class="steps">
+        <li>
+          <b>여백을 잡습니다</b>
+          <p>
+            메뉴 <b>쪽 → 편집 용지</b>에서 사방 <b>20mm</b>로 맞추고 설정.
+          </p>
+        </li>
+        <li>
+          <b>제목을 크게, 가운데로</b>
+          <p>
+            제목 줄에 커서를 두고 크기 <b>20</b>, <b>굵게</b>, <b>가운데 정렬</b>.
+            1부에서 한 그대로입니다.
+          </p>
+        </li>
+        <li>
+          <b>본문을 양쪽 정렬로</b>
+          <p>
+            본문 문단들을 고르고 <b>양쪽 정렬</b> 단추를 누릅니다.
+            오른쪽 끝이 가지런해져 공문답게 보입니다.
+          </p>
+        </li>
+        <li>
+          <b>맨 아래에 날짜와 기관 이름을 오른쪽 정렬로</b>
+          <p>
+            <b>2026. 7. 1.</b> 과 <b>○○아파트 관리사무소</b> 를 적고
+            <b>오른쪽 정렬</b> 단추를 누르세요.
+            공문의 마무리는 대개 이 모양입니다.
+          </p>
+        </li>
+        <li>
+          <b>머리말을 넣습니다</b>
+          <p>
+            메뉴 <b>쪽 → 머리말/꼬리말</b>에서 기관 이름을 작게 넣고 <b>닫기</b>.
+          </p>
+        </li>
+        <li>
+          <b>미리 보기로 확인합니다</b>
+          <p>
+            메뉴 <b>파일 → 미리 보기</b>.
+            <b>한 장에 들어가는지</b> 확인하고 <span class="kbd">Esc</span> 로 나옵니다.
+          </p>
+        </li>
+        <li>
+          <b>저장합니다</b>
+          <p>메뉴 <b>파일 → 저장하기</b>.</p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">공문의 기본 모양</span>
+        <p>
+          우리나라 공문은 대개 이 순서입니다.
+        </p>
+        <ul>
+          <li><b>제목</b> — 가운데, 크고 굵게</li>
+          <li><b>본문</b> — 왼쪽 또는 양쪽 정렬</li>
+          <li><b>표</b> — 필요하면 가운데</li>
+          <li><b>날짜</b> — 오른쪽</li>
+          <li><b>기관 이름</b> — 오른쪽, 굵게</li>
+        </ul>
+        <p>
+          이 틀만 지켜도 <b>제대로 만든 문서</b>로 보입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="style">
+      <span class="sec-tag">04 — 시간 절약</span>
+      <h2>스타일</h2>
+      <p class="sub">
+        <b>같은 모양을 한 번에 걸어 두는 것</b>입니다.
+        문서가 길어질수록 값을 합니다. <b>어려우면 건너뛰셔도 됩니다.</b>
+      </p>
+
+      <div class="note">
+        <span class="note-label">스타일이 무엇인가</span>
+        <p>
+          <b>"크기 14, 굵게, 위 간격 10"</b> 같은 모양 묶음에
+          <b>소제목</b>이라는 이름을 붙여 두는 것입니다.
+        </p>
+        <p>
+          그다음부터는 소제목마다 <b>이름만 골라 주면</b> 그 모양이 한꺼번에 걸립니다.
+          크기·굵기를 매번 따로 누를 필요가 없습니다.
+        </p>
+      </div>
+
+      <h3>진짜 값어치는 나중에 나옵니다</h3>
+      <div class="note">
+        <span class="note-label">이런 일이 생깁니다</span>
+        <p>
+          소제목이 <b>스무 개</b> 있는 문서에서
+          "소제목을 전부 조금 더 크게 해 주세요"라는 말을 들었다고 해봅시다.
+        </p>
+        <p>
+          손으로 했다면 <b>스무 번</b> 고쳐야 합니다.<br>
+          스타일로 했다면 <b>스타일 하나만</b> 고치면 스무 개가 다 바뀝니다.
+        </p>
+      </div>
+
+      <h3>쓰는 법</h3>
+      <ol class="steps">
+        <li>
+          <b>모양을 걸 문단에 커서를 둡니다</b>
+        </li>
+        <li>
+          <b>메뉴 <span class="nb">서식 → 스타일</span>을 누릅니다</b>
+          <p>손에 익으면 <span class="kbd">F6</span> 입니다.</p>
+        </li>
+        <li>
+          <b>목록에서 하나 고르고 설정을 누릅니다</b>
+          <p>
+            <b>개요 1</b>, <b>개요 2</b> 같은 것이 이미 들어 있습니다.
+            제목용으로 쓰면 됩니다.
+          </p>
+        </li>
+      </ol>
+
+      <p>
+        도구 상자 왼쪽에 <b>바탕글</b>이라고 쓰인 칸이 있으면 거기서 바로 고를 수도 있습니다.
+      </p>
+
+      <h3>내 스타일 만들기</h3>
+      <ol class="steps">
+        <li>
+          <b>먼저 문단 하나를 원하는 모양으로 꾸밉니다</b>
+          <p>크기·굵기·정렬·간격을 다 맞춰 두세요.</p>
+        </li>
+        <li>
+          <b>그 문단에 커서를 두고 스타일 창을 엽니다</b>
+        </li>
+        <li>
+          <b>추가 단추를 누르고 이름을 적습니다</b>
+          <p>
+            <b>소제목</b> 처럼 알아볼 이름으로 적으세요.
+            <b>현재 모양으로 만들기</b>가 있으면 체크합니다.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note warn">
+        <span class="note-label">지금은 몰라도 됩니다</span>
+        <p>
+          안내문 한 장짜리에는 스타일이 필요 없습니다.
+          <b>손으로 하는 게 더 빠릅니다.</b>
+        </p>
+        <p>
+          다만 <b>이런 게 있다</b>는 것만 알아 두세요.
+          보고서처럼 긴 문서를 만들게 되면 그때 떠올리시면 됩니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 ═══════════ -->
+    <section id="find">
+      <span class="sec-tag">05 — 편의</span>
+      <h2>찾기와 바꾸기</h2>
+      <p class="sub">
+        긴 문서에서 <b>특정 낱말을 찾거나 한꺼번에 고치는</b> 기능입니다.
+        간단하지만 아주 자주 씁니다.
+      </p>
+
+      <h3>찾기</h3>
+      <ol class="steps">
+        <li>
+          <b>메뉴 <span class="nb">편집 → 찾기</span>를 누릅니다</b>
+          <p>손에 익으면 <span class="kbd">Ctrl</span>+<span class="kbd">F</span> 입니다.</p>
+        </li>
+        <li>
+          <b>찾을 낱말을 적고 다음 찾기를 누릅니다</b>
+          <p>그 낱말이 있는 자리로 커서가 옮겨 갑니다.</p>
+        </li>
+      </ol>
+
+      <h3>바꾸기</h3>
+      <ol class="steps">
+        <li>
+          <b>메뉴 <span class="nb">편집 → 찾기 → 찾아 바꾸기</span>를 누릅니다</b>
+          <p>손에 익으면 <span class="kbd">Ctrl</span>+<span class="kbd">H</span> 입니다.</p>
+        </li>
+        <li>
+          <b>찾을 말과 바꿀 말을 적습니다</b>
+          <p>
+            예를 들어 <b>7월</b> → <b>8월</b>.
+          </p>
+        </li>
+        <li>
+          <b>모두 바꾸기를 누릅니다</b>
+          <p>
+            문서 전체에서 한꺼번에 바뀝니다.
+            <b>몇 군데를 바꿨는지</b> 알려줍니다.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note warn">
+        <span class="note-label">모두 바꾸기는 조심해서</span>
+        <p>
+          짧은 낱말로 모두 바꾸기를 하면 <b>엉뚱한 곳까지</b> 바뀝니다.
+          <b>일</b> 을 <b>월</b> 로 바꾸면 <b>일요일</b> 이 <b>월요월</b> 이 됩니다.
+        </p>
+        <p>
+          바꾸기 전에 <b>저장</b>해 두시고,
+          결과가 이상하면 <span class="kbd">Ctrl</span>+<span class="kbd">Z</span> 로 되돌리세요.
+        </p>
+      </div>
+
+      <h3>맞춤법 검사</h3>
+      <p>
+        메뉴 <b>도구 → 맞춤법 검사</b>를 누르면
+        틀린 곳을 하나씩 짚어 주고 고칠 말을 제안합니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">완전히 믿지는 마세요</span>
+        <p>
+          사람 이름이나 지명을 <b>틀렸다고</b> 하는 일이 많습니다.
+          맞는 것은 <b>지나가기</b>를 누르시면 됩니다.
+        </p>
+        <p>
+          본문의 <b>빨간 물결 밑줄</b>도 같은 기능입니다.
+          <b>인쇄에는 나오지 않으니</b> 그냥 두셔도 됩니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 06 ═══════════ -->
+    <section id="template">
+      <span class="sec-tag">06 — 곁가지</span>
+      <h2>문서마당</h2>
+      <p class="sub">
+        <b>이미 만들어져 있는 서식</b>을 가져다 쓰는 기능입니다.
+        처음부터 만드는 것보다 훨씬 빠릅니다.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>메뉴 <span class="nb">파일 → 문서마당</span>을 누릅니다</b>
+        </li>
+        <li>
+          <b>왼쪽에서 갈래를 고릅니다</b>
+          <p>
+            <b>공공기관 문서</b>, <b>가정 문서</b>, <b>학교 문서</b> 같은 갈래가 있습니다.
+          </p>
+        </li>
+        <li>
+          <b>서식을 고르고 열기를 누릅니다</b>
+          <p>
+            <b>내용만 고쳐 쓰면</b> 됩니다.
+            여백·표·글꼴이 이미 다 맞춰져 있습니다.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">여기 있는 것들</span>
+        <p>
+          이력서, 회의록, 각종 신청서, 안내문, 상장, 봉투 —
+          <b>자주 쓰는 서류는 거의 다</b> 들어 있습니다.
+        </p>
+        <p>
+          처음 배우실 때 <b>잘 만든 문서가 어떻게 생겼는지</b>
+          구경하는 용도로도 좋습니다.
+          하나 열어서 <b>어떻게 만들었는지</b> 뜯어보세요.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">고쳐 쓰기 전에</span>
+        <p>
+          문서마당에서 연 것은 <b>바로 다른 이름으로 저장</b>하고 시작하세요.
+          그래야 원래 서식이 그대로 남습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 07 ═══════════ -->
+    <section id="print">
+      <span class="sec-tag">07 — 인쇄</span>
+      <h2>인쇄와 PDF</h2>
+      <p class="sub">
+        한글은 <b>화면에서 보이는 대로 종이에 나옵니다.</b>
+        그래서 인쇄가 다른 프로그램보다 수월합니다.
+      </p>
+
+      <h3>인쇄 전에 반드시 미리 보기</h3>
+      <p>
+        메뉴 <b>파일 → 미리 보기</b>를 누르면
+        <b>종이에 나올 그대로</b>를 볼 수 있습니다.
+      </p>
+      <p>
+        여기서 <b>몇 장이 나오는지</b>를 꼭 확인하세요.
+        한 장인 줄 알았는데 <b>마지막 빈 줄 때문에 두 장</b>이 나오는 일이 아주 흔합니다.
+        그럴 땐 문서 맨 끝에서 <span class="kbd">Backspace</span> 로 빈 줄을 지우면 됩니다.
+      </p>
+      <p>
+        미리 보기 화면에서 나오려면 <span class="kbd">Esc</span> 를 누르세요.
+      </p>
+
+      <h3>인쇄하기</h3>
+      <ol class="steps">
+        <li>
+          <b>메뉴 <span class="nb">파일 → 인쇄</span>를 누릅니다</b>
+          <p>손에 익으면 <span class="kbd">Ctrl</span>+<span class="kbd">P</span> 입니다.</p>
+        </li>
+        <li>
+          <b>프린터를 고릅니다</b>
+          <p>여러 대가 연결되어 있으면 이름을 보고 고르세요.</p>
+        </li>
+        <li>
+          <b>인쇄할 범위를 정합니다</b>
+          <p>
+            <b>모두</b>가 기본입니다. 일부만 뽑으려면 <b>일부분</b>에
+            <code>1-3</code> 처럼 적습니다.
+          </p>
+        </li>
+        <li>
+          <b>인쇄를 누릅니다</b>
+        </li>
+      </ol>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>하고 싶은 일</th><th>인쇄 창에서</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>종이 <b>아끼기</b></td>
+              <td><b>모아 찍기</b> → 한 장에 2쪽 또는 4쪽</td>
+            </tr>
+            <tr>
+              <td><b>양면</b>으로 찍기</td>
+              <td><b>수동 양면 인쇄</b> (프린터가 지원하면 자동)</td>
+            </tr>
+            <tr>
+              <td><b>흑백</b>으로 찍기</td>
+              <td><b>회색조</b>에 체크</td>
+            </tr>
+            <tr>
+              <td>여러 <b>부</b> 찍기</td>
+              <td><b>매수</b> 칸의 숫자를 올리기</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>PDF로 만들기</h3>
+      <p>
+        메뉴 <b>파일 → PDF로 저장하기</b>를 누르면 됩니다.
+        원래 한글 파일은 그대로 남아 있고, PDF가 <b>한 개 더</b> 만들어집니다.
+      </p>
+
+      <div class="note stop">
+        <span class="note-label">남에게 보낼 때는 반드시 PDF</span>
+        <p>
+          <b>한글 파일(.hwp)은 한글 프로그램이 없으면 못 엽니다.</b>
+          받는 사람이 열지 못해 다시 보내는 일이 아주 많습니다.
+        </p>
+        <p>
+          PDF는 컴퓨터든 휴대폰이든 <b>어디서나 열리고, 모양도 안 깨집니다.</b>
+          <b>고칠 필요가 없는 문서는 무조건 PDF</b>로 보내세요.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">인쇄 전 마지막 점검 세 가지</span>
+        <p>
+          <b>① 몇 장으로 나오는가</b> — 미리 보기에서 확인.<br>
+          <b>② 마지막에 빈 쪽이 없는가</b> — 있으면 문서 끝의 빈 줄을 지우기.<br>
+          <b>③ 표가 잘리지 않았는가</b> — 잘렸으면 제목 줄 반복을 켜기.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 08 ═══════════ -->
+    <section id="trouble">
+      <span class="sec-tag">08 — 문제 해결</span>
+      <h2>이럴 땐 이렇게</h2>
+      <p class="sub">
+        3부에서 처음 배우는 분들이 거의 다 겪는 것들입니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이런 일이</th><th>왜</th><th>이렇게</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>빈 쪽</b>이 한 장 더 나옴</td>
+              <td>문서 끝에 빈 줄이 남음</td>
+              <td>맨 끝에서 <span class="kbd">Backspace</span> 로 지우기</td>
+            </tr>
+            <tr>
+              <td>모든 쪽에 <b>엉뚱한 글자</b>가 나옴</td>
+              <td>머리말 영역에 글을 침</td>
+              <td>쪽 → 머리말/꼬리말에서 지우기</td>
+            </tr>
+            <tr>
+              <td>본문이 <b>안 고쳐짐</b></td>
+              <td>머리말 영역에 들어가 있음</td>
+              <td><b>닫기</b>를 누르거나 본문을 두 번 누르기</td>
+            </tr>
+            <tr>
+              <td>쪽 번호가 <b>안 보임</b></td>
+              <td>여백이 너무 좁음</td>
+              <td>편집 용지에서 <b>아래 여백</b>을 늘리기</td>
+            </tr>
+            <tr>
+              <td>글자가 <b>종이 밖으로</b> 나감</td>
+              <td>여백 설정 문제</td>
+              <td>편집 용지에서 여백을 20mm로</td>
+            </tr>
+            <tr>
+              <td>쪽이 <b>제멋대로</b> 넘어감</td>
+              <td>Enter로 쪽을 넘김</td>
+              <td>빈 줄을 지우고 <b>쪽 → 쪽 나누기</b>를 쓰기</td>
+            </tr>
+            <tr>
+              <td>바꾸기로 <b>엉뚱한 곳</b>이 바뀜</td>
+              <td>짧은 낱말로 모두 바꾸기</td>
+              <td><span class="kbd">Ctrl</span>+<span class="kbd">Z</span> 후 더 긴 말로 다시</td>
+            </tr>
+            <tr>
+              <td>받는 사람이 <b>못 연다고 함</b></td>
+              <td>한글이 없는 컴퓨터</td>
+              <td><b>PDF로</b> 다시 보내기</td>
+            </tr>
+            <tr>
+              <td>인쇄가 <b>안 됨</b></td>
+              <td>프린터가 잘못 골라짐</td>
+              <td>인쇄 창에서 <b>프린터 이름</b>을 확인</td>
+            </tr>
+            <tr>
+              <td>글자가 <b>흐리게</b> 인쇄됨</td>
+              <td>회색조나 절약 모드</td>
+              <td>인쇄 창에서 <b>회색조</b> 체크를 끄기</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">한글 과목 전체에서 기억할 세 가지</span>
+        <p>
+          <b>① 글자 모양과 문단 모양은 다르다.</b><br>
+          <b>② 가지런히 놓을 것은 스페이스바가 아니라 표로.</b><br>
+          <b>③ 남에게 보낼 때는 PDF로.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 09 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">09 — 마무리</span>
+      <h2>3부 확인 목록</h2>
+      <p class="sub">
+        직접 해본 것에 체크하세요. 체크한 것은 다음에 들어와도 그대로 남아 있습니다.
+      </p>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span><span class="nb">쪽 → 편집 용지</span>에서 여백을 잡았다</span></label></li>
+        <li><label><input type="checkbox"><span>가로 방향으로 바꿔 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>쪽 번호를 넣었다</span></label></li>
+        <li><label><input type="checkbox"><span>머리말에 기관 이름을 넣고 <b>닫기</b>를 눌렀다</span></label></li>
+        <li><label><input type="checkbox"><span>머리말 영역과 본문의 색이 다른 것을 확인했다</span></label></li>
+        <li><label><input type="checkbox"><span>본문을 <b>양쪽 정렬</b>로 바꿨다</span></label></li>
+        <li><label><input type="checkbox"><span>날짜와 기관 이름을 <b>오른쪽 정렬</b>로 놓았다</span></label></li>
+        <li><label><input type="checkbox"><span>Enter 대신 <b>쪽 나누기</b>를 써야 하는 이유를 안다</span></label></li>
+        <li><label><input type="checkbox"><span><b>찾아 바꾸기</b>를 해봤다</span></label></li>
+        <li><label><input type="checkbox"><span>짧은 낱말로 모두 바꾸기가 위험한 이유를 안다</span></label></li>
+        <li><label><input type="checkbox"><span><b>문서마당</b>을 열어 구경해 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>미리 보기로 <b>몇 장인지</b> 확인했다</span></label></li>
+        <li><label><input type="checkbox"><span>PDF로 한 부 만들었다</span></label></li>
+        <li><label><input type="checkbox"><span>남에게 보낼 때 PDF로 보내야 하는 이유를 안다</span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">한글 과목을 마치셨습니다</span>
+        <p>
+          <b>글을 쓰고, 표와 그림을 넣고, 공문 모양을 갖춰 인쇄하는 것</b>까지
+          한 바퀴를 다 도셨습니다.
+          안내문·회의록·신청서 같은 것은 이제 만드실 수 있습니다.
+        </p>
+        <p>
+          남은 기능들(다단, 목차 만들기, 메일 머지)은 <b>지금 몰라도 됩니다.</b>
+          필요해지는 날이 오면 그때 배우시면 되고,
+          그때는 이미 기초가 있으니 훨씬 쉽습니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">다음에는</span>
+        <p>
+          <b>워드</b>로 가 보세요. 한글과 하는 일이 거의 같아서
+          <b>가장 수월하게 느껴지실 겁니다.</b>
+          회사나 해외로 파일을 보낼 일이 있으면 워드가 필요합니다.
+        </p>
+      </div>
+
+      <div class="next-up">
+        <a href="hangul-2.html">← 2부: 표와 그림 넣기</a>
+        <a href="word.html">다음 과목: 워드 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

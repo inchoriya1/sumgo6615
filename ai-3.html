@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="ko" data-subject="ai">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 3부 — 엑셀 맡기기</title>
+<meta name="description" content="AI 3부. 흩어진 것을 표로 만들기, 합계와 평균 시키기, 여러 파일 한 장으로 합치기, 엑셀이 부리는 심술 다루기.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="ai.html">← AI 과목 첫 화면으로</a>
+    <p class="eyebrow">5과목 · AI에게 말로 시키기 · 3부</p>
+    <h1>엑셀<br><em>맡기기</em></h1>
+    <p class="lede">
+      손으로 하면 반나절 걸리는 일이 몇 분에 끝납니다.
+      다만 <b>숫자는 틀리면 큰일</b>이라, 확인시키는 말을 함께 배웁니다.
+      1과목 엑셀을 보셨다면 훨씬 수월합니다.
+    </p>
+    <div class="facts">
+      <span><b>먼저</b> 1부와 2부를 마치셨다면</span>
+      <span><b>소요</b> 100분</span>
+      <span><b>결과물</b> 정리된 엑셀 파일 하나</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#why">엑셀을 맡길 때</a></li>
+      <li><a href="#table">흩어진 것을 표로</a></li>
+      <li><a href="#practice">엑셀 파일 정리시키기</a></li>
+      <li><a href="#calc">합계와 평균 시키기</a></li>
+      <li><a href="#merge">여러 파일 한 장으로</a></li>
+      <li><a href="#quirk">엑셀이 부리는 심술</a></li>
+      <li><a href="#trouble">이럴 땐 이렇게</a></li>
+      <li><a href="#copy">그대로 베껴 쓰는 말</a></li>
+      <li><a href="#check">3부 확인 목록</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════ -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에, 마음가짐 세 가지</h2>
+      <p class="sub">
+        1부에서 본 것과 같습니다.
+        여기서는 <b>숫자를 다루므로</b> 확인하는 습관이 특히 중요합니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">첫째 — 우리말로 하시면 됩니다</span>
+        <p>
+          "부서별 합계를 내 줘"라고 말하면 됩니다.
+          엑셀 함수 이름을 알 필요가 없습니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">둘째 — 틀리게 말해도 됩니다</span>
+        <p>
+          결과를 보고 <b>"아니, 부서 말고 월별로"</b>라고 다시 말하면 됩니다.
+        </p>
+      </div>
+
+      <div class="note stop">
+        <span class="note-label">셋째 — 숫자는 반드시 확인하세요</span>
+        <p>
+          <b>AI는 숫자를 지어내기도 합니다.</b>
+          합계가 그럴듯해 보여도 맞는지는 별개입니다.
+        </p>
+        <p>
+          그래서 이 부에는 <b>확인시키는 말</b>이 계속 나옵니다.
+          <b>"몇 줄을 셌는지, 빠진 줄이 있는지 같이 알려 줘."</b>
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">3부에서 쓸 것</span>
+        <p>
+          <b>연습</b> 폴더와, 그 안에 <b>복사해 둔 엑셀 파일 하나</b>.
+          명단이든 매출이든 <b>줄이 여러 개인 표</b>면 됩니다.
+        </p>
+        <p>
+          없으시면 1과목에서 만든 <b>과일_판매표.xlsx</b> 를 복사해 넣으세요.
+          그것도 없으면 아무 표나 새로 만들어도 됩니다.
+        </p>
+        <p>
+          <b>반드시 복사본으로 하세요.</b> 원본으로 하지 마세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="why">
+      <span class="sec-tag">01 — 이해</span>
+      <h2>엑셀을 맡길 때</h2>
+      <p class="sub">
+        무엇을 맡기면 좋고, 무엇은 직접 하는 게 나은지부터 가립니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>맡기면 좋은 일</th><th>직접 하는 게 나은 일</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>흩어진 글을 <b>표로 만들기</b></td>
+              <td>칸 두세 개 고치기</td>
+            </tr>
+            <tr>
+              <td>여러 파일을 <b>한 장으로 합치기</b></td>
+              <td>합계 한 번 내기 (자동 합계가 빠릅니다)</td>
+            </tr>
+            <tr>
+              <td>같은 사람이 <b>여러 번 적힌 것</b> 찾기</td>
+              <td>글자 색이나 테두리 같은 꾸미기</td>
+            </tr>
+            <tr>
+              <td>날짜·전화번호 <b>모양 통일하기</b></td>
+              <td>인쇄 설정</td>
+            </tr>
+            <tr>
+              <td>줄이 수백 개인 표 <b>훑어보기</b></td>
+              <td>내가 규칙을 아직 못 정한 일</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">가늠하는 기준</span>
+        <p>
+          <b>"손으로 하면 지겹게 반복해야 하는 일"</b>이면 맡기세요.
+          <b>"한 번만 누르면 되는 일"</b>이면 직접 하는 게 빠릅니다.
+        </p>
+      </div>
+
+      <h3>엑셀 파일을 다루는 두 가지 길</h3>
+      <div class="duo">
+        <div class="duo-say">
+          <span class="duo-label">파일을 직접 고치게 하기</span>
+          <p>내 컴퓨터의 <code>.xlsx</code> 를 읽고 고쳐서 새 파일로 저장합니다.</p>
+          <p style="margin-top:10px;color:var(--ink-2);font-size:.9em">
+            줄이 많을 때 좋습니다. <b>반드시 복사본에만</b> 시키세요.
+          </p>
+        </div>
+        <div class="duo-dim">
+          <span class="duo-label">화면에 붙여 넣고 시키기</span>
+          <p>엑셀에서 복사해서 대화창에 붙여 넣고, 결과를 다시 엑셀에 붙입니다.</p>
+          <p style="margin-top:10px;color:var(--ink-3);font-size:.9em">
+            줄이 적을 때 간편합니다. 파일이 안 바뀌니 <b>가장 안전</b>합니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="note">
+        <span class="note-label">처음에는 오른쪽 방법으로</span>
+        <p>
+          엑셀에서 표를 드래그해 <span class="kbd">Ctrl</span>+<span class="kbd">C</span> 하고,
+          대화창에 <span class="kbd">Ctrl</span>+<span class="kbd">V</span> 로 붙여 넣으면 됩니다.
+          <b>파일이 하나도 안 바뀌므로 사고가 날 수 없습니다.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="table">
+      <span class="sec-tag">02 — 만들기</span>
+      <h2>흩어진 것을 표로</h2>
+      <p class="sub">
+        메일이나 문자로 온 글을 <b>엑셀에 넣을 수 있는 표</b>로 바꾸는 일입니다.
+        이걸 알면 손으로 옮겨 적을 일이 없어집니다.
+      </p>
+
+      <h3>세로줄 이름을 내가 정합니다</h3>
+      <p>
+        <b>이것을 정해 주지 않으면 AI가 마음대로 정합니다.</b>
+        그러면 나중에 다른 표와 못 합칩니다.
+      </p>
+
+      <div class="say">
+        <span class="say-label">이렇게 말하세요</span>
+        <p>아래 글에서 사람 정보를 뽑아서 표로 만들어 줘. 세로줄은 <b>이름 / 연락처 / 지역 / 신청일</b> 이 순서로, 다른 줄은 만들지 마.</p>
+        <p>연락처는 <b>010-1234-5678</b> 모양으로 통일하고, 신청일은 <b>2026-03-14</b> 모양으로. 글에 없는 것은 <b>빈칸으로 두고 절대 지어내지 마.</b></p>
+        <p>다 만든 뒤에 <b>몇 명을 찾았는지</b>, <b>빈칸이 있는 줄이 몇 개인지</b> 같이 알려 줘.</p>
+        <span class="after"><b>마지막 한 줄이 중요합니다</b> — 몇 명인지 세어 주면 내가 눈으로 대조할 수 있습니다. 스무 명인 줄 알았는데 열여덟이면 두 명이 빠진 것입니다.</span>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <h3>어디에 쓸 것인지에 따라 다르게 받습니다</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이럴 때</th><th>이렇게 덧붙입니다</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>엑셀에 <b>붙여 넣을 것</b></td>
+              <td>"탭으로 나눠서 줘. 엑셀에 바로 붙여 넣을 거야."</td>
+            </tr>
+            <tr>
+              <td>파일로 <b>받을 것</b></td>
+              <td>"엑셀 파일로 만들어서 연습 폴더에 저장해 줘."</td>
+            </tr>
+            <tr>
+              <td>한글·워드에 <b>넣을 것</b></td>
+              <td>"표 모양으로 보여 줘."</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">엑셀에 붙여 넣는 요령</span>
+        <p>
+          <b>"탭으로 나눠 줘"</b>라고 하면 받은 것을 엑셀에 붙였을 때
+          <b>칸마다 알아서 들어갑니다.</b>
+        </p>
+        <p>
+          한 칸에 다 뭉쳐서 들어갔다면 탭이 아니라 다른 것으로 나뉜 것입니다.
+          <b>"쉼표 말고 탭으로 다시 줘"</b>라고 하세요.
+        </p>
+      </div>
+
+      <h3>표가 맞는지 확인시킵니다</h3>
+      <div class="say">
+        <span class="say-label">이렇게 말하세요</span>
+        <p>방금 만든 표를 원래 글과 하나씩 대조해 줘. 빠진 사람이 있는지, 잘못 옮긴 곳이 있는지. 있으면 어느 줄인지 알려 줘.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="practice">
+      <span class="sec-tag">03 — 실습</span>
+      <h2>엑셀 파일 정리시키기</h2>
+      <p class="sub">
+        지저분한 표를 <b>쓸 수 있는 표</b>로 만드는 일입니다.
+        실무에서 가장 자주 하게 됩니다.
+      </p>
+
+      <div class="note warn">
+        <span class="note-label">먼저 — 아무것도 깔려 있지 않다면</span>
+        <p>
+          <b>클로드 · 커서 · 안티그라비티</b> 중 아무거나 하나면 됩니다.
+          자세한 안내는 <a href="ai-1.html#talk">1부 03장</a>에 있습니다.
+        </p>
+        <p>
+          <b>파일을 직접 못 읽는 것이어도 이 부는 거의 다 할 수 있습니다.</b>
+          엑셀에서 표를 복사해 대화창에 붙여 넣고, 받은 결과를 다시 붙이면 됩니다
+          (<a href="#why">01장</a>의 오른쪽 방법).
+        </p>
+      </div>
+
+      <ol class="steps">
+        <li>
+          <b>복사본을 만듭니다</b>
+          <p>
+            원본 엑셀 파일을 <b>연습</b> 폴더에 복사해 넣으세요.
+            <span class="nb">잘라내기가 아니라 복사입니다.</span>
+          </p>
+        </li>
+        <li>
+          <b>무엇이 들어 있는지 먼저 봅니다</b>
+          <p>아래 말을 그대로 쓰세요.</p>
+        </li>
+        <li>
+          <b>고칠 것을 정하고 시킵니다</b>
+        </li>
+        <li>
+          <b>결과를 확인합니다</b>
+          <p>줄 수가 맞는지 반드시 세어 봅니다.</p>
+        </li>
+      </ol>
+
+      <div class="say">
+        <span class="say-label">이렇게 말하세요 — 먼저 보기</span>
+        <p>연습 폴더의 <b>과일_판매표.xlsx</b> 를 열어서 어떻게 생겼는지 알려 줘. 세로줄이 무엇무엇인지, 줄이 몇 개인지, 빈칸이 있는 줄이 몇 개인지, 이상해 보이는 값이 있는지.</p>
+        <p>아직 아무것도 고치지 마.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <div class="say">
+        <span class="say-label">이렇게 말하세요 — 정리시키기</span>
+        <p>이 표를 정리해 줘. 이렇게 해 줘.</p>
+        <p>날짜는 전부 <b>2026-03-14</b> 모양으로 통일. 연락처는 <b>010-1234-5678</b> 모양으로. 이름 앞뒤의 쓸데없는 빈칸은 없애 줘. 숫자 칸에 글자가 섞여 있으면 그 줄이 어디인지 알려만 주고 <b>고치지는 마.</b></p>
+        <p><b>원래 파일은 그대로 두고</b>, 고친 것은 <b>과일_판매표_정리본.xlsx</b> 로 따로 저장해 줘.</p>
+        <p>다 하고 나서 <b>몇 줄을 고쳤는지, 손 못 댄 줄이 몇 개인지</b> 알려 줘.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <div class="note stop">
+        <span class="note-label">"원래 파일은 그대로 두고"를 꼭 넣으세요</span>
+        <p>
+          이 한마디가 없으면 <b>원본을 덮어씁니다.</b>
+          엑셀 파일은 되돌리기가 특히 어렵습니다.
+        </p>
+      </div>
+
+      <h3>같은 사람이 여러 번 적힌 것 찾기</h3>
+      <div class="say">
+        <span class="say-label">이렇게 말하세요</span>
+        <p>이 명단에서 같은 사람이 두 번 이상 들어간 것을 찾아 줘. 이름이 같아도 연락처가 다르면 다른 사람일 수 있으니 <b>둘 다 보여 주고 내가 정하게</b> 해 줘.</p>
+        <p>아직 아무것도 지우지 마.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="calc">
+      <span class="sec-tag">04 — 계산</span>
+      <h2>합계와 평균 시키기</h2>
+      <p class="sub">
+        1과목 2부에서 배운 것을 <b>말로 시키는</b> 것입니다.
+        간단한 것은 직접 하는 게 빠르고, <b>묶어서 세는 일</b>이 진짜 값어치입니다.
+      </p>
+
+      <div class="say">
+        <span class="say-label">이렇게 말하세요 — 묶어서 세기</span>
+        <p>이 표에서 <b>부서별로</b> 금액 합계를 내 줘. 그리고 부서별로 몇 건인지도 같이.</p>
+        <p>결과를 <b>합계가 큰 부서부터</b> 줄 세워서 표로 보여 줘. 맨 아래에 전체 합계도 넣고.</p>
+        <p>계산할 때 <b>몇 줄을 셌는지</b>와 <b>숫자가 아니라서 빠뜨린 줄이 있는지</b> 같이 알려 줘.</p>
+        <span class="after"><b>마지막 줄을 빼지 마세요</b> — 빠뜨린 줄이 있으면 합계가 틀립니다. 엑셀에서 숫자가 글자로 들어가 있는 경우가 아주 흔합니다(1과목 2부).</span>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <div class="say">
+        <span class="say-label">이렇게 말하세요 — 달마다</span>
+        <p>이 표를 달별로 묶어서 매출 합계를 내 줘. 2026년 1월부터 12월까지, 자료가 없는 달은 0으로 두지 말고 <b>"자료 없음"</b>이라고 적어 줘.</p>
+        <p>표로 보여 주고, 어느 달이 가장 많고 적은지도 한 줄로 알려 줘.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">0과 "자료 없음"은 다릅니다</span>
+        <p>
+          자료가 없는 달을 0으로 채우면 <b>평균이 확 내려갑니다.</b>
+          1과목 2부에서 본 "빈 칸과 0은 다르다"와 같은 이야기입니다.
+        </p>
+      </div>
+
+      <h3>수식을 넣어 달라고 할 수도 있습니다</h3>
+      <div class="say">
+        <span class="say-label">이렇게 말하세요</span>
+        <p>계산한 값을 숫자로 박지 말고 <b>엑셀 수식으로</b> 넣어 줘. 나중에 원본 숫자를 고치면 합계도 따라 바뀌게.</p>
+        <span class="after"><b>왜 이게 나은가</b> — 숫자로 박아 두면 원본을 고쳐도 합계가 그대로입니다. 수식으로 넣어 두면 1과목 2부에서 본 것처럼 저절로 다시 계산됩니다.</span>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <div class="note stop">
+        <span class="note-label">숫자는 반드시 눈으로 한 번</span>
+        <p>
+          받은 합계 중 <b>하나만 골라</b> 엑셀에서 직접 자동 합계로 내 보세요.
+          같으면 나머지도 믿을 만합니다. 다르면 전부 다시 봐야 합니다.
+        </p>
+        <p>
+          이 확인을 한 번 해두면 그다음부터 마음이 놓입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 ═══════════ -->
+    <section id="merge">
+      <span class="sec-tag">05 — 합치기</span>
+      <h2>여러 파일 한 장으로</h2>
+      <p class="sub">
+        달마다 따로 있는 파일 열두 개를 <b>한 장으로</b> 합치는 일입니다.
+        손으로 하면 반나절, 맡기면 몇 분입니다.
+      </p>
+
+      <div class="say">
+        <span class="say-label">이렇게 말하세요</span>
+        <p>연습 폴더 안에 있는 엑셀 파일들을 한 장으로 합쳐 줘.</p>
+        <p>세로줄 이름이 파일마다 조금씩 다를 수 있어. <b>같은 뜻인 줄은 하나로 맞춰 주고</b>, 어떻게 맞췄는지 나에게 알려 줘. 판단이 안 서는 것은 <b>묻고 기다려.</b></p>
+        <p>어느 파일에서 온 줄인지 알 수 있게 <b>출처</b>라는 세로줄을 맨 오른쪽에 하나 더 만들어 줘.</p>
+        <p>합치기 전에 <b>파일마다 줄이 몇 개인지</b> 표로 보여 주고 멈춰 줘.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <div class="note">
+        <span class="note-label">"출처" 줄을 꼭 넣으세요</span>
+        <p>
+          합치고 나면 <b>어느 줄이 어느 파일에서 왔는지</b> 알 수 없게 됩니다.
+          나중에 틀린 곳을 찾을 때 이 줄 하나가 시간을 크게 아껴 줍니다.
+        </p>
+      </div>
+
+      <div class="say">
+        <span class="say-label">이렇게 말하세요 — 합친 뒤 확인</span>
+        <p>합치기 전 파일들의 줄 수를 다 더한 값과, 합친 표의 줄 수가 같은지 확인해 줘. 다르면 어디서 몇 줄이 빠졌는지 알려 줘.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <h3>세로줄 이름이 제각각일 때</h3>
+      <p>
+        <b>성명 / 이름 / 이 름</b> 처럼 같은 뜻인데 다르게 적힌 경우가 흔합니다.
+        합치기 전에 이것부터 정리시키면 깔끔합니다.
+      </p>
+
+      <div class="say">
+        <span class="say-label">이렇게 말하세요</span>
+        <p>이 파일들의 세로줄 이름을 전부 모아서 보여 줘. 같은 뜻으로 보이는 것끼리 묶어서, 어느 이름으로 통일하면 좋을지 제안해 줘. <b>아직 합치지는 마.</b></p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+    </section>
+
+    <!-- ═══════════ 06 ═══════════ -->
+    <section id="quirk">
+      <span class="sec-tag">06 — 주의</span>
+      <h2>엑셀이 부리는 심술</h2>
+      <p class="sub">
+        엑셀은 친절한 척하다가 값을 <b>몰래 바꿔 놓습니다.</b>
+        1과목에서 본 것들인데, 맡길 때는 미리 막아 두어야 합니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이런 값이</th><th>이렇게 바뀝니다</th><th>미리 이렇게 말합니다</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>010-1234-5678</code></td>
+              <td>앞의 0이 사라짐</td>
+              <td>"전화번호는 <b>글자로</b> 넣어 줘"</td>
+            </tr>
+            <tr>
+              <td><code>1-3</code></td>
+              <td>날짜로 바뀜</td>
+              <td>"날짜가 아닌 것은 날짜로 바꾸지 마"</td>
+            </tr>
+            <tr>
+              <td><code>001</code></td>
+              <td><code>1</code> 이 됨</td>
+              <td>"앞의 0을 살려 줘"</td>
+            </tr>
+            <tr>
+              <td>주민번호·계좌번호</td>
+              <td>뒤가 0으로 바뀜</td>
+              <td>"긴 숫자는 글자로 넣어 줘"</td>
+            </tr>
+            <tr>
+              <td><code>1,000</code></td>
+              <td>글자가 되어 계산 안 됨</td>
+              <td>"쉼표는 빼고 숫자로 넣어 줘"</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="say">
+        <span class="say-label">이렇게 말하세요 — 미리 막아 두는 한마디</span>
+        <p>엑셀로 만들 때 <b>전화번호, 주민번호, 우편번호, 앞에 0이 붙은 번호</b>는 전부 글자로 넣어 줘. 엑셀이 날짜나 숫자로 바꿔 버리지 않게.</p>
+        <p>그리고 <b>1-3</b> 같은 것도 날짜로 바꾸지 마.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">받은 파일을 열자마자 확인할 것</span>
+        <p>
+          <b>숫자가 칸의 어느 쪽에 붙어 있는지</b> 보세요.
+          숫자는 오른쪽, 글자는 왼쪽입니다(1과목 1부).
+        </p>
+        <p>
+          계산해야 할 숫자가 <b>왼쪽</b>에 붙어 있으면 글자로 들어간 것이라
+          합계가 0으로 나옵니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 07 ═══════════ -->
+    <section id="trouble">
+      <span class="sec-tag">07 — 문제 해결</span>
+      <h2>이럴 땐 이렇게</h2>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이런 일이</th><th>왜</th><th>이렇게</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>합계가 <b>안 맞음</b></td>
+              <td>숫자가 글자로 들어간 줄이 있음</td>
+              <td>"숫자가 아니라서 빠뜨린 줄을 전부 알려 줘"</td>
+            </tr>
+            <tr>
+              <td>줄 수가 <b>줄어듦</b></td>
+              <td>빈 줄이나 머리글을 빼먹음</td>
+              <td>"원본과 줄 수를 대조해서 빠진 줄 알려 줘"</td>
+            </tr>
+            <tr>
+              <td>없는 값을 <b>지어냄</b></td>
+              <td>빈칸을 채우려 함</td>
+              <td>"모르는 건 빈칸으로 두고 지어내지 마"</td>
+            </tr>
+            <tr>
+              <td>원본이 <b>덮어써짐</b></td>
+              <td>"그대로 두고"를 안 말함</td>
+              <td>휴지통·이전 버전 확인. 다음부터 복사본에만</td>
+            </tr>
+            <tr>
+              <td>붙여 넣으니 <b>한 칸에 다 들어감</b></td>
+              <td>탭이 아닌 것으로 나뉨</td>
+              <td>"탭으로 나눠서 다시 줘"</td>
+            </tr>
+            <tr>
+              <td>전화번호 <b>앞 0이 사라짐</b></td>
+              <td>엑셀이 숫자로 봄</td>
+              <td>"글자로 넣어 줘" (<a href="#quirk">06장</a>)</td>
+            </tr>
+            <tr>
+              <td>날짜 모양이 <b>제각각</b></td>
+              <td>원본이 섞여 있음</td>
+              <td>"전부 2026-03-14 모양으로 통일해 줘"</td>
+            </tr>
+            <tr>
+              <td>중간에 <b>멈춤</b></td>
+              <td>줄이 너무 많음</td>
+              <td>"100줄씩 나눠서 해 줘"</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">이 부에서 기억할 한 가지</span>
+        <p>
+          <b>"몇 줄을 셌는지, 빠뜨린 줄이 있는지 같이 알려 줘."</b>
+        </p>
+        <p>
+          숫자 일을 맡길 때 이 한 줄을 붙이면 틀린 것을 <b>바로</b> 알아챌 수 있습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 08 ═══════════ -->
+    <section id="copy">
+      <span class="sec-tag">08 — 모음</span>
+      <h2>그대로 베껴 쓰는 말</h2>
+
+      <div class="note">
+        <span class="note-label">엑셀 일에 늘 붙이는 두 마디</span>
+        <p>
+          <b>"원래 파일은 그대로 두고 새 파일로 저장해 줘."</b><br>
+          <b>"몇 줄을 셌는지, 빠뜨린 줄이 있는지 같이 알려 줘."</b>
+        </p>
+      </div>
+
+      <h3>표로 만들 때</h3>
+      <div class="say">
+        <span class="say-label">글에서 표 뽑기</span>
+        <p>아래 글에서 표를 만들어 줘. 세로줄은 이름 / 연락처 / 지역 / 신청일 이 순서로. 연락처는 010-1234-5678 모양, 날짜는 2026-03-14 모양으로 통일. 없는 것은 빈칸으로 두고 지어내지 마. 탭으로 나눠서 주고, 몇 건을 찾았는지 알려 줘.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <h3>정리시킬 때</h3>
+      <div class="say">
+        <span class="say-label">지저분한 표 다듬기</span>
+        <p>이 표를 정리해 줘. 날짜는 2026-03-14 모양, 연락처는 010-1234-5678 모양으로 통일하고, 앞뒤 빈칸은 없애 줘. 숫자 칸에 글자가 섞인 줄은 알려만 주고 고치지 마. 원래 파일은 그대로 두고 새 파일로 저장하고, 몇 줄을 고쳤는지 알려 줘.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <h3>계산시킬 때</h3>
+      <div class="say">
+        <span class="say-label">묶어서 합계 내기</span>
+        <p>이 표에서 부서별로 금액 합계와 건수를 내 줘. 합계가 큰 순서로 줄 세워 표로 보여 주고 맨 아래 전체 합계도. 몇 줄을 셌는지와 숫자가 아니라서 빠뜨린 줄이 있는지 같이 알려 줘.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <h3>합칠 때</h3>
+      <div class="say">
+        <span class="say-label">여러 파일 한 장으로</span>
+        <p>이 폴더의 엑셀 파일들을 한 장으로 합쳐 줘. 세로줄 이름이 다르면 같은 뜻끼리 맞춰 주고 어떻게 맞췄는지 알려 줘. 어느 파일에서 왔는지 알 수 있게 출처 줄을 하나 더 만들고. 합치기 전에 파일마다 줄 수를 표로 보여 주고 멈춰 줘.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+
+      <h3>엑셀 심술 막기</h3>
+      <div class="say">
+        <span class="say-label">번호가 망가지지 않게</span>
+        <p>전화번호, 주민번호, 우편번호, 앞에 0이 붙은 번호는 전부 글자로 넣어 줘. 엑셀이 날짜나 숫자로 바꿔 버리지 않게. 1-3 같은 것도 날짜로 바꾸지 마.</p>
+        <button class="say-copy" type="button">이 말 복사하기</button>
+      </div>
+    </section>
+
+    <!-- ═══════════ 09 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">09 — 마무리</span>
+      <h2>3부 확인 목록</h2>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span>엑셀 파일을 <b>복사본</b>으로 만들어 두고 시작했다</span></label></li>
+        <li><label><input type="checkbox"><span>맡기면 좋은 일과 직접 할 일을 가릴 수 있다</span></label></li>
+        <li><label><input type="checkbox"><span>표를 복사해 대화창에 붙여 넣어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>세로줄 이름을 <b>내가 정해서</b> 시켜 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>"탭으로 나눠 줘"로 받아 엑셀에 붙여 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>"몇 건을 찾았는지 알려 줘"를 붙여 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>"원래 파일은 그대로 두고"를 붙여 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>부서별·달별로 묶어서 합계를 내 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>받은 합계 하나를 <b>엑셀에서 직접</b> 확인해 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>여러 파일을 합치고 <b>출처</b> 줄을 넣어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>합친 뒤 줄 수가 맞는지 확인시켰다</span></label></li>
+        <li><label><input type="checkbox"><span>전화번호를 글자로 넣게 미리 말해 봤다</span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">여기까지 하셨으면</span>
+        <p>
+          숫자 일은 <b>맡길 수 있는 것과 확인해야 할 것</b>을 가릴 수 있게 되셨습니다.
+          이게 이 부의 전부입니다.
+        </p>
+        <p>
+          4부는 <b>글</b>입니다. 긴 문서를 요약하고, 안내문 초안을 받고,
+          내가 쓴 글을 다듬게 합니다.
+        </p>
+      </div>
+
+      <div class="next-up">
+        <a href="ai-2.html">← 2부: 파일과 폴더 맡기기</a>
+        <a href="ai-4.html">4부: 한글·워드 맡기기 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
