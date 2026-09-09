@@ -24,8 +24,9 @@
   그래서 아직 근태를 안 넣은 달은 0 그대로이고,
   **연간집계에 미래 달이 미리 찍히지 않습니다.**
 
-  다만 **고정월급(대표)은 근태기록이 없어서** 이 신호가 안 옵니다.
-  그 한 사람만 지금처럼 월별입력에 적습니다.
+  **고정월급(대표)만 자기 근태가 없습니다.** 그래서 그 사람은
+  **그 달에 누구든 근태가 들어왔는지**를 신호로 씁니다.
+  회사가 그 달에 돌아갔으면 대표도 급여를 받으니까요.
 
 입사일·퇴사일이 이제 진짜로 일합니다
   전에는 퇴사일이 **표시용**이라, 적어도 급여가 안 멈췄습니다(함정).
@@ -46,6 +47,7 @@ EMP0 = 2                     # 직원설정 첫 줄
 RAW_FIRST, RAW_LAST = 2, 5953
 COL_DAYS, COL_WEEK = 12, 13  # 기본정보 L 근무일수 · M 주차일수
 AGG_TOTAL, AGG_SUN, AGG_HAS = 10, 11, 12   # 근태집계에 새로 만들 J·K·L
+AGG_ANY = 13                               # M — 그 달 회사 전체에 근태가 있나
 EMP_DAYS, EMP_WEEK = 25, 26                # 직원설정에 새로 만들 Y·Z
 
 FONT = u"맑은 고딕"
@@ -97,7 +99,8 @@ def run(path, out_path, do_write):
     print(u"   ② 재직 기간 밖이면 → 0  (입사일·퇴사일이 이제 실제로 판단합니다)")
     print(u"   ③ 그 달 근태가 들어왔으면 → 직원설정 기본값, 없으면 (그 달 날수 − 일요일 수)")
     print(u"   ④ 근태가 아직 없으면 → 0  (미래 달이 미리 계산되지 않습니다)")
-    print(u"\n   ※ 고정월급인 분은 근태기록이 없어 ③ 신호가 안 옵니다 — 지금처럼 손으로 적습니다.")
+    print(u"\n   ※ 고정월급(대표)은 자기 근태가 없으므로,")
+    print(u"     그 달에 **누구든** 근태가 들어왔으면 함께 켜집니다.")
 
     ways = {st.cell(EMP0 + i, 9).value: EMP0 + i for i in range(SLOTS)}
     print(u"\n■ 직원설정에 넣을 기본값")
@@ -109,7 +112,7 @@ def run(path, out_path, do_write):
             d, w = FIXED_DEFAULTS[way]
             print(u"   %-6s %-7s 기본근무일수 %s · 기본주차일수 %s" % (nm, way, d, w))
         elif way == u"고정월급":
-            print(u"   %-6s %-7s (근태가 없어 자동 대상이 아닙니다 — 월별입력에 적으세요)" % (nm, way))
+            print(u"   %-6s %-7s 달력에서 (그 달 회사에 근태가 들어오면 함께 켜집니다)" % (nm, way))
         else:
             print(u"   %-6s %-7s 달력에서 (그 달 날수 − 일요일 수)" % (nm, way))
 
@@ -122,6 +125,7 @@ def run(path, out_path, do_write):
     head(ag, AGG_TOTAL, u"그달날수")
     head(ag, AGG_SUN, u"일요일수")
     head(ag, AGG_HAS, u"근태들어옴")
+    head(ag, AGG_ANY, u"그달회사근태")
     for r in range(ROW0, ROW1 + 1):
         ag.cell(r, AGG_TOTAL).value = (
             u'=IF($C{r}="",0,COUNTIF({R}!$V${a}:$V${b},$C{r}))'
@@ -132,7 +136,12 @@ def run(path, out_path, do_write):
         ag.cell(r, AGG_HAS).value = (
             u'=IF($C{r}="",0,COUNTIFS({R}!$V${a}:$V${b},$C{r},'
             u'{R}!$D${a}:$D${b},"<>"))'.format(r=r, R=RAW, a=RAW_FIRST, b=RAW_LAST))
-        for c in (AGG_TOTAL, AGG_SUN, AGG_HAS):
+        # 그 달에 **누구든** 근태가 들어왔는가.
+        # 고정월급(대표)은 자기 근태가 없어서, 이것으로 그 달을 켭니다.
+        ag.cell(r, AGG_ANY).value = (
+            u'=IF($A{r}="",0,SUMIFS($L${a}:$L${b},$A${a}:$A${b},$A{r}))'
+            .format(r=r, a=ROW0, b=ROW1))
+        for c in (AGG_TOTAL, AGG_SUN, AGG_HAS, AGG_ANY):
             ag.cell(r, c).fill = FILL_AUTO
             ag.cell(r, c).border = BOX
             ag.cell(r, c).alignment = Alignment(horizontal="center")
@@ -159,11 +168,14 @@ def run(path, out_path, do_write):
     gi = wb[ENGINE]
     for r in range(ROW0, ROW1 + 1):
         s = slot_of(r)
-        # '그 달을 켜는' 신호는 오직 근태입니다.
-        # 고정월급도 예외를 두지 않습니다 — 예외를 두면 근태가 없는 대표만
-        # 2027년 12월까지 매달 급여가 미리 계산되어, 연간집계가 '아직 안 준 돈'
-        # 까지 더해 버립니다. 대표는 월별입력에 손으로 적습니다.
-        on = u'{A}!$L{r}>0'.format(A=AGG, r=r)
+        # '그 달을 켜는' 신호는 근태입니다.
+        #   · 보통은 **그 사람 자기 근태**(L)
+        #   · 고정월급(대표)은 자기 근태가 없으니 **그 달 회사 전체 근태**(M)
+        # 회사가 그 달에 돌아갔으면 대표도 급여를 받는다는 뜻입니다.
+        # 재직이면 무조건 켜는 방식은 쓰지 않습니다 — 그러면 근태가 없는
+        # 미래 달까지 매달 급여가 미리 계산되어 연간집계가 틀어집니다.
+        on = (u'OR({A}!$L{r}>0,AND({E}!$I${s}="고정월급",{A}!$M{r}>0))'
+              .format(A=AGG, r=r, E=SET_EMP, s=s))
         cal = u'({A}!$J{r}-{A}!$K{r})'.format(A=AGG, r=r)
         base_d = (u'IF({E}!$Y${s}<>"",{E}!$Y${s},{c})'.format(E=SET_EMP, s=s, c=cal))
         gi.cell(r, COL_DAYS).value = (
@@ -177,7 +189,7 @@ def run(path, out_path, do_write):
 
     wb.calculation.fullCalcOnLoad = True
     wb.save(out_path)
-    print(u"\n근태집계에 도우미 3열 · 직원설정에 기본값 2열을 만들고,")
+    print(u"\n근태집계에 도우미 4열 · 직원설정에 기본값 2열을 만들고,")
     print(u"기본정보의 근무일수·주차일수 %d줄을 고쳤습니다." % (ROW1 - ROW0 + 1))
     print(u"만들었습니다: %s" % out_path)
     print(u"원본은 그대로 두었습니다: %s" % path)
