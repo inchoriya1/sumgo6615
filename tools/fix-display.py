@@ -11,9 +11,22 @@ u"""
   달력과 같은 규칙입니다. **근태가 없는 날도 칠합니다** — 근태를 넣을 때
   무슨 날인지 한눈에 들어오라고 그렇게 했습니다.
 
-  · 빨강 — 일요일이거나, 근무일명칭이 공휴일 이름인 날(대체공휴일 포함)
-  · 파랑 — 토요일이면서 공휴일이 아닌 날
-  · 토요일이 공휴일이면 **빨강이 이깁니다.**
+  · 파랑 — 그냥 토요일. 그리고 **대체공휴일이 딸린 토요일 공휴일**
+  · 빨강 — 일요일. 그리고 **대체공휴일이 없는 공휴일**
+
+  **토요일 공휴일이 갈립니다.** 대체공휴일이 따로 생기면 그날은 쉬는 날이
+  뒤로 넘어가므로 **토요일 취급(파랑)**, 안 생기면 그날이 곧 공휴일이라
+  **빨강**입니다. 2026년으로 보면 —
+
+      8/15 광복절(토)   → 8/17 대체공휴일 있음  → 파랑
+      10/3 개천절(토)   → 10/5 대체공휴일 있음  → 파랑
+      6/6  현충일(토)   → 대체 없음            → 빨강
+      9/26 추석연휴(토) → 대체 없음            → 빨강
+
+  **표를 그대로 읽습니다** — 어느 공휴일에 대체가 붙었는지를 박아 넣지 않고,
+  [월설정] G·H 열에서 **그 날 뒤 사흘 안에 '대체공휴일' 이 있는지**를 셉니다.
+  토요일 공휴일의 대체는 다음 월요일(+2)이라 사흘이면 넉넉합니다.
+  그래서 **해가 바뀌어 표만 채워 넣으면 색도 따라갑니다.**
 
   글자색만 바꿉니다. 칸을 칠하면 이미 있는 **사람 블록 줄무늬**(연파랑)와
   **노란 입력칸**을 덮어 버려서, 넣을 자리를 못 찾게 됩니다.
@@ -49,8 +62,10 @@ GT = u"근퇴계"
 RAW_FIRST, RAW_LAST = 2, 5953
 GT_FIRST, GT_LAST = 8, 38
 
-RED = u"FFC00000"       # 일요일·공휴일
-BLUE = u"FF0070C0"      # 토요일
+RED = u"FFC00000"       # 일요일 · 대체공휴일이 없는 공휴일
+BLUE = u"FF0070C0"      # 토요일 · 대체공휴일이 딸린 토요일 공휴일
+
+SUB_WINDOW = 3          # 공휴일 뒤 며칠 안의 '대체공휴일' 을 그 공휴일 것으로 볼지
 
 TIME_FMT = u"h:mm;h:mm;"        # 셋째 칸(0)을 비워 빈 날을 안 보이게 합니다
 
@@ -63,13 +78,34 @@ def day_rules(date_col, dow_col, name_col, first):
     이미 있는 줄무늬 규칙도 `=` 없이 들어 있습니다.
     """
     d, w, n = date_col, dow_col, name_col
+
+    # 그 공휴일에 대체공휴일이 딸려 있나 — 사흘 안에 '대체공휴일' 이 있는지 봅니다.
+    # 토요일 공휴일의 대체는 다음 월요일(+2), 일요일 공휴일은 다음 날(+1)이라
+    # 사흘이면 넉넉히 덮습니다. 표를 그대로 읽으므로 해가 바뀌어도 따라갑니다.
+    sub = (u'COUNTIFS(공휴일날짜,">"&${d}{r},공휴일날짜,"<="&${d}{r}+{w_},'
+           u'공휴일이름,"대체공휴일")>0').format(d=d, r=first, w_=SUB_WINDOW)
+
+    is_hol = (u'AND(${n}{r}<>"",${n}{r}<>"평일",${n}{r}<>"휴일")'
+              ).format(n=n, r=first)
+
+    # 파랑 — 그냥 토요일이거나, 대체공휴일이 딸린 토요일 공휴일
+    blue = (u'AND(${d}{r}<>"",${w}{r}="토",OR(${n}{r}="휴일",{sub}))'
+            ).format(d=d, w=w, n=n, r=first, sub=sub)
+
+    # 빨강 — 일요일이거나, 공휴일이면서 위 파랑에 해당하지 않는 날
     red = (u'AND(${d}{r}<>"",OR(${w}{r}="일",'
-           u'AND(${n}{r}<>"",${n}{r}<>"평일",${n}{r}<>"휴일")))'
-           ).format(d=d, w=w, n=n, r=first)
-    blue = (u'AND(${d}{r}<>"",${w}{r}="토",${n}{r}="휴일")'
-            ).format(d=d, w=w, n=n, r=first)
+           u'AND({hol},NOT(AND(${w}{r}="토",{sub})))))'
+           ).format(d=d, w=w, r=first, hol=is_hol, sub=sub)
     return (FormulaRule(formula=[red], font=Font(color=RED)),
             FormulaRule(formula=[blue], font=Font(color=BLUE)))
+
+
+def is_day_rule(rule):
+    u"""전에 이 도구가 넣은 요일 색 규칙인가 — 두 번 돌려도 겹치지 않게 골라냅니다."""
+    dxf = rule.dxf
+    if not (dxf and dxf.font and dxf.font.color):
+        return False
+    return getattr(dxf.font.color, "rgb", None) in (RED, BLUE)
 
 
 def color_days(wb):
@@ -77,7 +113,8 @@ def color_days(wb):
 
     # 근태원본 — B 근무일자 · R 요일 · C 근무일명칭
     ws = wb[RAW]
-    keep = [rule for cf in ws.conditional_formatting for rule in cf.rules]
+    keep = [rule for cf in ws.conditional_formatting for rule in cf.rules
+            if not is_day_rule(rule)]
     ref = u"A%d:Y%d" % (RAW_FIRST, RAW_LAST)
     ws.conditional_formatting = ConditionalFormattingList()
     for rule in keep:                       # 줄무늬·블록 경계선을 먼저 둡니다
@@ -88,7 +125,8 @@ def color_days(wb):
 
     # 근퇴계 — A 일자 · B 요일 · C 근무일명칭
     ws = wb[GT]
-    keep = [rule for cf in ws.conditional_formatting for rule in cf.rules]
+    keep = [rule for cf in ws.conditional_formatting for rule in cf.rules
+            if not is_day_rule(rule)]
     ref = u"A%d:K%d" % (GT_FIRST, GT_LAST)
     ws.conditional_formatting = ConditionalFormattingList()
     for rule in keep:
