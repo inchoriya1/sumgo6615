@@ -31,7 +31,27 @@ u"""
   글자색만 바꿉니다. 칸을 칠하면 이미 있는 **사람 블록 줄무늬**(연파랑)와
   **노란 입력칸**을 덮어 버려서, 넣을 자리를 못 찾게 됩니다.
 
-② 근퇴계 출근·퇴근이 `0.354166666666667` 로 보입니다
+② 색만 파랗고 구분은 '특근' 이던 것
+
+  `U` 열(구분)의 토요 판정이 `$C2="휴일"` 만 보고 있었습니다.
+  그래서 **광복절처럼 이름이 붙은 날은 토요일이어도 무조건 '특근'** 으로 갔습니다.
+  색은 파란데 구분은 특근인, 말이 안 맞는 상태였습니다.
+
+  **색과 똑같은 조건**을 쓰게 고칩니다 — `sub_expr()` 하나를 양쪽이 나눠 씁니다.
+
+      전  IF(AND($R2="토",$C2="휴일"),"토요","특근")
+      후  IF(AND($R2="토",OR($C2="휴일",대체있음)),"토요","특근")
+
+  **급여가 바뀝니다.** 특근과 토요는 계산이 다릅니다 —
+  · 휴일특근수당(AB) = 통상시급 × 1.5 × **실적시간**(근태집계 H)
+  · 토요근무수당(Z)  = 통상시급 × 1.5 × **고정시간**(직원설정/월별입력)
+    거기에 실적이 고정에 못 미치면 **토요근무차감(AC)** 이 붙습니다.
+
+  그래서 8H 가 특근에서 토요로 옮겨가면 **특근수당 8H 어치가 빠지고**,
+  그만큼 **토요 실적이 채워져 차감이 줄어듭니다.** 차감이 이미 0이던 사람은
+  줄어들 차감이 없어 **그냥 빠지기만 합니다.** 사람마다 다르니 확인이 필요합니다.
+
+③ 근퇴계 출근·퇴근이 `0.354166666666667` 로 보입니다
 
   `/24` 를 하는 수식은 **하나도 없었습니다.** 원인은 다른 것이었습니다 —
   근퇴계가 근태원본에서 시각을 끌어오며 끝에 `&""` 를 붙이고 있었습니다.
@@ -70,6 +90,33 @@ SUB_WINDOW = 3          # 공휴일 뒤 며칠 안의 '대체공휴일' 을 그 
 TIME_FMT = u"h:mm;h:mm;"        # 셋째 칸(0)을 비워 빈 날을 안 보이게 합니다
 
 
+def sub_expr(date_col, row):
+    u"""그 공휴일에 대체공휴일이 딸려 있나 — 색과 구분이 **똑같이** 쓰는 식입니다.
+
+    토요일 공휴일의 대체는 다음 월요일(+2), 일요일 공휴일은 다음 날(+1)이라
+    사흘이면 넉넉히 덮습니다. 표를 그대로 읽으므로 해가 바뀌어도 따라갑니다.
+    """
+    return (u'COUNTIFS(공휴일날짜,">"&${d}{r},공휴일날짜,"<="&${d}{r}+{w},'
+            u'공휴일이름,"대체공휴일")>0').format(d=date_col, r=row, w=SUB_WINDOW)
+
+
+# U 구분 — 색과 같은 조건을 씁니다. 안 그러면 '파란데 특근' 이 생깁니다.
+CLASS_FORMULA = (
+    u'=IF(N($T{r})=0,"",IF($C{r}="평일","연장",'
+    u'IF(AND($R{r}="토",OR($C{r}="휴일",{sub})),"토요","특근")))'
+)
+
+
+def fix_class(wb):
+    u"""근태원본 U열(구분) — 대체공휴일이 딸린 토요일 공휴일을 '토요' 로 잡습니다."""
+    ws = wb[RAW]
+    before = ws["U2"].value
+    for r in range(RAW_FIRST, RAW_LAST + 1):
+        ws.cell(row=r, column=21).value = CLASS_FORMULA.format(
+            r=r, sub=sub_expr("B", r))
+    return before, ws["U2"].value
+
+
 def day_rules(date_col, dow_col, name_col, first):
     u"""(빨강 규칙, 파랑 규칙). 열 문자만 시트마다 갈아 끼웁니다.
 
@@ -79,11 +126,7 @@ def day_rules(date_col, dow_col, name_col, first):
     """
     d, w, n = date_col, dow_col, name_col
 
-    # 그 공휴일에 대체공휴일이 딸려 있나 — 사흘 안에 '대체공휴일' 이 있는지 봅니다.
-    # 토요일 공휴일의 대체는 다음 월요일(+2), 일요일 공휴일은 다음 날(+1)이라
-    # 사흘이면 넉넉히 덮습니다. 표를 그대로 읽으므로 해가 바뀌어도 따라갑니다.
-    sub = (u'COUNTIFS(공휴일날짜,">"&${d}{r},공휴일날짜,"<="&${d}{r}+{w_},'
-           u'공휴일이름,"대체공휴일")>0').format(d=d, r=first, w_=SUB_WINDOW)
+    sub = sub_expr(d, first)
 
     is_hol = (u'AND(${n}{r}<>"",${n}{r}<>"평일",${n}{r}<>"휴일")'
               ).format(n=n, r=first)
@@ -161,13 +204,18 @@ def run(path, out_path, do_write):
 
     before = wb[GT]["D8"].value
     done = color_days(wb)
+    cls_before, cls_after = fix_class(wb)
     fixed = fix_times(wb)
 
     print(u"① 토요일 파랑 · 일요일·공휴일 빨강 (글자색)")
     for sheet, ref, keep, added in done:
         print(u"   %-6s %-12s 원래 규칙 %d개 유지 + %d개 추가"
               % (sheet, ref, keep, added))
-    print(u"② 근퇴계 출근·퇴근 — %d칸에서 `&\"\"` 를 떼고 서식 %s"
+    print(u"② 근태원본 U열 구분 — %d줄. 색과 같은 조건을 씁니다"
+          % (RAW_LAST - RAW_FIRST + 1))
+    print(u"   전: %s" % cls_before)
+    print(u"   후: %s" % cls_after[:120])
+    print(u"③ 근퇴계 출근·퇴근 — %d칸에서 `&\"\"` 를 떼고 서식 %s"
           % (len(fixed), TIME_FMT))
     print(u"   전: %s" % before[:96])
     print(u"   후: %s" % wb[GT]["D8"].value[:96])
