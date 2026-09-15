@@ -159,12 +159,15 @@ def color_days(wb):
     keep = [rule for cf in ws.conditional_formatting for rule in cf.rules
             if not is_day_rule(rule)]
     ref = u"A%d:Y%d" % (RAW_FIRST, RAW_LAST)
+    # 이름(A열)은 요일 색에서 뺍니다 — 사람 이름이 빨강·파랑으로 물들면
+    # 무슨 표시인가 싶어 눈이 갑니다. 줄무늬는 A열까지 그대로 둡니다.
+    color_ref = u"B%d:Y%d" % (RAW_FIRST, RAW_LAST)
     ws.conditional_formatting = ConditionalFormattingList()
     for rule in keep:                       # 줄무늬·블록 경계선을 먼저 둡니다
         ws.conditional_formatting.add(ref, rule)
     for rule in day_rules("B", "R", "C", RAW_FIRST):
-        ws.conditional_formatting.add(ref, rule)
-    done.append((RAW, ref, len(keep), 2))
+        ws.conditional_formatting.add(color_ref, rule)
+    done.append((RAW, color_ref, len(keep), 2))
 
     # 근퇴계 — A 일자 · B 요일 · C 근무일명칭
     ws = wb[GT]
