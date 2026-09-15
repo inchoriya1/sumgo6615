@@ -19,3 +19,7 @@ desktop.ini
 # 파이썬이 만드는 캐시
 __pycache__/
 *.pyc
+
+# 오빠두 마스터 클래스 원본 예제 (75MB). 여기서 골라 이름을 다시 붙인
+# 강의예제/ 만 커밋합니다. tools/build-lesson-examples.py 로 다시 만듭니다.
+진짜쓰는 실무엑셀 예제파일/
