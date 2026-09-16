@@ -1,0 +1,993 @@
+<!doctype html>
+<html lang="ko" data-subject="excel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>엑셀 마스터 5장 — 수천 줄에서 필요한 것만</title>
+<meta name="description" content="마스터 클래스 5장. 데이터 관리 기본 규칙, 여러 시트 취합, 정렬과 사용자 지정 목록, 자동 필터, SUBTOTAL, 고급 필터, 파워 쿼리로 열 피벗 해제.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="excel.html">← 엑셀 과목 첫 화면으로</a>
+    <p class="eyebrow">1과목 · 엑셀 · 마스터 5장</p>
+    <h1>수천 줄에서<br><em>필요한 것만</em></h1>
+    <p class="lede">
+      정렬과 필터는 <b>다들 쓸 줄 안다</b>고 합니다.
+      그런데 <b>정렬하면 표가 어긋나고</b>,
+      <b>필터를 걸어도 합계는 그대로</b>이고,
+      <b>조건이 세 개 넘어가면</b> 손을 놓습니다.
+      이 장은 그 셋을 하나씩 풉니다.
+    </p>
+    <div class="facts">
+      <span><b>대상</b> 줄이 많은 표를 다루는 분</span>
+      <span><b>소요</b> 100분</span>
+      <span><b>예제</b> <code>강의예제/5장…</code> 폴더</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#shape">자료의 모양</a></li>
+      <li><a href="#sort">정렬</a></li>
+      <li><a href="#filter">자동 필터</a></li>
+      <li><a href="#subtotal">필터와 합계</a></li>
+      <li><a href="#adv">고급 필터</a></li>
+      <li><a href="#pq">파워 쿼리 맛보기</a></li>
+      <li><a href="#check">5장 확인 목록</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════ -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에</h2>
+      <p class="sub">
+        이 장은 <b>2장의 이어짐</b>입니다. 2장에서 표를 고쳤다면,
+        여기서는 <b>고친 표에서 뽑아냅니다.</b>
+      </p>
+
+      <div class="note">
+        <span class="note-label">예제 파일이 어디 있나</span>
+        <p>
+          <code>강의예제 → 5장_데이터_정리부터_데이터_필터링까지</code> 폴더입니다.
+          <b>열두 강</b>이고, <b>리마트 매출 자료</b> 한 벌이
+          여러 강에 걸쳐 계속 나옵니다.
+        </p>
+      </div>
+
+      <h3>예제 파일에 무엇이 들어 있나</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>파일</th><th>안에 든 시트</th><th>무엇을 하나</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>5-01_데이터_관리_기본_규칙</code></td>
+              <td><b>5장</b> — 직원목록 · 판매현황 · 방문현황 · 정수기실적 · 입고내역</td>
+              <td><b>이 장의 교과서입니다.</b> 잘못된 표 다섯 가지가
+                  <b>왼쪽(전)·오른쪽(후)</b> 으로 나란히</td>
+            </tr>
+            <tr>
+              <td><code>5-02_여러_시트_취합</code></td>
+              <td><b>12장</b> — 1월 ~ 12월</td>
+              <td>달마다 시트 하나. <b>열 수가 달마다 다릅니다</b></td>
+            </tr>
+            <tr>
+              <td><code>5-03_정렬_기초</code></td>
+              <td>Sheet1 <span class="nb">(주문 76줄)</span></td>
+              <td>정렬 기준을 <b>두 개 이상</b> 겹치기</td>
+            </tr>
+            <tr>
+              <td><code>5-04_사용자_지정_목록_정렬</code></td>
+              <td>리마트매출</td>
+              <td>지역을 <b>가나다순이 아니라 서울·경기·…</b> 순으로</td>
+            </tr>
+            <tr>
+              <td><code>5-05_한_칸에_뭉친_값</code></td>
+              <td>워크샵명단 <span class="nb">(14줄)</span></td>
+              <td><code>서울본사-이제우(사원)</code> — <b>정렬이 안 되는 이유</b></td>
+            </tr>
+            <tr>
+              <td><code>5-06_자동_필터</code></td>
+              <td>리마트매출 <span class="nb">(필터가 이미 걸려 있음)</span></td>
+              <td>필터의 <b>세 갈래</b> — 목록 · 조건 · 검색</td>
+            </tr>
+            <tr>
+              <td><code>5-07_숫자_필터와_색_필터</code></td>
+              <td>리마트매출현황 <span class="nb">(매출이익률 열 추가)</span></td>
+              <td><b>상위 10개</b> · <b>평균 초과</b> · <b>색으로 거르기</b></td>
+            </tr>
+            <tr>
+              <td><code>5-08_SUBTOTAL_함수</code></td>
+              <td>리마트매출 <span class="nb">(위에 합계 한 줄)</span></td>
+              <td>필터를 걸어도 <b>합계가 안 따라오는</b> 문제</td>
+            </tr>
+            <tr>
+              <td><code>5-09_고급_필터_기초</code></td>
+              <td>리마트매출현황 · <b>팀장님메일</b> · 임시데이터</td>
+              <td><b>팀장이 준 기업 열한 개</b>만 뽑습니다</td>
+            </tr>
+            <tr>
+              <td><code>5-10_고급_필터_조건_만들기</code></td>
+              <td>+ <b>추출시트</b></td>
+              <td>조건을 <b>표로</b> 적습니다. 가로는 그리고, 세로는 또는</td>
+            </tr>
+            <tr>
+              <td><code>5-11_고급_필터_다른_시트로</code></td>
+              <td>추출시트에 <b>머리글이 더 있음</b></td>
+              <td><b>원하는 열만</b> 뽑아 다른 자리에</td>
+            </tr>
+            <tr>
+              <td><code>5-12_파워_쿼리_열_피벗_해제</code></td>
+              <td>Sheet1 <span class="nb">(입고내역 — 날짜가 가로로 31칸)</span></td>
+              <td>가로로 퍼진 표를 <b>세로로</b>. 클릭 몇 번이면 됩니다</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">고치기 전에 사본을 두세요</span>
+        <p>
+          정렬 · 중복 제거 · 필터 상태에서 삭제는 <b>되돌리기 어렵습니다.</b>
+          시트 탭을 오른쪽 눌러 <b>「이동/복사」 → 「복사본 만들기」</b> 로
+          한 장 떠 놓고 시작하세요.
+        </p>
+      </div>
+
+      <h3>이 장에서 하는 일</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>장</th><th>무엇</th><th>왜 하나</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>01</b></td><td>자료의 모양</td><td>여기가 틀리면 <b>뒤가 전부 안 됩니다</b></td></tr>
+            <tr><td><b>02</b></td><td>정렬</td><td>표를 <b>안 어긋나게</b> 세웁니다</td></tr>
+            <tr><td><b>03</b></td><td>자동 필터</td><td>조건 <b>두세 개</b>까지 빠르게</td></tr>
+            <tr><td><b>04</b></td><td>SUBTOTAL</td><td>보이는 것만 <b>합계</b>가 됩니다</td></tr>
+            <tr><td><b>05</b></td><td>고급 필터</td><td>조건이 <b>열 개 넘어도</b> 됩니다</td></tr>
+            <tr><td><b>06</b></td><td>파워 쿼리</td><td><b>매달 반복하는 일</b>이 한 번으로</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="shape">
+      <span class="sec-tag">01 — 모양</span>
+      <h2>자료의 모양</h2>
+      <p class="sub">
+        <span class="nb">예제 <code>5-01_데이터_관리_기본_규칙.xlsx</code> — 시트 다섯 개,
+        각각 <b>왼쪽이 잘못된 표 · 오른쪽이 고친 표</b></span>
+      </p>
+
+      <p>
+        정렬도 필터도 피벗도 <b>안 되는 표</b>가 있습니다.
+        기능을 몰라서가 아니라 <b>표의 모양이 틀려서</b> 입니다.
+        다섯 가지가 거의 전부입니다.
+      </p>
+
+      <h3>① 한 칸에 여러 값</h3>
+      <p class="sub"><span class="nb">「매일상사직원목록」 시트</span></p>
+      <p>
+        한 칸에 <b>「김하늘 (대리)」 줄바꿈 「2020.03.13」</b> 이 들어 있습니다.
+        보기에는 깔끔한데 <b>입사일순으로 정렬할 수가 없습니다.</b>
+        엑셀에게 그 칸은 <b>글자 한 덩이</b>일 뿐입니다.
+      </p>
+      <p>
+        오른쪽 표를 보세요. <b>이름 칸과 입사일 칸이 따로</b> 있고,
+        입사일은 <b>진짜 날짜</b> 로 들어 있습니다.
+      </p>
+      <div class="note warn">
+        <span class="note-label">오른쪽 표에도 함정이 하나 있습니다</span>
+        <p>
+          마케팅팀 최리의 입사일이 <b><code>020/02/28</code></b> 로 들어 있습니다.
+          <b>날짜가 아니라 글자</b>입니다. <b>왼쪽에 붙어</b> 있어서 티가 납니다.
+        </p>
+        <p>
+          <b>옮겨 적는 과정에서 나는 사고</b>입니다.
+          자료를 손으로 옮긴 뒤에는 <b>그 열을 잡고 오른쪽 맞춤이
+          제대로 되는지</b> 한 번 보세요.
+        </p>
+      </div>
+
+      <h3>② 머리글이 두 줄</h3>
+      <p class="sub"><span class="nb">「일자별방문현황」 시트</span></p>
+      <p>
+        <b>성별</b> 아래에 <b>남자·여자</b>, <b>연령대</b> 아래에
+        <b>20대·30대·40대·50대</b> 가 있습니다.
+        사람이 읽기에는 좋은데 <b>필터도 피벗도 안 걸립니다.</b>
+      </p>
+      <p>
+        <b>머리글은 반드시 한 줄</b>이어야 합니다.
+        <code>성별_남자</code> · <code>연령대_30대</code> 처럼 <b>합쳐서 한 줄로</b> 만드세요.
+      </p>
+
+      <h3>③ 소계가 표 한가운데</h3>
+      <p class="sub"><span class="nb">「ABC정수기판매실적」 시트</span></p>
+      <p>
+        영업1팀 아래 <b>신길동·당산동·대림동</b> 이 있고
+        그 아래 <b>「합계」 줄</b> 이 있습니다. 팀마다 그렇습니다.
+      </p>
+      <div class="note stop">
+        <span class="note-label">이 장에서 제일 큰 사고</span>
+        <p>
+          이 표에서 <b>맨 아래 총합계를 잡으면 값이 두 배</b>가 됩니다.
+          <b>소계가 자료인 척</b> 섞여 있기 때문입니다.
+        </p>
+        <p>
+          <b>오류가 안 뜹니다.</b> 그냥 두 배가 됩니다.
+          소계는 <b>피벗 테이블이 만들게</b> 두고, 원본에는 <b>자료만</b> 두세요.
+          6장이 그 이야기입니다.
+        </p>
+      </div>
+
+      <h3>④ 날짜가 가로로</h3>
+      <p class="sub"><span class="nb">「입고내역」 시트 — 열이 <b>BT</b> 까지 갑니다</span></p>
+      <p>
+        제품명이 세로이고 <b>1일·2일·3일…</b> 이 가로로 퍼져 있습니다.
+        달이 바뀌면 <b>열을 서른 개 더</b> 붙여야 합니다.
+      </p>
+      <p>
+        <b>쌓아 갈 자료는 세로여야 합니다.</b>
+        <b>제품명 · 날짜 · 수량</b> 세 열이면 끝납니다.
+        줄이 늘어날 뿐 <b>모양은 안 바뀝니다.</b>
+        <b>06장에서 이것을 클릭 몇 번으로 뒤집습니다.</b>
+      </p>
+
+      <h3>⑤ 표 위에 제목과 빈 줄</h3>
+      <p class="sub"><span class="nb">「헬로마트판매현황」 시트</span></p>
+      <p>
+        2장에서 본 <b>블록 쌓기</b> 와 같은 이야기입니다.
+        제목 줄과 빈 줄이 표 위에 있으면 <b><code>Ctrl</code>+<code>A</code> 가
+        표를 제대로 못 잡습니다.</b>
+      </p>
+
+      <div class="note">
+        <span class="note-label">정리하면 — 자료 표의 다섯 규칙</span>
+        <ol class="steps">
+          <li><b>한 칸에 한 값</b> <span class="nb">— 줄바꿈으로 뭉치지 않기</span></li>
+          <li><b>머리글은 한 줄</b> <span class="nb">— 병합하지 않기</span></li>
+          <li><b>소계·합계를 섞지 않기</b> <span class="nb">— 자료와 요약을 나누기</span></li>
+          <li><b>늘어나는 쪽을 세로로</b> <span class="nb">— 날짜·품목은 아래로</span></li>
+          <li><b>표 위에 아무것도 없이</b> <span class="nb">— 1행이 머리글</span></li>
+        </ol>
+      </div>
+
+      <h3>여러 시트를 하나로</h3>
+      <p class="sub"><span class="nb">예제 <code>5-02_여러_시트_취합.xlsx</code> — 1월부터 12월까지</span></p>
+      <p>
+        달마다 시트가 하나씩 있습니다. <b>12장을 한 표로</b> 만들어야 합니다.
+      </p>
+      <div class="note warn">
+        <span class="note-label">먼저 열 구성을 확인하세요</span>
+        <p>
+          <b>1월 시트는 M열까지, 2월 시트는 L열까지</b> 입니다.
+          <b>달마다 열 수가 다릅니다.</b>
+        </p>
+        <p>
+          이걸 모르고 아래로 이어 붙이면 <b>어느 달부터 한 칸씩 밀립니다.</b>
+          <b>붙이기 전에 12장의 머리글이 같은지</b> 먼저 보세요.
+        </p>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>방법</th><th>어떻게</th><th>언제</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>복사해서 이어 붙이기</b></td>
+              <td>시트마다 <code>Ctrl</code>+<code>A</code> → 아래에 붙이고
+                  <b>「월」 열을 손으로</b> 채웁니다</td>
+              <td>한 번만 할 때</td>
+            </tr>
+            <tr>
+              <td>통합 <span class="nb">(데이터 → 통합)</span></td>
+              <td>여러 범위의 <b>합계만</b> 냅니다</td>
+              <td>원본이 필요 없을 때</td>
+            </tr>
+            <tr>
+              <td><b>파워 쿼리</b></td>
+              <td><b>폴더/통합 문서에서 가져오기</b></td>
+              <td><b>매달 반복</b>할 때. 06장</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        어느 쪽이든 <b>「월」 열을 반드시 만드세요.</b>
+        안 만들면 붙이는 순간 <b>몇 월 자료인지 사라집니다.</b>
+      </p>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="sort">
+      <span class="sec-tag">02 — 정렬</span>
+      <h2>정렬</h2>
+
+      <div class="note stop">
+        <span class="note-label">먼저 이것부터 — 한 열만 잡고 정렬하면 표가 깨집니다</span>
+        <p>
+          <b>한 열만 잡고</b> 정렬 단추를 누르면
+          <b>「선택 영역 확장」 / 「현재 선택 영역으로 정렬」</b> 을 묻습니다.
+        </p>
+        <p>
+          여기서 <b>「현재 선택 영역」</b> 을 누르면
+          <b>그 열만 움직이고 나머지 열은 그대로</b> 있습니다.
+          <b>이름과 금액이 서로 뒤바뀝니다.</b>
+        </p>
+        <p>
+          <b>표 안 아무 칸이나 한 칸만 누르고</b> 정렬하세요.
+          그러면 엑셀이 <b>표 전체를 알아서</b> 잡습니다. 물어보지도 않습니다.
+        </p>
+      </div>
+
+      <h3>기준을 겹칩니다</h3>
+      <p class="sub"><span class="nb">예제 <code>5-03_정렬_기초.xlsx</code></span></p>
+      <p>
+        주문 76줄입니다. <b>지역 → 대분류 → 금액 큰 순</b> 으로 세워 봅니다.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>표 안 아무 칸이나 누릅니다</b>
+        </li>
+        <li>
+          <b>데이터 → 정렬</b>
+          <p><b>「내 데이터에 머리글 표시」</b> 에 체크가 되어 있는지 보세요.</p>
+        </li>
+        <li>
+          <b>「기준 추가」 로 세 줄을 만듭니다</b>
+          <p>
+            위에서부터 <b>지역(오름차순) → 대분류(오름차순) → 금액(내림차순)</b>.
+          </p>
+        </li>
+      </ol>
+      <div class="note">
+        <span class="note-label">순서가 중요합니다</span>
+        <p>
+          <b>위에 있는 기준이 먼저</b>입니다.
+          지역이 같은 줄들 안에서 대분류로 다시 세우고,
+          그 안에서 금액으로 또 세웁니다.
+        </p>
+        <p>
+          거꾸로 넣으면 결과가 아주 달라집니다.
+          <b>「크게 묶는 것을 위로」</b> 라고 기억하세요.
+        </p>
+      </div>
+
+      <h3>가나다순이 싫을 때 — 사용자 지정 목록</h3>
+      <p class="sub"><span class="nb">예제 <code>5-04_사용자_지정_목록_정렬.xlsx</code></span></p>
+      <p>
+        지역이 <b>경기 · 경상 · 서울 · 전라</b> 순으로 섭니다. 가나다순이니까요.
+        보고서에서는 <b>서울 · 경기 · 경상 · 전라</b> 순이어야 합니다.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>파일 → 옵션 → 고급 → 맨 아래 「사용자 지정 목록 편집」</b>
+          <p>1장에서 <b>자동 채우기</b> 때 쓴 그 목록입니다. <b>같은 곳</b>입니다.</p>
+        </li>
+        <li>
+          <b>목록 항목에 한 줄에 하나씩</b>
+          <p><code>서울</code> <code>경기</code> <code>경상</code> <code>전라</code> → <b>추가</b>.</p>
+        </li>
+        <li>
+          <b>데이터 → 정렬 → 정렬 기준의 「사용자 지정 목록」</b>
+          <p>
+            정렬 창에서 <b>「정렬」 칸</b>(오름차순이라고 적힌 곳)을 누르면
+            맨 아래에 <b>사용자 지정 목록</b> 이 있습니다.
+          </p>
+        </li>
+      </ol>
+      <div class="note">
+        <span class="note-label">한 번 등록하면 채우기에도 쓰입니다</span>
+        <p>
+          등록해 두면 <code>서울</code> 을 치고 <b>채우기 핸들을 끌었을 때</b>
+          경기·경상·전라가 <b>저절로</b> 나옵니다.
+        </p>
+        <p>
+          <b>직급(사원·대리·과장·차장·부장)</b> 은 꼭 등록해 두세요.
+          가나다순이면 <b>과장·대리·부장·사원·차장</b> 이 됩니다.
+        </p>
+      </div>
+
+      <h3>정렬이 아예 안 되는 자료</h3>
+      <p class="sub"><span class="nb">예제 <code>5-05_한_칸에_뭉친_값.xlsx</code></span></p>
+      <p>
+        워크샵 명단이 <b>한 열</b>에 이렇게 들어 있습니다 —
+        <code>서울본사-이제우(사원)</code> · <code>경기지사-김준용(대리)</code>.
+      </p>
+      <p>
+        <b>지사별로 묶어 달라</b>고 하면 정렬로는 됩니다.
+        <b>직급별로 묶어 달라</b>고 하면 <b>안 됩니다.</b>
+        직급이 <b>글자 한가운데</b> 있으니까요.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>먼저 나눕니다 — 2장의 텍스트 나누기</b>
+          <p>
+            <b>데이터 → 텍스트 나누기 → 구분 기호 → 기타</b> 에
+            <code>-</code> 를 넣으면 <b>지사</b>와 <b>이름(직급)</b> 으로 갈립니다.
+          </p>
+        </li>
+        <li>
+          <b>괄호도 나눕니다</b>
+          <p>
+            한 번 더 <b>기타</b> 에 <code>(</code> 를 넣습니다.
+            남는 <code>)</code> 는 <b>찾기 및 바꾸기</b>로 지웁니다.
+          </p>
+        </li>
+        <li>
+          <b>이제 정렬합니다</b>
+          <p><b>지사 → 직급 → 이름</b> 순으로 셋을 겹치면 됩니다.</p>
+        </li>
+      </ol>
+      <div class="note warn">
+        <span class="note-label">나누기 전에 빈 열을 만들어 두세요</span>
+        <p>
+          텍스트 나누기는 <b>오른쪽 칸을 덮어씁니다.</b>
+          <b>경고도 안 뜨는 경우가 있습니다.</b>
+        </p>
+        <p>
+          나눌 열 오른쪽에 <b>빈 열 두세 개</b>를 미리 넣고 시작하세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="filter">
+      <span class="sec-tag">03 — 자동 필터</span>
+      <h2>자동 필터</h2>
+      <p class="sub">
+        <span class="nb">예제 <code>5-06_자동_필터.xlsx</code> · <code>5-07_숫자_필터와_색_필터.xlsx</code></span>
+      </p>
+
+      <p>
+        <b>표 안 아무 칸</b>을 누르고 <code>Ctrl</code>+<code>Shift</code>+<code>L</code>.
+        머리글마다 <b>▼</b> 가 붙습니다. 한 번 더 누르면 사라집니다.
+      </p>
+
+      <h3>▼ 안에는 세 갈래가 있습니다</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>갈래</th><th>어떻게</th><th>쓸 때</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>목록에서 체크</b></td>
+              <td>아래 목록에서 <b>골라 체크</b></td>
+              <td>값의 종류가 <b>적을 때</b></td>
+            </tr>
+            <tr>
+              <td><b>검색 칸</b></td>
+              <td>검색 칸에 <code>삼성</code> → <b>삼성이 든 것만</b> 남습니다</td>
+              <td>값이 <b>수백 가지</b>일 때</td>
+            </tr>
+            <tr>
+              <td><b>조건 필터</b></td>
+              <td>텍스트/숫자/날짜 필터 <b>→ 조건 창</b></td>
+              <td><b>범위</b>로 걸 때</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">검색해서 고른 뒤 「현재 선택 영역을 필터에 추가」</span>
+        <p>
+          검색 칸으로 <code>삼성</code> 을 찾아 확인을 누르면
+          <b>기존 선택이 없어지고</b> 삼성만 남습니다.
+        </p>
+        <p>
+          <b>삼성에 이어 롯데도</b> 보려면, 두 번째 검색 뒤
+          <b>「현재 선택 영역을 필터에 추가」</b> 에 체크해야 합니다.
+          <b>체크를 안 하면 앞의 것이 날아갑니다.</b>
+        </p>
+      </div>
+
+      <h3>숫자 필터 — 상위 10개와 평균 초과</h3>
+      <p class="sub"><span class="nb">예제 <code>5-07</code> — <b>매출이익률</b> 열이 있습니다</span></p>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>고르는 것</th><th>나오는 것</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>상위 10</b></td><td>숫자를 바꾸면 <b>상위 5개·상위 20%</b> 도 됩니다</td></tr>
+            <tr><td><b>평균 초과</b></td><td>평균을 <b>계산해 줄 필요 없이</b> 바로</td></tr>
+            <tr><td>사용자 지정 필터</td><td><code>&gt;=100000</code> <b>그리고</b> <code>&lt;500000</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note warn">
+        <span class="note-label">「상위 10」 은 열 개가 아닐 수도 있습니다</span>
+        <p>
+          <b>같은 값이 여럿</b>이면 열 개보다 많이 나옵니다.
+          그리고 <b>「항목」 이 아니라 「%」</b> 로 되어 있으면
+          <b>상위 10%</b> 를 뜻합니다. <b>창을 잘 보세요.</b>
+        </p>
+      </div>
+
+      <h3>색으로 거르기</h3>
+      <p>
+        3장에서 <b>조건부 서식</b>으로 칠한 칸이 있으면
+        <b>▼ → 색 기준 필터</b> 로 <b>그 색만</b> 뽑을 수 있습니다.
+      </p>
+      <div class="note">
+        <span class="note-label">조건부 서식으로 칠한 색도 걸립니다</span>
+        <p>
+          손으로 칠한 색이든 조건부 서식이 칠한 색이든 <b>둘 다</b> 잡힙니다.
+        </p>
+        <p>
+          <b>3장 + 5장을 이어 쓰는 흔한 방법</b>입니다 —
+          조건부 서식으로 <b>이상한 줄을 칠해 두고</b>,
+          색 기준 필터로 <b>그 줄만 뽑아</b> 봅니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">필터가 걸린 상태에서 하면 안 되는 일</span>
+        <ol class="steps">
+          <li>
+            <b>붙여넣기</b>
+            <p>
+              <b>숨은 줄에도 들어갑니다.</b> 보이는 줄에만 붙는 것이 아닙니다.
+              필터를 풀고 하세요.
+            </p>
+          </li>
+          <li>
+            <b>채우기 핸들 끌기</b>
+            <p>숨은 줄까지 <b>덮어씁니다.</b></p>
+          </li>
+          <li>
+            <b>행 삭제 — 이건 괜찮습니다</b>
+            <p>
+              <b>보이는 줄만</b> 지워집니다.
+              「필요 없는 것만 걸러서 지우기」가 필터의 대표 쓰임입니다.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="subtotal">
+      <span class="sec-tag">04 — 합계</span>
+      <h2>필터와 합계</h2>
+      <p class="sub">
+        <span class="nb">예제 <code>5-08_SUBTOTAL_함수.xlsx</code></span>
+      </p>
+
+      <p>
+        리마트 매출 63줄 위에 <b>합계 칸</b>이 하나 있습니다.
+        지금은 <code>=SUM(H7:H69)</code> 입니다.
+      </p>
+      <p>
+        필터를 걸어 <b>서울 지역만</b> 남겨 보세요.
+        <b>합계는 그대로입니다.</b> SUM 은 <b>숨은 줄도 더합니다.</b>
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>합계 칸의 수식을 바꿉니다</b>
+          <p><code>=SUBTOTAL(9,H7:H69)</code></p>
+        </li>
+        <li>
+          <b>다시 필터를 걸어 봅니다</b>
+          <p><b>보이는 줄만</b> 더해집니다. 필터를 바꾸면 <b>합계도 따라 바뀝니다.</b></p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">앞의 숫자가 무엇을 할지 정합니다</span>
+        <div class="tbl-wrap">
+          <table>
+            <thead>
+              <tr><th>번호</th><th>하는 일</th><th>101번대</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><b>1</b></td><td>평균</td><td>101</td></tr>
+              <tr><td><b>2</b></td><td>숫자 개수</td><td>102</td></tr>
+              <tr><td><b>3</b></td><td>비어 있지 않은 개수</td><td>103</td></tr>
+              <tr><td><b>4</b></td><td>최대</td><td>104</td></tr>
+              <tr><td><b>5</b></td><td>최소</td><td>105</td></tr>
+              <tr><td><b>9</b></td><td><b>합계</b> <span class="nb">— 제일 많이 씁니다</span></td><td>109</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <b>1~11 은 「필터로 숨긴 줄」만 뺍니다.</b>
+          <b>101~111 은 「손으로 숨긴 줄」도 뺍니다.</b>
+        </p>
+        <p>
+          예제 폴더 <code>추가예제/05-A01.xlsx</code> 에
+          <b>숨겨진범위 · 필터링범위</b> 두 시트가 있습니다.
+          <b>9 와 109 를 둘 다 넣어 보면</b> 차이가 바로 보입니다.
+        </p>
+      </div>
+
+      <div class="note stop">
+        <span class="note-label">SUBTOTAL 은 SUBTOTAL 을 안 셉니다</span>
+        <p>
+          이게 <b>이 함수의 진짜 재주</b>입니다.
+          중간중간 <code>SUBTOTAL</code> 소계를 넣어 두고
+          맨 아래에 <b>또 <code>SUBTOTAL</code> 총합계</b>를 잡아도
+          <b>두 배가 안 됩니다.</b>
+        </p>
+        <p>
+          <code>SUM</code> 으로 같은 일을 하면 <b>정확히 두 배</b>가 됩니다.
+          01장의 「소계가 표 한가운데」 사고가 <b>여기서 풀립니다.</b>
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">더 간단한 방법 — 상태 표시줄</span>
+        <p>
+          그냥 보고 싶기만 하다면 <b>수식을 안 써도 됩니다.</b>
+          필터를 건 뒤 <b>그 열을 통째로 잡으면</b>
+          화면 <b>맨 아래 오른쪽</b>에 <b>평균 · 개수 · 합계</b> 가 뜹니다.
+        </p>
+        <p>
+          거기서 <b>오른쪽을 누르면</b> 최대·최소도 켤 수 있습니다.
+          <b>보이는 줄만</b> 셉니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 ═══════════ -->
+    <section id="adv">
+      <span class="sec-tag">05 — 고급 필터</span>
+      <h2>고급 필터</h2>
+      <p class="sub">
+        <span class="nb">예제 <code>5-09</code> · <code>5-10</code> · <code>5-11</code> —
+        같은 자료로 이어집니다</span>
+      </p>
+
+      <p>
+        <code>5-09</code> 파일의 <b>「팀장님메일」 시트</b>를 먼저 여세요.
+      </p>
+      <div class="note">
+        <span class="note-label">From. 오상식 팀장</span>
+        <p>
+          <b>「아래 11개 기업의 매출정보를 매출액이 높은 순서로 정리해서
+          보고 부탁해~!」</b>
+        </p>
+        <p>
+          그리고 <b>SK그룹_와이번스 · 삼성 F&amp;B_용산 · …</b>
+          <b>열한 개</b>가 붙어 있습니다.
+        </p>
+      </div>
+      <p>
+        자동 필터로 하려면 <b>목록에서 열한 개를 하나씩</b> 체크해야 합니다.
+        다음 달에 <b>열세 개</b>가 오면 <b>또</b> 해야 합니다.
+        고급 필터는 <b>그 목록을 그대로 조건으로</b> 씁니다.
+      </p>
+
+      <h3>조건을 표로 적습니다</h3>
+      <p>
+        고급 필터는 <b>조건을 시트 어딘가에 표로</b> 적어 두고 그걸 가리킵니다.
+        <b>규칙이 딱 둘</b>입니다.
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>규칙</th><th>뜻</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>첫 줄은 머리글</b></td>
+              <td>원본 표의 머리글과 <b>글자가 똑같아야</b> 합니다.
+                  <b>복사해서 붙이세요.</b> 한 글자라도 다르면 안 잡힙니다</td>
+            </tr>
+            <tr>
+              <td><b>가로는 그리고, 세로는 또는</b></td>
+              <td>같은 줄에 나란히 적으면 <b>AND</b>,
+                  줄을 바꿔 적으면 <b>OR</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        <code>5-10</code> 파일의 <b>「추출시트」</b> 를 보세요.
+        조건 표가 이렇게 들어 있습니다.
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>고객명</th><th>대분류</th><th>수량</th><th>매출</th><th>매출이익률</th></tr>
+          </thead>
+          <tbody>
+            <tr><td></td><td>사무용품</td><td>&gt;=100</td><td></td><td></td></tr>
+            <tr><td></td><td>가구</td><td>&gt;=80</td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        읽으면 이렇습니다 —
+        <b>「사무용품이면서 수량 100 이상」 <u>또는</u> 「가구이면서 수량 80 이상」</b>.
+        <b>자동 필터로는 못 하는 조건</b>입니다.
+      </p>
+
+      <h3>실행합니다</h3>
+      <ol class="steps">
+        <li>
+          <b>원본 표 안 아무 칸을 누릅니다</b>
+        </li>
+        <li>
+          <b>데이터 → 고급</b>
+          <p>「정렬 및 필터」 묶음 오른쪽 끝의 <b>「고급」</b> 입니다.</p>
+        </li>
+        <li>
+          <b>「목록 범위」를 확인합니다</b>
+          <p>보통 알아서 잡힙니다. 안 맞으면 <b>다시 끌어</b> 잡으세요.</p>
+        </li>
+        <li>
+          <b>「조건 범위」에 조건 표를 잡습니다</b>
+          <p><b>머리글 줄부터</b> 잡아야 합니다. <b>빈 줄은 넣지 마세요.</b></p>
+        </li>
+        <li>
+          <b>「다른 장소에 복사」를 고릅니다</b>
+          <p>
+            「복사 위치」에 <b>결과를 놓을 첫 칸</b>을 찍습니다.
+            <b>현재 위치 필터</b>를 고르면 자동 필터처럼 <b>그 자리에서 숨깁니다.</b>
+          </p>
+        </li>
+      </ol>
+
+      <div class="note stop">
+        <span class="note-label">여기서 다들 막힙니다 — 「다른 장소」 는 같은 시트여야 합니다</span>
+        <p>
+          <b>다른 시트를 복사 위치로 찍으면</b>
+          <b>「추출 범위에서 한 개의 필드 이름이 없거나 잘못되었습니다」</b>
+          같은 오류가 납니다.
+        </p>
+        <p>
+          <b>피하는 법은 거꾸로 하는 것</b>입니다 —
+          <b>결과를 놓을 시트에서 먼저 「데이터 → 고급」을 누르고</b>,
+          목록 범위로 <b>다른 시트의 원본</b>을 잡으세요. 그러면 됩니다.
+        </p>
+        <p>
+          <code>5-11</code> 이 그 실습입니다.
+        </p>
+      </div>
+
+      <h3>원하는 열만 뽑기</h3>
+      <p class="sub"><span class="nb">예제 <code>5-11_고급_필터_다른_시트로.xlsx</code></span></p>
+      <p>
+        <code>5-11</code> 의 추출시트에는 조건 표 옆에
+        <b>머리글이 한 줄 더</b> 있습니다 —
+        <b>주문번호 · 주문일 · 고객명 · 담당자 …</b>
+      </p>
+      <p>
+        <b>복사 위치로 그 머리글 줄을 잡으면</b>
+        <b>거기 적힌 열만</b> 나옵니다. 순서도 <b>적어 둔 순서</b>대로입니다.
+      </p>
+      <div class="note">
+        <span class="note-label">열 이름도 복사해서 붙이세요</span>
+        <p>
+          여기서도 <b>글자가 똑같아야</b> 합니다.
+          <b>「고객명」 과 「고객 명」 은 다릅니다.</b>
+          손으로 치지 말고 <b>원본 머리글을 복사</b>하세요.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">고급 필터는 저절로 다시 안 됩니다</span>
+        <p>
+          원본이 바뀌어도 <b>뽑아 둔 결과는 그대로</b>입니다.
+          <b>다시 「데이터 → 고급」 을 눌러야</b> 합니다.
+        </p>
+        <p>
+          <b>매달 반복하는 일</b>이라면 여기서 멈추지 말고
+          <b>파워 쿼리</b>로 가세요. 다음 장입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 06 ═══════════ -->
+    <section id="pq">
+      <span class="sec-tag">06 — 파워 쿼리</span>
+      <h2>파워 쿼리 맛보기</h2>
+      <p class="sub">
+        <span class="nb">예제 <code>5-12_파워_쿼리_열_피벗_해제.xlsx</code></span>
+      </p>
+
+      <div class="note">
+        <span class="note-label">이 장은 건너뛰어도 됩니다</span>
+        <p>
+          <b>파워 쿼리는 그 자체로 한 과목</b>입니다.
+          여기서는 <b>「이런 것이 있다」</b> 만 보고 갑니다.
+        </p>
+        <p>
+          다만 <b>01장 ④ 「날짜가 가로로」</b> 를 고치는 데는
+          <b>이것만한 것이 없습니다.</b> 그래서 하나만 해 봅니다.
+        </p>
+      </div>
+
+      <p>
+        예제는 <b>헬로마트 일일 입고내역</b> 입니다.
+        제품명이 세로, <b>1일부터 31일이 가로</b> 로 퍼져 있습니다.
+        이것을 <b>제품명 · 날짜 · 수량</b> 세 열로 눕힙니다.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>표 안 아무 칸을 누르고 <code>Ctrl</code>+<code>T</code></b>
+          <p>
+            <b>엑셀 표</b>로 바꿉니다. <b>「머리글 포함」</b> 에 체크.
+            파워 쿼리는 <b>표를 먹고 삽니다.</b>
+          </p>
+        </li>
+        <li>
+          <b>데이터 → 테이블/범위에서</b>
+          <p>
+            <b>파워 쿼리 편집기</b> 라는 새 창이 뜹니다.
+            엑셀이 아닙니다. <b>놀라지 마세요.</b>
+          </p>
+        </li>
+        <li>
+          <b>「제품명」 열 머리를 누릅니다</b>
+          <p><b>세로로 남길 열</b>을 고르는 것입니다.</p>
+        </li>
+        <li>
+          <b>변환 → 열 피벗 해제 → <u>다른 열 피벗 해제</u></b>
+          <p>
+            <b>고른 열만 빼고</b> 나머지를 전부 눕힙니다.
+            표가 <b>제품명 · 특성 · 값</b> 세 열로 바뀝니다.
+          </p>
+        </li>
+        <li>
+          <b>머리글 이름을 바꿉니다</b>
+          <p>
+            <b>특성</b> → <code>날짜</code>, <b>값</b> → <code>수량</code>.
+            머리글을 <b>두 번 눌러</b> 고칩니다.
+          </p>
+        </li>
+        <li>
+          <b>홈 → 닫기 및 로드</b>
+          <p>새 시트에 <b>세로로 눕은 표</b>가 들어옵니다.</p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">여기가 진짜입니다 — 다음 달에는 단추 하나</span>
+        <p>
+          다음 달 자료가 오면 <b>원본 표에 덮어쓰고</b>
+          <b>데이터 → 모두 새로 고침</b> 만 누르면 됩니다.
+        </p>
+        <p>
+          <b>여섯 단계가 저절로 다시 돌아갑니다.</b>
+          이것이 고급 필터와 결정적으로 다른 점입니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">「다른 열 피벗 해제」 를 고르세요</span>
+        <p>
+          그냥 <b>「열 피벗 해제」</b> 를 고르면
+          <b>지금 고른 열만</b> 눕힙니다. 반대입니다.
+        </p>
+        <p>
+          <b>「다른 열 피벗 해제」</b> 를 쓰면
+          <b>나중에 열이 늘어나도</b> 알아서 따라옵니다.
+          2월(28일)에서 3월(31일)로 바뀌어도 <b>안 건드려도 됩니다.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 07 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">07 — 마무리</span>
+      <h2>5장 확인 목록</h2>
+      <p class="sub">
+        직접 해 본 것에만 표시하세요. <b>읽은 것은 표시하지 마세요.</b>
+      </p>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span>한 칸에 뭉친 값은 <b>정렬이 안 된다</b>는 것을 확인했다</span></label></li>
+        <li><label><input type="checkbox"><span>머리글이 <b>두 줄이면 필터가 안 걸린다</b>는 것을 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>소계가 섞인 표에서 <b>합계가 두 배</b>가 되는 것을 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>여러 시트를 붙이기 전에 <b>열 구성이 같은지</b> 확인했다</span></label></li>
+        <li><label><input type="checkbox"><span>취합할 때 <b>「월」 열을 만들었다</b></span></label></li>
+        <li><label><input type="checkbox"><span>정렬은 <b>표 안 한 칸만 누르고</b> 한다</span></label></li>
+        <li><label><input type="checkbox"><span>기준을 <b>세 개 겹쳐</b> 정렬해 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>사용자 지정 목록</b>으로 지역 순서를 정해 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>텍스트 나누기 전에 <b>빈 열을 만들어</b> 뒀다</span></label></li>
+        <li><label><input type="checkbox"><span><code>Ctrl</code>+<code>Shift</code>+<code>L</code> 로 필터를 켜고 껐다</span></label></li>
+        <li><label><input type="checkbox"><span>필터 <b>검색 칸</b>을 써 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>「현재 선택 영역을 필터에 추가」</b> 를 써 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>상위 10</b> 과 <b>평균 초과</b> 를 눌러 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>색 기준 필터</b>를 써 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>필터 상태에서 <b>붙여넣기를 하면 안 된다</b>는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><code>SUM</code> 을 <code>SUBTOTAL(9,…)</code> 로 바꿔 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>9 와 109 의 차이</b>를 말할 수 있다</span></label></li>
+        <li><label><input type="checkbox"><span>SUBTOTAL 이 <b>SUBTOTAL 을 안 센다</b>는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><b>상태 표시줄</b>에서 합계를 읽어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>고급 필터 조건 머리글을 <b>복사해서</b> 붙였다</span></label></li>
+        <li><label><input type="checkbox"><span><b>가로는 그리고, 세로는 또는</b> 를 말할 수 있다</span></label></li>
+        <li><label><input type="checkbox"><span><b>결과 시트에서 먼저</b> 「고급」 을 눌러 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>복사 위치에 머리글을 적어 <b>원하는 열만</b> 뽑아 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>파워 쿼리로 <b>「다른 열 피벗 해제」</b> 를 해 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>모두 새로 고침</b>으로 다시 돌려 봤다</span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">며칠 뒤에 다시 — 복습 파일</span>
+        <p>
+          같은 폴더에 <code>5장_복습.xlsx</code> 가 있습니다.
+          <b>노란 칸만 채우면</b> 됩니다.
+          자료 모양 · 정렬 · 필터 · SUBTOTAL · 고급 필터
+          <b>다섯 가지</b>를 다시 풉니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">마지막 관문 — 5장 종합문제</span>
+        <p>
+          <b><code>5장_종합문제.xlsx</code></b> 입니다.
+          <b>세아물산 상반기 주문내역</b> — 소계가 섞여 있고,
+          지역이 가나다순으로 서 있고, 팀장이 <b>조건 셋을 메일로</b> 보냈습니다.
+        </p>
+        <p>
+          <b>순서가 곧 함정입니다.</b> 소계 줄을 안 걷어내고 필터를 걸면
+          합계가 <b>두 배</b>로 나옵니다.
+          <code>SUM</code> 을 안 고치면 <b>필터를 걸어도 같은 값</b>이 나옵니다.
+          <b>둘 다 오류가 안 뜹니다.</b>
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">여기까지 하셨으면</span>
+        <p>
+          이제 <b>수천 줄에서 필요한 것만</b> 뽑을 수 있습니다.
+        </p>
+        <p>
+          6장은 <b>뽑는 대신 요약하는 일</b>입니다.
+          <b>엑셀 표</b>와 <b>피벗 테이블</b> —
+          자료가 늘어나도 <b>보고서가 저절로 따라오게</b> 만듭니다.
+        </p>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-m4.html">← 마스터 4장: 공유와 출력</a>
+        <a href="excel-m6.html">마스터 6장: 표와 피벗 테이블 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

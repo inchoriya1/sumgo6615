@@ -1,0 +1,1140 @@
+<!doctype html>
+<html lang="ko" data-subject="excel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>엑셀 마스터 4장 — 남에게 넘기기 전에</title>
+<meta name="description" content="마스터 클래스 4장. 파일 이름과 시트 복사, 외부 통합 문서 참조, 데이터 유효성 검사와 문서 보호, 파일 크기 줄이기, 인쇄 영역과 배율, 인쇄 제목 반복과 PDF.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="excel.html">← 엑셀 과목 첫 화면으로</a>
+    <p class="eyebrow">1과목 · 엑셀 · 마스터 4장</p>
+    <h1>남에게<br><em>넘기기 전에</em></h1>
+    <p class="lede">
+      내 컴퓨터에서는 멀쩡했습니다.
+      보냈더니 <b><code>#REF!</code> 가 떴다</b>고 합니다.
+      인쇄했더니 <b>표가 두 장으로 잘렸다</b>고 합니다.
+      받은 사람이 <b>수식을 지워 놓고</b> 돌려보냈습니다.
+      이 장은 <b>그 세 가지를 막는 일</b>입니다.
+    </p>
+    <div class="facts">
+      <span><b>대상</b> 만든 파일을 남에게 보내는 분</span>
+      <span><b>소요</b> 110분</span>
+      <span><b>예제</b> <code>강의예제/4장…</code> 폴더</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#tidy">파일을 정리합니다</a></li>
+      <li><a href="#outside">밖에 기대지 않기</a></li>
+      <li><a href="#lock">못 망치게 잠그기</a></li>
+      <li><a href="#light">가볍게 만들기</a></li>
+      <li><a href="#print">화면과 종이</a></li>
+      <li><a href="#pages">여러 장짜리 보고서</a></li>
+      <li><a href="#check">4장 확인 목록</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════ -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에</h2>
+      <p class="sub">
+        이 장은 <b>기능보다 절차</b>가 많습니다. 외울 것은 적습니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">예제 파일이 어디 있나</span>
+        <p>
+          <code>강의예제 → 4장_완성한_보고서_공유_및_출력하기</code> 폴더입니다.
+          <b>열다섯 강</b>이라 파일이 많습니다.
+          <b>한 번에 다 하지 마세요.</b> 01~04장과 05~06장을 <b>나눠서</b> 보시면 됩니다.
+        </p>
+      </div>
+
+      <h3>예제 파일에 무엇이 들어 있나</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>파일</th><th>안에 든 시트</th><th>무엇을 하나</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>4-01_틀_고정과_창_나누기</code></td>
+              <td>Dataset1 <span class="nb">(52줄, 15열)</span></td>
+              <td>웹 분석 자료. <b>머리글이 두 줄</b>이라 내려가면 무슨 열인지 모릅니다</td>
+            </tr>
+            <tr>
+              <td><code>4-02_인쇄_영역과_눈금선</code></td>
+              <td>견적서 <span class="nb">(그림 2개 포함)</span></td>
+              <td>인쇄하면 <b>빈 칸까지 따라 나옵니다</b></td>
+            </tr>
+            <tr>
+              <td><code>4-03_시트_복사와_수식</code></td>
+              <td>Sheet1 <span class="nb">(오뚜기 발주서)</span></td>
+              <td>표 <b>오른쪽에 단가표</b>가 붙어 있습니다. 이걸 옮기면 무슨 일이 나는지</td>
+            </tr>
+            <tr>
+              <td><code>4-04_외부_통합문서_참조</code></td>
+              <td>Sheet1 <span class="nb">(매일마트 1분기)</span></td>
+              <td>수식이 <code>=SUM([1]Sheet1!…)</code> — <b>다른 파일을 보고 있습니다</b></td>
+            </tr>
+            <tr>
+              <td><code>4-05_공공데이터_받아_쓰기</code></td>
+              <td><b>4장</b> — 시도별 · 연도별 · 건설공급현황 · <b>메타데이터</b></td>
+              <td>통계청에서 받은 <b>진짜 공공데이터</b>. 머리글이 두 줄이고 <code>(1)</code> 이 붙어 있습니다</td>
+            </tr>
+            <tr>
+              <td><code>4-06_열_순서_바꾸기</code></td>
+              <td>Sheet1 <span class="nb">(S전자 인사팀 명부)</span></td>
+              <td><b>부서와 직급이 뒤바뀌어</b> 있습니다. 잘라내기 없이 옮기는 법</td>
+            </tr>
+            <tr>
+              <td><code>4-07_파일_크기_줄이기</code></td>
+              <td>원본데이터 · 피벗테이블</td>
+              <td><b>같은 내용인데 25MB와 7MB.</b> <code>.xlsb</code> 짝이 함께 있습니다</td>
+            </tr>
+            <tr>
+              <td><code>4-08_데이터_유효성_검사</code></td>
+              <td>발주서 · <b>제품정보</b></td>
+              <td>제품명은 <b>목록에서 고르게</b>, 수량은 <b>정수만</b> 받게</td>
+            </tr>
+            <tr>
+              <td><code>4-09_그림_다루기</code></td>
+              <td><b>제품소개서</b> · 발주서 · 제품원가</td>
+              <td>라면 사진 다섯 장이 <b>칸에 안 맞게</b> 놓여 있습니다</td>
+            </tr>
+            <tr>
+              <td><code>4-10_통합_문서_보호</code></td>
+              <td>대시보드 · 영업1~4팀</td>
+              <td>팀 시트를 <b>숨기고</b>, 숨긴 것을 <b>못 꺼내게</b> 잠급니다</td>
+            </tr>
+            <tr>
+              <td><code>4-11_인쇄_배율과_용지_방향</code></td>
+              <td><b>4장</b> — 견적서 · 애널리틱스 · 신규매장 · 체육대회명단</td>
+              <td>시트마다 <b>다른 처방</b>이 필요합니다. 네 가지를 한 파일에서</td>
+            </tr>
+            <tr>
+              <td><code>4-12_인쇄_제목_반복</code></td>
+              <td>견적서 <span class="nb">(60행, 두 장)</span></td>
+              <td>둘째 장에 <b>머리글이 없습니다</b></td>
+            </tr>
+            <tr>
+              <td><code>4-13_긴_표_인쇄</code></td>
+              <td>Sheet1 <span class="nb">(헬로마트 124줄)</span></td>
+              <td>세 장짜리 표. <b>이미 설정이 되어 있으니</b> 왜 그런지 뜯어 봅니다</td>
+            </tr>
+            <tr>
+              <td><code>4-14_머리글과_바닥글</code></td>
+              <td>Sheet1 <span class="nb">(재직증명서)</span> + <b><code>_1.png</code></b></td>
+              <td>같은 폴더의 <b>그림 파일</b>을 머리글에 넣어 <b>직인</b>처럼 씁니다</td>
+            </tr>
+            <tr>
+              <td><code>4-15_여러_시트_한번에</code></td>
+              <td><b>김철수 · 박하늘 · 최지우</b></td>
+              <td>같은 서식 세 장. <b>한 번에 PDF 한 개</b>로 만듭니다</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">파일 하나는 폴더로 들어 있습니다</span>
+        <p>
+          <code>4-07</code> 은 <b>xlsx 25MB · xlsb 19MB · xlsb 12MB · 완성 7MB</b>
+          네 개입니다. <b>크기를 견주는 것이 강의 내용</b>이라 줄일 수가 없습니다.
+        </p>
+        <p>
+          저장소에는 안 올려 두었습니다.
+          <code>python tools/build-lesson-examples.py --write</code> 를 돌리면
+          원본 폴더에서 <b>다시 깔립니다.</b>
+        </p>
+      </div>
+
+      <h3>이 장에서 하는 일</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>장</th><th>무엇</th><th>막아 주는 사고</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>01</b></td><td>파일 정리</td><td>「최종_진짜최종」 이 여섯 개</td></tr>
+            <tr><td><b>02</b></td><td>외부 참조</td><td>보냈더니 <code>#REF!</code></td></tr>
+            <tr><td><b>03</b></td><td>잠그기</td><td>받은 사람이 <b>수식을 지움</b></td></tr>
+            <tr><td><b>04</b></td><td>크기</td><td>메일 첨부가 <b>안 됨</b></td></tr>
+            <tr><td><b>05</b></td><td>인쇄</td><td>표가 <b>두 장으로 잘림</b></td></tr>
+            <tr><td><b>06</b></td><td>여러 장</td><td>둘째 장부터 <b>무슨 열인지 모름</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="tidy">
+      <span class="sec-tag">01 — 정리</span>
+      <h2>파일을 정리합니다</h2>
+
+      <h3>이름 짓기 — 규칙 하나면 됩니다</h3>
+      <p>
+        예제 폴더 안에 <code>파일이름_잘못된예시</code> 라는 폴더가 있습니다.
+        원본 자료를 그대로 옮겨 둔 것인데, 열어 보면 이렇습니다.
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>예시1 — 날짜가 제각각</th><th>예시2 — 최종이 여섯 개</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>220101_예제파일_v1</code></td><td><code>…_초안</code></td></tr>
+            <tr><td><code>20220101_예제파일_v2</code></td><td><code>…_최종</code></td></tr>
+            <tr><td><code>220113_예제파일_v3</code></td><td><code>…_정말최종</code></td></tr>
+            <tr><td><code>20220107_예제파일_v4</code></td><td><code>…_정말진짜레알최종</code></td></tr>
+            <tr><td><code>220109_예제파일_v5</code></td><td><code>…_최종최종!!완전최종</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        왼쪽은 <b>여섯 자리와 여덟 자리가 섞여</b> 있습니다.
+        이름순으로 정렬하면 <b>v1 · v3 · v5 · v2 · v4</b> 순으로 섭니다. 날짜순이 아닙니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">규칙은 이 한 줄이면 충분합니다</span>
+        <p>
+          <code>YYYYMMDD_무엇_누가.xlsx</code>
+        </p>
+        <p>
+          <b>날짜는 여덟 자리로 맨 앞</b>에. 그러면 <b>이름순 = 날짜순</b> 이 됩니다.
+          <b>「최종」은 쓰지 마세요.</b> 최종은 늘 갱신됩니다.
+          버전을 붙이려면 <code>_v01</code> 처럼 <b>두 자리</b>로 하세요.
+          <code>v2</code> 와 <code>v10</code> 은 <b>v10 이 먼저</b> 섭니다.
+        </p>
+      </div>
+
+      <h3>열 순서를 바꿉니다</h3>
+      <p class="sub"><span class="nb">예제 <code>4-06_열_순서_바꾸기.xlsx</code></span></p>
+      <p>
+        S전자 인사팀 명부입니다. 머리글이 <b>직원명 · 부서 · 직급 · 나이</b> 인데
+        <b>부서와 직급이 뒤바뀌어</b> 있습니다.
+      </p>
+      <p>
+        보통은 <b>열을 잘라내고 → 새 열을 넣고 → 붙여넣고 → 빈 열을 지웁니다.</b>
+        네 단계입니다. <b>한 단계로 됩니다.</b>
+      </p>
+      <ol class="steps">
+        <li>
+          <b>옮길 열을 통째로 잡습니다</b>
+          <p>열 머리(<b>C</b>)를 눌러 <b>열 전체</b>를 잡으세요.</p>
+        </li>
+        <li>
+          <b>테두리에 마우스를 올립니다</b>
+          <p>화살표가 <b>십자 모양</b>으로 바뀌는 자리가 있습니다.</p>
+        </li>
+        <li>
+          <b><code>Shift</code> 를 누른 채 끕니다</b>
+          <p>
+            <b>굵은 세로선</b>이 따라다닙니다. 그 선이 <b>끼워질 자리</b>입니다.
+            원하는 자리에서 놓으면 <b>나머지가 알아서 밀립니다.</b>
+          </p>
+        </li>
+      </ol>
+      <div class="note warn">
+        <span class="note-label"><code>Shift</code> 를 안 누르면 덮어씁니다</span>
+        <p>
+          그냥 끌면 <b>「여기 이미 데이터가 있습니다. 바꾸시겠습니까?」</b> 가 뜹니다.
+          여기서 <b>확인을 누르면 원래 있던 열이 사라집니다.</b>
+        </p>
+        <p>
+          <code>Shift</code> 는 <b>「덮어쓰지 말고 끼워 넣어라」</b> 는 뜻입니다.
+          <b>행에도 똑같이 됩니다.</b>
+        </p>
+      </div>
+
+      <h3>시트를 다른 파일로 옮기면</h3>
+      <p class="sub"><span class="nb">예제 <code>4-03_시트_복사와_수식.xlsx</code></span></p>
+      <p>
+        오뚜기 발주서입니다. <b>B~F열이 발주서</b>이고,
+        <b>H~J열에 제품 단가표</b>가 붙어 있습니다.
+        제품명과 단가는 <code>=IFERROR(VLOOKUP(B5,$H$4:$J$13,2,0),"")</code> 로
+        <b>옆의 단가표를 봅니다.</b>
+      </p>
+      <p>
+        이 시트를 <b>다른 통합 문서로 복사</b>하면 어떻게 될까요.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>새 통합 문서를 하나 엽니다</b>
+          <p><code>Ctrl</code>+<code>N</code>.</p>
+        </li>
+        <li>
+          <b>Sheet1 탭을 오른쪽 눌러 「이동/복사」</b>
+          <p>
+            <b>「대상 통합 문서」</b> 에서 방금 만든 새 문서를 고르고
+            <b>「복사본 만들기」</b> 에 체크합니다.
+          </p>
+        </li>
+        <li>
+          <b>복사된 시트의 수식을 봅니다</b>
+          <p>
+            <b>단가표가 같이 따라왔으니 멀쩡합니다.</b>
+            수식이 보던 <code>$H$4:$J$13</code> 이 <b>같은 시트 안</b>이었기 때문입니다.
+          </p>
+        </li>
+        <li>
+          <b>이번에는 단가표만 다른 시트로 옮겨 보세요</b>
+          <p>
+            H~J열을 잘라 <b>새 시트에 붙이고</b> 다시 복사하면,
+            수식이 <code>=IFERROR(VLOOKUP(B5,[원본.xlsx]Sheet2!$A$1:$C$10,…</code>
+            처럼 <b>원래 파일을 가리키게</b> 됩니다.
+          </p>
+        </li>
+      </ol>
+      <div class="note stop">
+        <span class="note-label">이 장에서 제일 큰 사고</span>
+        <p>
+          <b>수식이 보는 것을 함께 안 옮기면, 수식은 옛날 파일을 계속 봅니다.</b>
+        </p>
+        <p>
+          내 컴퓨터에서는 그 파일이 있으니 값이 잘 나옵니다.
+          <b>받는 사람 컴퓨터에는 그 파일이 없습니다.</b>
+          열자마자 <b>「연결 업데이트」</b> 경고가 뜨고, 확인을 누르면
+          <code>#REF!</code> 가 됩니다.
+        </p>
+        <p>
+          <b>넘기기 전에 반드시 다음 장의 점검을 하세요.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="outside">
+      <span class="sec-tag">02 — 외부 참조</span>
+      <h2>밖에 기대지 않기</h2>
+      <p class="sub">
+        <span class="nb">예제 <code>4-04_외부_통합문서_참조.xlsx</code></span>
+      </p>
+
+      <p>
+        매일마트 1분기 매출 현황입니다. 매출액 칸의 수식이 이렇습니다 —
+      </p>
+      <p><code>=SUM([1]Sheet1!$A$1:$A$7)</code></p>
+      <p>
+        <b>대괄호 안의 <code>[1]</code></b> 이 <b>「다른 파일」</b> 이라는 표시입니다.
+        열 때 <b>노란 띠</b>로 <b>「이 통합 문서에 다른 원본에 대한 연결이 있습니다」</b>
+        가 뜹니다.
+      </p>
+
+      <h3>연결이 있는지 먼저 봅니다</h3>
+      <ol class="steps">
+        <li>
+          <b>데이터 → 쿼리 및 연결 → 연결 편집</b>
+          <p>
+            엑셀 버전에 따라 <b>데이터 → 연결 편집</b> 입니다.
+            <b>이 단추가 회색이면 연결이 없는 것</b>입니다. 그것만으로 점검이 됩니다.
+          </p>
+        </li>
+        <li>
+          <b>목록에 뜨는 파일 이름을 봅니다</b>
+          <p>
+            내 바탕화면 파일이 적혀 있으면 <b>받는 사람은 못 엽니다.</b>
+          </p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">찾기로도 됩니다 — 더 간단합니다</span>
+        <p>
+          <code>Ctrl</code>+<code>F</code> → <b>옵션</b> →
+          <b>범위: 통합 문서</b>, <b>찾는 위치: 수식</b> 으로 두고
+          <code>[</code> 를 찾으세요.
+        </p>
+        <p>
+          <b>대괄호가 들어간 수식</b>이 전부 나옵니다.
+          <b>모두 찾기</b>를 누르면 <b>어느 시트 어느 칸인지</b> 목록으로 보입니다.
+        </p>
+      </div>
+
+      <h3>끊는 법 셋</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>방법</th><th>어떻게</th><th>언제</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>연결 끊기</b></td>
+              <td>연결 편집 → <b>연결 끊기</b></td>
+              <td><b>수식이 값으로 굳습니다.</b> 되돌릴 수 없습니다</td>
+            </tr>
+            <tr>
+              <td>값으로 붙여넣기</td>
+              <td>그 칸들만 복사 → <code>Ctrl</code>+<code>Alt</code>+<code>V</code> → 값</td>
+              <td>일부만 끊을 때</td>
+            </tr>
+            <tr>
+              <td>자료를 가져오기</td>
+              <td>보던 파일의 시트를 <b>이 파일로 복사</b></td>
+              <td><b>계속 계산이 되어야</b> 할 때</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">연결 끊기는 되돌리기가 안 됩니다</span>
+        <p>
+          <code>Ctrl</code>+<code>Z</code> 로 안 돌아옵니다.
+          <b>반드시 사본을 떠 놓고</b> 하세요.
+        </p>
+        <p>
+          보내는 파일은 <b>끊은 사본</b>으로, 내가 계속 쓸 파일은
+          <b>연결이 살아 있는 원본</b>으로 두는 것이 보통입니다.
+        </p>
+      </div>
+
+      <h3>공공데이터 — 받아서 바로 못 씁니다</h3>
+      <p class="sub"><span class="nb">예제 <code>4-05_공공데이터_받아_쓰기.xlsx</code></span></p>
+      <p>
+        통계청·공공데이터포털에서 받은 파일은 <b>거의 항상</b> 이렇게 생겼습니다.
+        예제 파일을 열어 보세요.
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>보이는 것</th><th>왜 문제인가</th><th>어떻게</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>머리글이 <b>두 줄</b> <span class="nb">(2019 / 사업자수·임대호수)</span></td>
+              <td>피벗도 필터도 안 걸립니다</td>
+              <td>2장 <b>블록 쌓기</b>로 한 줄로</td>
+            </tr>
+            <tr>
+              <td>열 이름에 <code>(1)</code> <span class="nb">권역(1) · 시도(1)</span></td>
+              <td>수식에서 보기 어렵습니다</td>
+              <td><b>찾기 및 바꾸기</b>로 한 번에 지웁니다</td>
+            </tr>
+            <tr>
+              <td>지역 칸이 <b>비어</b> 있음</td>
+              <td>병합을 풀어 놓은 자리입니다</td>
+              <td>2장 <b>빈 셀 찾고 채우기</b></td>
+            </tr>
+            <tr>
+              <td><b>합계·소계 줄이 섞여</b> 있음</td>
+              <td>합계를 잡으면 <b>두 배</b>가 됩니다</td>
+              <td>필터로 골라 <b>따로 빼</b> 둡니다</td>
+            </tr>
+            <tr>
+              <td><b>메타데이터 시트</b></td>
+              <td>자료가 아닙니다</td>
+              <td><b>지우지 마세요.</b> 출처가 여기 있습니다</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">메타데이터 시트를 왜 남기나</span>
+        <p>
+          <b>통계표ID · 조회기간 · 출처 · 자료다운일자 · 통계표URL</b> 이 들어 있습니다.
+          보고서에 <b>「출처: 통계청, 인구총조사, 2021.08.17 내려받음」</b> 을
+          적으려면 여기를 봐야 합니다.
+        </p>
+        <p>
+          <b>숫자만 옮겨 놓고 출처를 잃어버리면</b>
+          나중에 「이거 어디서 났냐」는 질문에 답을 못 합니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="lock">
+      <span class="sec-tag">03 — 잠그기</span>
+      <h2>못 망치게 잠그기</h2>
+
+      <h3>애초에 잘못 못 넣게 — 유효성 검사</h3>
+      <p class="sub"><span class="nb">예제 <code>4-08_데이터_유효성_검사.xlsx</code></span></p>
+      <p>
+        발주서입니다. <b>제품명</b>을 손으로 치게 두면
+        <b>「진라면」 · 「진 라면」 · 「진라면 」</b> 이 섞여 들어옵니다.
+        그러면 VLOOKUP 이 안 찾습니다.
+      </p>
+      <p>
+        두 번째 시트 <b>「제품정보」</b> 에 <b>제품명과 원가</b> 목록이 있습니다.
+        여기서 <b>고르게만</b> 하면 됩니다.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>제품명 칸을 잡습니다</b>
+          <p><b>B6:B11</b>.</p>
+        </li>
+        <li>
+          <b>데이터 → 데이터 유효성 검사</b>
+          <p>「제한 대상」을 <b>목록</b>으로 바꿉니다.</p>
+        </li>
+        <li>
+          <b>「원본」에 범위를 찍습니다</b>
+          <p>
+            <code>=제품정보!$A$2:$A$9</code>.
+            <b>다른 시트를 가리켜도 됩니다.</b>
+          </p>
+        </li>
+        <li>
+          <b>확인을 누르면 칸 오른쪽에 <u>▼</u> 가 생깁니다</b>
+          <p>이제 <b>목록에서만</b> 고를 수 있습니다.</p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">수량 칸에는 다른 것을 겁니다</span>
+        <p>
+          <b>C6:C11</b> 을 잡고 <b>제한 대상: 정수</b>,
+          <b>제한 방법: &gt;=</b>, <b>최소값: 0</b>.
+        </p>
+        <p>
+          <b>「오류 메시지」 탭</b>에서 문구를 직접 씁니다.
+          완성본에는 이렇게 들어 있습니다 —
+          <b>제목: 「입력 오류」 / 내용: 「수량은 0보다 큰 정수만 입력 가능합니다.」</b>
+        </p>
+        <p>
+          <b>기본 문구는 「입력한 값이 잘못되었습니다」 뿐</b>이라
+          받는 사람이 <b>뭘 어떻게 하라는 건지</b> 모릅니다. 꼭 고치세요.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">유효성 검사는 붙여넣기를 못 막습니다</span>
+        <p>
+          <b>손으로 칠 때만</b> 걸립니다.
+          다른 데서 <b>복사해서 붙이면 그냥 들어갑니다.</b>
+          심지어 <b>유효성 규칙까지 덮어써</b> 없어집니다.
+        </p>
+        <p>
+          그래서 <b>다 채운 뒤에 한 번</b>
+          <b>데이터 → 데이터 유효성 검사 → 잘못된 데이터</b> 로
+          동그라미를 쳐서 확인하는 절차가 필요합니다.
+        </p>
+      </div>
+
+      <h3>수식을 못 지우게 — 시트 보호</h3>
+      <p>
+        엑셀의 모든 칸은 <b>기본이 「잠금」</b> 입니다.
+        다만 <b>시트 보호를 걸기 전까지는 그 잠금이 작동하지 않습니다.</b>
+        그래서 순서가 <b>거꾸로</b>입니다.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>먼저 「고쳐도 되는 칸」의 잠금을 풉니다</b>
+          <p>
+            채워 넣을 칸(제품명·수량)을 잡고 <code>Ctrl</code>+<code>1</code> →
+            <b>보호 탭 → 「잠금」 체크를 끕니다.</b>
+          </p>
+        </li>
+        <li>
+          <b>그 다음에 시트를 보호합니다</b>
+          <p>
+            <b>검토 → 시트 보호</b>. 암호는 <b>안 넣어도 됩니다.</b>
+            실수를 막는 것이 목적이지 <b>보안이 목적이 아닙니다.</b>
+          </p>
+        </li>
+        <li>
+          <b>확인합니다</b>
+          <p>
+            수식 칸을 눌러 <code>Delete</code> 를 눌러 보세요.
+            <b>「보호된 시트입니다」</b> 가 뜨면 된 것입니다.
+          </p>
+        </li>
+      </ol>
+      <div class="note warn">
+        <span class="note-label">암호를 걸었으면 적어 두세요</span>
+        <p>
+          <b>엑셀은 암호를 되찾아 주지 않습니다.</b>
+          잊으면 그 시트는 영원히 못 고칩니다.
+        </p>
+        <p>
+          시트 보호 암호는 <b>보안이 아닙니다.</b>
+          인터넷에 푸는 방법이 널려 있습니다.
+          <b>진짜 숨겨야 할 내용이면 그 칸을 아예 빼고 보내세요.</b>
+        </p>
+      </div>
+
+      <h3>시트를 숨기고 못 꺼내게 — 통합 문서 보호</h3>
+      <p class="sub"><span class="nb">예제 <code>4-10_통합_문서_보호.xlsx</code></span></p>
+      <p>
+        <b>대시보드</b> 한 장과 <b>영업1~4팀</b> 네 장이 있습니다.
+        대시보드는 <code>INDIRECT</code> 로 팀 시트를 읽어 합계를 냅니다.
+        <b>보여 줄 것은 대시보드 하나</b>입니다.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>팀 시트 네 장을 함께 잡습니다</b>
+          <p><b>영업1팀</b> 탭을 누르고 <code>Shift</code>+<b>영업4팀</b> 탭.</p>
+        </li>
+        <li>
+          <b>오른쪽 눌러 「숨기기」</b>
+          <p>탭이 사라집니다. <b>수식은 그대로 계산됩니다.</b></p>
+        </li>
+        <li>
+          <b>검토 → 통합 문서 보호 → 「구조」 체크</b>
+          <p>
+            이제 탭을 오른쪽 눌러도 <b>「숨기기 취소」가 회색</b>입니다.
+            시트를 <b>추가·삭제·이름 변경</b> 하는 것도 막힙니다.
+          </p>
+        </li>
+      </ol>
+      <div class="note">
+        <span class="note-label">시트 보호와 통합 문서 보호는 다릅니다</span>
+        <div class="tbl-wrap">
+          <table>
+            <thead>
+              <tr><th></th><th>막는 것</th><th>거는 곳</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><b>시트 보호</b></td><td>그 시트 <b>칸의 내용</b></td><td>검토 → 시트 보호</td></tr>
+              <tr><td><b>통합 문서 보호</b></td><td><b>시트 자체</b>의 추가·삭제·숨김</td><td>검토 → 통합 문서 보호</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <b>둘 다 걸어야</b> 제대로 잠깁니다.
+          통합 문서만 보호하면 <b>보이는 시트의 수식은 그대로 지워집니다.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="light">
+      <span class="sec-tag">04 — 크기</span>
+      <h2>가볍게 만들기</h2>
+
+      <h3>왜 갑자기 20MB가 되나</h3>
+      <p class="sub"><span class="nb">예제 <code>4-07_파일_크기_줄이기</code> — 네 개</span></p>
+      <p>
+        같은 자료인데 <b>xlsx 는 25MB, xlsb 는 7MB</b> 입니다.
+        <b>파일 크기를 직접 견줘 보는 것</b>이 이 강의입니다.
+        폴더에서 <b>크기 열</b>을 켜 놓고 보세요.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>흔한 원인</th><th>어떻게 확인하나</th><th>고치는 법</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>빈 칸에 서식이 걸려 있음</b></td>
+              <td><code>Ctrl</code>+<code>End</code> 를 눌렀을 때
+                  <b>엉뚱하게 먼 칸</b>으로 갑니다</td>
+              <td>자료 아래 <b>행 전체를 잡아 삭제</b>하고 저장</td>
+            </tr>
+            <tr>
+              <td>조건부 서식이 <b>수백 조각</b></td>
+              <td>규칙 관리에 같은 규칙이 <b>범위만 다르게</b> 잔뜩</td>
+              <td>3장 — <b>지우고 한 번에 다시</b></td>
+            </tr>
+            <tr>
+              <td><b>그림이 원본 크기</b></td>
+              <td>사진 한 장이 <b>3MB</b></td>
+              <td>그림 → <b>그림 압축</b></td>
+            </tr>
+            <tr>
+              <td>피벗 캐시가 <b>두 벌</b></td>
+              <td>피벗이 여러 개인데 <b>따로 만듦</b></td>
+              <td>6장 — <b>같은 캐시를 나눠 쓰게</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">제일 자주 먹히는 것 — <code>Ctrl</code>+<code>End</code></span>
+        <p>
+          자료가 <b>100줄</b>인데 <code>Ctrl</code>+<code>End</code> 가
+          <b>10,482행</b> 으로 가면, 그 아래가 <b>전부 파일에 저장되고 있다</b>는 뜻입니다.
+        </p>
+        <p>
+          <b>101행부터 맨 아래까지 행 전체를 잡고 삭제</b>한 뒤
+          <b>저장하고 다시 열어야</b> 줄어듭니다.
+          저장 전에는 <code>Ctrl</code>+<code>End</code> 가 그대로입니다.
+        </p>
+      </div>
+
+      <h3><code>.xlsb</code> — 반으로 줄어듭니다</h3>
+      <p>
+        <b>파일 → 다른 이름으로 저장 → 「Excel 바이너리 통합 문서 (*.xlsb)」</b>.
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th></th><th>좋은 점</th><th>주의</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>.xlsb</code></td>
+              <td><b>크기가 절반 아래</b>로. 여는 속도도 빠릅니다</td>
+              <td>일부 프로그램이 <b>못 읽습니다.</b> 자동화 도구·웹 업로드에서 막힙니다</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <b>내가 쓸 큰 파일</b>은 <code>.xlsb</code> 로,
+        <b>남에게 보낼 파일</b>은 <code>.xlsx</code> 로 두는 것이 무난합니다.
+      </p>
+
+      <h3>그림 다루기</h3>
+      <p class="sub"><span class="nb">예제 <code>4-09_그림_다루기.xlsx</code> 의 「제품소개서」 시트</span></p>
+      <p>
+        라면 사진 다섯 장이 들어 있습니다.
+        <b>행 높이를 바꾸면 그림이 따라오지 않아</b> 표가 어긋납니다.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>그림을 오른쪽 눌러 「크기 및 속성」</b>
+        </li>
+        <li>
+          <b>속성 → 「셀에 맞춰 이동 및 크기 변경」</b>
+          <p>
+            이제 행 높이를 바꾸면 <b>그림도 같이</b> 늘었다 줄었다 합니다.
+            <b>행을 지우면 그림도 지워집니다.</b>
+          </p>
+        </li>
+        <li>
+          <b>다 넣었으면 그림 압축</b>
+          <p>
+            그림 하나를 누르고 <b>그림 서식 → 그림 압축</b> →
+            <b>「이 그림에만 적용」 체크를 풀고</b> →
+            <b>「잘려진 그림 영역 삭제」</b> 에 체크.
+          </p>
+        </li>
+      </ol>
+      <div class="note warn">
+        <span class="note-label">자른 부분은 지워지지 않고 남아 있습니다</span>
+        <p>
+          그림을 <b>잘라내기(Crop)</b> 로 줄여도 <b>잘린 부분이 파일 안에 그대로</b> 있습니다.
+          화면에만 안 보일 뿐입니다.
+        </p>
+        <p>
+          <b>크기가 안 줄어드는 이유</b>이기도 하고,
+          <b>자른 부분을 남이 되살려 볼 수 있다</b>는 뜻이기도 합니다.
+          <b>가려야 할 것을 자르기로 가리지 마세요.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 ═══════════ -->
+    <section id="print">
+      <span class="sec-tag">05 — 인쇄</span>
+      <h2>화면과 종이</h2>
+
+      <h3>화면에서 — 틀 고정</h3>
+      <p class="sub"><span class="nb">예제 <code>4-01_틀_고정과_창_나누기.xlsx</code></span></p>
+      <p>
+        웹 분석 자료입니다. <b>1행에 월</b>, <b>2행에 항목</b>,
+        <b>A열에 페이지 주소</b> 가 있습니다.
+        내려가면 <b>무슨 열인지</b>, 오른쪽으로 가면 <b>무슨 페이지인지</b> 모릅니다.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>고정할 자리의 <u>오른쪽 아래</u> 칸을 누릅니다</b>
+          <p>
+            <b>1·2행</b>과 <b>A열</b>을 고정하려면 <b>B3</b> 을 누릅니다.
+            <b>여기가 헷갈리는 지점</b>입니다 — <b>고정할 칸이 아니라 그 다음 칸</b>입니다.
+          </p>
+        </li>
+        <li>
+          <b>보기 → 틀 고정 → 틀 고정</b>
+          <p>회색 선이 생깁니다. 이제 내려가도 머리글이 남습니다.</p>
+        </li>
+      </ol>
+      <div class="note">
+        <span class="note-label">창 나누기는 다른 것입니다</span>
+        <p>
+          <b>보기 → 나누기</b> 는 <b>같은 시트를 두 창으로</b> 쪼갭니다.
+          <b>양쪽 다 스크롤이 됩니다.</b>
+          <b>맨 위 줄과 맨 아래 줄을 동시에</b> 보고 싶을 때 씁니다.
+        </p>
+        <p>틀 고정은 <b>한쪽이 안 움직이고</b>, 나누기는 <b>양쪽 다 움직입니다.</b></p>
+      </div>
+
+      <h3>종이에서 — 인쇄 영역과 눈금선</h3>
+      <p class="sub"><span class="nb">예제 <code>4-02_인쇄_영역과_눈금선.xlsx</code></span></p>
+      <p>
+        견적서입니다. <code>Ctrl</code>+<code>P</code> 를 눌러 보세요.
+        <b>옆의 빈 칸까지 한 장 더</b> 나오거나, <b>눈금선이 같이</b> 찍힙니다.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>인쇄할 곳만 잡습니다</b>
+          <p><b>A1:AD38</b> — 견적서 테두리 안쪽까지.</p>
+        </li>
+        <li>
+          <b>페이지 레이아웃 → 인쇄 영역 → 인쇄 영역 설정</b>
+          <p>
+            <b>점선</b>이 생깁니다. 이제 <b>여기까지만</b> 나옵니다.
+          </p>
+        </li>
+        <li>
+          <b>눈금선을 끕니다</b>
+          <p>
+            <b>보기 → 눈금선</b> 체크를 끄면 <b>화면에서</b> 사라지고,
+            <b>페이지 레이아웃 → 눈금선 → 인쇄</b> 체크를 끄면 <b>종이에서</b> 사라집니다.
+            <b>둘은 따로입니다.</b>
+          </p>
+        </li>
+      </ol>
+      <div class="note warn">
+        <span class="note-label">인쇄 영역은 한 번 잡으면 굳습니다</span>
+        <p>
+          나중에 줄이 늘어나도 <b>인쇄 영역은 그대로</b>입니다.
+          <b>새로 추가한 줄이 안 나옵니다.</b>
+        </p>
+        <p>
+          줄이 계속 늘어나는 표라면 <b>인쇄 영역을 잡지 말고</b>
+          <b>배율</b>로 맞추는 편이 낫습니다. 바로 다음에 나옵니다.
+        </p>
+      </div>
+
+      <h3>한 장에 맞추기 — 배율과 방향</h3>
+      <p class="sub"><span class="nb">예제 <code>4-11_인쇄_배율과_용지_방향.xlsx</code> — 시트 넷</span></p>
+      <p>
+        <b>시트마다 처방이 다릅니다.</b> 네 장을 차례로 열어 보세요.
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>시트</th><th>문제</th><th>처방</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>견적서</b></td>
+              <td>세로로 조금 넘침</td>
+              <td><b>배율 81%</b> — 줄여서 한 장에</td>
+            </tr>
+            <tr>
+              <td><b>애널리틱스</b></td>
+              <td>열이 <b>15개</b>라 옆으로 넘침</td>
+              <td><b>가로 방향</b> + <b>모든 열을 한 페이지에</b></td>
+            </tr>
+            <tr>
+              <td><b>신규매장</b></td>
+              <td>아슬아슬하게 넘침</td>
+              <td><b>배율 97%</b> — 여백을 조금 줄여도 됩니다</td>
+            </tr>
+            <tr>
+              <td><b>체육대회명단</b></td>
+              <td>세로로 길기만 함</td>
+              <td>그대로 두거나 <b>여백을 좁게</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">배율을 손으로 맞추지 마세요</span>
+        <p>
+          <b>페이지 레이아웃 → 크기 조정</b> 에서
+          <b>너비: 1페이지 / 높이: 자동</b> 으로 두는 것이 제일 안전합니다.
+        </p>
+        <p>
+          <b>「옆으로는 한 장, 아래로는 몇 장이든」</b> 이라는 뜻입니다.
+          줄이 늘어도 <b>다시 안 건드려도 됩니다.</b>
+        </p>
+        <p>
+          <b>너비·높이를 둘 다 1페이지</b> 로 두면
+          줄이 늘어날수록 <b>글자가 개미만 해집니다.</b> 이것이 흔한 실수입니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">인쇄 전에 이 화면을 꼭 보세요</span>
+        <p>
+          <b>보기 → 페이지 나누기 미리 보기.</b>
+          <b>파란 선</b>이 <b>장이 갈리는 자리</b>입니다.
+          <b>선을 마우스로 끌어</b> 옮길 수 있습니다.
+        </p>
+        <p>
+          <code>Ctrl</code>+<code>P</code> 로 확인하는 것보다 <b>훨씬 빠릅니다.</b>
+          돌아오려면 <b>보기 → 기본</b> 입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 06 ═══════════ -->
+    <section id="pages">
+      <span class="sec-tag">06 — 여러 장</span>
+      <h2>여러 장짜리 보고서</h2>
+
+      <h3>둘째 장부터 머리글이 없습니다</h3>
+      <p class="sub"><span class="nb">예제 <code>4-12_인쇄_제목_반복.xlsx</code> · <code>4-13_긴_표_인쇄.xlsx</code></span></p>
+      <p>
+        <code>4-12</code> 는 견적서가 <b>60행</b>이라 두 장으로 나옵니다.
+        둘째 장에는 <b>「견 적 서」 제목도, 머리글도 없습니다.</b>
+        받는 사람은 <b>무슨 종이인지</b> 모릅니다.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>페이지 레이아웃 → 인쇄 제목</b>
+          <p>「페이지 설정」 창의 <b>시트</b> 탭이 열립니다.</p>
+        </li>
+        <li>
+          <b>「반복할 행」 칸에 <code>$1:$12</code></b>
+          <p>
+            직접 치거나, 칸을 누른 뒤 <b>1행부터 12행까지 행 머리를 끌어서</b> 잡으면 됩니다.
+          </p>
+        </li>
+        <li>
+          <b><code>Ctrl</code>+<code>P</code> 로 둘째 장을 봅니다</b>
+          <p>제목과 머리글이 <b>다시 찍혀</b> 있습니다.</p>
+        </li>
+      </ol>
+      <div class="note">
+        <span class="note-label">4-13 은 이미 설정이 되어 있습니다</span>
+        <p>
+          <code>4-13_긴_표_인쇄.xlsx</code> 는 헬로마트 <b>124줄</b> 짜리인데
+          <b>인쇄 제목 <code>$2:$4</code> 와 인쇄 영역이 이미 걸려</b> 있습니다.
+        </p>
+        <p>
+          <b>거꾸로 뜯어 보세요.</b> 인쇄 제목을 <b>지웠다가</b> 미리 보기를 하고,
+          <b>다시 넣고</b> 미리 보기를 하면 차이가 확실히 보입니다.
+        </p>
+      </div>
+      <div class="note warn">
+        <span class="note-label">틀 고정과 헷갈리지 마세요</span>
+        <p>
+          <b>틀 고정은 화면</b>, <b>인쇄 제목은 종이</b>입니다.
+          <b>서로 아무 상관이 없습니다.</b>
+        </p>
+        <p>
+          틀 고정을 해 두었으니 인쇄도 될 거라고 생각하는 분이 많습니다.
+          <b>둘 다 따로 해 주셔야 합니다.</b>
+        </p>
+      </div>
+
+      <h3>쪽 번호와 직인 — 머리글·바닥글</h3>
+      <p class="sub"><span class="nb">예제 <code>4-14_머리글과_바닥글.xlsx</code> — 재직증명서</span></p>
+      <p>
+        머리글·바닥글은 <b>화면에 안 보입니다.</b>
+        <b>보기 → 페이지 레이아웃</b> 으로 바꾸면 보입니다.
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>넣고 싶은 것</th><th>단추</th><th>찍히는 모습</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>쪽 번호</td><td><b>페이지 번호</b></td><td>1</td></tr>
+            <tr><td>전체 쪽수와 함께</td><td>페이지 번호 + <b>페이지 수</b></td><td><code>1 / 3</code> <span class="nb">— 가운데 「 / 」는 직접 칩니다</span></td></tr>
+            <tr><td>오늘 날짜</td><td><b>현재 날짜</b></td><td>2026-09-16 <span class="nb">— 열 때마다 바뀝니다</span></td></tr>
+            <tr><td>파일 이름</td><td><b>파일 이름</b></td><td>재직증명서.xlsx</td></tr>
+            <tr><td><b>그림</b></td><td><b>그림</b> → 파일 고르기</td><td>직인·워터마크</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ol class="steps">
+        <li>
+          <b>보기 → 페이지 레이아웃</b>
+          <p>종이 모양으로 바뀌고 <b>「머리글 추가」</b> 칸이 보입니다.</p>
+        </li>
+        <li>
+          <b>가운데 칸을 누르고 → 머리글/바닥글 탭 → 그림</b>
+          <p>
+            같은 폴더의 <code>4-14_머리글과_바닥글_1.png</code> 를 고릅니다.
+            <b>칸에는 <code>&amp;[그림]</code> 이라고만</b> 적힙니다.
+          </p>
+        </li>
+        <li>
+          <b>머리글 밖을 한 번 누릅니다</b>
+          <p>그제서야 그림이 <b>실제로</b> 보입니다.</p>
+        </li>
+        <li>
+          <b>크기를 조절합니다</b>
+          <p>
+            <b>머리글/바닥글 탭 → 그림 서식</b> 에서 <b>%</b> 로 줄입니다.
+            <b>마우스로 끌어서는 안 됩니다.</b>
+          </p>
+        </li>
+      </ol>
+      <div class="note">
+        <span class="note-label">왜 배경 그림이 아니라 머리글인가</span>
+        <p>
+          <b>페이지 레이아웃 → 배경</b> 으로 넣은 그림은
+          <b>인쇄가 안 됩니다.</b> 화면 장식용입니다.
+        </p>
+        <p>
+          <b>인쇄되는 워터마크·직인은 머리글에 넣는 것</b>이 정석입니다.
+          엑셀에는 워드 같은 워터마크 기능이 없어서 이렇게 씁니다.
+        </p>
+      </div>
+
+      <h3>여러 시트를 한 번에</h3>
+      <p class="sub"><span class="nb">예제 <code>4-15_여러_시트_한번에.xlsx</code> — 김철수·박하늘·최지우</span></p>
+      <p>
+        같은 재직증명서가 <b>사람마다 한 장씩</b> 세 장 있습니다.
+        <b>한 번에</b> 뽑습니다.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>첫 탭을 누르고 <code>Shift</code>+마지막 탭</b>
+          <p>
+            세 장이 다 잡히고 제목 줄에 <b>[그룹]</b> 이라고 뜹니다.
+          </p>
+        </li>
+        <li>
+          <b><code>Ctrl</code>+<code>P</code> → 「활성 시트 인쇄」</b>
+          <p>미리 보기에 <b>1/3</b> 이라고 나옵니다.</p>
+        </li>
+        <li>
+          <b>PDF 로 내보냅니다</b>
+          <p>
+            <b>파일 → 내보내기 → PDF/XPS 만들기</b>.
+            <b>옵션 → 「선택한 시트」</b> 를 고르면 <b>세 장이 한 PDF</b> 가 됩니다.
+          </p>
+        </li>
+        <li>
+          <b>★ 반드시 그룹을 풉니다</b>
+          <p>아무 탭이나 <b>오른쪽 눌러 「시트 그룹 해제」</b>.</p>
+        </li>
+      </ol>
+
+      <div class="note stop">
+        <span class="note-label">그룹을 안 풀면 세 장이 다 망가집니다</span>
+        <p>
+          <b>[그룹]</b> 상태에서는 <b>한 시트에 한 일이 세 시트 모두에</b> 적용됩니다.
+          김철수 시트에 이름을 고치면 <b>박하늘·최지우 시트에도</b> 그 이름이 들어갑니다.
+        </p>
+        <p>
+          그리고 <b>되돌리기가 잘 안 됩니다.</b>
+          인쇄가 끝나면 <b>제일 먼저 그룹을 푸세요.</b>
+          제목 줄에 <b>[그룹]</b> 이 남아 있는지 <b>눈으로</b> 확인하는 습관을 들이세요.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">넘기기 전 최종 점검 여섯</span>
+        <ol class="steps">
+          <li><b>연결 편집</b> 단추가 회색인가 <span class="nb">— 외부 참조 없음</span></li>
+          <li><code>Ctrl</code>+<code>End</code> 가 <b>자료 끝</b>으로 가는가</li>
+          <li>시트 탭에 <b>[그룹]</b> 이 안 남아 있는가</li>
+          <li><b>숨긴 시트</b>에 남에게 보이면 안 될 것이 없는가</li>
+          <li><code>Ctrl</code>+<code>P</code> 에서 <b>장 수가 예상대로</b>인가</li>
+          <li>파일 이름이 <b><code>YYYYMMDD_무엇_누가</code></b> 인가</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ═══════════ 07 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">07 — 마무리</span>
+      <h2>4장 확인 목록</h2>
+      <p class="sub">
+        직접 해 본 것에만 표시하세요. <b>읽은 것은 표시하지 마세요.</b>
+      </p>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span>파일 이름을 <b><code>YYYYMMDD_</code> 로 시작</b>하게 바꿔 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><code>Shift</code>+끌기로 <b>열을 끼워 넣어</b> 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>시트를 다른 파일로 복사하면 <b>수식이 옛 파일을 본다</b>는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><b>연결 편집</b>으로 외부 참조가 있는지 확인해 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>찾기에서 <b><code>[</code> 를 수식으로</b> 찾아 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>연결 끊기는 되돌릴 수 없다</b>는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>공공데이터의 <b>메타데이터 시트를 안 지운다</b></span></label></li>
+        <li><label><input type="checkbox"><span>유효성 검사 <b>목록</b>을 다른 시트 범위로 걸어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>오류 메시지 문구</b>를 직접 고쳐 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>유효성 검사가 <b>붙여넣기는 못 막는다</b>는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><b>잠금을 먼저 풀고</b> 시트를 보호하는 순서를 안다</span></label></li>
+        <li><label><input type="checkbox"><span>시트를 숨기고 <b>통합 문서 구조</b>까지 잠가 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><code>Ctrl</code>+<code>End</code> 로 <b>빈 서식이 남았는지</b> 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><code>.xlsb</code> 로 저장해 <b>크기를 견줘</b> 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>그림을 <b>「셀에 맞춰 이동 및 크기 변경」</b> 으로 바꿔 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>잘린 부분이 파일에 남아 있다</b>는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>틀 고정을 <b>B3 에서</b> 걸어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>페이지 나누기 미리 보기</b>에서 파란 선을 끌어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>크기 조정을 <b>너비 1페이지 · 높이 자동</b>으로 둬 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>인쇄 제목</b>으로 둘째 장에 머리글을 다시 찍어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>틀 고정과 인쇄 제목이 별개</b>라는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>머리글에 <b>그림</b>을 넣어 직인처럼 써 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>여러 시트를 <b>한 PDF</b> 로 내보내 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>인쇄가 끝나면 <b>[그룹]을 먼저 푼다</b></span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">며칠 뒤에 다시 — 복습 파일</span>
+        <p>
+          같은 폴더에 <code>4장_복습.xlsx</code> 가 있습니다.
+          <b>노란 칸만 채우면</b> 됩니다.
+          파일 이름 · 외부 참조 찾기 · 유효성 검사 · 인쇄 설정
+          <b>네 가지</b>를 다시 짚습니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">마지막 관문 — 4장 종합문제</span>
+        <p>
+          <b><code>4장_종합문제.xlsx</code></b> 입니다.
+          <b>내일 아침에 나가야 하는 견적서</b> 한 장을 받습니다.
+        </p>
+        <p>
+          외부 참조가 걸려 있고, 빈 서식이 만 행 남아 있고,
+          인쇄하면 <b>세 장</b>으로 갈라지고, 수량 칸에 <b>글자가 들어가</b> 있습니다.
+        </p>
+        <p>
+          <b>순서가 곧 함정입니다.</b> 인쇄 설정을 먼저 하면
+          빈 서식을 지운 뒤에 <b>인쇄 영역이 어긋납니다.</b>
+          <b>최종확인 다섯 칸</b>으로 어디서 샜는지 알 수 있게 해 두었습니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">여기까지 하셨으면</span>
+        <p>
+          이제 <b>보내도 되는 파일</b>과 <b>아직 안 되는 파일</b>을 구별할 수 있습니다.
+        </p>
+        <p>
+          5장부터는 <b>자료를 다루는 일</b>입니다.
+          정렬·필터·고급 필터 — <b>수천 줄에서 필요한 것만 뽑는</b> 기술입니다.
+        </p>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-m3.html">← 마스터 3장: 서식</a>
+        <a href="excel-m5.html">마스터 5장: 정렬과 필터 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

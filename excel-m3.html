@@ -1,0 +1,1201 @@
+<!doctype html>
+<html lang="ko" data-subject="excel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>엑셀 마스터 3장 — 같은 표인데 읽히는 표</title>
+<meta name="description" content="마스터 클래스 3장. 셀 서식의 원리, 사용자 지정 표시 형식, 보고서 작성 규칙 다섯, 조건부 서식, 데이터 막대와 아이콘 집합, 스파크라인.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="excel.html">← 엑셀 과목 첫 화면으로</a>
+    <p class="eyebrow">1과목 · 엑셀 · 마스터 3장</p>
+    <h1>같은 표인데<br><em>읽히는 표</em></h1>
+    <p class="lede">
+      숫자를 하나도 안 고쳤는데 <b>「정리해서 다시 주세요」</b> 소리를 듣습니다.
+      틀린 게 아니라 <b>안 읽히는 것</b>입니다.
+      이 장은 값을 그대로 두고 <b>보이는 방식만</b> 바꿉니다.
+      그래서 <b>다시 계산할 일이 없습니다.</b>
+    </p>
+    <div class="facts">
+      <span><b>대상</b> 1·2장을 마친 분</span>
+      <span><b>소요</b> 90분</span>
+      <span><b>예제</b> <code>강의예제/3장…</code> 폴더</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#inside">겉과 속은 다릅니다</a></li>
+      <li><a href="#format">표시 형식 — 칸 네 개</a></li>
+      <li><a href="#rule">읽히는 표의 규칙 다섯</a></li>
+      <li><a href="#cond">조건부 서식</a></li>
+      <li><a href="#bar">데이터 막대와 아이콘</a></li>
+      <li><a href="#spark">스파크라인</a></li>
+      <li><a href="#check">3장 확인 목록</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════ -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에</h2>
+      <p class="sub">
+        이 장은 <b>따라 하면서 보는 장</b>입니다. 엑셀을 켜 두고 보세요.
+      </p>
+
+      <div class="note">
+        <span class="note-label">예제 파일이 어디 있나</span>
+        <p>
+          <code>강의예제 → 3장_보고서가_달라지는_서식_활용법</code> 폴더입니다.
+          파일 이름 앞이 <b>강의 번호</b>입니다 — <code>3-04</code> 는 3장 4강.
+        </p>
+        <p>
+          <b><code>_완성</code> 이 붙은 것은 답</b>입니다. 먼저 열지 마세요.
+        </p>
+      </div>
+
+      <h3>예제 파일에 무엇이 들어 있나</h3>
+      <p>
+        <b>미리 열어 볼 필요는 없습니다.</b> 각 장에서 다시 알려 드립니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>파일</th><th>안에 든 시트</th><th>무엇을 하나</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>3-01_셀_서식의_원리</code></td>
+              <td>Sheet1 <span class="nb">(세 덩이)</span></td>
+              <td><b>이 장의 교과서입니다.</b> 겉과 속이 다른 예 · 세미콜론 네 칸 ·
+                  <b>기호 열한 개</b>가 한 시트에 정리되어 있습니다</td>
+            </tr>
+            <tr>
+              <td><code>3-02_사용자_지정_표시_형식</code></td>
+              <td>0지우기 · 날짜서식 · <b>주식보고서</b> · 간이견적서</td>
+              <td>실무에서 실제로 쓰는 서식 넷. <b>0 감추기</b> · <b>요일 붙이기</b> ·
+                  <b>▲▼ 색 넣기</b> · <b>일금 …원정</b></td>
+            </tr>
+            <tr>
+              <td><code>3-03_보고서_작성_규칙</code></td>
+              <td><b>6장</b> — 숫자정렬 · 천단위기호 · 단위표시 · 들여쓰기 · 세로축 · 보고서실습</td>
+              <td>규칙 하나에 시트 하나. 마지막 <b>보고서실습</b>에서 다섯 개를 한꺼번에</td>
+            </tr>
+            <tr>
+              <td><code>3-04_조건부_서식</code></td>
+              <td>체육실기평가 · 건축학개론성적 · 해피데이리뷰 · <b>전체행강조</b> · <b>다중조건</b></td>
+              <td>규칙 다섯 가지. 뒤의 둘은 <b>수식으로 만드는</b> 규칙입니다</td>
+            </tr>
+            <tr>
+              <td><code>3-05_데이터_막대</code></td>
+              <td>Sheet1 <span class="nb">(영업1팀 매출일보)</span></td>
+              <td>달성률에 막대. 그리고 <b>매출이익에는 음수가 섞여</b> 있습니다</td>
+            </tr>
+            <tr>
+              <td><code>3-06_아이콘_집합</code></td>
+              <td>Sheet1 <span class="nb">(같은 매출일보)</span></td>
+              <td>이익률 칸에 <b>신호등</b>. 기준을 손으로 정하는 법까지</td>
+            </tr>
+            <tr>
+              <td><code>3-07_스파크라인</code></td>
+              <td>Sheet1 <span class="nb">(상반기 실적현황)</span></td>
+              <td>1~6월 여섯 칸을 <b>칸 하나짜리 꺾은선</b>으로. 합계만으로는 안 보이는 것</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">「_완성」 이 붙은 파일</span>
+        <p>
+          3장은 <b>일곱 개 중 여섯 개</b>에 답이 있습니다.
+          서식은 <b>결과가 파일에 남기</b> 때문입니다.
+        </p>
+        <p>
+          <b>먼저 열지 마세요.</b> 직접 해 보고 <b>막혔을 때</b>,
+          또는 <b>다 하고 맞춰 볼 때</b> 여세요.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">이 장의 전제 하나</span>
+        <p>
+          <b>서식은 값을 안 바꿉니다.</b> 이 한 줄만 붙들고 가시면 됩니다.
+          <code>1000</code> 에 <code>#,##0"원"</code> 을 입히면
+          화면에는 <b>1,000원</b> 이 뜨지만 칸에 든 것은 <b>여전히 숫자 1000</b> 입니다.
+        </p>
+        <p>
+          그래서 <b>합계가 그대로 됩니다.</b>
+          반대로 <b>손으로 「원」을 쳐 넣으면</b> 그 칸은 글자가 되어
+          <b>합계에서 빠집니다.</b> 1장에서 본 그 사고입니다.
+        </p>
+      </div>
+
+      <h3>이 장에서 하는 일</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>장</th><th>무엇</th><th>왜 하나</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>01</b></td><td>겉과 속</td><td>서식과 값을 <b>헷갈리지 않습니다</b></td></tr>
+            <tr><td><b>02</b></td><td>표시 형식</td><td>0·음수·날짜를 <b>원하는 대로</b> 보입니다</td></tr>
+            <tr><td><b>03</b></td><td>규칙 다섯</td><td>표가 <b>한 번에 읽힙니다</b></td></tr>
+            <tr><td><b>04</b></td><td>조건부 서식</td><td>볼 곳이 <b>저절로 눈에 띕니다</b></td></tr>
+            <tr><td><b>05</b></td><td>막대·아이콘</td><td>숫자를 <b>안 읽어도 크기가 보입니다</b></td></tr>
+            <tr><td><b>06</b></td><td>스파크라인</td><td>합계가 같아도 <b>흐름이 다른 것</b>을 봅니다</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="inside">
+      <span class="sec-tag">01 — 원리</span>
+      <h2>겉과 속은 다릅니다</h2>
+      <p class="sub">
+        <span class="nb">예제 <code>3-01_셀_서식의_원리.xlsx</code> · 시트 맨 위 [1] 덩이</span>
+      </p>
+
+      <p>
+        파일을 열면 <b>2행</b>에 이렇게 적혀 있습니다 —
+        <b>「셀 서식은 겉으로 보이는 표시형식만 바꿉니다」</b>.
+        그 아래 <b>같은 표가 두 개</b> 나란히 있습니다.
+      </p>
+
+      <figure>
+        <div class="fig-frame">
+          <svg viewBox="0 0 700 208" role="img" aria-label="왼쪽 표는 개수 칸에 5개, 단가 칸에 1,300원처럼 단위를 손으로 쳐 넣어 금액 계산이 안 되고, 오른쪽 표는 숫자만 넣고 서식으로 단위를 붙여 계산이 되는 것을 견주는 그림.">
+            <g>
+              <text x="0" y="16" font-size="12" font-weight="700">왼쪽 표 — 단위를 손으로 쳐 넣음</text>
+
+              <rect x="0" y="26" width="90" height="24" fill="var(--panel)" stroke="var(--rule-2)"/>
+              <text x="45" y="42" font-size="11" text-anchor="middle" class="dim">제품명</text>
+              <rect x="90" y="26" width="76" height="24" fill="var(--panel)" stroke="var(--rule-2)"/>
+              <text x="128" y="42" font-size="11" text-anchor="middle" class="dim">개수</text>
+              <rect x="166" y="26" width="86" height="24" fill="var(--panel)" stroke="var(--rule-2)"/>
+              <text x="209" y="42" font-size="11" text-anchor="middle" class="dim">단가</text>
+              <rect x="252" y="26" width="80" height="24" fill="var(--panel)" stroke="var(--rule-2)"/>
+              <text x="292" y="42" font-size="11" text-anchor="middle" class="dim">금액</text>
+
+              <rect x="0" y="50" width="90" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="45" y="66" font-size="11" text-anchor="middle">사과</text>
+              <rect x="90" y="50" width="76" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="158" y="66" font-size="11" text-anchor="end">10</text>
+              <rect x="166" y="50" width="86" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="244" y="66" font-size="11" text-anchor="end">500</text>
+              <rect x="252" y="50" width="80" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="324" y="66" font-size="11" text-anchor="end">5,000</text>
+
+              <rect x="0" y="74" width="90" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="45" y="90" font-size="11" text-anchor="middle">포도</text>
+              <rect x="90" y="74" width="76" height="24" fill="var(--red-dim)" stroke="var(--red)" stroke-width="1.5"/>
+              <text x="98" y="90" font-size="11">5개</text>
+              <rect x="166" y="74" width="86" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="244" y="90" font-size="11" text-anchor="end">800</text>
+              <rect x="252" y="74" width="80" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="324" y="90" font-size="11" text-anchor="end" class="dim">#VALUE!</text>
+
+              <rect x="0" y="98" width="90" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="45" y="114" font-size="11" text-anchor="middle">배</text>
+              <rect x="90" y="98" width="76" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="158" y="114" font-size="11" text-anchor="end">8</text>
+              <rect x="166" y="98" width="86" height="24" fill="var(--red-dim)" stroke="var(--red)" stroke-width="1.5"/>
+              <text x="174" y="114" font-size="11">1,300원</text>
+              <rect x="252" y="98" width="80" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="324" y="114" font-size="11" text-anchor="end" class="dim">#VALUE!</text>
+
+              <text x="0" y="146" font-size="11" class="dim">왼쪽에 붙어 있으면 글자입니다.</text>
+              <text x="0" y="164" font-size="11" class="dim">글자는 곱해지지 않습니다.</text>
+            </g>
+
+            <g transform="translate(368,0)">
+              <text x="0" y="16" font-size="12" font-weight="700">오른쪽 표 — 숫자만 넣고 서식으로</text>
+
+              <rect x="0" y="26" width="90" height="24" fill="var(--panel)" stroke="var(--rule-2)"/>
+              <text x="45" y="42" font-size="11" text-anchor="middle" class="dim">제품명</text>
+              <rect x="90" y="26" width="76" height="24" fill="var(--panel)" stroke="var(--rule-2)"/>
+              <text x="128" y="42" font-size="11" text-anchor="middle" class="dim">개수</text>
+              <rect x="166" y="26" width="86" height="24" fill="var(--panel)" stroke="var(--rule-2)"/>
+              <text x="209" y="42" font-size="11" text-anchor="middle" class="dim">단가</text>
+              <rect x="252" y="26" width="80" height="24" fill="var(--panel)" stroke="var(--rule-2)"/>
+              <text x="292" y="42" font-size="11" text-anchor="middle" class="dim">금액</text>
+
+              <rect x="0" y="50" width="90" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="45" y="66" font-size="11" text-anchor="middle">사과</text>
+              <rect x="90" y="50" width="76" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="158" y="66" font-size="11" text-anchor="end">10개</text>
+              <rect x="166" y="50" width="86" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="244" y="66" font-size="11" text-anchor="end">500원</text>
+              <rect x="252" y="50" width="80" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="324" y="66" font-size="11" text-anchor="end">5,000</text>
+
+              <rect x="0" y="74" width="90" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="45" y="90" font-size="11" text-anchor="middle">포도</text>
+              <rect x="90" y="74" width="76" height="24" fill="var(--accent-dim)" stroke="var(--accent)" stroke-width="1.5"/>
+              <text x="158" y="90" font-size="11" text-anchor="end">5개</text>
+              <rect x="166" y="74" width="86" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="244" y="90" font-size="11" text-anchor="end">800원</text>
+              <rect x="252" y="74" width="80" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="324" y="90" font-size="11" text-anchor="end">4,000</text>
+
+              <rect x="0" y="98" width="90" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="45" y="114" font-size="11" text-anchor="middle">배</text>
+              <rect x="90" y="98" width="76" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="158" y="114" font-size="11" text-anchor="end">8개</text>
+              <rect x="166" y="98" width="86" height="24" fill="var(--accent-dim)" stroke="var(--accent)" stroke-width="1.5"/>
+              <text x="244" y="114" font-size="11" text-anchor="end">1,300원</text>
+              <rect x="252" y="98" width="80" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="324" y="114" font-size="11" text-anchor="end">10,400</text>
+
+              <text x="0" y="146" font-size="11" class="dim">칸에 든 것은 5 와 1300 입니다.</text>
+              <text x="0" y="164" font-size="11" class="dim">「개」 와 「원」 은 서식이 그려 준 것입니다.</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption>같은 표로 보이지만, 왼쪽은 계산이 안 되고 오른쪽은 됩니다.</figcaption>
+      </figure>
+
+      <div class="note">
+        <span class="note-label">해 보기 — 3-01 파일 위쪽 [1] 덩이</span>
+        <ol class="steps">
+          <li>
+            <b>왼쪽 표의 「5개」 칸을 눌러 봅니다</b>
+            <p>
+              화면 위 <b>수식 입력줄</b>에 <code>5개</code> 가 그대로 보입니다.
+              <b>칸 안에서 왼쪽에 붙어</b> 있습니다. <b>글자라는 뜻</b>입니다.
+            </p>
+          </li>
+          <li>
+            <b>오른쪽 표의 같은 자리를 눌러 봅니다</b>
+            <p>
+              화면에는 똑같이 <b>5개</b> 로 보이는데,
+              수식 입력줄에는 <b><code>5</code></b> 만 있습니다.
+              <b>오른쪽에 붙어</b> 있습니다. <b>숫자라는 뜻</b>입니다.
+            </p>
+          </li>
+          <li>
+            <b>그 칸에서 <code>Ctrl</code>+<code>1</code> 을 누릅니다</b>
+            <p>
+              「셀 서식」 창이 뜹니다. <b>사용자 지정</b> 쪽에
+              <code>0"개"</code> 같은 것이 적혀 있습니다.
+              <b>여기가 겉을 그리는 곳</b>입니다.
+            </p>
+          </li>
+        </ol>
+        <p>
+          <b>이렇게 되면 된 것입니다</b> — 두 칸이 <b>똑같이 보이는데</b>
+          하나는 금액이 계산되고 하나는 안 된다는 것을 <b>눈으로 확인</b>했으면 된 것입니다.
+        </p>
+      </div>
+
+      <div class="note stop">
+        <span class="note-label">이 장에서 제일 큰 사고</span>
+        <p>
+          <b>단위를 손으로 치지 마세요.</b>
+          <code>1,300원</code> · <code>5개</code> · <code>3.5천원</code> —
+          전부 <b>글자</b>입니다.
+        </p>
+        <p>
+          지금 당장은 표가 예뻐 보이지만, <b>합계를 잡는 순간</b>
+          그 줄만 쏙 빠집니다. <b>오류도 안 뜹니다.</b>
+          숫자는 숫자로 넣고, 단위는 <b>서식으로</b> 붙이세요.
+        </p>
+      </div>
+
+      <h3>서식 창을 여는 법</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>방법</th><th>어떻게</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>단축키</b></td><td><code>Ctrl</code>+<code>1</code> <span class="nb">— 제일 빠릅니다. 이것만 외우세요</span></td></tr>
+            <tr><td>마우스</td><td>칸을 <b>오른쪽 눌러</b> 「셀 서식」</td></tr>
+            <tr><td>리본</td><td><b>홈 → 표시 형식</b> 오른쪽 아래 작은 화살표</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="format">
+      <span class="sec-tag">02 — 표시 형식</span>
+      <h2>표시 형식 — 칸 네 개</h2>
+      <p class="sub">
+        <span class="nb">예제 <code>3-01</code> 의 [2]·[3] 덩이,
+        그리고 <code>3-02_사용자_지정_표시_형식.xlsx</code></span>
+      </p>
+
+      <p>
+        사용자 지정 서식은 <b>세미콜론(<code>;</code>)으로 칸이 나뉩니다.</b>
+        <b>순서가 정해져 있습니다.</b>
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>칸</th><th>언제 쓰이나</th><th>예</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>1째</b></td><td>값이 <b>양수</b>일 때</td><td><code>#,##0</code></td></tr>
+            <tr><td><b>2째</b></td><td>값이 <b>음수</b>일 때</td><td><code>[빨강]-#,##0</code></td></tr>
+            <tr><td><b>3째</b></td><td>값이 <b>0</b>일 때</td><td><code>-</code> <span class="nb">또는 비워서 감추기</span></td></tr>
+            <tr><td><b>4째</b></td><td>값이 <b>글자</b>일 때</td><td><code>@</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        <b>칸을 덜 써도 됩니다.</b> 하나만 쓰면 <b>모든 값</b>에 적용되고,
+        둘만 쓰면 <b>양수와 음수</b>에 적용됩니다.
+        <b>3-01 파일의 [2] 덩이</b>에 그 예가 나란히 있습니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>서식</th><th>1500</th><th>-800</th><th>0</th><th>쓰는 자리</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>0;(0);0</code></td><td>1500</td><td>(800)</td><td>0</td><td>회계 보고서 <span class="nb">— 음수를 괄호로</span></td></tr>
+            <tr><td><code>[파랑]0;[빨강]-0;0</code></td><td><b>1500</b></td><td><b>-800</b></td><td>0</td><td>증감표 <span class="nb">— 색으로 갈라 보이게</span></td></tr>
+            <tr><td><code>0;-0;-</code></td><td>1500</td><td>-800</td><td><b>-</b></td><td>빈 것이 많은 표 <span class="nb">— 0을 하이픈으로</span></td></tr>
+            <tr><td><code>#,##0;-#,##0;;@</code></td><td>1,500</td><td>-800</td><td><b>(안 보임)</b></td><td>0을 아예 감춤 <span class="nb">— 3째 칸을 비웠습니다</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">해 보기 — 3-02 의 「0지우기」 시트</span>
+        <p>
+          <b>일자별 본관 출입 횟수</b> 표입니다.
+          <b>0이 잔뜩</b> 있어서 어디가 실제로 0번인지 눈에 안 들어옵니다.
+          오른쪽 <b>I·J열</b>에 쓸 서식과 설명이 적혀 있습니다.
+        </p>
+        <ol class="steps">
+          <li>
+            <b>숫자 부분만 잡습니다</b>
+            <p><b>C5</b> 부터 <b>G17</b> 까지. 머리글과 이름 열은 빼고요.</p>
+          </li>
+          <li>
+            <b><code>Ctrl</code>+<code>1</code> → 사용자 지정</b>
+            <p>
+              「형식」 칸에 <code>#,##0;-#,##0;-;@</code> 를 치고 <b>확인</b>.
+              0이 전부 <b>하이픈</b>으로 바뀝니다.
+            </p>
+          </li>
+          <li>
+            <b>0을 아예 감추고도 봅니다</b>
+            <p>
+              같은 자리에서 <code>#,##0;-#,##0;;@</code> —
+              <b>세미콜론 두 개를 붙여</b> 3째 칸을 비우면 0이 <b>사라집니다.</b>
+            </p>
+          </li>
+        </ol>
+        <p>
+          <b>이렇게 되면 된 것입니다</b> — 아무 0 칸이나 눌렀을 때
+          <b>수식 입력줄에는 0 이 그대로</b> 있으면 된 것입니다.
+          <b>값은 안 지워졌습니다.</b>
+        </p>
+      </div>
+
+      <h3>날짜에 요일을 붙입니다</h3>
+      <p class="sub"><span class="nb">3-02 의 「날짜서식」 시트</span></p>
+      <p>
+        1장에서 <b>날짜는 숫자</b>라고 했습니다. 숫자니까 <b>서식만 바꾸면</b>
+        같은 날짜가 여러 모습으로 보입니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>서식</th><th>2021-01-01 이 이렇게 보입니다</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>yyyy-mm-dd</code></td><td>2021-01-01</td></tr>
+            <tr><td><code>yyyy"년" mm"월"</code></td><td>2021년 01월 <span class="nb">— 글자는 큰따옴표로 감쌉니다</span></td></tr>
+            <tr><td><code>mm/dd</code></td><td>01/01</td></tr>
+            <tr><td><code>yyyy-mm-dd (aaa)</code></td><td>2021-01-01 (금) <span class="nb">— <b>aaa 가 요일</b>입니다</span></td></tr>
+            <tr><td><code>aaaa</code></td><td>금요일 <span class="nb">— 네 개면 「요일」까지</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">근태표·일정표에서 제일 많이 씁니다</span>
+        <p>
+          <code>(aaa)</code> 하나면 <b>요일 열을 따로 만들 필요가 없습니다.</b>
+          날짜를 고치면 요일이 <b>따라서</b> 바뀝니다.
+          손으로 적어 둔 요일은 날짜를 고쳐도 <b>안 따라옵니다.</b>
+        </p>
+      </div>
+
+      <h3>▲▼ 와 앞자리 0</h3>
+      <p class="sub"><span class="nb">3-02 의 「주식보고서」 시트</span></p>
+      <p>
+        종목 코드가 <code>5930</code> 으로 들어 있습니다.
+        실제 코드는 <b>005930</b> 인데 <b>앞의 0이 사라집니다.</b>
+        숫자니까요.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>코드 열에 <code>000000</code> 을 입힙니다</b>
+          <p>
+            <b>여섯 자리를 채우라</b>는 뜻입니다. 모자라면 <b>앞을 0으로</b> 메웁니다.
+            <code>5930</code> 이 <b>005930</b> 으로 보입니다. <b>값은 그대로 5930</b> 입니다.
+          </p>
+        </li>
+        <li>
+          <b>변동 열에 <code>[파랑]▲#,##0;[빨강]▼#,##0;-;@</code></b>
+          <p>
+            오르면 <b>파란 ▲</b>, 내리면 <b>빨간 ▼</b>, 그대로면 <b>하이픈</b>.
+            <b>▲▼ 는 <code>ㅁ</code> 을 치고 한자 키</b>로 꺼냅니다.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note warn">
+        <span class="note-label">앞자리 0을 이렇게도 합니다 — 무엇이 다른가</span>
+        <p>
+          칸을 <b>텍스트 서식</b>으로 바꾸고 <code>005930</code> 을 치는 방법도 있습니다.
+          화면은 같습니다. <b>다른 점은 하나</b>입니다.
+        </p>
+        <p>
+          <b>표시 형식</b>으로 한 것은 <b>여전히 숫자</b>라 계산·정렬이 됩니다.
+          <b>텍스트</b>로 한 것은 <b>글자</b>라 안 됩니다.
+          코드는 계산할 일이 없으니 <b>둘 다 괜찮습니다.</b>
+          다만 <b>섞어 쓰면</b> 같은 코드가 둘로 갈려 찾기가 안 됩니다.
+        </p>
+      </div>
+
+      <h3>금액을 한글로 — 견적서</h3>
+      <p class="sub"><span class="nb">3-02 의 「간이견적서」 시트</span></p>
+      <p>
+        견적서 합계 칸에 <b>「일금 삼백오십만원정」</b> 을 넣는 그 서식입니다.
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>서식</th><th>3500000 이 이렇게</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>[DBNum4]G/표준</code></td><td>삼백오십만</td></tr>
+            <tr><td><code>"일금 "[DBNum4]G/표준"원정"</code></td><td>일금 삼백오십만원정</td></tr>
+            <tr><td><code>[DBNum1]G/표준</code></td><td>三百五十萬 <span class="nb">— 한자</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <b>금액을 고치면 한글도 따라 바뀝니다.</b>
+        손으로 적어 두면 <b>금액만 고치고 한글은 그대로</b> 나가는 사고가 납니다.
+        견적서·계약서에서 실제로 자주 나는 사고입니다.
+      </p>
+
+      <h3>기호 열한 개</h3>
+      <p class="sub"><span class="nb">3-01 의 [3] 덩이에 표로 정리되어 있습니다</span></p>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>기호</th><th>뜻</th><th>기억할 것</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>0</code></td><td>숫자 한 자리 <span class="nb">(없으면 0으로 채움)</span></td><td>자리를 <b>반드시</b> 채웁니다</td></tr>
+            <tr><td><code>#</code></td><td>숫자 한 자리 <span class="nb">(없으면 안 채움)</span></td><td><code>#,##0</code> 가 <b>제일 많이 쓰는 형</b></td></tr>
+            <tr><td><code>?</code></td><td>숫자 한 자리 <span class="nb">(자리만 비워 둠)</span></td><td>소수점 <b>자릿수 맞출</b> 때</td></tr>
+            <tr><td><code>@</code></td><td>글자</td><td>4째 칸에 씁니다</td></tr>
+            <tr><td><code>.</code></td><td>소수점</td><td></td></tr>
+            <tr><td><code>,</code></td><td>천 단위 <b>구분</b> 또는 <b>절삭</b></td><td><b>맨 뒤에 붙이면 천으로 나눕니다</b></td></tr>
+            <tr><td><code>%</code></td><td>백분율</td><td>값에 <b>100을 곱해</b> 보입니다</td></tr>
+            <tr><td><code>/</code></td><td>분수</td><td></td></tr>
+            <tr><td><code>*</code></td><td>뒤 문자를 <b>칸 끝까지 반복</b></td><td>점선 채우기</td></tr>
+            <tr><td><code>_</code></td><td>뒤 문자 <b>너비만큼 여백</b></td><td>괄호 자리 맞추기</td></tr>
+            <tr><td><code>[ ]</code></td><td><b>색</b>과 <b>조건</b></td><td><code>[빨강]</code> · <code>[&gt;=100]</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">쉼표 하나로 단위를 접습니다</span>
+        <p>
+          <code>#,##0,</code> — <b>맨 뒤의 쉼표</b>입니다.
+          <code>1234567</code> 이 <b>1,235</b> 로 보입니다. <b>천으로 나눈 것</b>입니다.
+        </p>
+        <p>
+          <code>#,##0,,"백만"</code> 이면 쉼표 둘이라 <b>백만으로</b> 나눕니다.
+          <b>값은 그대로</b>이니 합계도 그대로입니다.
+          <b>단위는 표 위에 「(단위: 천원)」 이라고 꼭 적어 두세요.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="rule">
+      <span class="sec-tag">03 — 규칙</span>
+      <h2>읽히는 표의 규칙 다섯</h2>
+      <p class="sub">
+        <span class="nb">예제 <code>3-03_보고서_작성_규칙.xlsx</code> — 규칙마다 시트 하나</span>
+      </p>
+
+      <p>
+        여기부터는 <b>기능이 아니라 습관</b>입니다.
+        다섯 개뿐이고, <b>다 합쳐서 2분</b>이면 됩니다.
+      </p>
+
+      <h3>하나 — 숫자는 오른쪽, 글자는 왼쪽</h3>
+      <p class="sub"><span class="nb">「1. 숫자정렬」 시트</span></p>
+      <p>
+        나라별 인구수 표입니다. 머리글이 <b>가운데 맞춤</b>으로 되어 있고
+        숫자가 제각각입니다.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>숫자 열을 잡고 오른쪽 맞춤</b>
+          <p>
+            <code>Ctrl</code>+<code>R</code>. <b>자릿수가 세로로 맞습니다.</b>
+            14억과 5천만이 <b>길이로</b> 구별됩니다.
+          </p>
+        </li>
+        <li>
+          <b>글자 열은 왼쪽 맞춤</b>
+          <p><code>Ctrl</code>+<code>L</code>. 머리글도 <b>그 열의 내용을 따라</b> 맞춥니다.</p>
+        </li>
+      </ol>
+      <div class="note warn">
+        <span class="note-label">가운데 맞춤은 쓰지 마세요</span>
+        <p>
+          예뻐 보여서 많이 쓰는데, <b>숫자를 가운데로 맞추면 자릿수가 어긋납니다.</b>
+          <code>1444216203</code> 과 <code>36488800</code> 이
+          <b>어느 쪽이 큰지 눈으로 안 보입니다.</b>
+        </p>
+        <p>가운데 맞춤이 어울리는 것은 <b>「O / X」 같은 한 글자</b>뿐입니다.</p>
+      </div>
+
+      <h3>둘 — 천 단위 구분 기호</h3>
+      <p class="sub"><span class="nb">「2. 천단위기호」 시트</span></p>
+      <p>
+        숫자 열을 잡고 <b><code>Ctrl</code>+<code>Shift</code>+<code>1</code></b>.
+        <code>#,##0</code> 이 한 번에 걸립니다.
+      </p>
+      <p>
+        <b>네 자리 이상이면 무조건</b> 넣으세요.
+        <code>1444216203</code> 은 못 읽지만 <b>1,444,216,203</b> 은 읽힙니다.
+      </p>
+
+      <h3>셋 — 단위는 접고, 접었다고 적습니다</h3>
+      <p class="sub"><span class="nb">「3. 단위표시」 시트</span></p>
+      <p>
+        왼쪽이 <b>전</b>, 오른쪽이 <b>후</b>입니다. 같은 GDP 표인데
+        오른쪽에는 <b>「단위」 열</b>이 따로 있습니다.
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th></th><th>왼쪽 (전)</th><th>오른쪽 (후)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>단위 표시</td><td>표 위에 <code>(단위: US$)</code> 하나</td><td><b>행마다</b> 단위 열</td></tr>
+            <tr><td>1인당 GDP</td><td>31605</td><td>31,605 <span class="nb">(미국 달러)</span></td></tr>
+            <tr><td>인구</td><td>표에 없음</td><td>51.4 <span class="nb">(만명)</span></td></tr>
+            <tr><td>성장률</td><td>0.0733428…</td><td>7.3 <span class="nb">(%)</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <b>줄마다 단위가 다르면</b> 표 위의 한 줄로는 못 담습니다.
+        그럴 때는 <b>단위 열을 하나 만드는 편</b>이 낫습니다.
+        예제에서는 서식을 <code>#,##0.0,</code> 로 바꿔
+        <b>천 단위를 접고</b> 표 위 안내도 <code>(단위: 천 달러)</code> 로 고쳤습니다.
+      </p>
+
+      <div class="note stop">
+        <span class="note-label">단위를 접고 안 적는 것이 제일 위험합니다</span>
+        <p>
+          <code>#,##0,</code> 를 입히면 <b>1,234,567 이 1,235 로 보입니다.</b>
+          받는 사람은 그게 <b>천 단위인지 그냥 천이백삼십오인지</b> 알 길이 없습니다.
+        </p>
+        <p>
+          <b>접었으면 반드시 적으세요.</b>
+          표 오른쪽 위에 <code>(단위: 천원)</code> 한 줄이면 됩니다.
+        </p>
+      </div>
+
+      <h3>넷 — 들여쓰기로 층을 만듭니다</h3>
+      <p class="sub"><span class="nb">「4. 들여쓰기」 시트 — 커피블라썸 손익계산서</span></p>
+      <p>
+        <b>매출액</b> 아래에 <b>음료</b>·<b>베이커리</b> 가 있고,
+        <b>매출원가</b> 아래에 <b>음료원가</b>·<b>베이커리원가</b> 가 있습니다.
+        전부 <b>같은 자리</b>에서 시작하면 <b>무엇이 무엇의 아래인지</b> 안 보입니다.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>하위 항목만 잡습니다</b>
+          <p>
+            <code>Ctrl</code> 을 누른 채 <b>음료 · 베이커리 · 음료원가 …</b> 를 하나씩 찍습니다.
+          </p>
+        </li>
+        <li>
+          <b>홈 → 들여쓰기 늘림</b>
+          <p>
+            한 단 들어갑니다. <b>더 아래 항목은 두 번</b> 누릅니다.
+            예제 완성본은 <b>1단과 2단</b>이 섞여 있습니다.
+          </p>
+        </li>
+        <li>
+          <b>합계 줄은 배경색으로</b>
+          <p>
+            <b>매출액 · 매출원가 · 비용</b> 처럼 <b>더해진 줄</b>에만
+            <b>연한 회색</b>을 깔면 층이 한눈에 보입니다.
+          </p>
+        </li>
+      </ol>
+      <div class="note">
+        <span class="note-label">띄어쓰기로 하지 마세요</span>
+        <p>
+          <code>"　　음료"</code> 처럼 <b>앞에 공백을 쳐서</b> 들여쓰기 흉내를 내면,
+          나중에 <b>찾기·정렬·VLOOKUP 이 전부 어긋납니다.</b>
+          <b>「음료」와 「　　음료」는 엑셀에게 다른 글자</b>입니다.
+        </p>
+        <p>
+          7장에서 <b>TRIM 함수</b>로 그 공백을 떼어내는 실습을 합니다.
+          <b>애초에 안 넣는 것이 낫습니다.</b>
+        </p>
+      </div>
+
+      <h3>다섯 — 가로로 늘어놓지 말고 세로로</h3>
+      <p class="sub"><span class="nb">「5. 세로축」 시트</span></p>
+      <p>
+        한국·일본·미국의 <b>1인당 GDP</b> 와 <b>성장률</b> 이
+        <b>나라마다 두 줄씩</b> 놓여 있습니다.
+        연도는 가로로 갑니다.
+      </p>
+      <p>
+        <b>연도가 6년이면 괜찮지만 20년이면 화면 밖으로 나갑니다.</b>
+        읽는 사람은 <b>가로 스크롤</b>을 해야 합니다.
+        <b>항목 수가 늘어나는 쪽을 세로로</b> 두는 것이 원칙입니다.
+      </p>
+      <p>
+        2장 <b>「세로 방향 블록 쌓기」</b> 와 같은 이야기입니다.
+        <b>보고용 표</b>는 가로로 눕혀도 되지만,
+        <b>쌓아 갈 자료</b>는 반드시 세로여야 합니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">해 보기 — 「보고서실습」 시트</span>
+        <p>
+          다섯 규칙을 <b>한 표에 전부</b> 적용해 보는 시트입니다.
+          <b>숫자 열은 오른쪽 · 천 단위 · 비율은 소수 한 자리 · 단위 적기 ·
+          하위 항목 들여쓰기</b> 다섯 가지입니다.
+        </p>
+        <p>
+          비율 칸에 쓸 서식은 <code>0.0%;[빨강]-0.0%;-;@</code> 입니다.
+          <b>내려간 달은 빨갛게</b>, <b>변동 없는 달은 하이픈</b>으로 보입니다.
+        </p>
+        <p>
+          <b>이렇게 되면 된 것입니다</b> —
+          <code>3-03_보고서_작성_규칙_완성.xlsx</code> 의 같은 시트와
+          <b>눈으로 견줘서</b> 비슷하면 된 것입니다. <b>똑같을 필요는 없습니다.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="cond">
+      <span class="sec-tag">04 — 조건부 서식</span>
+      <h2>조건부 서식</h2>
+      <p class="sub">
+        <span class="nb">예제 <code>3-04_조건부_서식.xlsx</code> — 시트 다섯 개</span>
+      </p>
+
+      <p>
+        <b>조건에 맞는 칸만</b> 색이 바뀝니다.
+        값이 바뀌면 <b>색도 따라 바뀝니다.</b>
+        손으로 칠한 색은 <b>안 따라옵니다.</b> 그 차이가 전부입니다.
+      </p>
+
+      <h3>① 값으로 — 셀 강조 규칙</h3>
+      <p class="sub"><span class="nb">「체육실기평가」 시트</span></p>
+      <p>
+        팔굽혀펴기 횟수 표입니다. 오른쪽에 <b>평가 기준</b>이 적혀 있습니다 —
+        <b>22회 초과는 우수, 14회 미만은 재시험.</b>
+      </p>
+      <ol class="steps">
+        <li>
+          <b>숫자 열만 잡습니다</b>
+          <p><b>C6:C16</b>. 머리글은 빼고요.</p>
+        </li>
+        <li>
+          <b>홈 → 조건부 서식 → 셀 강조 규칙 → 보다 큼</b>
+          <p><code>22</code> 를 넣고 <b>「진한 녹색 텍스트가 있는 녹색 채우기」</b>.</p>
+        </li>
+        <li>
+          <b>같은 자리에서 한 번 더 — 보다 작음</b>
+          <p><code>14</code> 를 넣고 <b>빨간색</b>. <b>규칙 두 개가 겹쳐 걸립니다.</b></p>
+        </li>
+      </ol>
+      <div class="note warn">
+        <span class="note-label">예제에 함정이 하나 있습니다</span>
+        <p>
+          기준표에 <b>「14회~21회 통과」</b> 라고 적혀 있는데,
+          <b>22회는 어디에도 안 들어갑니다.</b> 초과는 22 <b>초과</b>니까요.
+        </p>
+        <p>
+          완성본에서는 그 칸이 <b>「14회~22회」</b> 로 고쳐져 있습니다.
+          <b>기준을 먼저 정확히 읽는 것</b>이 조건부 서식보다 먼저입니다.
+        </p>
+      </div>
+
+      <h3>② 순위로 — 상위/하위 규칙</h3>
+      <p class="sub"><span class="nb">「건축학개론성적」 시트</span></p>
+      <p>
+        합계 열에 <b>상위 30%는 PASS, 하위 30%는 FAIL</b> 을 표시합니다.
+        <b>기준 점수를 모르는 채로</b> 색을 칠할 수 있습니다.
+      </p>
+      <p>
+        <b>조건부 서식 → 상위/하위 규칙 → 상위 10%</b> 를 고른 뒤
+        숫자만 <b>30</b> 으로 바꾸면 됩니다.
+      </p>
+      <div class="note">
+        <span class="note-label">사람이 늘어도 다시 안 해도 됩니다</span>
+        <p>
+          <b>「90점 이상」</b> 으로 걸면 사람이 바뀔 때마다 기준을 다시 봐야 합니다.
+          <b>「상위 30%」</b> 로 걸면 <b>몇 명이 되든</b> 알아서 다시 잡습니다.
+        </p>
+      </div>
+
+      <h3>③ 글자로 — 특정 단어가 든 줄</h3>
+      <p class="sub"><span class="nb">「해피데이리뷰」 시트</span></p>
+      <p>
+        파티용품 리뷰 열두 줄입니다. <b>「스티커」가 든 리뷰</b>만 찾습니다.
+      </p>
+      <p>
+        <b>조건부 서식 → 셀 강조 규칙 → 텍스트 포함</b> 에
+        <code>스티커</code> 를 넣으면 됩니다.
+        <b>문장 어디에 있든</b> 걸립니다.
+      </p>
+      <p>
+        2장에서 같은 일을 <b>찾기 및 바꾸기</b>와 <b>필터</b>로도 했습니다.
+        <b>차이는 이렇습니다</b> —
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>방법</th><th>결과</th><th>새 자료가 들어오면</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>찾기 및 바꾸기</td><td>한 번 칠하고 끝</td><td><b>다시 해야</b> 합니다</td></tr>
+            <tr><td>필터</td><td>해당 줄만 <b>보임</b></td><td>필터를 <b>다시 겁니다</b></td></tr>
+            <tr><td><b>조건부 서식</b></td><td>다 보이되 <b>색이 다름</b></td><td><b>저절로</b> 칠해집니다</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>④ 수식으로 — 줄 전체를 칠합니다</h3>
+      <p class="sub"><span class="nb">「전체행강조」 시트 — <b>여기부터가 진짜입니다</b></span></p>
+      <p>
+        앞의 셋은 <b>조건에 맞는 칸만</b> 칠합니다.
+        <b>240점 미만인 사람의 줄 전체</b>를 칠하려면 <b>수식</b>이 필요합니다.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>칠할 범위를 <u>전부</u> 잡습니다</b>
+          <p>
+            <b>B5:F16</b> — 이름부터 합계까지. <b>여기서 잡은 범위가 칠해집니다.</b>
+          </p>
+        </li>
+        <li>
+          <b>조건부 서식 → 새 규칙 → 수식을 사용하여…</b>
+          <p>맨 아래 항목입니다.</p>
+        </li>
+        <li>
+          <b><code>=$F5&lt;240</code> 을 넣습니다</b>
+          <p>
+            <b><code>$</code> 가 F 앞에만</b> 붙습니다.
+            <b>열은 고정, 행은 안 고정</b>입니다.
+          </p>
+        </li>
+        <li>
+          <b>서식 → 채우기 → 연한 빨강</b>
+        </li>
+      </ol>
+
+      <div class="note stop">
+        <span class="note-label">여기서 다들 틀립니다 — <code>$</code> 자리</span>
+        <p>
+          수식은 <b>범위에서 제일 왼쪽 위 칸</b>(여기서는 B5)을 기준으로 씁니다.
+          그 수식이 <b>나머지 칸으로 퍼져 나갑니다.</b>
+        </p>
+        <p>
+          <code>$F5</code> — <b>F열은 고정</b>이라 C5·D5·E5 로 퍼져도 <b>계속 F를 봅니다.</b>
+          <b>5는 안 고정</b>이라 아래로 내려가면 F6·F7 로 <b>따라 내려갑니다.</b>
+        </p>
+        <p>
+          <code>$F$5</code> 로 쓰면 <b>모든 칸이 F5 하나만</b> 보게 되어
+          <b>전부 칠해지거나 전부 안 칠해집니다.</b>
+          1장 <b>혼합참조</b>가 여기서 그대로 쓰입니다.
+        </p>
+      </div>
+
+      <h3>⑤ 조건 두 개를 함께</h3>
+      <p class="sub"><span class="nb">「다중조건」 시트 — 엑셀특강 참석 현황</span></p>
+      <p>
+        <b>1차와 2차를 모두 들은 사람</b>만 칠합니다.
+        <b>둘 다</b>니까 <b>AND</b> 입니다.
+      </p>
+      <p>
+        범위 <b>B5:D14</b> 를 잡고 <b>새 규칙 → 수식</b> 에
+        <code>=AND($C5="O",$D5="O")</code> 를 넣습니다.
+      </p>
+      <div class="note">
+        <span class="note-label">둘 중 하나면 OR</span>
+        <p>
+          <code>=OR($C5="O",$D5="O")</code> 로 바꾸면
+          <b>한 번이라도 온 사람</b>이 칠해집니다.
+          <b>AND 는 「그리고」, OR 는 「또는」</b> 입니다.
+          7장에서 같은 함수를 <b>수식으로</b> 다시 씁니다.
+        </p>
+      </div>
+
+      <h3>규칙을 고치고 지우려면</h3>
+      <p>
+        <b>조건부 서식 → 규칙 관리</b>.
+        <b>「서식 규칙 표시」를 「이 워크시트」로 바꾸세요.</b>
+        안 바꾸면 <b>지금 잡은 칸의 규칙만</b> 보여서
+        <b>「분명히 색이 있는데 규칙이 없다」</b> 는 일이 생깁니다.
+      </p>
+      <div class="note warn">
+        <span class="note-label">규칙이 조각조각 쌓입니다</span>
+        <p>
+          잘라내기·붙여넣기를 반복하면 <b>같은 규칙이 범위만 다르게</b>
+          수십 개로 쪼개집니다. 파일이 느려지는 흔한 원인입니다.
+        </p>
+        <p>
+          <b>규칙 관리에서 한 번씩 정리</b>하세요.
+          다 지우려면 <b>조건부 서식 → 규칙 지우기 → 시트 전체</b> 입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 ═══════════ -->
+    <section id="bar">
+      <span class="sec-tag">05 — 막대·아이콘</span>
+      <h2>데이터 막대와 아이콘</h2>
+      <p class="sub">
+        <span class="nb">예제 <code>3-05_데이터_막대.xlsx</code> · <code>3-06_아이콘_집합.xlsx</code>
+        — 같은 「영업1팀 매출일보」 입니다</span>
+      </p>
+
+      <p>
+        조건부 서식의 <b>나머지 세 가지</b>입니다.
+        <b>색으로 갈라 보이는 것</b>이 아니라 <b>크기를 그려 주는 것</b>입니다.
+      </p>
+
+      <h3>데이터 막대 — 칸 안에 막대를 깝니다</h3>
+      <p>
+        <b>D열 실적매출</b>을 잡고 <b>조건부 서식 → 데이터 막대</b>.
+        <b>제일 큰 값이 칸을 꽉 채우고</b> 나머지는 비례해서 그려집니다.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>D5:D16 을 잡습니다</b>
+          <p>머리글과 합계 줄은 빼세요. <b>합계가 들어가면 나머지가 다 작아 보입니다.</b></p>
+        </li>
+        <li>
+          <b>조건부 서식 → 데이터 막대 → 그라데이션 채우기</b>
+          <p>색은 아무거나. <b>한 표에 한 색</b>만 쓰세요.</p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">음수가 섞이면 — F열 매출이익</span>
+        <p>
+          예제의 <b>매출이익</b> 열에는 <b>-390,000 · -350,000 · -400,000</b>
+          세 사람이 있습니다. 여기에 막대를 깔면 <b>가운데를 기준으로</b>
+          <b>왼쪽으로 뻗는 막대</b>가 생깁니다.
+        </p>
+        <p>
+          <b>규칙 관리 → 규칙 편집 → 음수 값 및 축</b> 에서
+          <b>축 위치</b>와 <b>음수 막대 색</b>을 정합니다.
+          기본은 <b>가운데 축 · 빨간 막대</b> 입니다.
+        </p>
+        <p>
+          숫자 서식도 같이 바꿔 두면 좋습니다 —
+          <code>#,##0;[빨강]-#,##0;-;@</code>.
+          <b>막대와 글자 색이 같은 이야기를</b> 하게 됩니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">막대만 보이고 숫자는 감추기</span>
+        <p>
+          <b>규칙 편집 → 「막대만 표시」</b> 에 체크하면 숫자가 사라지고
+          막대만 남습니다. <b>옆 칸에 같은 숫자가 있을 때</b>만 쓰세요.
+        </p>
+        <p>
+          숫자가 아예 없어지면 <b>인쇄했을 때 값을 알 수 없습니다.</b>
+        </p>
+      </div>
+
+      <h3>아이콘 집합 — 신호등</h3>
+      <p class="sub"><span class="nb">3-06 파일, <b>G열 이익률</b></span></p>
+      <p>
+        <b>조건부 서식 → 아이콘 집합 → 3색 신호등.</b>
+        기본은 <b>상위 67% 초록 · 33~67% 노랑 · 하위 33% 빨강</b> 입니다.
+      </p>
+      <div class="note stop">
+        <span class="note-label">기본값을 그대로 쓰면 거의 틀립니다</span>
+        <p>
+          기본은 <b>「백분위」</b> 입니다. 즉 <b>전체에서 몇 등인가</b>로 나눕니다.
+          <b>모두가 적자여도 상위 3분의 1은 초록불</b>이 켜집니다.
+        </p>
+        <p>
+          <b>규칙 편집</b>에서 <b>종류를 「백분위」에서 「숫자」로</b> 바꾸고
+          기준을 손으로 넣으세요. 이익률이라면 <b>0.1 이상 초록 · 0 이상 노랑 ·
+          그 아래 빨강</b> 같은 식입니다.
+        </p>
+      </div>
+      <ol class="steps">
+        <li>
+          <b>G5:G16 을 잡고 아이콘 집합을 겁니다</b>
+        </li>
+        <li>
+          <b>조건부 서식 → 규칙 관리 → 규칙 편집</b>
+        </li>
+        <li>
+          <b>「종류」를 백분율 → 숫자로 바꿉니다</b>
+          <p>
+            초록은 <code>&gt;= 0.1</code>, 노랑은 <code>&gt;= 0</code>.
+            나머지가 빨강이 됩니다.
+          </p>
+        </li>
+        <li>
+          <b>「아이콘만 표시」는 끄고 둡니다</b>
+          <p>숫자와 아이콘이 <b>함께</b> 보이는 편이 낫습니다.</p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">셋 중 어느 것을 쓰나</span>
+        <div class="tbl-wrap">
+          <table>
+            <thead>
+              <tr><th>무엇</th><th>보여 주는 것</th><th>어울리는 자리</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><b>데이터 막대</b></td><td>값의 <b>크기</b></td><td>매출·수량처럼 <b>크기 자체</b>가 중요한 열</td></tr>
+              <tr><td><b>색조</b></td><td>값의 <b>분포</b></td><td>표 전체가 숫자인 <b>행렬표</b></td></tr>
+              <tr><td><b>아이콘</b></td><td><b>기준 통과 여부</b></td><td>달성률·이익률처럼 <b>선이 있는</b> 열</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <b>한 표에 두 가지 이상 쓰지 마세요.</b>
+          막대와 아이콘과 색을 다 쓰면 <b>아무것도 안 보입니다.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 06 ═══════════ -->
+    <section id="spark">
+      <span class="sec-tag">06 — 스파크라인</span>
+      <h2>스파크라인</h2>
+      <p class="sub">
+        <span class="nb">예제 <code>3-07_스파크라인.xlsx</code> — 2020년 상반기 직원별 실적현황</span>
+      </p>
+
+      <p>
+        <b>칸 하나에 들어가는 꺾은선</b>입니다.
+        차트가 아니라 <b>배경 그림</b>이라, 칸을 옮기면 따라옵니다.
+      </p>
+
+      <p>
+        예제 표는 <b>1~6월 여섯 칸</b>과 <b>합계</b>가 있고,
+        맨 오른쪽 <b>J열이 「트렌드」</b> 로 비어 있습니다.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>J7 을 누릅니다</b>
+          <p><b>그릴 자리</b>부터 고르는 것이 보통과 반대라 헷갈립니다.</p>
+        </li>
+        <li>
+          <b>삽입 → 스파크라인 → 꺾은선형</b>
+        </li>
+        <li>
+          <b>「데이터 범위」에 <code>C7:H7</code></b>
+          <p>1월부터 6월까지. <b>합계 칸(I)은 넣지 마세요.</b> 합계가 커서 나머지가 눌립니다.</p>
+        </li>
+        <li>
+          <b>「위치 범위」는 <code>J7</code> 그대로 두고 확인</b>
+        </li>
+        <li>
+          <b>J7 의 오른쪽 아래를 잡고 아래로 끕니다</b>
+          <p>나머지 사람도 <b>각자의 줄</b>을 보고 그려집니다.</p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">높은 점·낮은 점을 찍습니다</span>
+        <p>
+          스파크라인을 누르면 리본에 <b>「스파크라인」 탭</b>이 생깁니다.
+          <b>높은 점 · 낮은 점 · 표식</b> 에 체크하세요.
+          <b>언제 제일 좋았고 언제 제일 나빴는지</b>가 점으로 찍힙니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">기본값은 줄마다 눈금이 다릅니다</span>
+        <p>
+          그냥 그리면 <b>줄마다 자기 최대·최소에 맞춰</b> 그려집니다.
+          그래서 <b>80~150 인 사람과 800~1500 인 사람의 그림이 똑같아</b> 보입니다.
+        </p>
+        <p>
+          <b>스파크라인 탭 → 축 → 세로 축 최소·최대값 옵션 →
+          「모든 스파크라인에 대해 동일하게」</b> 를 고르면
+          <b>줄끼리 견줄 수 있게</b> 됩니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">합계만 보면 안 보이는 것</span>
+        <p>
+          예제에서 <b>합계가 비슷한 두 사람</b>을 찾아보세요.
+          한 사람은 <b>고르게</b> 하고, 한 사람은 <b>1·2월에 몰아서</b> 했을 수 있습니다.
+        </p>
+        <p>
+          <b>합계는 같아도 관리해야 할 사람은 다릅니다.</b>
+          스파크라인 한 열이 하는 일이 그것입니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">지우는 법이 따로 있습니다</span>
+        <p>
+          <code>Delete</code> 를 눌러도 <b>안 지워집니다.</b>
+          배경 그림이라 그렇습니다.
+        </p>
+        <p>
+          <b>스파크라인 탭 → 지우기</b> 를 쓰거나,
+          <b>칸을 오른쪽 눌러 「스파크라인」 → 「선택한 스파크라인 지우기」</b> 입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 07 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">07 — 마무리</span>
+      <h2>3장 확인 목록</h2>
+      <p class="sub">
+        직접 해 본 것에만 표시하세요. <b>읽은 것은 표시하지 마세요.</b>
+      </p>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span>같아 보이는 두 칸에서 <b>하나만 계산이 되는 것</b>을 확인했다</span></label></li>
+        <li><label><input type="checkbox"><span>서식을 입혀도 <b>수식 입력줄의 값은 그대로</b>라는 것을 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><code>Ctrl</code>+<code>1</code> 로 셀 서식 창을 연다</span></label></li>
+        <li><label><input type="checkbox"><span>세미콜론 네 칸이 <b>양수·음수·0·글자</b> 순서임을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>3째 칸을 <b>비워서 0을 감춰</b> 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>날짜에 <code>(aaa)</code> 로 <b>요일을 붙여</b> 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><code>000000</code> 으로 <b>앞자리 0</b>을 살려 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>맨 뒤 쉼표가 <b>천 단위로 접는다</b>는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>접었으면 <b>「(단위: 천원)」 을 적어야</b> 한다는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>숫자는 오른쪽, 글자는 왼쪽으로 <b>맞춰</b> 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>들여쓰기를 <b>공백이 아니라 「들여쓰기 늘림」</b> 으로 했다</span></label></li>
+        <li><label><input type="checkbox"><span>셀 강조 규칙을 <b>두 개 겹쳐</b> 걸어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>상위 30%</b> 처럼 순위로 거는 규칙을 써 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>수식 규칙 <code>=$F5&lt;240</code> 으로 <b>줄 전체</b>를 칠해 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><code>$</code> 를 <b>열 앞에만</b> 붙이는 이유를 말할 수 있다</span></label></li>
+        <li><label><input type="checkbox"><span><b>AND</b> 로 조건 두 개를 함께 걸어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>규칙 관리에서 <b>「이 워크시트」</b> 로 바꿔 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>데이터 막대 범위에 <b>합계를 넣지 않았다</b></span></label></li>
+        <li><label><input type="checkbox"><span>아이콘 집합 기준을 <b>백분위에서 숫자로</b> 바꿔 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>스파크라인을 그리고 <b>높은 점·낮은 점</b>을 켜 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>스파크라인 <b>세로 축을 모두 동일하게</b> 맞춰 봤다</span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">며칠 뒤에 다시 — 복습 파일</span>
+        <p>
+          같은 폴더에 <code>3장_복습.xlsx</code> 가 있습니다.
+          <b>오늘 말고 며칠 지나서</b> 여세요.
+        </p>
+        <p>
+          <b>노란 칸만 채우면</b> 됩니다. 표시 형식 · 보고서 규칙 ·
+          조건부 서식 · 데이터 막대 · 스파크라인 <b>다섯 가지</b>를
+          한 파일에서 다시 풀어 봅니다.
+          <b>정답은 맨 뒤 한 장</b>에 있습니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">마지막 관문 — 3장 종합문제</span>
+        <p>
+          같은 폴더에 <b><code>3장_종합문제.xlsx</code></b> 가 있습니다.
+          <b>복습 파일을 마친 다음</b> 여세요.
+        </p>
+        <p>
+          <b>한빛물산 상반기 영업보고</b> — 값은 다 들어 있는데
+          <b>아무것도 안 읽히는</b> 표 한 장입니다.
+          단위가 안 적혀 있고, 0이 잔뜩이고, 어디를 봐야 할지 알 수 없습니다.
+        </p>
+        <p>
+          <b>순서가 곧 함정입니다.</b> 단위를 접기 전에 안내 문구를 고치면
+          <b>천 배 틀린 보고서</b>가 됩니다.
+          <b>최종확인 다섯 칸</b>으로 어디서 샜는지 알 수 있게 해 두었습니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">여기까지 하셨으면</span>
+        <p>
+          이제 <b>표를 고치지 않고도 읽히게</b> 만들 수 있습니다.
+          값은 그대로이니 <b>다시 계산할 일이 없습니다.</b>
+        </p>
+        <p>
+          4장은 <b>그 표를 남에게 넘기는 일</b>입니다.
+          인쇄하면 잘리고, 보내면 <code>#REF!</code> 가 뜨고,
+          받은 사람이 수식을 지워 버리는 — 그 이야기입니다.
+        </p>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-m2.html">← 마스터 2장: 실무자 필수 활용</a>
+        <a href="excel-m4.html">마스터 4장: 공유와 출력 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

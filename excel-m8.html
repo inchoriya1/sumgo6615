@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="ko" data-subject="excel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>엑셀 마스터 8장 — 그림이 거짓말하지 않게</title>
+<meta name="description" content="마스터 클래스 8장. 차트를 고르는 기준, 실무 차트 다섯 가지, 혼합 차트와 보조 축, 간트 차트, 차트 디자인 규칙.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="excel.html">← 엑셀 과목 첫 화면으로</a>
+    <p class="eyebrow">1과목 · 엑셀 · 마스터 8장</p>
+    <h1>그림이<br><em>거짓말하지 않게</em></h1>
+    <p class="lede">
+      차트는 <b>만들기가 어려운 게 아닙니다.</b>
+      범위를 잡고 <code>Alt</code>+<code>F1</code> 이면 나옵니다.
+      어려운 것은 <b>어느 차트를 고르느냐</b>와
+      <b>보는 사람이 잘못 읽지 않게 하는 것</b>입니다.
+      이 장은 거기에 시간을 씁니다.
+    </p>
+    <div class="facts">
+      <span><b>대상</b> 보고서에 그림을 넣는 분</span>
+      <span><b>소요</b> 80분</span>
+      <span><b>예제</b> <code>강의예제/8장…</code> 폴더</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#pick">어느 차트를 고르나</a></li>
+      <li><a href="#five">실무 차트 다섯</a></li>
+      <li><a href="#mix">혼합 차트와 보조 축</a></li>
+      <li><a href="#gantt">간트 차트</a></li>
+      <li><a href="#design">거짓말하지 않는 차트</a></li>
+      <li><a href="#check">8장 확인 목록</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════ -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에</h2>
+
+      <div class="note">
+        <span class="note-label">예제 파일이 어디 있나</span>
+        <p>
+          <code>강의예제 → 8장_실무에서_필요한_데이터_시각화</code> 폴더입니다.
+          <b>다섯 강</b>이라 짧습니다. 하루에 다 됩니다.
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>파일</th><th>안에 든 시트</th><th>무엇을 하나</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>8-01_막대로_만드는_표</code></td>
+              <td>중요함수투표</td>
+              <td>함수 인기 투표 자료. <b>표에 비율 열을 더하고</b> 차트로</td>
+            </tr>
+            <tr>
+              <td><code>8-02_실무_차트_다섯_가지</code></td>
+              <td><b>5장</b> — 꺾은선 · 세로막대 · 가로막대 · 누적막대 · 원형</td>
+              <td>차트마다 시트 하나. <b>같은 자료를 여러 모양으로</b></td>
+            </tr>
+            <tr>
+              <td><code>8-03_혼합_차트</code></td>
+              <td>혼합차트 <span class="nb">(별다방 강남점 요일별 매출)</span></td>
+              <td><b>단위가 다른 둘</b>을 한 그림에</td>
+            </tr>
+            <tr>
+              <td><code>8-04_보조_축</code></td>
+              <td>경제성장률 <span class="nb">(GDP와 성장률)</span></td>
+              <td><b>조 단위와 % 를</b> 같이 그립니다</td>
+            </tr>
+            <tr>
+              <td><code>8-05_간트_차트</code></td>
+              <td>간트차트 <span class="nb">(21년 4분기 TFT 일정)</span></td>
+              <td>엑셀에 없는 차트를 <b>누적 막대로</b> 만듭니다</td>
+            </tr>
+            <tr>
+              <td><code>추가예제/08-A01</code></td>
+              <td>디자인=색감 · 무엇을전달할것인가 · 어떻게전달할것인가</td>
+              <td><b>06장의 자료</b>입니다. 여기도 꼭 열어 보세요</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">차트 단축키 둘</span>
+        <div class="tbl-wrap">
+          <table>
+            <tbody>
+              <tr><td><code>Alt</code>+<code>F1</code></td><td><b>같은 시트</b>에 기본 차트</td></tr>
+              <tr><td><code>F11</code></td><td><b>새 시트</b>에 통째로 차트</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <b>일단 만들고 고치는 편</b>이 빠릅니다.
+          차트 종류는 <b>나중에 언제든</b> 바꿀 수 있습니다 —
+          <b>차트 디자인 → 차트 종류 변경.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="pick">
+      <span class="sec-tag">01 — 고르기</span>
+      <h2>어느 차트를 고르나</h2>
+      <p class="sub">
+        <span class="nb">추가예제 <code>08-A01.xlsx</code> 의
+        <b>「무엇을전달할것인가」</b> 시트를 함께 보세요</span>
+      </p>
+
+      <p>
+        <b>자료가 정하는 것이 아니라 하려는 말이 정합니다.</b>
+        같은 숫자로도 <b>다른 차트</b>를 그려야 할 때가 있습니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>하려는 말</th><th>차트</th><th>예제</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>시간에 따라 어떻게 변했나</b></td>
+              <td><b>꺾은선</b></td>
+              <td>분기별 실적 <span class="nb">(8-02)</span></td>
+            </tr>
+            <tr>
+              <td><b>누가 더 큰가</b> <span class="nb">(항목 5개 이하)</span></td>
+              <td><b>세로 막대</b></td>
+              <td>지역별 합격자 상위 5 <span class="nb">(8-02)</span></td>
+            </tr>
+            <tr>
+              <td><b>누가 더 큰가</b> <span class="nb">(항목이 많음 · 이름이 김)</span></td>
+              <td><b>가로 막대</b></td>
+              <td>17개 시도 전체 <span class="nb">(8-02)</span></td>
+            </tr>
+            <tr>
+              <td><b>전체가 얼마이고 안이 어떻게 나뉘나</b></td>
+              <td><b>누적 막대</b></td>
+              <td>지역별·분류별 <span class="nb">(8-02)</span></td>
+            </tr>
+            <tr>
+              <td><b>비중이 얼마인가</b> <span class="nb">(항목 3~4개)</span></td>
+              <td><b>원형</b></td>
+              <td>점유율 <span class="nb">(8-02)</span></td>
+            </tr>
+            <tr>
+              <td><b>단위가 다른 둘을 같이</b></td>
+              <td><b>혼합 + 보조 축</b></td>
+              <td>매출과 이익률 <span class="nb">(8-03 · 8-04)</span></td>
+            </tr>
+            <tr>
+              <td><b>언제부터 언제까지</b></td>
+              <td><b>간트</b> <span class="nb">(누적 막대 응용)</span></td>
+              <td>일정표 <span class="nb">(8-05)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note stop">
+        <span class="note-label">원형 차트는 되도록 쓰지 마세요</span>
+        <p>
+          <b>사람은 각도를 잘 못 읽습니다.</b>
+          22%와 25%를 <b>눈으로 구별할 수 없습니다.</b>
+        </p>
+        <p>
+          <b>조각이 다섯 개를 넘으면</b> 아무도 못 읽습니다.
+          그 경우 <b>가로 막대</b>로 바꾸세요. <b>훨씬 잘 읽힙니다.</b>
+        </p>
+        <p>
+          원형이 맞는 자리는 <b>「절반이 넘는다」</b> 처럼
+          <b>한눈에 알아야 하는 한두 조각</b>일 때뿐입니다.
+        </p>
+      </div>
+
+      <h3>차트 없이 표로도 됩니다</h3>
+      <p class="sub"><span class="nb">예제 <code>8-01_막대로_만드는_표.xlsx</code></span></p>
+      <p>
+        엑셀 중요함수 투표 자료입니다.
+        <b>비율 열</b>을 만들고 <code>=D5/SUM($D$5:$D$17)</code> 로 채웁니다.
+        <b><code>$</code> 가 붙은 자리</b>를 보세요 — 분모는 <b>고정</b>이어야 합니다.
+      </p>
+      <p>
+        여기에 <b>3장의 데이터 막대</b>를 깔면 <b>차트 없이도</b> 순위가 보입니다.
+      </p>
+      <div class="note">
+        <span class="note-label">차트를 만들기 전에 한 번 생각할 것</span>
+        <p>
+          <b>줄이 열 개 안쪽이고 숫자를 정확히 봐야 한다면
+          표에 데이터 막대를 까는 편이 낫습니다.</b>
+        </p>
+        <p>
+          차트는 <b>자리를 많이 먹고</b>, 값을 <b>정확히는 못 읽습니다.</b>
+          <b>흐름·비교를 한눈에</b> 보여 줄 때만 쓰세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="five">
+      <span class="sec-tag">02 — 다섯 가지</span>
+      <h2>실무 차트 다섯</h2>
+      <p class="sub">
+        <span class="nb">예제 <code>8-02_실무_차트_다섯_가지.xlsx</code> — 시트 다섯 개</span>
+      </p>
+
+      <h3>꺾은선 — 시간의 흐름</h3>
+      <p class="sub"><span class="nb">「꺾은선」 시트 — 세원상사 영업팀별 연간 실적</span></p>
+      <p>
+        영업1~3팀의 <b>1분기~4분기</b> 실적입니다.
+        <b>4분기는 「예상」</b> 이라고 적혀 있습니다.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>표 전체를 잡고 <code>Alt</code>+<code>F1</code></b>
+          <p>차트 종류가 막대로 나오면 <b>차트 종류 변경 → 꺾은선형</b>.</p>
+        </li>
+        <li>
+          <b>표식을 켭니다</b>
+          <p>
+            <b>「표식이 있는 꺾은선형」</b> 을 고르세요.
+            점이 있어야 <b>몇 개의 값인지</b> 보입니다.
+          </p>
+        </li>
+        <li>
+          <b>★ 예상치를 점선으로 바꿉니다</b>
+          <p>
+            <b>4분기 구간만</b> 점선으로. 선을 누르고 <b>한 번 더 눌러</b>
+            그 구간만 고른 뒤 <b>서식 → 선 → 대시 종류</b>.
+          </p>
+        </li>
+      </ol>
+      <div class="note stop">
+        <span class="note-label">실적과 예상을 같은 선으로 그리면 거짓말이 됩니다</span>
+        <p>
+          보는 사람은 <b>넷 다 실제 숫자</b>라고 읽습니다.
+          <b>점선 하나</b>가 그걸 막습니다.
+        </p>
+        <p>
+          <b>이 장에서 제일 큰 사고</b>입니다.
+          예제 자료가 굳이 <b>「4분기(예상)」</b> 라고 적어 둔 이유입니다.
+        </p>
+      </div>
+
+      <h3>세로 막대 — 적은 항목 비교</h3>
+      <p class="sub"><span class="nb">「세로막대」 시트 — 상위 5개 시도</span></p>
+      <div class="note">
+        <span class="note-label">막대는 반드시 0부터 시작해야 합니다</span>
+        <p>
+          세로 축을 <b>「600부터」</b> 로 바꾸면
+          698과 301의 차이가 <b>실제보다 훨씬 크게</b> 보입니다.
+        </p>
+        <p>
+          <b>막대의 길이가 값</b>이기 때문입니다.
+          <b>꺾은선은 0부터 안 해도 됩니다.</b> 거기서는
+          <b>선의 기울기</b>가 값이니까요.
+        </p>
+      </div>
+
+      <h3>가로 막대 — 많은 항목, 긴 이름</h3>
+      <p class="sub"><span class="nb">「가로막대」 시트 — 17개 시도 전체</span></p>
+      <p>
+        세로 막대로 그리면 <b>「서울특별시」 「충청남도」</b> 가
+        <b>비스듬히 눕거나 잘립니다.</b> 가로 막대는 그럴 일이 없습니다.
+      </p>
+      <div class="note warn">
+        <span class="note-label">가로 막대는 순서가 거꾸로 나옵니다</span>
+        <p>
+          표에서 1등이 맨 위인데 <b>차트에서는 맨 아래</b>에 옵니다.
+        </p>
+        <p>
+          <b>세로 축을 오른쪽 눌러 → 축 서식 → 「항목을 거꾸로」</b>
+          에 체크하면 바로잡힙니다. <b>거의 항상 해야 합니다.</b>
+        </p>
+      </div>
+
+      <h3>누적 막대 — 전체와 안쪽</h3>
+      <p class="sub"><span class="nb">「누적막대」 시트</span></p>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th></th><th>보여 주는 것</th><th>못 보여 주는 것</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>누적 막대</b></td>
+              <td><b>전체 크기</b>와 안쪽 구성</td>
+              <td>가운데 조각끼리는 <b>견주기 어렵습니다</b></td>
+            </tr>
+            <tr>
+              <td><b>100% 누적</b></td>
+              <td><b>비율</b>만</td>
+              <td><b>전체 크기가 안 보입니다</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <b>맨 아래 조각만 바닥이 맞습니다.</b>
+        위로 갈수록 <b>시작점이 제각각</b>이라 길이를 견줄 수 없습니다.
+        <b>제일 중요한 항목을 맨 아래</b>에 놓으세요.
+      </p>
+
+      <h3>원형 — 쓸 거면 이렇게</h3>
+      <ol class="steps">
+        <li><b>조각을 큰 것부터</b> 정렬합니다 <span class="nb">— 표를 먼저 정렬하세요</span></li>
+        <li><b>제일 큰 조각이 12시부터</b> 시계 방향으로</li>
+        <li><b>범례를 지우고</b> 조각 위에 <b>이름과 %</b> 를 직접 붙입니다</li>
+        <li><b>작은 조각들은 「기타」로</b> 묶습니다</li>
+      </ol>
+      <div class="note">
+        <span class="note-label">데이터 레이블 붙이기</span>
+        <p>
+          차트를 누르고 <b>오른쪽 위 <code>+</code> → 데이터 레이블</b>.
+          <b>「기타 옵션」</b> 에서 <b>항목 이름 · 백분율</b> 을 켭니다.
+        </p>
+        <p>
+          <b>범례보다 훨씬 잘 읽힙니다.</b>
+          범례는 <b>눈이 왔다 갔다</b> 해야 하니까요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="mix">
+      <span class="sec-tag">03 — 혼합</span>
+      <h2>혼합 차트와 보조 축</h2>
+
+      <h3>단위가 다른 둘</h3>
+      <p class="sub"><span class="nb">예제 <code>8-04_보조_축.xlsx</code> — GDP와 성장률</span></p>
+      <p>
+        <b>GDP 는 십억 원 단위</b>, <b>성장률은 몇 %</b>입니다.
+        같이 그리면 <b>성장률 선이 바닥에 깔려</b> 안 보입니다.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>표 전체로 차트를 만듭니다</b>
+          <p>성장률이 <b>보이지도 않는 것</b>을 먼저 확인하세요.</p>
+        </li>
+        <li>
+          <b>차트 디자인 → 차트 종류 변경 → 혼합</b>
+          <p>맨 아래 <b>「콤보」</b> 입니다.</p>
+        </li>
+        <li>
+          <b>계열마다 종류를 정합니다</b>
+          <p>
+            <b>GDP = 묶은 세로 막대</b>,
+            <b>성장률 = 표식이 있는 꺾은선형</b>.
+          </p>
+        </li>
+        <li>
+          <b>성장률 쪽 「보조 축」 에 체크합니다</b>
+          <p>오른쪽에 <b>축이 하나 더</b> 생깁니다.</p>
+        </li>
+      </ol>
+      <div class="note">
+        <span class="note-label">어느 쪽을 막대로 하나</span>
+        <p>
+          <b>크기를 말하는 것이 막대</b>, <b>흐름을 말하는 것이 선</b> 입니다.
+        </p>
+        <p>
+          둘 다 막대로 하면 <b>어느 축이 어느 막대인지</b> 알 수 없습니다.
+          <b>모양이 달라야 축이 구별됩니다.</b>
+        </p>
+      </div>
+
+      <h3>요일별 매출 — 혼합 차트 실습</h3>
+      <p class="sub"><span class="nb">예제 <code>8-03_혼합_차트.xlsx</code> — 별다방 강남점</span></p>
+      <p>
+        샌드위치·생과일주스 등 <b>제품별 요일 매출</b> 표입니다.
+        <b>제품은 막대</b>로, <b>합계나 평균은 선</b>으로 그려
+        <b>어느 요일이 전체적으로 셌는지</b> 함께 보여 줍니다.
+      </p>
+
+      <div class="note stop">
+        <span class="note-label">보조 축은 착시를 만듭니다</span>
+        <p>
+          <b>두 축의 눈금을 마음대로 정할 수 있기 때문에</b>,
+          <b>아무 상관 없는 두 값도 「같이 움직이는 것처럼」</b> 보이게 만들 수 있습니다.
+        </p>
+        <p>
+          쓰지 말라는 말이 아닙니다.
+          <b>축 두 개에 단위를 반드시 적고</b>,
+          <b>눈금을 보기 좋으라고 조정하지 마세요.</b>
+        </p>
+        <p>
+          <b>축 제목 넣기</b> — 차트를 누르고
+          <b><code>+</code> → 축 제목</b> 에 체크한 뒤 직접 씁니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="gantt">
+      <span class="sec-tag">04 — 간트</span>
+      <h2>간트 차트</h2>
+      <p class="sub">
+        <span class="nb">예제 <code>8-05_간트_차트.xlsx</code> — 21년 4분기 신규사업 TFT 일정</span>
+      </p>
+
+      <p>
+        <b>엑셀에 간트 차트라는 종류는 없습니다.</b>
+        <b>누적 가로 막대에서 앞 막대를 투명하게</b> 만들어 씁니다.
+      </p>
+
+      <p>
+        예제 표는 이렇게 되어 있습니다 —
+        <b>일정명 · 시작일 · 소요일 · 마감일 · 진행률 · 진행일</b>.
+        그리고 위쪽에 <b>최소날짜 <code>=C7-5</code></b> ·
+        <b>최대날짜 <code>=E12+5</code></b> 가 있습니다.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>일정명 · 시작일 · 소요일로 「누적 가로 막대」</b>
+          <p>
+            시작일이 <b>앞 막대</b>, 소요일이 <b>뒤 막대</b> 가 됩니다.
+          </p>
+        </li>
+        <li>
+          <b>★ 앞 막대를 투명하게 만듭니다</b>
+          <p>
+            시작일 막대를 누르고 <b>서식 → 채우기 → 채우기 없음</b>,
+            <b>테두리 → 선 없음</b>.
+            <b>이게 간트 차트의 전부입니다.</b>
+          </p>
+        </li>
+        <li>
+          <b>세로 축을 거꾸로</b>
+          <p>
+            <b>축 서식 → 「항목을 거꾸로」</b>.
+            첫 일정이 맨 위로 옵니다.
+          </p>
+        </li>
+        <li>
+          <b>가로 축 범위를 잡습니다</b>
+          <p>
+            <b>축 서식 → 최소값·최대값</b> 에
+            위에 계산해 둔 <b>최소날짜·최대날짜</b> 를 넣습니다.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note warn">
+        <span class="note-label">축 최소값에는 날짜가 아니라 <u>숫자</u>를 넣습니다</span>
+        <p>
+          엑셀 버전에 따라 <b>날짜를 못 받습니다.</b>
+          <b><code>2021-10-01</code> 이 아니라 <code>44470</code></b> 처럼
+          <b>일련번호</b>를 넣어야 하는 경우가 있습니다.
+        </p>
+        <p>
+          최소날짜 칸을 <b>「일반」 서식</b>으로 잠깐 바꿔
+          <b>숫자를 확인해서</b> 넣으세요. 1장에서 본 그대로입니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">진행률까지 보이게</span>
+        <p>
+          예제에는 <b>진행률</b>과 <b>진행일</b> 열이 더 있습니다.
+          <b>진행일을 세 번째 막대</b>로 더하고 <b>진한 색</b>을 주면
+          <b>「어디까지 했나」</b>가 막대 안에 보입니다.
+        </p>
+        <p>
+          <b>계열 겹치기 100%</b> 로 두면 막대가 <b>겹쳐서</b> 그려집니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">간트 차트는 대안이 있습니다</span>
+        <p>
+          <b>조건부 서식</b>으로도 만들 수 있습니다.
+          날짜를 가로로 늘어놓고 <code>=AND(D$5&gt;=$B5,D$5&lt;=$C5)</code>
+          같은 수식 규칙으로 칸을 칠하는 방식입니다.
+        </p>
+        <p>
+          <b>3장의 수식 규칙 그대로</b>입니다.
+          <b>일정이 많으면 이쪽이 더 간단합니다.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 ═══════════ -->
+    <section id="design">
+      <span class="sec-tag">05 — 규칙</span>
+      <h2>거짓말하지 않는 차트</h2>
+      <p class="sub">
+        <span class="nb">추가예제 <code>08-A01.xlsx</code> — 시트 셋</span>
+      </p>
+
+      <h3>지울 것부터 지웁니다</h3>
+      <p>
+        엑셀 기본 차트에는 <b>안 써도 되는 것들이 잔뜩</b> 붙어 있습니다.
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>지울 것</th><th>왜</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>가로 눈금선</b> <span class="nb">(대부분)</span></td><td>값을 붙였으면 필요 없습니다</td></tr>
+            <tr><td><b>범례</b> <span class="nb">(계열이 하나면)</span></td><td>제목에 적으면 됩니다</td></tr>
+            <tr><td><b>세로 축</b> <span class="nb">(값 레이블을 붙였으면)</span></td><td>같은 정보가 두 번</td></tr>
+            <tr><td><b>차트 테두리</b></td><td>문서 안에서 <b>액자</b>처럼 보입니다</td></tr>
+            <tr><td><b>3차원 효과</b></td><td><b>길이를 왜곡합니다.</b> 절대 쓰지 마세요</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>색은 세 개면 충분합니다</h3>
+      <p class="sub"><span class="nb">「디자인=색감」 시트</span></p>
+      <div class="note">
+        <span class="note-label">색을 쓰는 규칙</span>
+        <ol class="steps">
+          <li>
+            <b>강조할 하나만 진한 색</b>
+            <p>나머지는 <b>회색</b>. <b>이것 하나로 차트가 달라집니다.</b></p>
+          </li>
+          <li>
+            <b>같은 것은 같은 색으로</b>
+            <p>
+              보고서 안의 <b>모든 차트에서 영업1팀은 같은 색</b>이어야 합니다.
+              차트마다 색이 바뀌면 <b>읽는 사람이 매번 다시 배웁니다.</b>
+            </p>
+          </li>
+          <li>
+            <b>빨강과 초록을 나란히 쓰지 마세요</b>
+            <p>
+              <b>남성 스무 명 중 한 명</b>이 그 둘을 구별하기 어렵습니다.
+              <b>파랑과 주황</b>이 안전합니다.
+            </p>
+          </li>
+          <li>
+            <b>흑백으로 인쇄해 보세요</b>
+            <p>
+              <b>보고서는 흑백으로 인쇄되는 일이 많습니다.</b>
+              색만으로 구별되게 만들었다면 <b>인쇄하면 못 읽습니다.</b>
+              <b>선 모양·표식 모양</b>도 다르게 하세요.
+            </p>
+          </li>
+        </ol>
+      </div>
+
+      <h3>제목에 결론을 씁니다</h3>
+      <p class="sub"><span class="nb">「어떻게전달할것인가」 — 이 시트는 비어 있습니다. 직접 채워 보세요</span></p>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이렇게 말고</th><th>이렇게</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>분기별 매출 현황</td><td><b>3분기 매출, 2분기 대비 18% 증가</b></td></tr>
+            <tr><td>지역별 합격자 수</td><td><b>합격자 절반이 수도권에 몰림</b></td></tr>
+            <tr><td>제품별 판매량</td><td><b>김치냉장고만 6개월 내내 감소</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <b>차트는 근거이고, 제목이 주장입니다.</b>
+        읽는 사람이 <b>차트를 해석하게 두지 마세요.</b>
+        해석은 <b>만든 사람이 하는 일</b>입니다.
+      </p>
+
+      <div class="note stop">
+        <span class="note-label">차트가 거짓말하는 흔한 세 가지</span>
+        <ol class="steps">
+          <li>
+            <b>막대 축이 0에서 시작하지 않음</b>
+            <p>작은 차이를 <b>거대해 보이게</b> 만듭니다</p>
+          </li>
+          <li>
+            <b>보조 축 눈금을 맞춰 놓음</b>
+            <p>상관없는 둘을 <b>같이 움직이는 것처럼</b> 보이게 합니다</p>
+          </li>
+          <li>
+            <b>실적과 예상을 같은 선으로</b>
+            <p>아직 안 일어난 일을 <b>이미 일어난 것처럼</b> 보이게 합니다</p>
+          </li>
+        </ol>
+        <p>
+          <b>셋 다 일부러 하지 않아도 저절로 그렇게 됩니다.</b>
+          그래서 <b>만든 뒤에 한 번 확인</b>하는 습관이 필요합니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">차트 서식을 다음에도 쓰려면</span>
+        <p>
+          공들여 다듬은 차트를 <b>오른쪽 눌러 「서식 파일로 저장」</b>.
+        </p>
+        <p>
+          다음부터는 <b>차트 종류 변경 → 서식 파일</b> 에서 고르면
+          <b>같은 모양으로</b> 나옵니다.
+          <b>보고서 안의 차트를 통일</b>하는 가장 빠른 길입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 06 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">06 — 마무리</span>
+      <h2>8장 확인 목록</h2>
+      <p class="sub">
+        직접 해 본 것에만 표시하세요. <b>읽은 것은 표시하지 마세요.</b>
+      </p>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span><code>Alt</code>+<code>F1</code> 로 차트를 만들어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>비율 열을 만들 때 <b>분모에 <code>$</code></b> 를 붙였다</span></label></li>
+        <li><label><input type="checkbox"><span>줄이 적으면 <b>데이터 막대가 나을 수도</b> 있다는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>꺾은선에서 <b>예상치를 점선</b>으로 바꿔 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>막대는 0부터</b> 시작해야 한다는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>가로 막대에서 <b>「항목을 거꾸로」</b> 를 체크해 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>누적 막대에서 <b>가운데 조각은 견주기 어렵다</b>는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>원형 차트에 <b>이름과 %를 직접</b> 붙여 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>혼합 차트</b>로 막대와 선을 섞어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>보조 축</b>을 켜고 <b>축 제목</b>을 달았다</span></label></li>
+        <li><label><input type="checkbox"><span>간트 차트에서 <b>앞 막대를 투명하게</b> 만들어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>축 최소값에 <b>날짜 일련번호</b>를 넣어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>3차원 효과를 쓰지 않는다</b></span></label></li>
+        <li><label><input type="checkbox"><span><b>강조 하나만 진하게, 나머지는 회색</b>으로 해 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>흑백으로 인쇄</b>해 보고 구별되는지 확인했다</span></label></li>
+        <li><label><input type="checkbox"><span>차트 제목에 <b>결론</b>을 적어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>차트를 <b>서식 파일로 저장</b>해 봤다</span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">며칠 뒤에 다시 — 복습 파일</span>
+        <p>
+          같은 폴더에 <code>8장_복습.xlsx</code> 가 있습니다.
+          <b>노란 칸만 채우면</b> 됩니다.
+          차트 고르기 · 축 · 혼합 · 간트 <b>네 가지</b>를 다시 짚습니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">마지막 관문 — 8장 종합문제</span>
+        <p>
+          <b><code>8장_종합문제.xlsx</code></b> 입니다.
+          <b>이미 그려진 차트 네 개</b>를 받습니다.
+          <b>넷 다 어딘가 거짓말을 하고 있습니다.</b>
+        </p>
+        <p>
+          <b>무엇이 잘못됐는지 찾아 고치는 문제</b>입니다.
+          축이 0에서 시작하지 않고, 예상치가 실선이고,
+          원형에 조각이 아홉 개이고, 빨강과 초록이 나란히 있습니다.
+        </p>
+        <p>
+          <b>최종확인은 다섯 칸</b>입니다.
+          고친 뒤 <b>무엇을 고쳤는지 적는 칸</b>이 함께 있습니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">여덟 장을 다 하셨습니다</span>
+        <p>
+          <b>1·2장</b>에서 손을 만들고,
+          <b>3장</b>에서 읽히게 하고,
+          <b>4장</b>에서 남에게 넘기고,
+          <b>5·6장</b>에서 자료를 다루고,
+          <b>7장</b>에서 계산하고, <b>8장</b>에서 보여 줬습니다.
+        </p>
+        <p>
+          <b>부록 「한 걸음 더」</b> 에 세 가지가 더 있습니다.
+          <b>안 보셔도 됩니다.</b> 다만 <b>파워 쿼리와 예측</b>은
+          한 번 보아 둘 만합니다.
+        </p>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-m7.html">← 마스터 7장: 함수</a>
+        <a href="excel-m9.html">부록: 한 걸음 더 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

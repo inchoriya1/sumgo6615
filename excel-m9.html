@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="ko" data-subject="excel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>엑셀 마스터 부록 — 한 걸음 더</title>
+<meta name="description" content="마스터 클래스 부록. 그림으로 채우는 시각화 차트, 데이터 모델 피벗으로 글자 모으기, 예측 시트로 시계열 내다보기.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="excel.html">← 엑셀 과목 첫 화면으로</a>
+    <p class="eyebrow">1과목 · 엑셀 · 마스터 부록</p>
+    <h1>한 걸음<br><em>더</em></h1>
+    <p class="lede">
+      <b>여기는 안 보셔도 됩니다.</b>
+      여덟 장으로 실무는 다 됩니다.
+      다만 <b>세 가지</b>는 「이런 게 있다」 만 알아 두어도
+      언젠가 <b>「아, 그거」</b> 하고 떠오릅니다.
+      그때 다시 오시면 됩니다.
+    </p>
+    <div class="facts">
+      <span><b>대상</b> 1~8장을 마친 분</span>
+      <span><b>소요</b> 50분</span>
+      <span><b>예제</b> <code>강의예제/부록_한_걸음_더</code> 폴더</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#paint">그림으로 채우는 차트</a></li>
+      <li><a href="#model">글자를 모으는 피벗</a></li>
+      <li><a href="#forecast">내다보기</a></li>
+      <li><a href="#check">여기까지 오신 분께</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════ -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에</h2>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>파일</th><th>안에 든 시트</th><th>무엇을 하나</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>A-01_그림판으로_만드는_차트</code></td>
+              <td>Sheet1 · <b>색조합표</b> <span class="nb">(153줄)</span></td>
+              <td>막대를 <b>그림으로 채웁니다.</b> 회사 색을 고르는 <b>색 조합표</b>가 덤</td>
+            </tr>
+            <tr>
+              <td><code>A-02_데이터_모델_피벗</code></td>
+              <td>고객평가 · 음료배송</td>
+              <td>피벗은 <b>숫자만</b> 다루는데, <b>글자를 모으게</b> 만듭니다</td>
+            </tr>
+            <tr>
+              <td><code>A-03_시계열_예측</code></td>
+              <td>미세먼지농도 · 항공사승객수 · 메타정보</td>
+              <td><b>앞으로 어떻게 될지</b> 엑셀에게 물어봅니다</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">02·03장은 버전을 탑니다</span>
+        <p>
+          <b>데이터 모델</b>과 <b>예측 시트</b> 는
+          <b>엑셀 2016 이상</b>에서 됩니다.
+          <b>Mac 엑셀에서는 데이터 모델이 안 되는 경우</b>가 많습니다.
+        </p>
+        <p><b>안 되면 그냥 넘기세요.</b> 실무에 지장 없습니다.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="paint">
+      <span class="sec-tag">01 — 그림</span>
+      <h2>그림으로 채우는 차트</h2>
+      <p class="sub">
+        <span class="nb">예제 <code>A-01_그림판으로_만드는_차트.xlsx</code></span>
+      </p>
+
+      <p>
+        <b>Sheet1</b> 에 <b>년도 · 비율 · 나머지</b> 세 열이 있습니다.
+        <b>나머지 = <code>=1-C5</code></b> 입니다.
+        <b>비율과 나머지를 합치면 늘 1</b> 이 됩니다.
+      </p>
+      <p>
+        이것으로 <b>100% 누적 가로 막대</b>를 그리면
+        <b>길이가 전부 같은 막대 다섯 개</b>가 생깁니다.
+        앞쪽만 <b>비율만큼</b> 차 있습니다.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>년도 · 비율 · 나머지로 「100% 기준 누적 가로 막대」</b>
+        </li>
+        <li>
+          <b>채울 그림을 만듭니다</b>
+          <p>
+            사람 모양 · 물방울 · 자동차 —
+            <b>뭐든 됩니다.</b> 그림판에서 그려도 되고,
+            <b>삽입 → 아이콘</b> 에 든 것을 써도 됩니다.
+          </p>
+        </li>
+        <li>
+          <b>그림을 복사하고, 막대를 누른 뒤 붙여넣습니다</b>
+          <p>
+            <code>Ctrl</code>+<code>C</code> → 막대 클릭 → <code>Ctrl</code>+<code>V</code>.
+            <b>막대가 그림으로 바뀝니다.</b>
+          </p>
+        </li>
+        <li>
+          <b>★ 「쌓기」 로 바꿉니다</b>
+          <p>
+            그냥 두면 <b>그림이 늘어나 뚱뚱해집니다.</b>
+            <b>계열 서식 → 채우기 → 「쌓기」</b> 를 고르면
+            <b>그림이 개수로</b> 늘어납니다.
+          </p>
+        </li>
+        <li>
+          <b>「나머지」 막대는 연한 회색으로</b>
+          <p><b>배경</b>이 됩니다.</p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">덤 — 「색조합표」 시트</span>
+        <p>
+          <b>구글 · 마이크로소프트</b> 등 유명 회사가 쓰는
+          <b>색 조합이 153줄</b> 들어 있습니다.
+          <b>HEX 코드와 RGB 값</b>이 함께 적혀 있습니다.
+        </p>
+        <p>
+          <b>색 고르기가 제일 어렵습니다.</b>
+          여기서 마음에 드는 조합을 골라
+          <b>도형 채우기 → 다른 채우기 색 → 사용자 지정</b> 에
+          HEX 코드를 넣으면 됩니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">보고서에는 잘 안 씁니다</span>
+        <p>
+          <b>발표 자료 · 홍보물</b>에 어울립니다.
+          <b>정확한 숫자를 읽어야 하는 보고서</b>에는
+          <b>8장의 기본 차트</b>가 낫습니다.
+        </p>
+        <p>
+          그림 하나가 <b>몇 %를 뜻하는지</b> 반드시 적어 두세요.
+          안 적으면 <b>그림 개수를 세는 사람이 없습니다.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="model">
+      <span class="sec-tag">02 — 데이터 모델</span>
+      <h2>글자를 모으는 피벗</h2>
+      <p class="sub">
+        <span class="nb">예제 <code>A-02_데이터_모델_피벗.xlsx</code></span>
+      </p>
+
+      <p>
+        <b>「고객평가」</b> 시트에 설문 결과가 있습니다 —
+        <b>이름 · 성별 · 항목 · 점수 · 비고</b>.
+        <b>비고가 글자</b>입니다. <b>「양이 적음」 「직원이 친절」</b> 같은 것들.
+      </p>
+      <p>
+        <b>항목별 · 점수별로 비고를 모아서</b> 보고 싶습니다.
+        <b>보통 피벗으로는 안 됩니다.</b> 피벗은 글자를 <b>세기만</b> 합니다.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>자료를 표로 바꿉니다</b>
+          <p><code>Ctrl</code>+<code>T</code>.</p>
+        </li>
+        <li>
+          <b>피벗을 만들되 「데이터 모델에 추가」 에 체크</b>
+          <p>
+            <b>이 체크가 전부</b>입니다.
+            안 하면 다음 단계가 <b>없습니다.</b>
+          </p>
+        </li>
+        <li>
+          <b>피벗 안을 오른쪽 눌러 → 「측정값 추가」</b>
+          <p>
+            버전에 따라 <b>「측정값」</b> 또는 <b>「새 측정값」</b> 입니다.
+            <b>파워 피벗</b> 탭에도 있습니다.
+          </p>
+        </li>
+        <li>
+          <b>수식을 씁니다</b>
+          <p>
+            <code>=CONCATENATEX(고객평가, 고객평가[비고], UNICHAR(10))</code>
+          </p>
+          <p>
+            <b>「그 칸에 해당하는 비고들을 줄바꿈으로 이어 붙여라」</b> 는 뜻입니다.
+          </p>
+        </li>
+        <li>
+          <b>그 측정값을 「값」 칸에 넣습니다</b>
+          <p>
+            칸마다 <b>여러 줄의 글자</b>가 들어갑니다.
+            <b>「자동 줄 바꿈」</b> 을 켜야 다 보입니다.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">이게 무슨 언어인가 — DAX</span>
+        <p>
+          <b>엑셀 함수가 아닙니다.</b> <b>DAX</b> 라는 다른 언어입니다.
+          피벗 안에서만 쓰입니다.
+        </p>
+        <p>
+          <b>배우실 필요 없습니다.</b>
+          <code>CONCATENATEX</code> 이것 하나만 <b>복사해 두시면</b>
+          평생 쓸 일은 그것뿐일 가능성이 높습니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">어디에 쓰나</span>
+        <p>
+          <b>설문 자유응답 정리</b>가 첫째입니다.
+          점수는 피벗이 평균을 내고, <b>의견은 옆에 모여</b> 있습니다.
+        </p>
+        <p>
+          예제의 <b>「음료배송」</b> 시트가 둘째 예입니다 —
+          <b>업체별 · 제품별로 특이사항</b>이 모입니다.
+          <b>「B사 배송중 파손 (환불)」</b> 같은 것들이죠.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">데이터 모델을 켜면 못 돌아옵니다</span>
+        <p>
+          <b>그 피벗은 데이터 모델 피벗으로 굳습니다.</b>
+          <b>그룹 기능 일부가 안 되고</b>, 파일이 <b>무거워집니다.</b>
+        </p>
+        <p>
+          <b>보통 피벗과 따로</b> 만드세요.
+          6장에서 <b>고유 개수</b> 때문에 피벗을 둘 만든 것과 같은 이유입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="forecast">
+      <span class="sec-tag">03 — 예측</span>
+      <h2>내다보기</h2>
+      <p class="sub">
+        <span class="nb">예제 <code>A-03_시계열_예측.xlsx</code> — 종로구 미세먼지 127개월</span>
+      </p>
+
+      <p>
+        <b>날짜와 값이 짝지어진 자료</b>가 충분히 쌓이면
+        엑셀이 <b>앞으로를 그려 줍니다.</b>
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>날짜 열과 값 열 두 개를 함께 잡습니다</b>
+          <p><b>날짜가 진짜 날짜</b>여야 합니다. 글자면 안 됩니다.</p>
+        </li>
+        <li>
+          <b>데이터 → 예측 시트</b>
+          <p>
+            <b>새 창에 그래프가 뜹니다.</b>
+            <b>실선이 지금까지</b>, <b>점선이 앞으로</b> 입니다.
+          </p>
+        </li>
+        <li>
+          <b>「옵션」 을 펴 봅니다</b>
+          <p>
+            <b>예측 종료 날짜 · 신뢰 구간 · 계절성</b> 을 정할 수 있습니다.
+          </p>
+        </li>
+        <li>
+          <b>만들기</b>
+          <p>
+            <b>새 시트</b>에 표와 차트가 함께 들어옵니다.
+            표에는 <b>예측값 · 하한 · 상한</b> 세 열이 붙습니다.
+          </p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <span class="note-label">계절성이 핵심입니다</span>
+        <p>
+          미세먼지는 <b>봄에 높고 여름에 낮습니다.</b>
+          <b>1년마다 같은 무늬</b>가 반복됩니다. 이것이 <b>계절성</b>입니다.
+        </p>
+        <p>
+          예제 완성본에 <code>=FORECAST.ETS.SEASONALITY(…)</code> 가 들어 있습니다.
+          <b>엑셀이 찾아낸 주기</b>를 숫자로 알려 줍니다.
+          월별 자료라면 <b>12</b> 가 나와야 맞습니다.
+        </p>
+        <p>
+          <b>0 이 나오면 계절성이 없다</b>는 뜻입니다.
+          그때는 예측이 <b>거의 직선</b>이 됩니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">얼마나 맞나 — 오차를 봅니다</span>
+        <p>
+          예제에 <b>절대오차</b>와 <b>백분율오차</b> 열이 있습니다.
+          <b>예측값과 실제값의 차이</b>입니다.
+        </p>
+        <p>
+          <b>지난 자료로 예측해 보고 실제와 견주는 것</b>이
+          예측을 믿을지 정하는 유일한 방법입니다.
+          <b>백분율오차가 20%를 넘으면</b> 그 예측은 쓰기 어렵습니다.
+        </p>
+      </div>
+
+      <div class="note stop">
+        <span class="note-label">예측은 「이대로 가면」 입니다</span>
+        <p>
+          <b>엑셀은 과거의 무늬를 앞으로 늘일 뿐</b>입니다.
+          <b>앞으로 일어날 일은 모릅니다.</b>
+        </p>
+        <p>
+          예제의 <b>「항공사승객수」</b> 시트를 보세요.
+          1949년부터 꾸준히 늘어나는 자료입니다.
+          이 자료로 예측하면 <b>계속 늘어난다</b>고 나옵니다.
+        </p>
+        <p>
+          <b>2020년에 무슨 일이 있었는지</b> 엑셀은 모릅니다.
+          <b>예측값을 보고서에 쓸 때는 반드시
+          「이 추세가 이어진다면」 을 붙이세요.</b>
+          8장에서 <b>예상치를 점선으로</b> 그린 것과 같은 이야기입니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">예측 시트가 회색이라 안 눌린다면</span>
+        <div class="tbl-wrap">
+          <table>
+            <thead>
+              <tr><th>원인</th><th>확인</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>날짜가 <b>글자</b></td><td>왼쪽에 붙어 있으면 글자입니다</td></tr>
+              <tr><td>날짜 <b>간격이 제각각</b></td><td>매월 1일처럼 <b>일정해야</b> 합니다</td></tr>
+              <tr><td>자료가 <b>너무 적음</b></td><td>계절성을 찾으려면 <b>주기 두 번</b> 이상</td></tr>
+              <tr><td>날짜에 <b>빈 칸</b></td><td>중간이 비면 안 됩니다</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">04 — 마무리</span>
+      <h2>여기까지 오신 분께</h2>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span>100% 누적 막대를 <b>그림으로 채우고 「쌓기」</b> 로 바꿔 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>색조합표</b>에서 색을 골라 써 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>피벗을 <b>데이터 모델로</b> 만들어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><code>CONCATENATEX</code> 로 <b>글자를 모아</b> 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>예측 시트</b>를 만들어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>계절성 숫자</b>가 무엇을 뜻하는지 안다</span></label></li>
+        <li><label><input type="checkbox"><span>예측은 <b>「이대로 가면」</b> 이라는 것을 안다</span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">여덟 장과 부록을 다 보셨다면</span>
+        <p>
+          이제 필요한 것은 <b>새 기능이 아니라 반복</b>입니다.
+          <b>장마다 있는 복습 파일</b>을 <b>며칠 간격으로</b> 다시 푸세요.
+          <b>그때 비로소 손이 기억합니다.</b>
+        </p>
+        <p>
+          그리고 <b>회사에서 쓰는 진짜 파일</b>에 한 가지씩 적용해 보세요.
+          <b>사본을 떠 놓고</b> 하시면 됩니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">막혔을 때 어디를 보나</span>
+        <div class="tbl-wrap">
+          <table>
+            <thead>
+              <tr><th>증상</th><th>보러 갈 곳</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>합계가 이상하다</td><td><a href="excel-m1.html">1장 — 오류</a> · <a href="excel-m5.html">5장 — SUBTOTAL</a></td></tr>
+              <tr><td>정렬·필터가 안 걸린다</td><td><a href="excel-m2.html">2장 — 병합</a> · <a href="excel-m5.html">5장 — 자료의 모양</a></td></tr>
+              <tr><td>표가 안 읽힌다</td><td><a href="excel-m3.html">3장 — 서식</a></td></tr>
+              <tr><td>보냈더니 오류가 난다</td><td><a href="excel-m4.html">4장 — 외부 참조</a></td></tr>
+              <tr><td>인쇄하면 잘린다</td><td><a href="excel-m4.html">4장 — 인쇄</a></td></tr>
+              <tr><td>매달 같은 일을 한다</td><td><a href="excel-m6.html">6장 — 표와 피벗</a></td></tr>
+              <tr><td>VLOOKUP 이 안 된다</td><td><a href="excel-m7.html">7장 — TRIM · INDEX/MATCH</a></td></tr>
+              <tr><td>차트가 이상하다</td><td><a href="excel-m8.html">8장 — 차트</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-m8.html">← 마스터 8장: 차트</a>
+        <a href="excel.html">엑셀 과목 첫 화면 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
