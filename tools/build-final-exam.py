@@ -19,6 +19,7 @@ u"""
   틀린 번호로 **어느 단계에서 샜는지** 알 수 있게 해 두었습니다.
 """
 import argparse
+import datetime
 import os
 
 from openpyxl import Workbook
@@ -37,6 +38,10 @@ FIRST = 6
 
 def put(ws, r, c, v, fill=None, bold=False, fmt=None, wrap=False, align="center"):
     cell = ws.cell(row=r, column=c, value=v)
+    # 「=LEN(B6). 「한결상사」는…」 같은 설명문이 수식으로 저장되면
+    # 엑셀이 파일을 아예 못 엽니다. 이 도구는 수식을 쓰지 않으니 전부 글자로.
+    if isinstance(v, str) and v.startswith(u"="):
+        cell.data_type = "s"
     cell.font = Font(name=FONT, size=11, bold=bold)
     cell.border = THIN
     cell.alignment = Alignment(horizontal=align, vertical="center", wrap_text=wrap)
@@ -378,9 +383,9 @@ C3_GUIDE = u"""■ 상황
   ② 단위 접기         맨 뒤 쉼표로 천 단위 절삭                     (3-03)
   ③ 안내 문구 고치기  표 위 「(단위: 원)」 을 고칩니다               (3-03)
   ④ 0 감추기          0 을 하이픈으로 보이게                       (3-02)
-  ⑤ 달성률            J열 = 상반기합계 ÷ 목표, 0.0% 서식            (3-02)
+  ⑤ 달성률            K열 = 상반기 합계(J) ÷ 목표(I), 0.0% 서식     (3-02)
   ⑥ 줄 전체 강조      달성률 100% 미만인 줄 전체를 칠합니다          (3-04)
-  ⑦ 막대와 트렌드     I열에 데이터 막대, K열에 스파크라인            (3-05·3-07)
+  ⑦ 막대와 트렌드     J열에 데이터 막대, L열에 스파크라인            (3-05·3-07)
   ⑧ 최종확인 채우기   [최종확인] 다섯 칸                            —
 
 ■ 순서를 지켜야 하는 이유
@@ -397,13 +402,13 @@ C3_GUIDE = u"""■ 상황
   **수식 입력줄에 원래 숫자가 그대로 있는지** 확인하세요."""
 
 C3_STEPS = [
-    (u"①", u"천 단위 기호", u"3-03", u"C6:I10 을 잡고 Ctrl+Shift+1. 또는 서식에 #,##0."),
+    (u"①", u"천 단위 기호", u"3-03", u"C6:J10 (월별 · 목표 · 합계) 을 잡고 Ctrl+Shift+1. 또는 서식에 #,##0."),
     (u"②", u"단위 접기", u"3-03", u"같은 범위에 #,##0, 를 넣습니다. 맨 뒤 쉼표 하나가 천으로 나눕니다."),
     (u"③", u"안내 문구", u"3-03", u"표 위 C3 을 「(단위: 천원)」 으로 고칩니다. 이것을 빼면 천 배 틀립니다."),
     (u"④", u"0 감추기", u"3-02", u"#,##0,;-#,##0,;-;@ — 셋째 칸이 0 일 때입니다."),
-    (u"⑤", u"달성률", u"3-02", u"J6 = I6/H6, 서식은 0.0%;[빨강]-0.0%;-;@ 입니다."),
-    (u"⑥", u"줄 전체 강조", u"3-04", u"B6:J10 을 전부 잡고 새 규칙 → 수식 → =$J6<1."),
-    (u"⑦", u"막대·트렌드", u"3-05", u"I6:I10 에 데이터 막대. K6 에 스파크라인(범위 C6:H6) 을 넣고 아래로 끕니다."),
+    (u"⑤", u"달성률", u"3-02", u"K6 = J6/I6 (합계 ÷ 목표) 을 넣고 K10 까지. 서식은 0.0%;[빨강]-0.0%;-;@ 입니다."),
+    (u"⑥", u"줄 전체 강조", u"3-04", u"B6:K10 을 전부 잡고 새 규칙 → 수식 → =$K6<1. $ 는 열 앞에만."),
+    (u"⑦", u"막대·트렌드", u"3-05", u"J6:J10(합계) 에 데이터 막대. L6 에 스파크라인(범위 C6:H6) 을 넣고 아래로 끕니다."),
     (u"⑧", u"최종확인", u"—", u"[최종확인] 주황 칸 다섯 개를 채웁니다."),
 ]
 
@@ -509,7 +514,7 @@ C4_STEPS = [
     (u"②", u"유효성 검사", u"4-08", u"제품코드는 목록(원본 =$K$6:$K$10), 수량은 정수 >= 0."),
     (u"③", u"오류 메시지", u"4-08", u"「오류 메시지」 탭에서 제목과 내용을 직접 씁니다. 기본 문구로는 뭘 하라는지 모릅니다."),
     (u"④", u"글자 숫자", u"1-11", u"수량 열을 잡고 느낌표 → 「숫자로 변환」. 왼쪽에 붙어 있던 것이 오른쪽으로 갑니다."),
-    (u"⑤", u"단가·금액", u"7-04", u"단가 = INDEX($M$6:$M$10,MATCH(C6,$K$6:$K$10,0)), 금액 = 수량*단가."),
+    (u"⑤", u"단가·금액", u"7-04", u"F6 = INDEX($M$6:$M$10,MATCH(C6,$K$6:$K$10,0)), G6 = E6*F6 을 G13 까지. 두 줄이 #N/A 인 것을 확인한 뒤 맨 마지막에 =IFERROR(INDEX(…),0) 으로 감쌉니다. 안 감싸면 금액 합계가 #N/A 입니다."),
     (u"⑥", u"인쇄 영역", u"4-11", u"표 범위만 잡아 인쇄 영역 설정. 페이지 레이아웃 → 눈금선 → 인쇄 체크 해제."),
     (u"⑦", u"인쇄 제목", u"4-12", u"페이지 레이아웃 → 인쇄 제목 → 반복할 행에 $5:$5."),
     (u"⑧", u"최종확인", u"—", u"[최종확인] 주황 칸 다섯 개를 채웁니다."),
@@ -742,7 +747,7 @@ C6_GUIDE = u"""■ 상황
   ② 표로 바꾸기   Ctrl+T, 표 이름을 「지점매출」 로                    (6-01)
   ③ 피벗 만들기   행=지점, 열=연도, 값=매출 합계                      (6-04)
   ④ 계산 필드     이익률 = 이익 / 매출                               (6-11)
-  ⑤ 계산 항목     같은 이익률을 계산 항목으로도 만들어 봅니다           (6-11)
+  ⑤ 비율 열 함정   [자료] 에 이익률 열을 만들어 피벗에 「합계」로 넣어 봅니다 (6-11)
   ⑥ 새로 고침     [자료] 에 한 줄 더하고 Alt+F5                       (6-06)
   ⑦ 최종확인 채우기 [최종확인] 다섯 칸                                —
 
@@ -751,6 +756,7 @@ C6_GUIDE = u"""■ 상황
   · ①을 안 하면 필드 목록에 **「2021」 「2022」 가 따로** 뜹니다.
     **「연도」 라는 필드가 없어** 연도별로 못 나눕니다.
   · ④와 ⑤는 **같은 이익률인데 총합계가 다릅니다.** 그것이 이 문제의 핵심입니다.
+    ④ 는 합계끼리 나누고, ⑤ 는 줄마다 나눈 값을 그냥 더합니다.
   · ⑥에서 새로 고침을 안 하면 **옛날 숫자가 그대로** 인쇄됩니다.
 
 ■ 채점
@@ -762,7 +768,7 @@ C6_STEPS = [
     (u"②", u"표로 바꾸기", u"6-01", u"Ctrl+T. 표 디자인 탭 왼쪽 끝에서 이름을 「지점매출」 로 바꿉니다."),
     (u"③", u"피벗", u"6-04", u"삽입 → 피벗 테이블 → 새 워크시트. 행=지점, 열=연도, 값=매출."),
     (u"④", u"계산 필드", u"6-11", u"피벗 분석 → 필드, 항목 및 집합 → 계산 필드. 이름 「이익률」, 수식 = 이익 / 매출."),
-    (u"⑤", u"계산 항목", u"6-11", u"같은 곳의 「계산 항목」 으로도 만들어 총합계를 견줍니다. 값이 다릅니다."),
+    (u"⑤", u"비율 열 함정", u"6-11", u"[자료] F열에 이익률 = 이익/매출 을 만들고 새로 고침. 피벗 값에 이 열을 넣으면 「합계 : 이익률」 — 총합계가 줄별 이익률 25개를 더한 값이 됩니다. (계산 항목으로는 안 됩니다: 계산 항목은 한 필드 안의 항목끼리만 계산합니다.)"),
     (u"⑥", u"새로 고침", u"6-06", u"[자료] 에 한 줄 더하고 피벗 안에서 Alt+F5. 표로 바꿔 두었으니 범위가 따라옵니다."),
     (u"⑦", u"최종확인", u"—", u"[최종확인] 주황 칸 다섯 개를 채웁니다."),
 ]
@@ -778,7 +784,7 @@ C6_Q = [
      round(C6_FIELD * 100, 2), u"0.00",
      u"이익 합계 %s ÷ 매출 합계 %s. 합계를 먼저 내고 나눕니다 — 이쪽이 맞습니다."
      % (format(C6_PROFIT, ","), format(C6_SALES, ","))),
-    (u"⑤ 계산 항목으로 내면 총합계가 얼마? (%, 소수 둘째까지)",
+    (u"⑤ 원본 이익률 열을 합계로 넣으면 총합계가 얼마? (%, 소수 둘째까지)",
      round(C6_ITEM * 100, 2), u"0.00",
      u"줄마다 낸 이익률 %d개를 그냥 더한 값입니다. 아무 뜻이 없는데 피벗은 자신 있게 내놓습니다."
      % C6_LINES),
@@ -901,13 +907,13 @@ C7_GUIDE = u"""■ 상황
   노란 칸 = 채울 곳 · 주황 칸 = 답을 적는 곳 · 흰 칸은 자료입니다."""
 
 C7_STEPS = [
-    (u"①", u"글자 수", u"7-07", u"=LEN(B6). 「한결상사」는 4여야 하는데 7 이 나옵니다. 앞에 공백이 셋 붙어 있습니다."),
-    (u"②", u"공백 떼기", u"7-07", u"=TRIM(B6). 웹에서 온 자료라면 =TRIM(SUBSTITUTE(B6,CHAR(160),\" \")) 가 안전합니다."),
-    (u"③", u"날짜", u"7-11", u"=DATE(LEFT(C6,2)+2000,MID(C6,3,2),RIGHT(C6,2)). +2000 을 빼먹으면 서기 26년이 됩니다."),
-    (u"④", u"단가", u"7-20", u"=INDEX($L$6:$L$10,MATCH(D6,$K$6:$K$10,0)). 찾을 열이 오른쪽이라 VLOOKUP 은 안 됩니다."),
-    (u"⑤", u"금액", u"7-01", u"=E6*F6."),
-    (u"⑥", u"거래처별 합계", u"7-05", u"=SUMIFS($G$6:$G$13,$H$6:$H$13,J6) — 원본 B열이 아니라 TRIM 한 H열을 봐야 합니다."),
-    (u"⑦", u"경과 개월", u"7-12", u"=DATEDIF(I6,$F$3,\"M\"). 자동 완성에 안 뜨니 손으로 전부 치세요."),
+    (u"①", u"글자 수", u"7-07", u"빈 칸 아무 데나 =LEN(B6). 「한결상사」는 4여야 하는데 7 이 나옵니다. 앞에 공백이 셋 붙어 있습니다."),
+    (u"②", u"공백 떼기", u"7-07", u"H6 = TRIM(B6) 을 H13 까지. 웹에서 온 자료라면 =TRIM(SUBSTITUTE(B6,CHAR(160),\" \")) 가 안전합니다."),
+    (u"③", u"날짜", u"7-11", u"I6 = DATE(LEFT(C6,2)+2000,MID(C6,3,2),RIGHT(C6,2)). +2000 을 빼먹으면 서기 26년이 됩니다."),
+    (u"④", u"단가", u"7-20", u"F6 = INDEX($L$6:$L$10,MATCH(D6,$M$6:$M$10,0)). 찾을 열(M 제품코드)이 단가(L)보다 오른쪽이라 VLOOKUP 은 안 됩니다."),
+    (u"⑤", u"금액", u"7-01", u"G6 = E6*F6."),
+    (u"⑥", u"거래처별 합계", u"7-05", u"P6 = SUMIFS($G$6:$G$13,$H$6:$H$13,O6) 을 P9 까지. 원본 B열이 아니라 TRIM 한 H열을 봐야 합니다."),
+    (u"⑦", u"경과 개월", u"7-12", u"J6 = DATEDIF(I6,$F$3,\"M\") 을 J13 까지. 자동 완성에 안 뜨니 손으로 전부 치세요."),
     (u"⑧", u"최종확인", u"—", u"[최종확인] 주황 칸 다섯 개를 채웁니다."),
 ]
 
@@ -934,16 +940,16 @@ def build_ch7():
     ws = wb.create_sheet(u"문제")
     ws.sheet_view.showGridLines = False
     for col, w in {"A": 3, "B": 18, "C": 11, "D": 11, "E": 8, "F": 11, "G": 13,
-                   "H": 14, "I": 13, "J": 3, "K": 11, "L": 10, "M": 3,
-                   "N": 14, "O": 14}.items():
+                   "H": 14, "I": 13, "J": 11, "K": 3, "L": 11, "M": 10, "N": 3,
+                   "O": 14, "P": 14}.items():
         ws.column_dimensions[col].width = w
     t = ws.cell(row=1, column=2, value=u"한결상사 거래처 정산표")
     t.font = Font(name=FONT, size=14, bold=True)
     put(ws, 3, 5, u"기준일", bold=True)
-    put(ws, 3, 6, u"%04d-%02d-%02d" % C7_BASE)
+    put(ws, 3, 6, datetime.date(*C7_BASE), fmt=u"yyyy-mm-dd")
 
     head(ws, 5, 2, [u"거래처명", u"날짜코드", u"제품코드", u"수량", u"단가", u"금액",
-                    u"TRIM", u"진짜 날짜"])
+                    u"TRIM", u"진짜 날짜", u"경과 개월"])
     for i, (nm, pad, code, prod, qty) in enumerate(C7_ROWS):
         r = FIRST + i
         c = put(ws, r, 2, (C7_PAD + nm) if pad else nm)
@@ -955,17 +961,19 @@ def build_ch7():
         put(ws, r, 7, None, fill=YELLOW, fmt=u"#,##0")
         put(ws, r, 8, None, fill=YELLOW)
         put(ws, r, 9, None, fill=YELLOW, fmt=u"yyyy-mm-dd")
+        put(ws, r, 10, None, fill=YELLOW, fmt=u"0")
 
-    head(ws, 5, 11, [u"제품코드", u"단가"])
+    # 단가가 왼쪽, 제품코드가 오른쪽 — 찾을 열이 오른쪽이라 VLOOKUP 이 안 되게
+    head(ws, 5, 12, [u"단가", u"제품코드"])
     for i, (code, price) in enumerate(C7_PRICE):
         r = FIRST + i
-        put(ws, r, 11, code); put(ws, r, 12, price, fmt=u"#,##0")
+        put(ws, r, 12, price, fmt=u"#,##0"); put(ws, r, 13, code)
 
-    head(ws, 5, 14, [u"거래처", u"합계"])
+    head(ws, 5, 15, [u"거래처", u"합계"])
     for i, nm in enumerate(sorted(_by)):
         r = FIRST + i
-        put(ws, r, 14, nm)
-        put(ws, r, 15, None, fill=YELLOW, fmt=u"#,##0")
+        put(ws, r, 15, nm)
+        put(ws, r, 16, None, fill=YELLOW, fmt=u"#,##0")
 
     g = ws.cell(row=3, column=2, value=u"노란 칸을 채우세요. [안내] 의 여덟 단계를 순서대로.")
     g.font = Font(name=FONT, size=10, color=GREY)
@@ -999,7 +1007,8 @@ C8_GUIDE = u"""■ 상황
   **넷 다 어딘가 거짓말을 하고 있습니다.**
 
   [문제] 시트에 각 차트의 자료와 **지금 어떻게 그려져 있는지**가 적혀 있습니다.
-  직접 차트를 그려 보고, **무엇이 잘못됐는지 찾아 고치세요.**
+  차트는 [문제] 시트 **오른쪽(H열)에 이미 그려져** 있습니다.
+  **무엇이 잘못됐는지 찾아 고치세요.** 5번은 곁들여 보는 것입니다.
 
 ■ 여섯 단계 — 순서대로
 
@@ -1049,6 +1058,57 @@ C8_Q = [
 ]
 
 
+def add_bad_charts(ws, starts):
+    u"""[문제] 시트에 「거짓말하는」 차트를 그려 둡니다 — 학생이 고칠 대상입니다."""
+    from openpyxl.chart import BarChart, LineChart, PieChart, Reference
+    from openpyxl.chart.shapes import GraphicalProperties
+
+    def refs(r0, n, col_cat=2, col_val=3):
+        data = Reference(ws, min_col=col_val, min_row=r0 + 1, max_row=r0 + 1 + n)
+        cats = Reference(ws, min_col=col_cat, min_row=r0 + 2, max_row=r0 + 1 + n)
+        return data, cats
+
+    def place(ch, r0, title):
+        ch.title = title
+        ch.width, ch.height = 15, 7.5
+        ws.add_chart(ch, u"H%d" % r0)
+
+    # 1번 — 세로 막대, 축이 50 부터
+    r0 = starts[0]; data, cats = refs(r0, len(C8_BAR))
+    c = BarChart(); c.type = "col"
+    c.add_data(data, titles_from_data=True); c.set_categories(cats)
+    c.y_axis.scaling.min = 50; c.legend = None
+    place(c, r0, u"지역별 합격자 수")
+
+    # 2번 — 가로 막대, 순서가 표와 반대 (기본값 그대로)
+    r0 = starts[1]; data, cats = refs(r0, len(C8_BAR))
+    c = BarChart(); c.type = "bar"
+    c.add_data(data, titles_from_data=True); c.set_categories(cats); c.legend = None
+    place(c, r0, u"지역별 합격자 수")
+
+    # 3번 — 꺾은선, 예상치까지 같은 실선
+    r0 = starts[2]; data, cats = refs(r0, len(C8_LINE))
+    c = LineChart()
+    c.add_data(data, titles_from_data=True); c.set_categories(cats); c.legend = None
+    place(c, r0, u"영업1팀 분기 실적")
+
+    # 4번 — 원형, 조각 아홉에 범례만
+    r0 = starts[3]; data, cats = refs(r0, len(C8_PIE))
+    c = PieChart()
+    c.add_data(data, titles_from_data=True); c.set_categories(cats)
+    place(c, r0, u"제품별 점유율")
+
+    # 5번 — 단위가 다른 둘을 둘 다 막대로, 빨강·초록 나란히
+    r0 = starts[4]
+    data = Reference(ws, min_col=3, max_col=4, min_row=r0 + 1, max_row=r0 + 1 + len(C8_MIX))
+    cats = Reference(ws, min_col=2, min_row=r0 + 2, max_row=r0 + 1 + len(C8_MIX))
+    c = BarChart(); c.type = "col"
+    c.add_data(data, titles_from_data=True); c.set_categories(cats)
+    for sr, rgb in zip(c.series, ("FF0000", "00B050")):
+        sr.graphicalProperties = GraphicalProperties(solidFill=rgb)
+    place(c, r0, u"GDP와 성장률")
+
+
 def build_ch8():
     wb = Workbook(); wb.remove(wb.active)
     sheet_guide(wb, u"8장 종합문제 — 거짓말하는 차트 네 개",
@@ -1070,28 +1130,37 @@ def build_ch8():
         s = ws.cell(row=row + 1, column=6, value=u"지금 이렇게 그려져 있습니다 —\n" + symptom)
         s.font = Font(name=FONT, size=10, color=GREY)
         s.alignment = Alignment(vertical="top", wrap_text=True)
-        return row + 2 + len(rows) + 1
+        # 오른쪽에 붙는 차트(15줄 남짓)가 다음 블록을 덮지 않게 간격을 넉넉히
+        return max(row + 2 + len(rows) + 1, row + 18)
 
+    starts = []
     r = 3
+    starts.append(r)
     r = block(r, 1, u"지역별 합격자 수 (세로 막대)", [u"시도", u"인원"],
               [list(x) for x in C8_BAR],
               u"세로 축이 50 부터 시작합니다.\n서울 막대가 대구 막대의 열네 배쯤 되어 보입니다.")
+    starts.append(r)
     r = block(r, 2, u"같은 자료 (가로 막대)", [u"시도", u"인원"],
               [list(x) for x in C8_BAR],
               u"1등 서울이 차트 맨 아래에 있습니다.\n표와 순서가 반대입니다.")
+    starts.append(r)
     r = block(r, 3, u"영업1팀 분기 실적 (꺾은선)", [u"분기", u"실적(억)"],
               [list(x) for x in C8_LINE],
               u"네 점이 같은 실선으로 이어져 있습니다.\n4분기는 아직 안 끝났습니다.")
+    starts.append(r)
     r = block(r, 4, u"제품별 점유율 (원형)", [u"제품", u"점유율(%)"],
               [list(x) for x in C8_PIE],
               u"조각이 아홉 개입니다. 범례가 오른쪽에 있고\n조각에는 아무 글자도 없습니다.")
+    starts.append(r)
     block(r, 5, u"곁들여 — GDP와 성장률 (혼합)", [u"년도", u"GDP(십억)", u"성장률"],
           [list(x) for x in C8_MIX],
           u"둘 다 막대로 그려져 있습니다.\n어느 축이 어느 막대인지 알 수 없습니다.",
           fmts={1: u"#,##0", 2: u"0.0%"})
 
+    add_bad_charts(ws, starts)
+
     g = ws.cell(row=1, column=2,
-                value=u"자료는 손대지 마세요. 차트를 그려 보고 무엇이 잘못됐는지 찾는 문제입니다.")
+                value=u"자료는 손대지 마세요. 오른쪽(H열)에 그려진 차트 다섯 개를 보고 무엇이 잘못됐는지 찾는 문제입니다.")
     g.font = Font(name=FONT, size=10, color=GREY)
 
     sheet_check(wb, C8_Q)

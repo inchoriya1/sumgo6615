@@ -52,6 +52,9 @@ def head(ws, row, cols, labels):
 def put(ws, row, col, value, fill=None, bold=False, fmt=None, wrap=False,
         align_left=False):
     c = ws.cell(row=row, column=col, value=value)
+    # 「=SUMIFS(…) → …」 같은 설명문이 수식으로 저장되면 엑셀이 파일을 못 엽니다.
+    if isinstance(value, str) and value.startswith(u"="):
+        c.data_type = "s"
     c.font = Font(name=FONT, size=11, bold=bold)
     c.border = THIN
     c.alignment = Alignment(horizontal="left" if align_left else "center",
@@ -901,7 +904,7 @@ def chapter6(wb):
 
     ws = wb.create_sheet(u"6-11 계산 필드")
     title(ws, u"6-11  계산 필드와 계산 항목",
-          u"아래 값으로 이익률을 두 방식으로 내 보고, 차이를 적으세요.")
+          u"이익률을 두 방식으로 내 보고, 계산 항목이 총합계를 어떻게 바꾸는지 적으세요.")
     widths(ws, {"A": 3, "B": 14, "C": 14, "D": 14, "E": 16, "F": 3, "G": 50})
     head(ws, 4, 2, [u"년도", u"매출액", u"매출이익", u"줄별 이익률"])
     vals = [(2021, 30000, 1488), (2022, 8000, 1357), (2023, 26000, 1575)]
@@ -914,25 +917,34 @@ def chapter6(wb):
     put(ws, 9, 2, u"① 계산 필드 방식 (합계끼리 나눔)", align_left=True)
     ws.merge_cells("B9:D9")
     put(ws, 9, 5, None, fill=YELLOW, fmt=u"0.0%")
-    put(ws, 10, 2, u"② 계산 항목 방식 (줄별 이익률을 더함)", align_left=True)
+    put(ws, 10, 2, u"② 원본에 이익률 열을 만들어 합계로 (줄별 이익률을 더함)", align_left=True)
     ws.merge_cells("B10:D10")
     put(ws, 10, 5, None, fill=YELLOW, fmt=u"0.0%")
     put(ws, 11, 2, u"③ 어느 쪽이 맞나?", align_left=True)
     ws.merge_cells("B11:D11")
     put(ws, 11, 5, None, fill=YELLOW)
+    item = vals[2][1] - vals[1][1]
+    put(ws, 12, 2, u"④ 계산 항목 「%d−%d 차이」 를 넣으면 매출 총합계는?" % (vals[2][0], vals[1][0]),
+        align_left=True)
+    ws.merge_cells("B12:D12")
+    put(ws, 12, 5, None, fill=YELLOW, fmt=u"#,##0")
     guide_box(ws, 4, 7,
               u"계산 필드는 합계를 먼저 내고 나눕니다.\n"
-              u"계산 항목은 줄마다 나눈 값을 더합니다.\n\n"
+              u"원본에 만든 비율 열을 「합계」로 넣으면 줄마다 나눈 값을 더합니다.\n"
+              u"계산 항목은 한 필드 안의 항목끼리 계산하고,\n그 줄이 총합계에 같이 더해집니다.\n\n"
               u"둘이 얼마나 다른지 직접 계산해 보세요.\n"
               u"매출 합계 %s · 이익 합계 %s" % (format(tot_sales, ","), format(tot_profit, ",")))
     ans.append((u"6-11 계산 필드",
                 u"비율은 반드시 계산 필드로",
-                u"줄별: %.1f%% · %.1f%% · %.1f%%   ① %.1f%% (맞음)   ② %.1f%% (틀림)   ③ ①"
+                u"줄별: %.1f%% · %.1f%% · %.1f%%   ① %.1f%% (맞음)   ② %.1f%% (틀림)   ③ ①   "
+                u"④ %s (맞는 값 %s — 차이 %s 까지 더해짐)"
                 % (vals[0][2] / vals[0][1] * 100, vals[1][2] / vals[1][1] * 100,
                    vals[2][2] / vals[2][1] * 100,
                    tot_profit / tot_sales * 100,
-                   sum(p / s for _, s, p in vals) * 100),
-                u"비율의 합은 아무 뜻이 없습니다. 그런데 피벗은 그 값을 자신 있게 내놓습니다."))
+                   sum(p / s for _, s, p in vals) * 100,
+                   format(tot_sales + item, ","), format(tot_sales, ","), format(item, ",")),
+                u"비율의 합은 아무 뜻이 없습니다. 계산 항목 줄도 총합계에 더해집니다. "
+                u"피벗은 둘 다 오류 없이 자신 있게 내놓습니다."))
     return ans
 
 
