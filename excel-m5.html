@@ -238,6 +238,104 @@
         영업1팀 아래 <b>신길동·당산동·대림동</b> 이 있고
         그 아래 <b>「합계」 줄</b> 이 있습니다. 팀마다 그렇습니다.
       </p>
+
+      <figure>
+        <div class="fig-frame">
+          <svg viewBox="0 0 700 250" role="img" aria-label="지점 줄 사이에 팀별 소계 줄이 섞여 있는 표에서 전체를 더하면 소계까지 함께 더해져 합계가 두 배인 2,144가 되고, 소계 줄을 걷어내면 제 값인 1,072가 된다는 그림.">
+            <g>
+              <text x="0" y="14" font-size="12" font-weight="700">전 — 소계가 자료인 척 섞여 있음</text>
+
+              <rect x="0" y="24" width="150" height="22" fill="var(--panel)" stroke="var(--rule-2)"/>
+              <text x="75" y="39" font-size="11" text-anchor="middle" class="dim">지점</text>
+              <rect x="150" y="24" width="90" height="22" fill="var(--panel)" stroke="var(--rule-2)"/>
+              <text x="195" y="39" font-size="11" text-anchor="middle" class="dim">매출</text>
+
+              <rect x="0" y="46" width="150" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="8" y="61" font-size="11">신길동</text>
+              <rect x="150" y="46" width="90" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="232" y="61" font-size="11" text-anchor="end">102</text>
+
+              <rect x="0" y="68" width="150" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="8" y="83" font-size="11">당산동</text>
+              <rect x="150" y="68" width="90" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="232" y="83" font-size="11" text-anchor="end">379</text>
+
+              <rect x="0" y="90" width="150" height="22" fill="var(--red-dim)" stroke="var(--red)" stroke-width="1.5"/>
+              <text x="8" y="105" font-size="11">영업1팀 소계</text>
+              <rect x="150" y="90" width="90" height="22" fill="var(--red-dim)" stroke="var(--red)" stroke-width="1.5"/>
+              <text x="232" y="105" font-size="11" text-anchor="end">481</text>
+
+              <rect x="0" y="112" width="150" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="8" y="127" font-size="11">역삼동</text>
+              <rect x="150" y="112" width="90" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="232" y="127" font-size="11" text-anchor="end">240</text>
+
+              <rect x="0" y="134" width="150" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="8" y="149" font-size="11">삼성동</text>
+              <rect x="150" y="134" width="90" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="232" y="149" font-size="11" text-anchor="end">351</text>
+
+              <rect x="0" y="156" width="150" height="22" fill="var(--red-dim)" stroke="var(--red)" stroke-width="1.5"/>
+              <text x="8" y="171" font-size="11">영업2팀 소계</text>
+              <rect x="150" y="156" width="90" height="22" fill="var(--red-dim)" stroke="var(--red)" stroke-width="1.5"/>
+              <text x="232" y="171" font-size="11" text-anchor="end">591</text>
+
+              <rect x="0" y="186" width="150" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="8" y="202" font-size="11" font-weight="700">=SUM(전체)</text>
+              <rect x="150" y="186" width="90" height="24" fill="var(--red-dim)" stroke="var(--red)" stroke-width="1.5"/>
+              <text x="232" y="202" font-size="12" text-anchor="end" font-weight="700">2,144</text>
+
+              <text x="0" y="230" font-size="11" class="dim">102+379+481+240+351+591</text>
+              <text x="0" y="246" font-size="11" class="dim">— 소계를 한 번 더 더했습니다</text>
+            </g>
+
+            <g>
+              <path d="M262 110 L316 110" stroke="var(--accent)" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+              <text x="289" y="100" font-size="11" text-anchor="middle" class="mid">소계 걷어내기</text>
+            </g>
+            <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="var(--accent)"/></marker></defs>
+
+            <g transform="translate(340,0)">
+              <text x="0" y="14" font-size="12" font-weight="700">후 — 자료만 남김</text>
+
+              <rect x="0" y="24" width="150" height="22" fill="var(--panel)" stroke="var(--rule-2)"/>
+              <text x="75" y="39" font-size="11" text-anchor="middle" class="dim">지점</text>
+              <rect x="150" y="24" width="90" height="22" fill="var(--panel)" stroke="var(--rule-2)"/>
+              <text x="195" y="39" font-size="11" text-anchor="middle" class="dim">매출</text>
+
+              <rect x="0" y="46" width="150" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="8" y="61" font-size="11">신길동</text>
+              <rect x="150" y="46" width="90" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="232" y="61" font-size="11" text-anchor="end">102</text>
+
+              <rect x="0" y="68" width="150" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="8" y="83" font-size="11">당산동</text>
+              <rect x="150" y="68" width="90" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="232" y="83" font-size="11" text-anchor="end">379</text>
+
+              <rect x="0" y="90" width="150" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="8" y="105" font-size="11">역삼동</text>
+              <rect x="150" y="90" width="90" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="232" y="105" font-size="11" text-anchor="end">240</text>
+
+              <rect x="0" y="112" width="150" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="8" y="127" font-size="11">삼성동</text>
+              <rect x="150" y="112" width="90" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="232" y="127" font-size="11" text-anchor="end">351</text>
+
+              <rect x="0" y="186" width="150" height="24" fill="none" stroke="var(--rule-2)"/>
+              <text x="8" y="202" font-size="11" font-weight="700">=SUM(전체)</text>
+              <rect x="150" y="186" width="90" height="24" fill="var(--accent-dim)" stroke="var(--accent)" stroke-width="1.5"/>
+              <text x="232" y="202" font-size="12" text-anchor="end" font-weight="700">1,072</text>
+
+              <text x="0" y="230" font-size="11" class="dim">102+379+240+351</text>
+              <text x="0" y="246" font-size="11" class="dim">— 소계는 피벗이 만들게 둡니다</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption>소계 줄은 <b>생김새가 자료와 똑같습니다.</b> 합계를 잡을 때 사람 눈에는 안 보이지만 엑셀은 <b>그냥 더합니다</b> — <b>2,144</b> 가 나오는데 실제로는 <b>1,072</b> 여야 합니다. <b>정확히 두 배</b>라 「어, 좀 크네」 로 넘어가기 쉽습니다.</figcaption>
+      </figure>
+
       <div class="note stop">
         <span class="note-label">이 장에서 제일 큰 사고</span>
         <p>

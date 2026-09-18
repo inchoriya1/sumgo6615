@@ -374,6 +374,121 @@
         </table>
       </div>
 
+      <figure>
+        <div class="fig-frame">
+          <svg viewBox="0 0 700 254" role="img" aria-label="지점이 세로이고 연도가 가로로 퍼진 표에서는 필드 목록에 2021·2022·2023 이 각각 뜨고 연도 필드가 없지만, 지점·연도·매출 세 열로 눕히면 연도가 필드 하나가 되어 연도별로 나눠 볼 수 있다는 그림.">
+            <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="var(--accent)"/></marker></defs>
+
+            <g>
+              <text x="0" y="14" font-size="12" font-weight="700">전 — 연도가 가로로</text>
+
+              <rect x="0" y="24" width="74" height="22" fill="var(--panel)" stroke="var(--rule-2)"/>
+              <text x="37" y="39" font-size="11" text-anchor="middle" class="dim">지점</text>
+              <rect x="74" y="24" width="62" height="22" fill="var(--red-dim)" stroke="var(--red)" stroke-width="1.5"/>
+              <text x="105" y="39" font-size="11" text-anchor="middle">2021</text>
+              <rect x="136" y="24" width="62" height="22" fill="var(--red-dim)" stroke="var(--red)" stroke-width="1.5"/>
+              <text x="167" y="39" font-size="11" text-anchor="middle">2022</text>
+              <rect x="198" y="24" width="62" height="22" fill="var(--red-dim)" stroke="var(--red)" stroke-width="1.5"/>
+              <text x="229" y="39" font-size="11" text-anchor="middle">2023</text>
+
+              <rect x="0" y="46" width="74" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="8" y="61" font-size="11">강남점</text>
+              <rect x="74" y="46" width="62" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="128" y="61" font-size="11" text-anchor="end">30,000</text>
+              <rect x="136" y="46" width="62" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="190" y="61" font-size="11" text-anchor="end">8,000</text>
+              <rect x="198" y="46" width="62" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="252" y="61" font-size="11" text-anchor="end">26,000</text>
+
+              <rect x="0" y="68" width="74" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="8" y="83" font-size="11">명동점</text>
+              <rect x="74" y="68" width="62" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="128" y="83" font-size="11" text-anchor="end">37,000</text>
+              <rect x="136" y="68" width="62" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="190" y="83" font-size="11" text-anchor="end">6,000</text>
+              <rect x="198" y="68" width="62" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="252" y="83" font-size="11" text-anchor="end">25,000</text>
+
+              <rect x="0" y="90" width="74" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="8" y="105" font-size="11">서초점</text>
+              <rect x="74" y="90" width="62" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="128" y="105" font-size="11" text-anchor="end">33,000</text>
+              <rect x="136" y="90" width="62" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="190" y="105" font-size="11" text-anchor="end">11,000</text>
+              <rect x="198" y="90" width="62" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="252" y="105" font-size="11" text-anchor="end">33,000</text>
+
+              <text x="0" y="140" font-size="11" font-weight="700" class="mid">피벗 필드 목록</text>
+              <rect x="0" y="148" width="130" height="70" fill="none" stroke="var(--rule-2)"/>
+              <text x="10" y="166" font-size="11">☐ 지점</text>
+              <text x="10" y="184" font-size="11" class="dim">☐ 2021</text>
+              <text x="10" y="202" font-size="11" class="dim">☐ 2022</text>
+              <text x="70" y="184" font-size="11" class="dim">☐ 2023</text>
+              <text x="0" y="238" font-size="11" class="dim">「연도」 라는 필드가 없습니다.</text>
+              <text x="0" y="252" font-size="11" class="dim">연도별로 나눌 수가 없습니다.</text>
+            </g>
+
+            <g>
+              <path d="M282 66 L336 66" stroke="var(--accent)" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+              <text x="309" y="56" font-size="11" text-anchor="middle" class="mid">눕히기</text>
+              <text x="309" y="82" font-size="10" text-anchor="middle" class="dim">다른 열</text>
+              <text x="309" y="97" font-size="10" text-anchor="middle" class="dim">피벗 해제</text>
+            </g>
+
+            <g transform="translate(360,0)">
+              <text x="0" y="14" font-size="12" font-weight="700">후 — 한 줄 = 한 사건</text>
+
+              <rect x="0" y="24" width="74" height="22" fill="var(--panel)" stroke="var(--rule-2)"/>
+              <text x="37" y="39" font-size="11" text-anchor="middle" class="dim">지점</text>
+              <rect x="74" y="24" width="62" height="22" fill="var(--accent-dim)" stroke="var(--accent)" stroke-width="1.5"/>
+              <text x="105" y="39" font-size="11" text-anchor="middle">연도</text>
+              <rect x="136" y="24" width="76" height="22" fill="var(--panel)" stroke="var(--rule-2)"/>
+              <text x="174" y="39" font-size="11" text-anchor="middle" class="dim">매출</text>
+
+              <rect x="0" y="46" width="74" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="8" y="61" font-size="11">강남점</text>
+              <rect x="74" y="46" width="62" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="105" y="61" font-size="11" text-anchor="middle">2021</text>
+              <rect x="136" y="46" width="76" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="204" y="61" font-size="11" text-anchor="end">30,000</text>
+
+              <rect x="0" y="68" width="74" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="8" y="83" font-size="11">강남점</text>
+              <rect x="74" y="68" width="62" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="105" y="83" font-size="11" text-anchor="middle">2022</text>
+              <rect x="136" y="68" width="76" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="204" y="83" font-size="11" text-anchor="end">8,000</text>
+
+              <rect x="0" y="90" width="74" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="8" y="105" font-size="11">강남점</text>
+              <rect x="74" y="90" width="62" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="105" y="105" font-size="11" text-anchor="middle">2023</text>
+              <rect x="136" y="90" width="76" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="204" y="105" font-size="11" text-anchor="end">26,000</text>
+
+              <rect x="0" y="112" width="74" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="8" y="127" font-size="11">명동점</text>
+              <rect x="74" y="112" width="62" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="105" y="127" font-size="11" text-anchor="middle">2021</text>
+              <rect x="136" y="112" width="76" height="22" fill="none" stroke="var(--rule-2)"/>
+              <text x="204" y="127" font-size="11" text-anchor="end">37,000</text>
+
+              <text x="8" y="147" font-size="11" class="dim">⋮</text>
+              <text x="88" y="147" font-size="11" class="dim">⋮</text>
+              <text x="170" y="147" font-size="11" class="dim">⋮</text>
+
+              <rect x="0" y="152" width="130" height="66" fill="none" stroke="var(--rule-2)"/>
+              <text x="10" y="170" font-size="11">☐ 지점</text>
+              <text x="10" y="188" font-size="11">☑ 연도</text>
+              <text x="10" y="206" font-size="11">☑ 매출</text>
+              <text x="0" y="238" font-size="11" class="dim">3지점 × 3년 = <tspan font-weight="700">아홉 줄</tspan>.</text>
+              <text x="0" y="252" font-size="11" class="dim">연도가 <tspan font-weight="700">필드 하나</tspan>가 됐습니다.</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption>가로로도 <b>피벗은 만들어집니다.</b> 그래서 더 위험합니다 — 필드 목록에 <b><code>2021</code>·<code>2022</code>·<code>2023</code> 이 각각</b> 뜰 뿐 <b>「연도」 가 없습니다.</b> 눕히면 줄은 세 배로 늘지만 <b>연도로 나누고, 걸러 보고, 합칠 수</b> 있게 됩니다. <b>연도가 하나 더 와도 줄만 늘어납니다.</b></figcaption>
+      </figure>
+
       <div class="note stop">
         <span class="note-label">이 장에서 제일 큰 사고</span>
         <p>

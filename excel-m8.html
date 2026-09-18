@@ -280,11 +280,60 @@
 
       <h3>세로 막대 — 적은 항목 비교</h3>
       <p class="sub"><span class="nb">「세로막대」 시트 — 상위 5개 시도</span></p>
+      <figure>
+        <div class="fig-frame">
+          <svg viewBox="0 0 700 240" role="img" aria-label="서울 698명과 경기 301명을 세로 막대로 그릴 때, 세로 축이 250부터 시작하면 서울 막대가 경기의 8.8배로 보이지만, 0부터 시작하면 실제대로 2.3배로 보인다는 그림.">
+            <g>
+              <text x="0" y="14" font-size="12" font-weight="700">축이 250부터 — 8.8배로 보임</text>
+              <line x1="50" y1="30" x2="50" y2="180" stroke="var(--rule-2)"/>
+              <line x1="50" y1="180" x2="300" y2="180" stroke="var(--rule-2)"/>
+              <text x="44" y="184" font-size="10" text-anchor="end" fill="var(--red)" style="fill:var(--red)" font-weight="700">250</text>
+              <text x="44" y="124" font-size="10" text-anchor="end" class="dim">450</text>
+              <text x="44" y="64" font-size="10" text-anchor="end" class="dim">650</text>
+              <line x1="50" y1="120" x2="300" y2="120" stroke="var(--rule)" stroke-dasharray="3 3"/>
+              <line x1="50" y1="60" x2="300" y2="60" stroke="var(--rule)" stroke-dasharray="3 3"/>
+
+              <rect x="90" y="46" width="60" height="134" fill="var(--red-dim)" stroke="var(--red)" stroke-width="1.5"/>
+              <text x="120" y="40" font-size="11" text-anchor="middle" font-weight="700">698</text>
+              <rect x="200" y="165" width="60" height="15" fill="var(--red-dim)" stroke="var(--red)" stroke-width="1.5"/>
+              <text x="230" y="159" font-size="11" text-anchor="middle" font-weight="700">301</text>
+
+              <text x="120" y="198" font-size="11" text-anchor="middle">서울</text>
+              <text x="230" y="198" font-size="11" text-anchor="middle">경기</text>
+              <text x="0" y="222" font-size="11" class="dim">막대 길이 448 대 51.</text>
+              <text x="0" y="237" font-size="11" class="dim">경기가 <tspan font-weight="700">거의 없는 것처럼</tspan> 보입니다.</text>
+            </g>
+
+            <g transform="translate(370,0)">
+              <text x="0" y="14" font-size="12" font-weight="700">축이 0부터 — 실제대로 2.3배</text>
+              <line x1="50" y1="30" x2="50" y2="180" stroke="var(--rule-2)"/>
+              <line x1="50" y1="180" x2="300" y2="180" stroke="var(--rule-2)"/>
+              <text x="44" y="184" font-size="10" text-anchor="end" font-weight="700">0</text>
+              <text x="44" y="124" font-size="10" text-anchor="end" class="dim">300</text>
+              <text x="44" y="64" font-size="10" text-anchor="end" class="dim">600</text>
+              <line x1="50" y1="120" x2="300" y2="120" stroke="var(--rule)" stroke-dasharray="3 3"/>
+              <line x1="50" y1="60" x2="300" y2="60" stroke="var(--rule)" stroke-dasharray="3 3"/>
+
+              <rect x="90" y="40" width="60" height="140" fill="var(--accent-dim)" stroke="var(--accent)" stroke-width="1.5"/>
+              <text x="120" y="34" font-size="11" text-anchor="middle" font-weight="700">698</text>
+              <rect x="200" y="120" width="60" height="60" fill="var(--accent-dim)" stroke="var(--accent)" stroke-width="1.5"/>
+              <text x="230" y="114" font-size="11" text-anchor="middle" font-weight="700">301</text>
+
+              <text x="120" y="198" font-size="11" text-anchor="middle">서울</text>
+              <text x="230" y="198" font-size="11" text-anchor="middle">경기</text>
+              <text x="0" y="222" font-size="11" class="dim">막대 길이 698 대 301.</text>
+              <text x="0" y="237" font-size="11" class="dim">서울이 경기의 <tspan font-weight="700">두 배 조금 넘습니다.</tspan></text>
+            </g>
+          </svg>
+        </div>
+        <figcaption>같은 두 숫자입니다. 엑셀은 축을 <b>「보기 좋게」 알아서</b> 잡는데, 값이 비슷하면 <b>0이 아닌 곳에서</b> 시작합니다. 막대는 <b>길이가 값</b>이라 바닥을 잘라 내면 <b>잘린 만큼 차이가 부풀려집니다.</b> 축을 오른쪽 눌러 <b>축 서식 → 최소값 0</b> 으로 고정하세요.</figcaption>
+      </figure>
+
       <div class="note">
         <span class="note-label">막대는 반드시 0부터 시작해야 합니다</span>
         <p>
-          세로 축을 <b>「600부터」</b> 로 바꾸면
-          698과 301의 차이가 <b>실제보다 훨씬 크게</b> 보입니다.
+          세로 축을 <b>「250부터」</b> 로 두면
+          698과 301이 <b>8.8배</b>로 보입니다. 실제로는 <b>2.3배</b>입니다.
         </p>
         <p>
           <b>막대의 길이가 값</b>이기 때문입니다.
