@@ -713,7 +713,7 @@ python tools/print-onepage.py 급여대장.xlsx --write
 
 ## 실력 진단 (`check.html`)
 
-문제를 푸는 시험이 아닙니다. **35개 문항에 5단계로 표시**하면
+문제를 푸는 시험이 아닙니다. **44개 문항에 5단계로 표시**하면
 과목별 수준과 **먼저 볼 부**를 알려주는 결과지가 나옵니다.
 
 - 문항은 `check.html` 에, 셈하는 코드는 `check.js` 에 있습니다.
@@ -721,6 +721,7 @@ python tools/print-onepage.py 급여대장.xlsx --write
   `data-subject`(어느 과목으로 셀지)와 `data-part`(못한다고 하면 어느 부를 권할지).
 - `data-part` 값은 `check.js` 의 **`PARTS` 표에 있는 것만** 씁니다.
   새 부를 만들면 그 표에도 한 줄 추가하세요. **안 그러면 결과에서 조용히 빠집니다.**
+- `data-subject` 값도 `check.js` 의 **`SUBJECTS` 표에 있는 것만** 씁니다. 없으면 그 문항은 셈에서 빠집니다.
 - 문항 글은 `.q-label` 안에 넣으세요. 결과지에 그대로 인용됩니다.
 - **0~4점**으로 셈하고, **1점 이하**(못함·전혀 모름)면 그 부를 권합니다.
 - 답은 `localStorage` 의 `sumgo-check` 에 남습니다.
