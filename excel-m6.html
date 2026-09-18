@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>엑셀 마스터 6장 — 자료가 늘어도 보고서는 그대로</title>
-<meta name="description" content="마스터 클래스 6장. 엑셀 표 기능과 구조적 참조, 피벗 테이블 만들기, 값 요약과 고유 개수, 그룹, 보고서 레이아웃, 계산 필드와 계산 항목, 슬라이서와 시간 표시 막대, 피벗 차트와 대시보드.">
+<meta name="description" content="마스터 클래스 6장. 엑셀 표 기능과 구조적 참조, 피벗 테이블 만들기, 값 요약과 고유 개수, 값 표시 형식, 그룹과 우수 고객 필터, 보고서 레이아웃, 계산 필드와 계산 항목, 슬라이서와 시간 표시 막대, 슬라이서 꾸미기와 대시보드.">
 <link rel="stylesheet" href="style.css">
 <script>
 (function(){try{
@@ -45,7 +45,7 @@
       <li><a href="#table">엑셀 표</a></li>
       <li><a href="#before">피벗을 만들기 전에</a></li>
       <li><a href="#pivot">피벗 테이블 만들기</a></li>
-      <li><a href="#group">묶기 — 그룹</a></li>
+      <li><a href="#group">묶고 거르기</a></li>
       <li><a href="#shape">보고서 모양 다듬기</a></li>
       <li><a href="#live">움직이는 보고서</a></li>
       <li><a href="#check">6장 확인 목록</a></li>
@@ -98,9 +98,9 @@
               <td>합계가 <code>=SUM(D7:D14)</code> 입니다. 줄을 더하면 어떻게 되는지</td>
             </tr>
             <tr>
-              <td><code>6-02_표의_구조적_참조</code></td>
-              <td>Sheet1 <span class="nb">(표 두 개가 나란히)</span></td>
-              <td>표에 <b>이름</b>을 주고 <code>=SUM(일별사용자수[사용자수])</code> 로</td>
+              <td><code>6-02_표로_바꿀_때_주의할_점</code></td>
+              <td>Sheet1 <span class="nb">(업체 두 벌이 나란히)</span></td>
+              <td><b>병합된 날짜 · 두 줄 머리글 · 같은 이름의 열</b> — 이대로는 표가 안 됩니다</td>
             </tr>
             <tr>
               <td><code>6-03_피벗을_위한_데이터_형태</code></td>
@@ -118,10 +118,10 @@
               <td>영수증 1,981장인데 <b>손님은 1,175명</b>. 그 차이</td>
             </tr>
             <tr>
-              <td><code>6-06_피벗_새로_고침</code></td>
+              <td><code>6-06_값_표시_형식</code></td>
               <td>입고내역 · 주간매출-피벗 · 주간매출-원본
-                  <span class="nb">(<code>_1</code> 짝도 있음)</span></td>
-              <td>자료를 고쳤는데 <b>피벗은 그대로</b>인 이유</td>
+                  <span class="nb">(<code>_1</code> 은 주간매출만 든 연습 파일)</span></td>
+              <td>같은 숫자를 <b>누계 · 비율 · 전주 대비</b>로</td>
             </tr>
             <tr>
               <td><code>6-07_그룹_숫자로_묶기</code></td>
@@ -134,9 +134,9 @@
               <td>날짜를 <b>주 단위</b>로. 달·분기는 단추 하나입니다</td>
             </tr>
             <tr>
-              <td><code>6-09_보고서_레이아웃과_부분합</code></td>
+              <td><code>6-09_우수_고객_필터</code></td>
               <td>나이대별 · 지역별 · 원본데이터</td>
-              <td>피벗 기본 모양은 <b>다시 쓰기 어렵습니다</b>. 표 모양으로</td>
+              <td>지역마다 <b>평균 금액 상위 3명</b>만 — 피벗 안에서 거르고 세우기</td>
             </tr>
             <tr>
               <td><code>6-10_보고서_필터_페이지_표시</code></td>
@@ -159,9 +159,9 @@
               <td>날짜 전용 슬라이더. <b>기간을 끌어서</b> 고릅니다</td>
             </tr>
             <tr>
-              <td><code>6-14_피벗_차트</code></td>
-              <td>같은 자료 <span class="nb">(슬라이서가 이미 있음)</span></td>
-              <td>피벗을 바꾸면 <b>차트도 따라</b> 바뀝니다</td>
+              <td><code>6-14_슬라이서_꾸미기</code></td>
+              <td>같은 자료 <span class="nb">(슬라이서가 이미 셋)</span></td>
+              <td>기본 색 슬라이서를 <b>대시보드에 어울리게</b> — 스타일을 복제해 고칩니다</td>
             </tr>
             <tr>
               <td><code>6-15_피벗_대시보드</code></td>
@@ -207,7 +207,7 @@
       <span class="sec-tag">01 — 엑셀 표</span>
       <h2>엑셀 표</h2>
       <p class="sub">
-        <span class="nb">예제 <code>6-01_엑셀_표_기능.xlsx</code> · <code>6-02_표의_구조적_참조.xlsx</code></span>
+        <span class="nb">예제 <code>6-01_엑셀_표_기능.xlsx</code> · <code>6-02_표로_바꿀_때_주의할_점.xlsx</code></span>
       </p>
 
       <p>
@@ -274,16 +274,11 @@
       </div>
 
       <h3>구조적 참조 — 수식이 읽힙니다</h3>
-      <p class="sub"><span class="nb">예제 <code>6-02</code> — 표 두 개가 나란히 있습니다</span></p>
+      <p class="sub"><span class="nb"><code>6-01</code> 완성본의 합계 칸을 보세요</span></p>
       <p>
-        <code>6-02</code> 는 아직 <b>표가 아닙니다.</b>
-        합계가 <code>=SUM(D8:D15)</code> 와 <code>=SUM(F8:F15)</code> 로
-        <b>따로</b> 잡혀 있습니다. <b>어느 쪽이 무슨 합계인지</b> 수식만 봐서는 모릅니다.
-      </p>
-      <p>
-        각각을 표로 바꾸고 <b>업체1 · 업체2</b> 같은 이름을 주면
-        수식이 <code>=SUM(업체1[사용자수])</code> 가 됩니다.
-        <b>읽으면 뜻을 알 수 있습니다.</b>
+        완성본의 합계는 <code>=SUM(일별사용자수[사용자수])</code> 입니다.
+        <code>=SUM(D7:D14)</code> 와 달리 <b>읽으면 뜻을 알 수 있습니다.</b>
+        표 이름과 열 이름으로 가리키는 이 방식을 <b>구조적 참조</b>라고 합니다.
       </p>
 
       <div class="tbl-wrap">
@@ -300,8 +295,44 @@
         </table>
       </div>
 
+      <h3>표로 바꿀 때 주의할 점</h3>
+      <p class="sub"><span class="nb">예제 <code>6-02_표로_바꿀_때_주의할_점.xlsx</code></span></p>
+      <p>
+        같은 배달업체 자료인데 이번에는 <b><code>Ctrl</code>+<code>T</code> 가 제대로 안 됩니다.</b>
+        파일을 열어 보면 이유가 셋 보입니다.
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>보이는 것</th><th>표로 바꾸면</th><th>먼저 할 일</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>날짜 칸이 <b>네 줄씩 병합</b> <span class="nb">(B8:B11 · B12:B15)</span></td>
+              <td>표 안에서는 병합이 <b>안 됩니다.</b> 풀리면서 세 줄이 <b>빈 날짜</b>가 됩니다</td>
+              <td>2장 — <b>병합 풀고 빈 칸 채우기</b></td>
+            </tr>
+            <tr>
+              <td>머리글이 <b>두 줄</b> <span class="nb">(6행 「배달업체」 + 7행 「업체명1」)</span></td>
+              <td>표는 <b>첫 줄 하나만</b> 머리글로 씁니다. 7행이 <b>자료로</b> 들어갑니다</td>
+              <td>2장 — <b>블록 쌓기</b>로 머리글을 한 줄로</td>
+            </tr>
+            <tr>
+              <td><b>「배달업체」 「사용자수」 가 두 번씩</b></td>
+              <td>엑셀이 <b>「배달업체2」 「사용자수2」</b> 로 이름을 바꿔 버립니다</td>
+              <td>두 벌을 <b>세로로 이어 붙여</b> 한 벌로</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        결국 <b>업체 두 벌이 나란히</b> 놓인 모양 자체가 문제입니다.
+        <b>날짜 · 배달업체 · 사용자수</b> 세 열로 <b>세로로 쌓으면</b> 한 표가 되고,
+        합계도 <code>=SUM(업체[사용자수])</code> <b>하나</b>로 끝납니다.
+      </p>
+
       <div class="note warn">
-        <span class="note-label">표에서 하면 안 되는 것 셋</span>
+        <span class="note-label">표로 만든 뒤에도 하면 안 되는 것 셋</span>
         <ol class="steps">
           <li>
             <b>병합</b>
@@ -661,12 +692,110 @@
           <b>피벗은 틀린 답도 자신 있게 냅니다.</b>
         </p>
       </div>
+
+      <h3>값 표시 형식 — 누계 · 비율 · 전주 대비</h3>
+      <p class="sub"><span class="nb">예제 <code>6-06_값_표시_형식.xlsx</code> — 헬로마트 입고내역과 주간매출</span></p>
+      <p>
+        합계는 그대로 두고 <b>「어떻게 보일지」만</b> 바꿉니다.
+        값 칸의 항목을 오른쪽 눌러 <b>「값 표시 형식」</b> 에서 고릅니다.
+        예제 완성본에 피벗이 셋 있고, <b>셋이 각각 다른 형식</b>입니다.
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>시트 · 피벗</th><th>고른 형식</th><th>보이는 것</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>입고내역</b> 위쪽 <span class="nb">(G4)</span></td>
+              <td><b>누계</b> <span class="nb">— 기준: 입고일</span></td>
+              <td>날짜가 갈수록 <b>쌓여 가는 입고량</b>. <b>색조</b> 조건부 서식을 같이 겁니다</td>
+            </tr>
+            <tr>
+              <td><b>입고내역</b> 아래쪽 <span class="nb">(G17)</span></td>
+              <td><b>총합계 비율</b></td>
+              <td>같은 입고량을 두 번 넣고 하나는 <b>합계</b>, 하나는 <b>비율</b>로</td>
+            </tr>
+            <tr>
+              <td><b>주간매출-피벗</b></td>
+              <td><b>차이</b> <span class="nb">— 기준: 주번호 · (이전)</span></td>
+              <td>지난주보다 <b>얼마나 늘고 줄었나</b>. 첫 주는 비어 있습니다</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ol class="steps">
+        <li>
+          <b>같은 필드를 값 칸에 두 번 넣습니다</b>
+          <p>입고수량을 끌어 <b>한 번 더</b> 놓으면 「합계 : 입고수량2」 가 생깁니다.</p>
+        </li>
+        <li>
+          <b>두 번째 것을 오른쪽 눌러 → 값 표시 형식 → 총합계 비율</b>
+        </li>
+        <li>
+          <b>이름을 바꿉니다</b>
+          <p>
+            칸을 눌러 <b>「입고합계」 「입고비율」</b> 로. 완성본이 그렇게 되어 있습니다.
+            <b>원래 필드 이름과 똑같이는 못 짓습니다</b> — 뒤에 공백 하나를 붙이는 요령이 있습니다.
+          </p>
+        </li>
+      </ol>
+      <div class="note">
+        <span class="note-label">「차이」 는 기준 항목이 전부입니다</span>
+        <p>
+          <b>기준 필드 = 주번호, 기준 항목 = (이전)</b> 이어야 <b>전주 대비</b>가 됩니다.
+          기준 항목을 특정 주로 고르면 <b>모든 주를 그 한 주와</b> 견줍니다.
+        </p>
+        <p>
+          연습은 <code>_1</code> 파일로 하세요. 주간매출 피벗만 들어 있어 <b>처음부터</b> 걸어 볼 수 있습니다.
+        </p>
+      </div>
+
+      <h3>자료를 고쳤는데 피벗이 그대로입니다</h3>
+      <p>
+        <b>피벗은 원본을 실시간으로 보지 않습니다.</b>
+        만들 때 <b>사본(캐시)</b> 을 떠 놓고 그것을 봅니다.
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>무엇을 고쳤나</th><th>어떻게</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>값만 고쳤다</td>
+              <td><b>피벗 안을 누르고 <code>Alt</code>+<code>F5</code></b>
+                  <span class="nb">— 또는 오른쪽 눌러 「새로 고침」</span></td>
+            </tr>
+            <tr>
+              <td>줄이 늘었다</td>
+              <td>원본이 <b>표</b>면 새로 고침으로 됩니다.
+                  <b>보통 범위면</b> → <b>피벗 분석 → 데이터 원본 변경</b></td>
+            </tr>
+            <tr>
+              <td>피벗이 여러 개다</td>
+              <td><b>데이터 → 모두 새로 고침</b> <span class="nb">(<code>Ctrl</code>+<code>Alt</code>+<code>F5</code>)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note stop">
+        <span class="note-label">이것 때문에 잘못된 보고서가 나갑니다</span>
+        <p>
+          자료를 고치고 <b>새로 고침을 안 한 채</b> 인쇄하면
+          <b>옛날 숫자가 그대로</b> 찍힙니다. <b>아무 경고도 없습니다.</b>
+        </p>
+        <p>
+          <b>피벗 분석 → 옵션 → 데이터 → 「파일을 열 때 데이터 새로 고침」</b>
+          에 체크해 두세요. 열 때마다 저절로 됩니다.
+        </p>
+      </div>
     </section>
 
     <!-- ═══════════ 04 ═══════════ -->
     <section id="group">
-      <span class="sec-tag">04 — 그룹</span>
-      <h2>묶기 — 그룹</h2>
+      <span class="sec-tag">04 — 그룹 · 필터</span>
+      <h2>묶고 거르기</h2>
 
       <h3>숫자를 구간으로</h3>
       <p class="sub"><span class="nb">예제 <code>6-07_그룹_숫자로_묶기.xlsx</code> — 랄라스타일 150명</span></p>
@@ -756,44 +885,46 @@
         </p>
       </div>
 
-      <h3>자료를 고쳤는데 피벗이 그대로입니다</h3>
-      <p class="sub"><span class="nb">예제 <code>6-06_피벗_새로_고침.xlsx</code></span></p>
+
+      <h3>피벗 안에서 거르고 세우기 — 우수 고객</h3>
+      <p class="sub"><span class="nb">예제 <code>6-09_우수_고객_필터.xlsx</code> — 랄라스타일 고객 150명</span></p>
       <p>
-        <b>피벗은 원본을 실시간으로 보지 않습니다.</b>
-        만들 때 <b>사본(캐시)</b> 을 떠 놓고 그것을 봅니다.
+        <b>「지역마다 많이 산 손님 세 명씩」</b> 을 뽑아 달라는 요청입니다.
+        원본 <b>「지역별」</b> 시트는 지역 · 이름 · 평균 수량 · 평균 금액 피벗인데
+        <b>150명이 전부</b> 나와 있습니다.
       </p>
-      <div class="tbl-wrap">
-        <table>
-          <thead>
-            <tr><th>무엇을 고쳤나</th><th>어떻게</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>값만 고쳤다</td>
-              <td><b>피벗 안을 누르고 <code>Alt</code>+<code>F5</code></b>
-                  <span class="nb">— 또는 오른쪽 눌러 「새로 고침」</span></td>
-            </tr>
-            <tr>
-              <td>줄이 늘었다</td>
-              <td>원본이 <b>표</b>면 새로 고침으로 됩니다.
-                  <b>보통 범위면</b> → <b>피벗 분석 → 데이터 원본 변경</b></td>
-            </tr>
-            <tr>
-              <td>피벗이 여러 개다</td>
-              <td><b>데이터 → 모두 새로 고침</b> <span class="nb">(<code>Ctrl</code>+<code>Alt</code>+<code>F5</code>)</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="note stop">
-        <span class="note-label">이것 때문에 잘못된 보고서가 나갑니다</span>
+      <ol class="steps">
+        <li>
+          <b>이름 칸의 ▼ → 값 필터 → 상위 10</b>
+          <p>
+            <b>10 → 3</b>, 기준을 <b>「평균 : 금액」</b> 으로.
+            피벗은 <b>지역마다 따로</b> 셋을 뽑습니다. 150줄이 <b>서른몇 줄</b>로 줄어듭니다.
+          </p>
+        </li>
+        <li>
+          <b>이름 칸 ▼ → 기타 정렬 옵션 → 내림차순, 기준 「평균 : 금액」</b>
+          <p>
+            지역 안에서 <b>1등이 맨 위</b>로 섭니다.
+            이 시트는 처음부터 <b>테이블 형식</b>이라 지역과 이름이 따로 열에 있어 읽기 쉽습니다.
+          </p>
+        </li>
+      </ol>
+      <div class="note">
+        <span class="note-label">피벗 필터는 세 가지입니다</span>
+        <div class="tbl-wrap">
+          <table>
+            <thead>
+              <tr><th>필터</th><th>무엇으로 거르나</th><th>예</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><b>레이블 필터</b></td><td>항목의 <b>이름</b></td><td>「김」 으로 시작하는 고객</td></tr>
+              <tr><td><b>값 필터</b></td><td>옆의 <b>숫자</b></td><td>평균 금액 <b>상위 3</b></td></tr>
+              <tr><td><b>보고서 필터</b></td><td>필터 칸에 넣은 <b>필드</b></td><td>지역 = 서울만</td></tr>
+            </tbody>
+          </table>
+        </div>
         <p>
-          자료를 고치고 <b>새로 고침을 안 한 채</b> 인쇄하면
-          <b>옛날 숫자가 그대로</b> 찍힙니다. <b>아무 경고도 없습니다.</b>
-        </p>
-        <p>
-          <b>피벗 분석 → 옵션 → 데이터 → 「파일을 열 때 데이터 새로 고침」</b>
-          에 체크해 두세요. 열 때마다 저절로 됩니다.
+          <b>「상위 N」 은 값 필터</b>에 있습니다. 레이블 필터에서 찾으면 안 보입니다.
         </p>
       </div>
     </section>
@@ -804,7 +935,6 @@
       <h2>보고서 모양 다듬기</h2>
 
       <h3>피벗 기본 모양은 다시 쓰기 어렵습니다</h3>
-      <p class="sub"><span class="nb">예제 <code>6-09_보고서_레이아웃과_부분합.xlsx</code></span></p>
       <p>
         피벗을 만들면 <b>「행 레이블」</b> 이라는 한 열에
         지역과 이름이 <b>층층이</b> 들어갑니다.
@@ -831,12 +961,11 @@
         </li>
       </ol>
       <div class="note">
-        <span class="note-label">예제에 두 모양이 다 들어 있습니다</span>
+        <span class="note-label">어느 예제로 해 보나</span>
         <p>
-          <code>6-09</code> 완성본의 <b>「나이대별」</b> 은 <b>부분합이 켜진</b> 상태,
-          <b>「지역별」</b> 은 <b>이름까지 펼친</b> 상태입니다.
+          <code>6-09</code> 의 <b>「나이대별」</b> 시트가 <b>기본 모양(압축 형식)</b> 그대로입니다.
+          거기서 세 단계를 차례로 눌러 보면 모양이 어떻게 바뀌는지 바로 보입니다.
         </p>
-        <p><b>둘을 나란히 놓고 보면</b> 무엇이 달라졌는지 바로 보입니다.</p>
       </div>
 
       <h3>지역마다 시트 하나씩 — 자동으로</h3>
@@ -1021,28 +1150,48 @@
         </p>
       </div>
 
-      <h3>피벗 차트</h3>
-      <p class="sub"><span class="nb">예제 <code>6-14_피벗_차트.xlsx</code></span></p>
+      <h3>대시보드용으로 꾸미기</h3>
+      <p class="sub"><span class="nb">예제 <code>6-14_슬라이서_꾸미기.xlsx</code> — 대분류 · 소분류 · 연, 슬라이서가 이미 셋 있습니다</span></p>
       <p>
-        <b>피벗 분석 → 피벗 차트.</b>
-        피벗을 바꾸면 <b>차트가 따라</b> 바뀝니다.
+        기본 슬라이서는 <b>파란 단추</b>입니다. 한 화면에 셋을 두면 <b>단추만 보이고 숫자가 안 보입니다.</b>
+        완성본은 <b>「내슬라이서」</b> 라는 <b>회색 계열 스타일</b>을 새로 만들어 입혔습니다.
       </p>
+      <ol class="steps">
+        <li>
+          <b>슬라이서를 누르고 → 슬라이서 탭 → 스타일 목록을 오른쪽 눌러 「복제」</b>
+          <p><b>처음부터 만들지 말고 복제</b>하세요. 고칠 곳만 고치면 됩니다.</p>
+        </li>
+        <li>
+          <b>이름을 「내슬라이서」 로 짓고, 요소를 하나씩 고칩니다</b>
+          <p>
+            <b>「선택된 항목(데이터 있음)」</b> 을 진한 회색,
+            <b>「선택 안 된 항목」</b> 을 연한 회색으로. 글자는 검정·회색.
+          </p>
+        </li>
+        <li>
+          <b>슬라이서 셋을 함께 잡고 새 스타일을 누릅니다</b>
+          <p><code>Ctrl</code> 을 누른 채 하나씩 클릭하면 <b>한 번에</b> 바뀝니다.</p>
+        </li>
+        <li>
+          <b>단추 높이를 맞춥니다</b>
+          <p>
+            슬라이서 탭 → <b>단추</b> 묶음에서 <b>높이</b>를 셋 다 같게.
+            열 수는 항목 수에 맞춰 두면 됩니다 — 예제는 <b>대분류·소분류 3열, 연 2열</b>입니다.
+          </p>
+        </li>
+      </ol>
       <div class="note warn">
-        <span class="note-label">차트 위의 단추가 거슬립니다</span>
+        <span class="note-label">만든 스타일은 그 파일에만 있습니다</span>
         <p>
-          피벗 차트에는 <b>필드 단추</b> 가 잔뜩 붙어 나옵니다.
-          <b>슬라이서를 쓴다면 필요 없습니다.</b>
-        </p>
-        <p>
-          차트를 누르고 <b>피벗 차트 분석 → 필드 단추 → 모두 숨기기.</b>
-          <b>인쇄할 보고서라면 꼭 끄세요.</b>
+          「내슬라이서」 는 <b>이 통합 문서 안에만</b> 저장됩니다.
+          다른 파일에서 쓰려면 <b>슬라이서를 그 파일로 복사</b>하면 스타일이 따라갑니다.
         </p>
       </div>
       <div class="note">
-        <span class="note-label">피벗 차트가 못 하는 것</span>
+        <span class="note-label">피벗 차트를 곁들인다면</span>
         <p>
-          <b>분산형 · 거품형 · 주식형</b> 은 안 됩니다.
-          그런 차트가 필요하면 <b>피벗 결과를 값으로 복사해</b> 보통 차트를 만드세요.
+          <b>피벗 분석 → 피벗 차트</b> 로 만든 차트도 <b>같은 슬라이서를 따라</b> 바뀝니다.
+          차트 위의 <b>필드 단추</b>는 <b>피벗 차트 분석 → 필드 단추 → 모두 숨기기</b> 로 끄세요.
         </p>
       </div>
 
@@ -1053,10 +1202,11 @@
           <b>새 시트를 만들고 「대시보드」 라고 이름 짓습니다</b>
         </li>
         <li>
-          <b>피벗과 차트를 옮겨 붙입니다</b>
+          <b>피벗을 한 시트에 모읍니다</b>
           <p>
-            차트는 <b>잘라내기 → 붙여넣기</b> 로 옮겨집니다.
-            피벗 자체는 <b>그 시트에 만들거나</b> 시트를 통째로 씁니다.
+            예제 완성본은 <b>피벗 둘과 슬라이서 셋</b>이 한 시트에 있습니다.
+            그중 <b>「소분류」 슬라이서 하나가 피벗 둘에 함께 연결</b>되어 있습니다.
+            피벗 차트를 곁들였다면 <b>잘라내기 → 붙여넣기</b> 로 옮겨집니다.
           </p>
         </li>
         <li>
@@ -1093,14 +1243,17 @@
         <li><label><input type="checkbox"><span><code>Ctrl</code>+<code>T</code> 로 표를 만들고 <b>이름을 바꿨다</b></span></label></li>
         <li><label><input type="checkbox"><span><code>=SUM(표이름[열이름])</code> 을 <b>마우스로 잡아</b> 써 봤다</span></label></li>
         <li><label><input type="checkbox"><span>표에 줄을 더하니 <b>합계·서식이 따라오는 것</b>을 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>표로 바꾸기 전에 <b>병합·두 줄 머리글·같은 열 이름</b>을 먼저 정리해야 한다는 것을 안다</span></label></li>
         <li><label><input type="checkbox"><span>가로로 퍼진 자료로는 <b>년도별로 못 나눈다</b>는 것을 확인했다</span></label></li>
         <li><label><input type="checkbox"><span>피벗 <b>네 칸</b>이 무엇인지 말할 수 있다</span></label></li>
         <li><label><input type="checkbox"><span>합계가 아니라 <b>「개수」가 나오는 이유</b>를 안다</span></label></li>
         <li><label><input type="checkbox"><span><b>고유 개수</b>와 개수의 차이를 값으로 봤다</span></label></li>
         <li><label><input type="checkbox"><span>고유 개수는 <b>데이터 모델 체크가 먼저</b>임을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>값 표시 형식을 <b>누계 · 총합계 비율 · 차이</b>로 바꿔 봤다</span></label></li>
         <li><label><input type="checkbox"><span>나이를 <b>5단위 그룹</b>으로 묶어 봤다</span></label></li>
         <li><label><input type="checkbox"><span>날짜를 <b>7일 단위</b>로 묶어 봤다</span></label></li>
         <li><label><input type="checkbox"><span>그룹이 회색이면 <b>글자가 섞인 것</b>임을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><b>값 필터 → 상위 3</b> 으로 지역마다 우수 고객을 뽑아 봤다</span></label></li>
         <li><label><input type="checkbox"><span><code>Alt</code>+<code>F5</code> 로 <b>새로 고침</b>해 봤다</span></label></li>
         <li><label><input type="checkbox"><span><b>「파일을 열 때 새로 고침」</b> 을 켜 뒀다</span></label></li>
         <li><label><input type="checkbox"><span><b>테이블 형식</b>으로 바꾸고 <b>레이블을 반복</b>시켰다</span></label></li>
@@ -1112,7 +1265,7 @@
         <li><label><input type="checkbox"><span><b>시간 표시 막대</b>로 기간을 끌어 봤다</span></label></li>
         <li><label><input type="checkbox"><span><b>보고서 연결</b>로 피벗 여럿을 한 슬라이서에 묶었다</span></label></li>
         <li><label><input type="checkbox"><span>연결하려면 <b>같은 캐시</b>여야 한다는 것을 안다</span></label></li>
-        <li><label><input type="checkbox"><span>피벗 차트의 <b>필드 단추를 숨겨</b> 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>슬라이서 스타일을 <b>복제해서</b> 대시보드 색으로 꾸며 봤다</span></label></li>
         <li><label><input type="checkbox"><span>대시보드에서 <b>눈금선을 껐다</b></span></label></li>
       </ul>
 

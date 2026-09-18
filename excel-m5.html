@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>엑셀 마스터 5장 — 수천 줄에서 필요한 것만</title>
-<meta name="description" content="마스터 클래스 5장. 데이터 관리 기본 규칙, 여러 시트 취합, 정렬과 사용자 지정 목록, 자동 필터, SUBTOTAL, 고급 필터, 파워 쿼리로 열 피벗 해제.">
+<meta name="description" content="마스터 클래스 5장. 데이터 관리 기본 규칙, 여러 시트 동시 편집, 정렬과 사용자 지정 목록, 자동 필터와 와일드카드, 이익률 필터와 상위 10, SUBTOTAL, 고급 필터, 파워 쿼리로 열 피벗 해제.">
 <link rel="stylesheet" href="style.css">
 <script>
 (function(){try{
@@ -96,9 +96,9 @@
                   <b>왼쪽(전)·오른쪽(후)</b> 으로 나란히</td>
             </tr>
             <tr>
-              <td><code>5-02_여러_시트_취합</code></td>
+              <td><code>5-02_여러_시트_동시_편집</code></td>
               <td><b>12장</b> — 1월 ~ 12월</td>
-              <td>달마다 시트 하나. <b>열 수가 달마다 다릅니다</b></td>
+              <td>모양이 같은 시트 열두 장. <b>한 번 고쳐서 열두 장에</b></td>
             </tr>
             <tr>
               <td><code>5-03_정렬_기초</code></td>
@@ -111,9 +111,9 @@
               <td>지역을 <b>가나다순이 아니라 서울·경기·…</b> 순으로</td>
             </tr>
             <tr>
-              <td><code>5-05_한_칸에_뭉친_값</code></td>
-              <td>워크샵명단 <span class="nb">(14줄)</span></td>
-              <td><code>서울본사-이제우(사원)</code> — <b>정렬이 안 되는 이유</b></td>
+              <td><code>5-05_와일드카드_필터</code></td>
+              <td>워크샵명단 <span class="nb">(13명)</span></td>
+              <td><code>서울본사-이제우(사원)</code> — 한 칸에 뭉친 값을 <b><code>*</code> 로 거르기</b></td>
             </tr>
             <tr>
               <td><code>5-06_자동_필터</code></td>
@@ -121,9 +121,9 @@
               <td>필터의 <b>세 갈래</b> — 목록 · 조건 · 검색</td>
             </tr>
             <tr>
-              <td><code>5-07_숫자_필터와_색_필터</code></td>
+              <td><code>5-07_이익률_필터와_TOP10</code></td>
               <td>리마트매출현황 <span class="nb">(매출이익률 열 추가)</span></td>
-              <td><b>상위 10개</b> · <b>평균 초과</b> · <b>색으로 거르기</b></td>
+              <td>판매 현황 보고서 — <b>이익률 10% 이상</b>에 <b>매출이익 상위 10</b> 을 겹칩니다</td>
             </tr>
             <tr>
               <td><code>5-08_SUBTOTAL_함수</code></td>
@@ -381,51 +381,57 @@
         </ol>
       </div>
 
-      <h3>여러 시트를 하나로</h3>
-      <p class="sub"><span class="nb">예제 <code>5-02_여러_시트_취합.xlsx</code> — 1월부터 12월까지</span></p>
+      <h3>열두 장을 한 번에 고치기 — 시트 그룹</h3>
+      <p class="sub"><span class="nb">예제 <code>5-02_여러_시트_동시_편집.xlsx</code> — 1월부터 12월까지</span></p>
       <p>
-        달마다 시트가 하나씩 있습니다. <b>12장을 한 표로</b> 만들어야 합니다.
+        달마다 시트가 하나씩, <b>모양이 똑같은</b> 주문 목록이 열두 장 있습니다.
+        <b>모든 달에 「합계」 열을 더해 달라</b>는 요청이 오면 — 열두 번 할 필요가 없습니다.
       </p>
+      <ol class="steps">
+        <li>
+          <b>1월 탭을 누르고 <code>Shift</code>+12월 탭</b>
+          <p>
+            열두 장이 함께 잡히고 제목 줄에 <b>[그룹]</b> 이 뜹니다.
+            떨어진 시트만 고르려면 <code>Ctrl</code>+클릭입니다.
+          </p>
+        </li>
+        <li>
+          <b>1월 시트에서 한 번만 합니다</b>
+          <p>
+            <b>M2</b> 에 <code>합계</code>, <b>M3</b> 에 <code>=SUM(C3:L3)</code> 을 넣고 아래로 끕니다.
+            머리글 색·테두리·열 너비도 여기서 한 번에.
+          </p>
+        </li>
+        <li>
+          <b>★ 그룹을 풀고 2월 시트를 봅니다</b>
+          <p>
+            아무 탭이나 오른쪽 눌러 <b>「시트 그룹 해제」</b>.
+            2월에도 <b>똑같은 자리에 합계 열</b>이 생겨 있습니다.
+          </p>
+        </li>
+      </ol>
+      <div class="note stop">
+        <span class="note-label">그룹을 안 풀면 열두 장이 같이 망가집니다</span>
+        <p>
+          [그룹] 상태에서 <b>1월의 숫자 하나를 고치면 열두 달이 전부</b> 그 숫자가 됩니다.
+          <b>되돌리기도 한 장씩만</b> 됩니다.
+        </p>
+        <p>
+          <b>할 일이 끝나면 곧바로 그룹을 푸세요.</b>
+          4장 「여러 시트를 한 PDF로」 에서 본 그 경고와 같습니다.
+        </p>
+      </div>
       <div class="note warn">
-        <span class="note-label">먼저 열 구성을 확인하세요</span>
+        <span class="note-label">모양이 같을 때만 됩니다</span>
         <p>
-          <b>1월 시트는 M열까지, 2월 시트는 L열까지</b> 입니다.
-          <b>달마다 열 수가 다릅니다.</b>
+          그룹 편집은 <b>같은 주소</b>에 같은 일을 합니다. 1월의 M열이 합계면
+          <b>2월에도 M열</b>에 들어갑니다. 달마다 표 위치가 다르면 <b>엉뚱한 칸</b>을 덮어씁니다.
         </p>
         <p>
-          이걸 모르고 아래로 이어 붙이면 <b>어느 달부터 한 칸씩 밀립니다.</b>
-          <b>붙이기 전에 12장의 머리글이 같은지</b> 먼저 보세요.
+          <b>먼저 시트 두세 장의 머리글 줄을 눈으로 견줘</b> 보고 시작하세요.
+          위의 「세로로 쌓기」 규칙을 지킨 시트라면 대개 맞습니다.
         </p>
       </div>
-      <div class="tbl-wrap">
-        <table>
-          <thead>
-            <tr><th>방법</th><th>어떻게</th><th>언제</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><b>복사해서 이어 붙이기</b></td>
-              <td>시트마다 <code>Ctrl</code>+<code>A</code> → 아래에 붙이고
-                  <b>「월」 열을 손으로</b> 채웁니다</td>
-              <td>한 번만 할 때</td>
-            </tr>
-            <tr>
-              <td>통합 <span class="nb">(데이터 → 통합)</span></td>
-              <td>여러 범위의 <b>합계만</b> 냅니다</td>
-              <td>원본이 필요 없을 때</td>
-            </tr>
-            <tr>
-              <td><b>파워 쿼리</b></td>
-              <td><b>폴더/통합 문서에서 가져오기</b></td>
-              <td><b>매달 반복</b>할 때. 06장</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p>
-        어느 쪽이든 <b>「월」 열을 반드시 만드세요.</b>
-        안 만들면 붙이는 순간 <b>몇 월 자료인지 사라집니다.</b>
-      </p>
     </section>
 
     <!-- ═══════════ 02 ═══════════ -->
@@ -518,47 +524,6 @@
         </p>
       </div>
 
-      <h3>정렬이 아예 안 되는 자료</h3>
-      <p class="sub"><span class="nb">예제 <code>5-05_한_칸에_뭉친_값.xlsx</code></span></p>
-      <p>
-        워크샵 명단이 <b>한 열</b>에 이렇게 들어 있습니다 —
-        <code>서울본사-이제우(사원)</code> · <code>경기지사-김준용(대리)</code>.
-      </p>
-      <p>
-        <b>지사별로 묶어 달라</b>고 하면 정렬로는 됩니다.
-        <b>직급별로 묶어 달라</b>고 하면 <b>안 됩니다.</b>
-        직급이 <b>글자 한가운데</b> 있으니까요.
-      </p>
-      <ol class="steps">
-        <li>
-          <b>먼저 나눕니다 — 2장의 텍스트 나누기</b>
-          <p>
-            <b>데이터 → 텍스트 나누기 → 구분 기호 → 기타</b> 에
-            <code>-</code> 를 넣으면 <b>지사</b>와 <b>이름(직급)</b> 으로 갈립니다.
-          </p>
-        </li>
-        <li>
-          <b>괄호도 나눕니다</b>
-          <p>
-            한 번 더 <b>기타</b> 에 <code>(</code> 를 넣습니다.
-            남는 <code>)</code> 는 <b>찾기 및 바꾸기</b>로 지웁니다.
-          </p>
-        </li>
-        <li>
-          <b>이제 정렬합니다</b>
-          <p><b>지사 → 직급 → 이름</b> 순으로 셋을 겹치면 됩니다.</p>
-        </li>
-      </ol>
-      <div class="note warn">
-        <span class="note-label">나누기 전에 빈 열을 만들어 두세요</span>
-        <p>
-          텍스트 나누기는 <b>오른쪽 칸을 덮어씁니다.</b>
-          <b>경고도 안 뜨는 경우가 있습니다.</b>
-        </p>
-        <p>
-          나눌 열 오른쪽에 <b>빈 열 두세 개</b>를 미리 넣고 시작하세요.
-        </p>
-      </div>
     </section>
 
     <!-- ═══════════ 03 ═══════════ -->
@@ -566,7 +531,7 @@
       <span class="sec-tag">03 — 자동 필터</span>
       <h2>자동 필터</h2>
       <p class="sub">
-        <span class="nb">예제 <code>5-06_자동_필터.xlsx</code> · <code>5-07_숫자_필터와_색_필터.xlsx</code></span>
+        <span class="nb">예제 <code>5-05_와일드카드_필터.xlsx</code> · <code>5-06_자동_필터.xlsx</code> · <code>5-07_이익률_필터와_TOP10.xlsx</code></span>
       </p>
 
       <p>
@@ -613,43 +578,94 @@
         </p>
       </div>
 
-      <h3>숫자 필터 — 상위 10개와 평균 초과</h3>
-      <p class="sub"><span class="nb">예제 <code>5-07</code> — <b>매출이익률</b> 열이 있습니다</span></p>
+      <h3>한 칸에 여러 정보 — 와일드카드</h3>
+      <p class="sub"><span class="nb">예제 <code>5-05_와일드카드_필터.xlsx</code> — 워크샵 명단</span></p>
+      <p>
+        명단이 <b>한 열</b>에 이렇게 들어 있습니다 —
+        <code>서울본사-이제우(사원)</code> · <code>경기지사-김준용(대리)</code>.
+        <b>지사 · 이름 · 직급이 한 칸에</b> 뭉쳐 있습니다.
+      </p>
+      <p>
+        <b>대리만 보고 싶다</b>면? 목록에서 체크하려면 열세 줄을 다 봐야 합니다.
+        <b>와일드카드</b>로 한 번에 됩니다.
+      </p>
       <div class="tbl-wrap">
         <table>
           <thead>
-            <tr><th>고르는 것</th><th>나오는 것</th></tr>
+            <tr><th>기호</th><th>뜻</th><th>이렇게 치면</th><th>걸리는 것</th></tr>
           </thead>
           <tbody>
-            <tr><td><b>상위 10</b></td><td>숫자를 바꾸면 <b>상위 5개·상위 20%</b> 도 됩니다</td></tr>
-            <tr><td><b>평균 초과</b></td><td>평균을 <b>계산해 줄 필요 없이</b> 바로</td></tr>
-            <tr><td>사용자 지정 필터</td><td><code>&gt;=100000</code> <b>그리고</b> <code>&lt;500000</code></td></tr>
+            <tr><td><code>*</code></td><td>아무 글자나 <b>몇 개든</b></td><td><code>*(대리)</code></td><td>괄호 안이 대리인 사람 <b>전부</b></td></tr>
+            <tr><td><code>*</code></td><td></td><td><code>서울본사*</code></td><td>서울본사로 <b>시작하는</b> 줄</td></tr>
+            <tr><td><code>?</code></td><td>아무 글자 <b>딱 하나</b></td><td><code>*-??(*</code></td><td>이름이 <b>두 글자</b>인 사람 <span class="nb">— 최리 · 김진</span></td></tr>
+            <tr><td><code>~</code></td><td>기호를 <b>기호 그대로</b></td><td><code>*~**</code></td><td>진짜 <code>*</code> 가 든 줄</td></tr>
           </tbody>
         </table>
       </div>
+      <ol class="steps">
+        <li>
+          <b>명단 머리글을 누르고 <code>Ctrl</code>+<code>Shift</code>+<code>L</code></b>
+        </li>
+        <li>
+          <b>▼ → 검색 칸에 <code>*(대리)</code></b>
+          <p>열세 명 중 <b>대리 여섯 명</b>만 남습니다. 확인.</p>
+        </li>
+        <li>
+          <b>이번에는 텍스트 필터 → 사용자 지정 필터</b>
+          <p>
+            <b>「서울본사*」 로 시작</b> <u>그리고</u> <b>「*(대리)」 로 끝남</b> —
+            <b>서울본사의 대리 네 명</b>만 남습니다.
+          </p>
+        </li>
+      </ol>
+      <div class="note">
+        <span class="note-label">나누지 않고도 된다는 것이 요점입니다</span>
+        <p>
+          2장처럼 <b>텍스트 나누기</b>로 지사·이름·직급을 쪼개면 가장 깔끔합니다.
+          다만 <b>남의 파일을 잠깐 보는 것</b>이라면 쪼갤 필요 없이 와일드카드로 충분합니다.
+        </p>
+        <p>
+          <b>정렬은 안 됩니다.</b> 직급순으로 세우려면 결국 나눠야 합니다.
+          와일드카드는 <b>거르기</b>까지만입니다.
+        </p>
+      </div>
+
+      <h3>판매 현황 보고서 — 이익률 10% 이상, 그중 상위 10</h3>
+      <p class="sub"><span class="nb">예제 <code>5-07_이익률_필터와_TOP10.xlsx</code> — 리마트 매출현황</span></p>
+      <p>
+        원본에는 <b>매출이익률 열이 비어</b> 있습니다. 완성본은 그 열을 채우고
+        <b>필터 두 개를 겹쳐</b> 걸어 둡니다.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>J열 매출이익률을 채웁니다</b>
+          <p><code>=I2/H2</code> 를 넣고 아래로. 서식은 <b>백분율</b>.</p>
+        </li>
+        <li>
+          <b>J열 ▼ → 숫자 필터 → 크거나 같음 → <code>0.1</code></b>
+          <p>
+            <b><code>10%</code> 가 아니라 <code>0.1</code></b> 로 넣습니다.
+            백분율은 <b>겉모습</b>이고 속은 소수니까요 — 3장 이야기입니다.
+          </p>
+        </li>
+        <li>
+          <b>이어서 I열 ▼ → 숫자 필터 → 상위 10</b>
+          <p>
+            <b>이익률 10% 넘는 주문 가운데</b> 매출이익이 큰 열 개가 남습니다.
+            필터는 <b>열마다 겹쳐</b> 걸립니다.
+          </p>
+        </li>
+        <li>
+          <b>매출이익 열에 데이터 막대</b>
+          <p>완성본이 이렇게 <b>눈으로 크기를 보이게</b> 해 두었습니다. 3장의 그 기능입니다.</p>
+        </li>
+      </ol>
       <div class="note warn">
         <span class="note-label">「상위 10」 은 열 개가 아닐 수도 있습니다</span>
         <p>
           <b>같은 값이 여럿</b>이면 열 개보다 많이 나옵니다.
           그리고 <b>「항목」 이 아니라 「%」</b> 로 되어 있으면
           <b>상위 10%</b> 를 뜻합니다. <b>창을 잘 보세요.</b>
-        </p>
-      </div>
-
-      <h3>색으로 거르기</h3>
-      <p>
-        3장에서 <b>조건부 서식</b>으로 칠한 칸이 있으면
-        <b>▼ → 색 기준 필터</b> 로 <b>그 색만</b> 뽑을 수 있습니다.
-      </p>
-      <div class="note">
-        <span class="note-label">조건부 서식으로 칠한 색도 걸립니다</span>
-        <p>
-          손으로 칠한 색이든 조건부 서식이 칠한 색이든 <b>둘 다</b> 잡힙니다.
-        </p>
-        <p>
-          <b>3장 + 5장을 이어 쓰는 흔한 방법</b>입니다 —
-          조건부 서식으로 <b>이상한 줄을 칠해 두고</b>,
-          색 기준 필터로 <b>그 줄만 뽑아</b> 봅니다.
         </p>
       </div>
 
@@ -1016,17 +1032,17 @@
         <li><label><input type="checkbox"><span>한 칸에 뭉친 값은 <b>정렬이 안 된다</b>는 것을 확인했다</span></label></li>
         <li><label><input type="checkbox"><span>머리글이 <b>두 줄이면 필터가 안 걸린다</b>는 것을 봤다</span></label></li>
         <li><label><input type="checkbox"><span>소계가 섞인 표에서 <b>합계가 두 배</b>가 되는 것을 봤다</span></label></li>
-        <li><label><input type="checkbox"><span>여러 시트를 붙이기 전에 <b>열 구성이 같은지</b> 확인했다</span></label></li>
-        <li><label><input type="checkbox"><span>취합할 때 <b>「월」 열을 만들었다</b></span></label></li>
+        <li><label><input type="checkbox"><span><b>시트 그룹</b>으로 열두 장에 합계 열을 한 번에 넣어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>그룹 편집이 끝나면 <b>곧바로 그룹을 푼다</b></span></label></li>
         <li><label><input type="checkbox"><span>정렬은 <b>표 안 한 칸만 누르고</b> 한다</span></label></li>
         <li><label><input type="checkbox"><span>기준을 <b>세 개 겹쳐</b> 정렬해 봤다</span></label></li>
         <li><label><input type="checkbox"><span><b>사용자 지정 목록</b>으로 지역 순서를 정해 봤다</span></label></li>
-        <li><label><input type="checkbox"><span>텍스트 나누기 전에 <b>빈 열을 만들어</b> 뒀다</span></label></li>
+        <li><label><input type="checkbox"><span><code>*(대리)</code> 처럼 <b>와일드카드로</b> 걸러 봤다</span></label></li>
         <li><label><input type="checkbox"><span><code>Ctrl</code>+<code>Shift</code>+<code>L</code> 로 필터를 켜고 껐다</span></label></li>
         <li><label><input type="checkbox"><span>필터 <b>검색 칸</b>을 써 봤다</span></label></li>
         <li><label><input type="checkbox"><span><b>「현재 선택 영역을 필터에 추가」</b> 를 써 봤다</span></label></li>
         <li><label><input type="checkbox"><span><b>상위 10</b> 과 <b>평균 초과</b> 를 눌러 봤다</span></label></li>
-        <li><label><input type="checkbox"><span><b>색 기준 필터</b>를 써 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>이익률 10% 이상</b>에 <b>상위 10</b> 을 겹쳐 걸어 봤다</span></label></li>
         <li><label><input type="checkbox"><span>필터 상태에서 <b>붙여넣기를 하면 안 된다</b>는 것을 안다</span></label></li>
         <li><label><input type="checkbox"><span><code>SUM</code> 을 <code>SUBTOTAL(9,…)</code> 로 바꿔 봤다</span></label></li>
         <li><label><input type="checkbox"><span><b>9 와 109 의 차이</b>를 말할 수 있다</span></label></li>
