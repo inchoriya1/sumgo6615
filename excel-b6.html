@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="ko" data-subject="excel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>엑셀 기초 6장 — 자동 채우기</title>
+<meta name="description" content="엑셀 기초 6장. 채우기 핸들, 한 칸과 두 칸의 차이, 서식 없이 채우기, 사용자 지정 목록으로 우리 순서 가르치기, Ctrl+E 빠른 채우기.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="excel.html">← 엑셀 과목 첫 화면으로</a>
+    <p class="eyebrow">1과목 · 엑셀 · 기초 6장</p>
+    <h1>자동<br><em>채우기</em></h1>
+    <p class="lede">
+      같은 것을 줄마다 다시 치지 않아도 됩니다.
+      <b>한 번 쓰고 끌어내리면 끝</b>입니다.
+      백 명이든 천 명이든 <b>손이 한 번</b>밖에 안 갑니다.
+      엑셀에서 <b>가장 손이 덜 가는 기능</b>입니다.
+    </p>
+    <div class="facts">
+      <span><b>앞 장</b> 5장 — 저장하고 내보내기</span>
+      <span><b>소요</b> 45분</span>
+      <span><b>예제</b> B-06_자동채우기.xlsx</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#handle">채우기 핸들</a></li>
+      <li><a href="#howmany">한 칸이냐 두 칸이냐</a></li>
+      <li><a href="#after">끌고 난 뒤 작은 단추</a></li>
+      <li><a href="#mylist">우리 순서를 가르치기</a></li>
+      <li><a href="#flash">빠른 채우기</a></li>
+      <li><a href="#try">해 보기</a></li>
+      <li><a href="#check">6장 확인 목록</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════
+         네 과목 어느 것부터 봐도 되도록, 이 장은 과목마다 똑같이 들어 있습니다.
+         고칠 때는 네 곳을 함께 고쳐 주세요. -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에, 손동작 세 가지</h2>
+      <p class="sub">
+        이 세 가지만 알면 무엇을 눌러도 겁낼 것이 없습니다.
+        네 과목 모두에서 똑같이 씁니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">앞 장에서 이미 보셨다면</span>
+        <p>
+          같은 장이 과목마다, 그리고 장마다 들어 있습니다.
+          이미 읽으셨으면 <a href="#handle">01장</a>으로 건너뛰세요.
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>손동작</th><th>하는 일</th><th>언제 쓰나</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></td>
+              <td>방금 한 일을 되돌립니다</td>
+              <td>잘못 눌렀을 때. 여러 번 눌러도 됩니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">S</span></td>
+              <td>저장합니다</td>
+              <td>수시로. 한 줄 쓸 때마다 눌러도 좋습니다</td>
+            </tr>
+            <tr>
+              <td>마우스 <b>오른쪽</b> 단추</td>
+              <td>지금 고른 것에 할 수 있는 일 목록을 띄웁니다</td>
+              <td>무엇을 눌러야 할지 모를 때</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">이 장은 끄는 연습입니다</span>
+        <p>
+          잘못 끌면 <b>내용이 엉망이 됩니다.</b> 그래도 괜찮습니다.
+          <span class="kbd">Ctrl</span>+<span class="kbd">Z</span> 한 번이면 돌아옵니다.
+          <b>마음 놓고 끌어 보세요.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="handle">
+      <span class="sec-tag">01 — 핸들</span>
+      <h2>채우기 핸들</h2>
+      <p class="sub">
+        칸을 하나 고르면 <b>오른쪽 아래 모서리에 작은 네모</b>가 붙어 있습니다.
+        그것이 <b>채우기 핸들</b>입니다.
+      </p>
+
+      <div class="note warn">
+        <span class="note-label">마우스 모양을 보세요 — 세 가지가 다릅니다</span>
+        <p>
+          채우기는 <b>검은 십자(+)</b> 일 때만 됩니다.
+          모양이 다르면 <b>엉뚱한 일이 일어납니다.</b>
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>마우스 모양</th><th>어디에 올렸을 때</th><th>끌면</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>흰 십자</b></td>
+              <td>칸 가운데</td>
+              <td>칸들이 <b>선택</b>됩니다</td>
+            </tr>
+            <tr>
+              <td><b>네 방향 화살표</b></td>
+              <td>칸 테두리</td>
+              <td>내용이 <b>옮겨집니다</b></td>
+            </tr>
+            <tr>
+              <td><b>검은 십자 +</b></td>
+              <td><b>오른쪽 아래 작은 네모</b></td>
+              <td><b>채워집니다</b> ← 이것</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">끌지 말고 두 번 누르는 방법</span>
+        <p>
+          작은 네모를 <b>두 번 빠르게 누르면</b>,
+          <b>옆 줄에 내용이 있는 곳까지</b> 저절로 끝까지 채워집니다.
+        </p>
+        <p>
+          줄이 <b>천 줄이어도 한 번</b>입니다.
+          손으로 끌다가 놓치는 일도 없습니다. 이쪽을 권합니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="howmany">
+      <span class="sec-tag">02 — 핵심</span>
+      <h2>한 칸이냐 두 칸이냐</h2>
+      <p class="sub">
+        <b>이 장에서 가장 중요한 이야기입니다.</b>
+        결과가 달라지는 것은 <b>몇 칸을 잡고 끄느냐</b>에 달려 있습니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이렇게 넣고 끌면</th><th>이렇게 채워집니다</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>1</b> — 한 칸만</td><td>1, 1, 1, 1 … <b>그대로 복사</b>됩니다</td></tr>
+            <tr><td><b>1, 2</b> — 두 칸</td><td>3, 4, 5, 6 … <b>하나씩</b> 늘어납니다</td></tr>
+            <tr><td><b>1, 3</b> — 두 칸</td><td>5, 7, 9, 11 … <b>둘씩</b> 늘어납니다</td></tr>
+            <tr><td><b>월요일</b> — 한 칸만</td><td>화요일, 수요일 … <b>요일은 압니다</b></td></tr>
+            <tr><td><b>1월</b> — 한 칸만</td><td>2월, 3월 … <b>달도 압니다</b></td></tr>
+            <tr><td><b>2026-01-01</b> — 한 칸만</td><td>하루씩 늘어납니다</td></tr>
+            <tr><td><b>제품-001</b> — 한 칸만</td><td>제품-002, 제품-003 … <b>끝의 숫자를 읽습니다</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">규칙은 하나입니다</span>
+        <p>
+          <b>숫자는 두 칸을 보여 줘야</b> 규칙을 압니다.
+          <b>요일 · 달 · 날짜는 한 칸이면</b> 압니다 —
+          엑셀이 <b>이미 그 순서를 알고 있기 때문</b>입니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">"숫자가 안 늘어나요"</span>
+        <p>
+          <b>1</b> 하나만 넣고 끌면 1이 계속 복사됩니다. <b>고장이 아닙니다.</b>
+          <b>1, 2</b> 두 칸을 넣고 <b>둘 다 고른 뒤</b> 끌어야
+          엑셀이 <b>"아, 하나씩 늘리라는 거구나"</b> 하고 알아듣습니다.
+        </p>
+        <p>
+          급하면 <span class="kbd">Ctrl</span> 을 누른 채로 끌어도 됩니다.
+          하나만 넣고 <span class="kbd">Ctrl</span>+끌기 하면 늘어납니다.
+        </p>
+      </div>
+
+      <h3>번호 매기기에 써 보세요</h3>
+      <p>
+        명단에 번호를 붙일 때가 많습니다.
+        <b>1</b> 과 <b>2</b> 를 적고, <b>두 칸을 함께 고른 뒤</b> 끝까지 끌면 끝입니다.
+        <b>백 명이든 천 명이든 한 번</b>입니다.
+      </p>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="after">
+      <span class="sec-tag">03 — 뒷정리</span>
+      <h2>끌고 난 뒤 작은 단추</h2>
+      <p class="sub">
+        채우고 나면 <b>끝에 작은 아이콘</b>이 하나 뜹니다. 눌러 보세요.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>고를 수 있는 것</th><th>언제 씁니다</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>셀 복사</b></td><td>규칙 말고 <b>그대로 복사</b>하고 싶을 때</td></tr>
+            <tr><td><b>연속 데이터 채우기</b></td><td>복사됐는데 <b>늘리고</b> 싶을 때</td></tr>
+            <tr><td><b>서식만 채우기</b></td><td>값 말고 <b>모양만</b> 옮길 때</td></tr>
+            <tr><td><b>서식 없이 채우기</b></td><td><b>값만</b> 넣고 모양은 건드리지 말 때 ← 자주 씁니다</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">테두리가 있는 표에서 끌면 모양이 망가집니다</span>
+        <p>
+          테두리나 색이 있는 표에서 끌면 <b>테두리까지 복사되어</b>
+          줄무늬가 어긋나고 모양이 망가집니다.
+        </p>
+        <p>
+          그때 <b>「서식 없이 채우기」</b> 를 고르면 <b>값만</b> 들어갑니다.
+          이 단추를 아는 사람과 모르는 사람의 표가 눈에 띄게 다릅니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">단추가 사라졌다면</span>
+        <p>
+          다른 칸을 누르면 <b>없어집니다.</b> 다시 끌면 또 나옵니다.
+          급하면 <span class="kbd">Ctrl</span>+<span class="kbd">Z</span> 로 되돌리고 다시 하세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="mylist">
+      <span class="sec-tag">04 — 내 목록</span>
+      <h2>우리 순서를 가르치기</h2>
+      <p class="sub">
+        엑셀은 <b>월·화·수</b> 는 알지만 <b>우리 회사 지점 순서</b>는 모릅니다.
+        <b>가르쳐 두면</b> 그것도 끌어서 채워집니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">세 걸음입니다</span>
+        <ol class="steps">
+          <li>
+            <b>순서대로 적어 둔 칸을 고릅니다</b>
+            <p>세로로 죽 적어 놓은 것을 잡습니다. (예: 사원 · 대리 · 과장 · 부장)</p>
+          </li>
+          <li>
+            <b>파일 → 옵션 → 고급 → 맨 아래 「사용자 지정 목록 편집」</b>
+            <p><b>「가져오기」</b> 를 누르면 방금 고른 칸이 목록이 됩니다.</p>
+          </li>
+          <li>
+            <b>아무 데나 첫 항목을 치고 끌어 보세요</b>
+            <p>등록한 <b>순서대로</b> 채워집니다.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="note">
+        <span class="note-label">진짜 쓸모는 정렬입니다</span>
+        <p>
+          채우기보다 <b>정렬</b>에 쓸 때가 더 많습니다.
+          <b>정렬 → 사용자 지정 목록</b> 을 고르면
+          <b>가나다순이 아니라 우리 순서대로</b> 줄을 섭니다.
+        </p>
+        <p>
+          <b>직급</b>(사원·대리·과장·부장)이 대표적입니다.
+          가나다순으로 세우면 <b>과장·대리·부장·사원</b> 이 되어 버리니까요.
+          정렬은 <b>10장</b>에서 합니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">이 목록은 파일이 아니라 컴퓨터에 저장됩니다</span>
+        <p>
+          파일에 딸려 가지 않습니다.
+          <b>다른 컴퓨터에서 열면 없습니다.</b> 거기서 다시 등록해야 합니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 ═══════════ -->
+    <section id="flash">
+      <span class="sec-tag">05 — 빠른 채우기</span>
+      <h2>빠른 채우기</h2>
+      <p class="sub">
+        <b>예를 한 줄 보여 주면 엑셀이 따라 합니다.</b>
+        함수 없이 글자를 자르고 붙입니다. 단축키는
+        <span class="kbd">Ctrl</span>+<span class="kbd">E</span>.
+      </p>
+
+      <div class="note">
+        <span class="note-label">두 걸음이면 끝입니다</span>
+        <ol class="steps">
+          <li>
+            <b>옆 칸에 원하는 결과를 한 줄 직접 칩니다</b>
+            <p><b>최경민(Stephen)</b> 옆에 <b>Stephen</b> 이라고 쳐 보세요.
+              이것이 <b>「예」</b> 입니다.</p>
+          </li>
+          <li>
+            <b><span class="kbd">Ctrl</span>+<span class="kbd">E</span></b>
+            <p>나머지가 전부 <b>같은 규칙으로</b> 채워집니다.
+              괄호를 떼라고 시킨 적이 없는데 <b>한 줄로 알아냅니다.</b></p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">편한 만큼 위험합니다 — 두 가지</span>
+        <p>
+          <b>하나. 결과는 값입니다. 수식이 아닙니다.</b><br>
+          원본이 바뀌어도 <b>따라 바뀌지 않습니다.</b>
+          매달 갱신되는 표에는 쓰지 마세요.
+        </p>
+        <p>
+          <b>둘. 규칙을 잘못 읽을 수 있습니다.</b><br>
+          예가 애매하면 엉뚱하게 채웁니다.
+          채운 뒤 <b>몇 줄은 반드시 눈으로 확인</b>하세요 —
+          특히 <b>맨 아래 몇 줄</b>이 자주 틀립니다.
+        </p>
+      </div>
+
+      <h3>셋을 헷갈리지 마세요</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이름</th><th>무엇을 보나</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>자동 채우기</b></td><td>규칙 (1,2,3… 월,화,수…)</td></tr>
+            <tr><td><b>사용자 목록</b></td><td>내가 등록한 순서</td></tr>
+            <tr><td><b>빠른 채우기</b></td><td><b>내가 보여 준 예</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════ 06 ═══════════ -->
+    <section id="try">
+      <span class="sec-tag">06 — 실습</span>
+      <h2>해 보기</h2>
+      <p class="sub">
+        예제 <code>B-06_자동채우기.xlsx</code> — 시트가 둘입니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">해 보기 — B-06_자동채우기.xlsx</span>
+        <ol class="steps">
+          <li>
+            <b>「끌어 보기」 시트를 엽니다</b>
+            <p>열이 여섯입니다. <b>씨앗</b>만 놓여 있고 아래 노란 칸이 비어 있습니다.</p>
+          </li>
+          <li>
+            <b>「번호」 열 — 한 칸만 잡고 끕니다</b>
+            <p><b>B6</b>(1) 하나만 잡고 아래로 끄세요. <b>1이 계속 복사</b>됩니다.
+              이게 정상입니다.</p>
+          </li>
+          <li>
+            <b>「홀수」 열 — 두 칸을 잡고 끕니다</b>
+            <p><b>C6:C7</b>(1·3) 을 <b>함께</b> 잡고 끄세요.
+              5 · 7 · 9 … <b>둘씩</b> 늘어납니다. 앞과 비교해 보세요.</p>
+          </li>
+          <li>
+            <b>요일 · 달 · 분기 — 한 칸으로 됩니다</b>
+            <p><b>월요일</b> · <b>1월</b> · <b>1분기</b> 는 한 칸만 끌어도 늘어납니다.
+              엑셀이 이미 아는 순서입니다.</p>
+          </li>
+          <li>
+            <b>「제품」 열도 해 봅니다</b>
+            <p><b>제품-001</b> 한 칸만 끌면 <b>제품-002</b> 로 이어집니다.
+              끝의 숫자를 읽는 것입니다.</p>
+          </li>
+          <li>
+            <b>작은 단추를 눌러 봅니다</b>
+            <p>채우고 나면 끝에 아이콘이 뜹니다.
+              <b>「서식 없이 채우기」</b> 를 골라 보세요. 테두리가 안 딸려 옵니다.</p>
+          </li>
+          <li>
+            <b>「빠른 채우기」 시트로 갑니다</b>
+            <p><b>C6</b> 에 이미 <b>Stephen</b> 이 예로 들어 있습니다.
+              <b>C6</b> 에 커서를 두고 <span class="kbd">Ctrl</span>+<span class="kbd">E</span>.</p>
+          </li>
+          <li>
+            <b>맨 아래를 확인합니다</b>
+            <p>여섯 줄이 제대로 뽑혔는지 눈으로 보세요.
+              <b>확인하는 습관</b>이 중요합니다.</p>
+          </li>
+        </ol>
+        <p><b>이렇게 되면 된 것입니다</b> —
+          <b>한 칸과 두 칸의 결과가 다르다는 것</b>을 눈으로 확인하셨으면 된 것입니다.</p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">답이 궁금하면</span>
+        <p>
+          <code>B-06_자동채우기_완성.xlsx</code> 를 여세요.
+          노란 칸이 그대로 노란 채로 채워져 있습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 07 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">07 — 마무리</span>
+      <h2>6장 확인 목록</h2>
+      <p class="sub">
+        직접 해본 것에 체크하세요. 체크한 것은 다음에 들어와도 그대로 남아 있습니다.
+      </p>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span>채우기 핸들이 <b>오른쪽 아래 작은 네모</b>라는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><b>검은 십자</b>일 때만 채워진다는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>작은 네모를 <b>두 번 눌러</b> 끝까지 채워 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>한 칸</b>은 복사, <b>두 칸</b>은 규칙이라는 것을 직접 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>요일·달·날짜는 <b>한 칸이면 된다</b>는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><b>1, 2</b> 를 적고 끌어 <b>번호를 매겨</b> 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>끌고 난 뒤 <b>작은 단추</b>를 눌러 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>「서식 없이 채우기」</b> 가 왜 필요한지 안다</span></label></li>
+        <li><label><input type="checkbox"><span><b>사용자 지정 목록</b>을 등록해 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><span class="kbd">Ctrl</span>+<span class="kbd">E</span> 로 <b>예를 보여 주고</b> 채워 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>빠른 채우기 결과가 <b>값이라 따라 바뀌지 않는다</b>는 것을 안다</span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">여기까지 하셨으면</span>
+        <p>
+          <b>손이 훨씬 덜 가게 되셨습니다.</b>
+          번호 매기기 · 날짜 넣기 · 글자 자르기를 <b>한 번에</b> 하실 수 있습니다.
+        </p>
+        <p>
+          7장은 드디어 <b>계산을 시키는 장</b>입니다.
+          <b>엑셀의 핵심</b>이고, 사실 엑셀을 쓰는 이유 전부입니다.
+          그리고 오늘 배운 <b>채우기 핸들로 수식도 끌어내립니다.</b>
+        </p>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-b5.html">← 5장: 저장하고 내보내기</a>
+        <a href="excel-b7.html">7장: 계산 시키기 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

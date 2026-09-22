@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="ko" data-subject="excel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>엑셀 기초 3장 — 고치고 되돌리기</title>
+<meta name="description" content="엑셀 기초 3장. 통째로 바꾸기와 일부만 고치기, F2로 칸 안에 들어가기, Delete와 Backspace의 차이, 되돌리기, 초록 삼각형 한 번에 없애기.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="excel.html">← 엑셀 과목 첫 화면으로</a>
+    <p class="eyebrow">1과목 · 엑셀 · 기초 3장</p>
+    <h1>고치고,<br><em>되돌리기</em></h1>
+    <p class="lede">
+      새로 배우는 분들이 가장 답답해하는 부분입니다.
+      <b>고치는 법을 알면 그때부터 겁이 없어집니다.</b>
+      마음대로 눌러 보고, 아니면 되돌리면 되니까요.
+      이 장이 기초 열 장 중 <b>가장 마음이 편해지는 장</b>입니다.
+    </p>
+    <div class="facts">
+      <span><b>앞 장</b> 2장 — 입력하기</span>
+      <span><b>소요</b> 40분</span>
+      <span><b>예제</b> B-03_고치기_연습.xlsx</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#whole">통째로 바꾸기</a></li>
+      <li><a href="#part">일부만 고치기</a></li>
+      <li><a href="#erase">지우기 — 두 가지</a></li>
+      <li><a href="#undo">되돌리기</a></li>
+      <li><a href="#green">초록 삼각형</a></li>
+      <li><a href="#try">해 보기</a></li>
+      <li><a href="#check">3장 확인 목록</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════
+         네 과목 어느 것부터 봐도 되도록, 이 장은 과목마다 똑같이 들어 있습니다.
+         고칠 때는 네 곳을 함께 고쳐 주세요. -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에, 손동작 세 가지</h2>
+      <p class="sub">
+        이 세 가지만 알면 무엇을 눌러도 겁낼 것이 없습니다.
+        네 과목 모두에서 똑같이 씁니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">앞 장에서 이미 보셨다면</span>
+        <p>
+          같은 장이 과목마다, 그리고 장마다 들어 있습니다.
+          이미 읽으셨으면 <a href="#whole">01장</a>으로 건너뛰세요.
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>손동작</th><th>하는 일</th><th>언제 쓰나</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></td>
+              <td>방금 한 일을 되돌립니다</td>
+              <td>잘못 눌렀을 때. 여러 번 눌러도 됩니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">S</span></td>
+              <td>저장합니다</td>
+              <td>수시로. 한 줄 쓸 때마다 눌러도 좋습니다</td>
+            </tr>
+            <tr>
+              <td>마우스 <b>오른쪽</b> 단추</td>
+              <td>지금 고른 것에 할 수 있는 일 목록을 띄웁니다</td>
+              <td>무엇을 눌러야 할지 모를 때</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">이 장은 그 세 가지 중 첫 번째 이야기입니다</span>
+        <p>
+          <span class="kbd">Ctrl</span> + <span class="kbd">Z</span> 를
+          <b>눈으로 한 번 보고 나면</b> 앞으로 무엇을 눌러도 무섭지 않습니다.
+          기초 열 장에서 <b>가장 중요한 실습</b>이 이 장에 있습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="whole">
+      <span class="sec-tag">01 — 통째로</span>
+      <h2>통째로 바꾸기</h2>
+      <p class="sub">
+        <b>그냥 다시 치세요.</b> 먼저 지울 필요가 없습니다.
+      </p>
+
+      <p>
+        칸을 한 번 누르고 새 내용을 그대로 치면
+        <b>옛 내용이 지워지고 새것이 들어갑니다.</b>
+        짧은 내용은 이 방법이 가장 빠릅니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">지우고 치는 분이 많습니다</span>
+        <p>
+          <span class="kbd">Delete</span> 로 지운 다음 새로 치는 분이 많은데,
+          <b>두 번 일하는 것</b>입니다. 그냥 치면 됩니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="part">
+      <span class="sec-tag">02 — 일부만</span>
+      <h2>일부만 고치기</h2>
+      <p class="sub">
+        <b>사과주스</b> 를 <b>사과쥬스</b> 로 바꾸는 것처럼 한 글자만 고칠 때입니다.
+        이때는 <b>칸 안으로 들어가야</b> 합니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>방법</th><th>어떻게</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>두 번 누르기</b></td>
+              <td>칸을 마우스로 두 번 빠르게 누릅니다. 글자 사이에 <b>막대기가 깜빡</b>입니다</td>
+            </tr>
+            <tr>
+              <td><b>수식 입력줄에서</b></td>
+              <td>칸을 한 번 누르고, 화면 위 <b>수식 입력줄</b>의 글자를 누릅니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">F2</span></td>
+              <td>칸을 한 번 누르고 <span class="kbd">F2</span>. <b>손에 익으면 가장 빠릅니다</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        막대기가 깜빡이면 <b>칸 안에 들어간 것</b>입니다.
+        화살표 키로 자리를 옮기고, <span class="kbd">Backspace</span> 로 왼쪽 글자를 지우고,
+        다 고쳤으면 <span class="kbd">Enter</span> 를 누르세요.
+      </p>
+
+      <div class="note warn">
+        <span class="note-label">칸 안에 있을 때는 화살표 키가 다릅니다</span>
+        <p>
+          평소에 화살표 키는 <b>옆 칸으로</b> 옮겨 갑니다.
+          그런데 칸 안에 들어가 있을 때(막대기가 깜빡일 때)는
+          <b>글자 사이를</b> 옮겨 다닙니다.
+        </p>
+        <p>
+          <b>"화살표를 눌렀는데 칸이 안 움직인다"</b> 면
+          지금 <b>칸 안에 들어와 있는 것</b>입니다.
+          <span class="kbd">Enter</span> 나 <span class="kbd">Esc</span> 로 빠져나오세요.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">Enter 와 Esc 는 결과가 다릅니다</span>
+        <p>
+          <span class="kbd">Enter</span> 는 <b>고친 것을 저장</b>하고 나옵니다.<br>
+          <span class="kbd">Esc</span> 는 <b>고친 것을 버리고</b> 원래대로 나옵니다.
+        </p>
+        <p>
+          고치다가 <b>"아, 아니다"</b> 싶으면 <span class="kbd">Esc</span> 입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="erase">
+      <span class="sec-tag">03 — 지우기</span>
+      <h2>지우기 — 두 가지</h2>
+      <p class="sub">
+        <span class="kbd">Delete</span> 와 <span class="kbd">Backspace</span> 는 다릅니다.
+        게다가 <b>어느 상태에 있느냐</b>에 따라 또 달라집니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>키</th><th>칸을 고른 상태에서</th><th>칸 안에 들어간 상태에서</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="kbd">Delete</span></td>
+              <td>칸 내용이 <b>통째로</b> 지워집니다</td>
+              <td>막대기 <b>오른쪽</b> 글자가 지워집니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Backspace</span></td>
+              <td>내용이 지워지고 <b>칸 안으로 들어갑니다</b></td>
+              <td>막대기 <b>왼쪽</b> 글자가 지워집니다</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">여러 칸을 한꺼번에</span>
+        <p>
+          마우스로 죽 끌어서 여러 칸을 고른 뒤
+          <span class="kbd">Delete</span> 를 누르면 <b>한 번에 지워집니다.</b>
+          하나씩 지울 필요가 없습니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">내용만 지우는 것 ≠ 줄을 없애는 것</span>
+        <p>
+          <span class="kbd">Delete</span> 는 <b>내용만</b> 지웁니다.
+          빈 줄은 그대로 남습니다.
+        </p>
+        <p>
+          <b>줄 자체를 없애는 것</b>은 다른 일이고, <b>4장</b>에서 합니다.
+          "지웠는데 빈 줄이 남아 있어요" 하는 것이 이 차이입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="undo">
+      <span class="sec-tag">04 — 되돌리기</span>
+      <h2>되돌리기</h2>
+      <p class="sub">
+        엑셀은 내가 한 일을 <b>순서대로 기억</b>하고 있습니다.
+        그래서 <b>몇 단계든</b> 거슬러 올라갈 수 있습니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>하고 싶은 일</th><th>메뉴로</th><th>손에 익으면</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>방금 한 일 <b>되돌리기</b></td>
+              <td>화면 맨 위 왼쪽의 <b>왼쪽으로 굽은 화살표</b></td>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></td>
+            </tr>
+            <tr>
+              <td>되돌린 것 <b>다시 하기</b></td>
+              <td>그 오른쪽의 <b>오른쪽으로 굽은 화살표</b></td>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Y</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">지금 한 번 해보세요 — 이 강의에서 가장 중요한 실습입니다</span>
+        <p>
+          아무 칸이나 눌러서 <span class="kbd">Delete</span> 로 지워 보세요.
+          내용이 사라집니다. 그다음
+          <span class="kbd">Ctrl</span> + <span class="kbd">Z</span> 를 누르세요.
+          <b>그대로 돌아옵니다.</b>
+        </p>
+        <p>
+          이걸 <b>한 번 눈으로 보고 나면</b>, 앞으로 무엇을 눌러도 무섭지 않습니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">되돌리기가 안 되는 경우</span>
+        <p>
+          파일을 <b>저장하고 창을 닫은 뒤에는</b> 되돌릴 수 없습니다.
+          되돌리기 기억은 <b>창을 닫으면 사라집니다.</b>
+        </p>
+        <p>
+          그래서 크게 뜯어고칠 일이 있으면, 먼저
+          <b>파일 → 다른 이름으로 저장</b>으로 사본을 하나 만들어 두고 시작하세요.
+          (5장에서 합니다)
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 ═══════════ -->
+    <section id="green">
+      <span class="sec-tag">05 — 초록 삼각형</span>
+      <h2>초록 삼각형</h2>
+      <p class="sub">
+        칸 왼쪽 위의 작은 초록 삼각형은 <b>오류가 아닙니다.</b>
+        <b>"이상해 보인다"는 참견</b>입니다.
+      </p>
+
+      <p>
+        2장에서 본 <b>「숫자가 글자로 들어간 것」</b> 이 가장 흔한 경우입니다.
+        이게 있으면 <b>합계가 0</b> 이 나옵니다. 숫자가 아니니까요.
+      </p>
+
+      <div class="note">
+        <span class="note-label">한 번에 고치는 법</span>
+        <ol class="steps">
+          <li>
+            <b>범위를 전부 고릅니다</b>
+            <p>초록 삼각형이 붙은 칸들을 마우스로 죽 끌어서 잡습니다.</p>
+          </li>
+          <li>
+            <b>왼쪽 위 느낌표를 누릅니다</b>
+            <p>고른 범위 왼쪽 위에 <b>노란 느낌표</b> 단추가 뜹니다.</p>
+          </li>
+          <li>
+            <b>「숫자로 변환」 을 고릅니다</b>
+            <p>전부 한 번에 진짜 숫자로 바뀝니다. 합계가 살아납니다.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="note">
+        <span class="note-label">느낌표가 안 보일 때</span>
+        <p>
+          빈 칸에 <b>1</b> 을 치고 복사한 다음, 고칠 범위를 잡고
+          <b>오른쪽 단추 → 선택하여 붙여넣기 → 곱하기</b>.
+        </p>
+        <p>
+          <b>1을 곱하면 값은 그대로인데 엑셀이 숫자로 다시 봅니다.</b>
+          느낌표가 안 뜨는 상황에서 가장 확실한 방법입니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">참견이 거슬리면</span>
+        <p>
+          <b>파일 → 옵션 → 수식</b> 에서 끌 수 있습니다.
+          다만 <b>끄지 마시기를 권합니다.</b>
+          초록 삼각형은 <b>사고를 미리 알려주는 고마운 참견</b>입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 06 ═══════════ -->
+    <section id="try">
+      <span class="sec-tag">06 — 실습</span>
+      <h2>해 보기</h2>
+      <p class="sub">
+        예제 <code>B-03_고치기_연습.xlsx</code> — 시트가 둘입니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">해 보기 — B-03_고치기_연습.xlsx</span>
+        <ol class="steps">
+          <li>
+            <b>「오타 고치기」 시트를 엽니다</b>
+            <p>회원 명단 일곱 줄입니다. <b>틀린 곳이 넷</b> 숨어 있습니다.</p>
+          </li>
+          <li>
+            <b>틀린 곳을 찾습니다</b>
+            <p><b>영어팀</b>(→영업팀) · <b>생상팀</b>(→생산팀) · <b>인사팁</b>(→인사팀),
+              그리고 마지막 줄 <b>연락처 끝자리</b>(9391→9381)입니다.</p>
+          </li>
+          <li>
+            <b>부서 셋은 F2 로 고칩니다</b>
+            <p>칸을 누르고 <span class="kbd">F2</span> → 화살표로 자리를 옮겨
+              <b>한 글자만</b> 바꾸고 <span class="kbd">Enter</span>.
+              통째로 다시 치지 마시고 <b>일부만 고쳐 보세요.</b></p>
+          </li>
+          <li>
+            <b>연락처는 뒤에서 두 번째 글자입니다</b>
+            <p><span class="kbd">F2</span> 를 누르면 막대기가 <b>맨 뒤</b>에 옵니다.
+              <span class="kbd">←</span> 한 번 누르고 <span class="kbd">Backspace</span>.</p>
+          </li>
+          <li>
+            <b>일부러 망쳐 보고 되돌립니다</b>
+            <p>아무 칸이나 <span class="kbd">Delete</span> 로 지우고,
+              <span class="kbd">Ctrl</span>+<span class="kbd">Z</span>.
+              <b>여러 칸을 한꺼번에</b> 지운 뒤에도 해 보세요.</p>
+          </li>
+          <li>
+            <b>「지우기 두 가지」 시트로 갑니다</b>
+            <p>아래쪽 「여기를 지워 보세요」 표에서
+              <span class="kbd">Delete</span> 와 <span class="kbd">Backspace</span> 를
+              <b>각각</b> 눌러 보세요. 결과가 다릅니다.</p>
+          </li>
+          <li>
+            <b>칸 안에서도 눌러 봅니다</b>
+            <p><span class="kbd">F2</span> 로 칸 안에 들어간 뒤 같은 두 키를 눌러 보세요.
+              이번에는 <b>막대기 좌우</b> 글자가 지워집니다.</p>
+          </li>
+        </ol>
+        <p><b>이렇게 되면 된 것입니다</b> — 오타 넷을 다 고쳤고,
+          <b>지워 놓고 되돌리는 것을 눈으로 봤으면</b> 된 것입니다.</p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">답이 궁금하면</span>
+        <p>
+          <code>B-03_고치기_연습_완성.xlsx</code> 를 여세요.
+          먼저 해 보고 나서 여시는 편이 남습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 07 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">07 — 마무리</span>
+      <h2>3장 확인 목록</h2>
+      <p class="sub">
+        직접 해본 것에 체크하세요. 체크한 것은 다음에 들어와도 그대로 남아 있습니다.
+      </p>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span>통째로 바꿀 때는 <b>그냥 다시 친다</b>는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><span class="kbd">F2</span> 로 칸 안에 들어가 <b>한 글자만</b> 고쳐 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>칸 안에서는 <b>화살표 키가 글자 사이를</b> 옮겨 다닌다는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><span class="kbd">Enter</span> 는 저장, <span class="kbd">Esc</span> 는 <b>버리고 나오기</b>임을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><span class="kbd">Delete</span> 와 <span class="kbd">Backspace</span> 의 차이를 <b>직접 눌러</b> 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>여러 칸을 <b>한꺼번에</b> 지워 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>지워 놓고 <span class="kbd">Ctrl</span>+<span class="kbd">Z</span> 로 <b>되돌려 봤다</b></span></label></li>
+        <li><label><input type="checkbox"><span>창을 닫으면 <b>되돌리기 기억이 사라진다</b>는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>초록 삼각형이 <b>오류가 아니라 참견</b>이라는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>느낌표 → <b>「숫자로 변환」</b> 으로 한 번에 고치는 법을 안다</span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">여기까지 하셨으면</span>
+        <p>
+          <b>이제 겁낼 것이 없습니다.</b>
+          무엇을 눌러도 되돌릴 수 있다는 것을 <b>눈으로 확인</b>하셨으니까요.
+        </p>
+        <p>
+          4장은 <b>줄을 다루는 법</b>입니다.
+          칸이 좁아 <b>#####</b> 이 뜨는 것, 사이에 줄을 끼워 넣는 것,
+          그리고 <b>지우기와 삭제가 왜 다른지</b>를 합니다.
+        </p>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-b2.html">← 2장: 입력하기</a>
+        <a href="excel-b4.html">4장: 행·열·시트 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

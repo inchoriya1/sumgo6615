@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="ko" data-subject="excel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>엑셀 기초 5장 — 저장하고 내보내기</title>
+<meta name="description" content="엑셀 기초 5장. 저장하는 법, 덮어쓰기와 다른 이름으로 저장의 차이, 확장자 xlsx와 csv, 저장 안 하고 닫았을 때 복구, 남에게 보낼 때 PDF.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="excel.html">← 엑셀 과목 첫 화면으로</a>
+    <p class="eyebrow">1과목 · 엑셀 · 기초 5장</p>
+    <h1>저장하고,<br><em>내보내기</em></h1>
+    <p class="lede">
+      짧은 장이지만 <b>빠뜨리면 큰일 나는 장</b>입니다.
+      「저장」과 「다른 이름으로 저장」을 구별 못 해서
+      <b>원본을 날리는 일</b>이 생각보다 자주 납니다.
+      그리고 <b>.csv</b> 로 저장했다가 수식이 다 사라지는 사고도요.
+    </p>
+    <div class="facts">
+      <span><b>앞 장</b> 4장 — 행·열·시트</span>
+      <span><b>소요</b> 30분</span>
+      <span><b>예제</b> B-05_저장_연습.xlsx</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#how">저장하는 법</a></li>
+      <li><a href="#twice">저장과 다른 이름으로 저장</a></li>
+      <li><a href="#ext">확장자</a></li>
+      <li><a href="#lost">저장 안 하고 닫았을 때</a></li>
+      <li><a href="#pdf">남에게 보낼 때는 PDF</a></li>
+      <li><a href="#try">해 보기</a></li>
+      <li><a href="#check">5장 확인 목록</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════
+         네 과목 어느 것부터 봐도 되도록, 이 장은 과목마다 똑같이 들어 있습니다.
+         고칠 때는 네 곳을 함께 고쳐 주세요. -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에, 손동작 세 가지</h2>
+      <p class="sub">
+        이 세 가지만 알면 무엇을 눌러도 겁낼 것이 없습니다.
+        네 과목 모두에서 똑같이 씁니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">앞 장에서 이미 보셨다면</span>
+        <p>
+          같은 장이 과목마다, 그리고 장마다 들어 있습니다.
+          이미 읽으셨으면 <a href="#how">01장</a>으로 건너뛰세요.
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>손동작</th><th>하는 일</th><th>언제 쓰나</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></td>
+              <td>방금 한 일을 되돌립니다</td>
+              <td>잘못 눌렀을 때. 여러 번 눌러도 됩니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">S</span></td>
+              <td>저장합니다</td>
+              <td>수시로. 한 줄 쓸 때마다 눌러도 좋습니다</td>
+            </tr>
+            <tr>
+              <td>마우스 <b>오른쪽</b> 단추</td>
+              <td>지금 고른 것에 할 수 있는 일 목록을 띄웁니다</td>
+              <td>무엇을 눌러야 할지 모를 때</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">이 장은 그 세 가지 중 두 번째 이야기입니다</span>
+        <p>
+          <span class="kbd">Ctrl</span> + <span class="kbd">S</span> 를
+          <b>습관으로 만드는 것</b>이 이 장의 목표입니다.
+          3장에서 본 되돌리기도 <b>창을 닫으면 사라집니다.</b>
+          결국 마지막에 나를 구해 주는 것은 저장입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="how">
+      <span class="sec-tag">01 — 저장</span>
+      <h2>저장하는 법</h2>
+      <p class="sub">
+        만든 것을 컴퓨터에 남기는 일입니다.
+        <b>저장하지 않고 창을 닫으면 전부 사라집니다.</b>
+      </p>
+
+      <div class="note">
+        <span class="note-label">네 걸음입니다</span>
+        <ol class="steps">
+          <li>
+            <b>파일 → 저장</b>
+            <p>화면 맨 위 왼쪽의 <b>파일</b>을 누르면 큰 화면이 나옵니다.
+              처음 저장하는 파일이면 <b>"어디에 저장할까요"</b> 화면이 나옵니다.</p>
+          </li>
+          <li>
+            <b>저장할 곳을 고릅니다</b>
+            <p>처음에는 <b>바탕 화면</b>을 고르세요.
+              눈에 보이는 곳에 있어야 나중에 찾을 수 있습니다.</p>
+          </li>
+          <li>
+            <b>파일 이름을 적습니다</b>
+            <p><b>과일_판매표</b> 처럼 <b>나중의 내가 알아볼</b> 이름으로.
+              「문서1」 · 「새 파일」 은 일주일 뒤에 무엇인지 모릅니다.</p>
+          </li>
+          <li>
+            <b>저장 단추를 누릅니다</b>
+            <p>창 맨 위에 방금 적은 이름이 뜨면 끝났습니다.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="note">
+        <span class="note-label">손에 익으면</span>
+        <p>
+          <span class="kbd">Ctrl</span> + <span class="kbd">S</span> 를 누르면
+          파일 메뉴를 거치지 않고 <b>바로 저장</b>됩니다.
+          이 강의에서 <b>가장 자주 쓰게 될 손동작</b>입니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">두 번째부터는 아무 화면도 안 나옵니다</span>
+        <p>
+          한 번 저장한 뒤로는 <span class="kbd">Ctrl</span> + <span class="kbd">S</span> 를
+          눌러도 <b>아무 반응이 없습니다.</b> 고장이 아닙니다.
+          <b>조용히 덮어써서 저장된 것</b>입니다.
+        </p>
+        <p>
+          그러니 <b>자주 눌러 주세요.</b> 한 줄 쓸 때마다 눌러도 괜찮습니다.
+        </p>
+      </div>
+
+      <h3>이름 짓는 요령</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이런 이름은</th><th>왜 나쁜가</th><th>이렇게</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>문서1 · 새 파일</td><td>일주일 뒤 못 알아봅니다</td><td>회비장부</td></tr>
+            <tr><td>최종 · 진짜최종 · 최종2</td><td>어느 게 최종인지 모릅니다</td><td>회비장부_2026-03</td></tr>
+            <tr><td>3월장부(수정)(2)</td><td>괄호가 늘어만 납니다</td><td>회비장부_2026-03-15</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <b>날짜를 넣는 것</b>이 가장 간단한 답입니다.
+        이름순으로 늘어놓으면 <b>저절로 시간순</b>이 됩니다.
+      </p>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="twice">
+      <span class="sec-tag">02 — 두 가지</span>
+      <h2>저장과 다른 이름으로 저장</h2>
+      <p class="sub">
+        이름이 비슷해서 헷갈리는데, <b>하는 일이 완전히 다릅니다.</b>
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>메뉴</th><th>하는 일</th><th>언제</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>저장</b><br><span class="kbd">Ctrl</span>+<span class="kbd">S</span></td>
+              <td>지금 파일에 <b>덮어씁니다.</b> 옛 내용은 없어집니다</td>
+              <td>평소에. 수시로</td>
+            </tr>
+            <tr>
+              <td><b>다른 이름으로 저장</b><br><span class="kbd">F12</span></td>
+              <td>새 파일을 <b>하나 더</b> 만듭니다. 원래 파일은 그대로 남습니다</td>
+              <td>크게 고치기 전, 사본을 남겨 둘 때</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">권해 드리는 습관</span>
+        <p>
+          중요한 파일을 <b>크게 뜯어고치기 전에는</b>
+          <b>다른 이름으로 저장</b>으로 <b>과일_판매표_2.xlsx</b> 처럼
+          사본을 하나 만들어 두고 시작하세요.
+        </p>
+        <p>
+          망쳐도 <b>원래 파일이 그대로 있으니</b> 마음 편히 해보실 수 있습니다.
+          3장에서 본 되돌리기는 창을 닫으면 사라지지만,
+          <b>사본은 남습니다.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="ext">
+      <span class="sec-tag">03 — 확장자</span>
+      <h2>확장자</h2>
+      <p class="sub">
+        <b>과일_판매표.xlsx</b> 에서 점 뒤의 <b>xlsx</b> 입니다.
+        이 파일이 <b>어떤 프로그램의 것인지</b> 알려주는 꼬리표입니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>확장자</th><th>무엇</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>.xlsx</b></td><td>엑셀 파일. <b>보통 이것을 씁니다</b></td></tr>
+            <tr><td><b>.xls</b></td><td>아주 옛날 엑셀 파일. 요즘은 잘 안 씁니다</td></tr>
+            <tr><td><b>.csv</b></td><td>글자만 든 간단한 표. <b>색·수식이 다 사라집니다</b></td></tr>
+            <tr><td><b>.pdf</b></td><td>고칠 수 없는 종이 같은 파일. 남에게 보낼 때</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">가장 흔한 사고 — .csv</span>
+        <p>
+          저장할 때 아래쪽 <b>파일 형식</b>을 건드려서 <b>.csv</b> 로 저장하면
+          <b>색과 수식이 전부 없어집니다.</b> 그리고 <b>되돌릴 수 없습니다.</b>
+        </p>
+        <p>
+          게다가 <b>시트가 여러 장이면 첫 장만</b> 남습니다.
+          나머지는 경고 한 번 뜨고 사라집니다.
+        </p>
+        <p>
+          <b>파일 형식 칸은 건드리지 마세요.</b> 기본값이 <b>.xlsx</b> 입니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">확장자가 안 보인다면</span>
+        <p>
+          윈도우는 기본으로 확장자를 <b>숨깁니다.</b>
+          탐색기에서 <b>보기 → 파일 확장명</b>에 체크하면 보입니다.
+          켜 두시는 편이 사고를 줄입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="lost">
+      <span class="sec-tag">04 — 복구</span>
+      <h2>저장 안 하고 닫았을 때</h2>
+      <p class="sub">
+        요즘 엑셀은 <b>스스로 몰래 백업</b>을 해 둡니다.
+        완전히 포기하지 마세요.
+      </p>
+
+      <div class="note">
+        <span class="note-label">두 곳을 보세요</span>
+        <ol class="steps">
+          <li>
+            <b>엑셀을 다시 켭니다</b>
+            <p>운이 좋으면 왼쪽에 <b>문서 복구</b> 목록이 저절로 뜹니다.</p>
+          </li>
+          <li>
+            <b>안 뜨면 파일 → 정보</b>
+            <p><b>통합 문서 관리 → 저장하지 않은 통합 문서 복구</b> 를 눌러 보세요.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">늘 되는 것은 아닙니다</span>
+        <p>
+          백업은 <b>10분마다</b> 돌아가는 것이 기본이라
+          마지막 몇 분은 날아갑니다. 아예 없을 때도 있습니다.
+        </p>
+        <p>
+          그러니 역시 <span class="kbd">Ctrl</span> + <span class="kbd">S</span> 를
+          <b>자주 누르는 것이 답</b>입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 ═══════════ -->
+    <section id="pdf">
+      <span class="sec-tag">05 — 내보내기</span>
+      <h2>남에게 보낼 때는 PDF</h2>
+      <p class="sub">
+        받는 사람 컴퓨터에 엑셀이 없을 수도 있고,
+        받은 사람이 <b>실수로 내용을 고칠</b> 수도 있습니다.
+      </p>
+
+      <p>
+        <b>파일 → 다른 이름으로 저장 → 파일 형식에서 PDF</b> 를 고르면 됩니다.
+        <b>원래 엑셀 파일은 그대로 남아 있으니</b> 안심하셔도 됩니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이럴 때는</th><th>이 형식으로</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>상대가 <b>고쳐서 돌려줘야</b> 할 때</td><td><b>.xlsx</b></td></tr>
+            <tr><td>상대가 <b>보기만</b> 하면 될 때</td><td><b>.pdf</b></td></tr>
+            <tr><td>보고용으로 <b>출력</b>할 때</td><td><b>.pdf</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">PDF 로 뽑기 전에 한 번 보세요</span>
+        <p>
+          그냥 뽑으면 표가 <b>두 장으로 잘려</b> 나오는 일이 흔합니다.
+          <b>한 장에 맞추는 법</b>은 <b>10장</b>에서 합니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 06 ═══════════ -->
+    <section id="try">
+      <span class="sec-tag">06 — 실습</span>
+      <h2>해 보기</h2>
+      <p class="sub">
+        예제 <code>B-05_저장_연습.xlsx</code> — 3월 회비 장부 한 장입니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">해 보기 — B-05_저장_연습.xlsx</span>
+        <ol class="steps">
+          <li>
+            <b>파일을 엽니다</b>
+            <p>회비 낸 사람 다섯 줄입니다. <b>이 파일은 원본</b>이니 망가뜨리면 안 됩니다.</p>
+          </li>
+          <li>
+            <b>먼저 사본을 만듭니다</b>
+            <p><span class="kbd">F12</span>(다른 이름으로 저장) → 바탕 화면 →
+              <b>회비장부_연습.xlsx</b>. 창 맨 위 이름이 바뀌는지 보세요.</p>
+          </li>
+          <li>
+            <b>사본에서 마음껏 고칩니다</b>
+            <p>줄을 지우든 숫자를 바꾸든 상관없습니다.
+              <b>원본은 그대로</b> 있으니까요.</p>
+          </li>
+          <li>
+            <b>Ctrl+S 를 눌러 봅니다</b>
+            <p><b>아무 화면도 안 뜹니다.</b> 고장이 아닙니다 —
+              조용히 덮어쓴 것입니다.</p>
+          </li>
+          <li>
+            <b>PDF 로 한 부 뽑습니다</b>
+            <p><span class="kbd">F12</span> → 파일 형식에서 <b>PDF</b>.
+              바탕 화면에 <b>회비장부_연습.pdf</b> 가 생깁니다. 열어 보세요.</p>
+          </li>
+          <li>
+            <b>바탕 화면에서 세 파일을 확인합니다</b>
+            <p><b>원본 xlsx · 사본 xlsx · pdf</b> 셋이 따로 있어야 합니다.
+              이게 되면 저장을 아신 겁니다.</p>
+          </li>
+          <li>
+            <b>확장자를 켜 봅니다</b>
+            <p>탐색기에서 <b>보기 → 파일 확장명</b> 체크.
+              이제 이름 뒤에 <b>.xlsx</b> · <b>.pdf</b> 가 보입니다.</p>
+          </li>
+        </ol>
+        <p><b>이렇게 되면 된 것입니다</b> — 바탕 화면에
+          <b>원본 · 사본 · PDF 셋이 나란히</b> 있으면 된 것입니다.</p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">이 장은 완성본이 없습니다</span>
+        <p>
+          결과가 <b>새 파일</b>로 나오기 때문입니다.
+          바탕 화면에 세 파일이 생겼으면 그게 답입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 07 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">07 — 마무리</span>
+      <h2>5장 확인 목록</h2>
+      <p class="sub">
+        직접 해본 것에 체크하세요. 체크한 것은 다음에 들어와도 그대로 남아 있습니다.
+      </p>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span>이름을 정해서 <b>바탕 화면에 저장</b>해 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>두 번째부터 <span class="kbd">Ctrl</span>+<span class="kbd">S</span> 는 <b>아무 화면도 안 뜬다</b>는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><b>저장</b>은 덮어쓰기, <b>다른 이름으로 저장</b>은 새 파일이라는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><span class="kbd">F12</span> 로 <b>사본을 만들어</b> 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>.csv</b> 로 저장하면 <b>색과 수식이 사라진다</b>는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>저장할 때 <b>파일 형식 칸은 건드리지 않는다</b>는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>탐색기에서 <b>확장자를 켜</b> 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>저장하지 않은 통합 문서 복구</b> 가 어디 있는지 안다</span></label></li>
+        <li><label><input type="checkbox"><span><b>PDF</b> 로 한 부 뽑아 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>파일 이름에 <b>날짜를 넣는</b> 이유를 안다</span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">여기까지가 「적는 법」입니다</span>
+        <p>
+          1장부터 5장까지 — <b>넣고 · 고치고 · 줄을 다루고 · 저장하는 것</b>을
+          다 하셨습니다. 이제 <b>엑셀로 표 하나는 온전히 만드실 수 있습니다.</b>
+        </p>
+        <p>
+          6장부터는 <b>손이 덜 가게 만드는 법</b>입니다.
+          먼저 <b>자동 채우기</b> — 백 줄짜리 번호를 <b>한 번에</b> 매기는 것부터 합니다.
+        </p>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-b4.html">← 4장: 행·열·시트</a>
+        <a href="excel-b6.html">6장: 자동 채우기 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 u"""강의안 HTML을 훑어 **차례와 본문이 어긋난 곳**을 찾습니다.
 
   python tools/check-pages.py excel-m3.html excel-m4.html
-  python tools/check-pages.py                # excel-m*.html 전부
+  python tools/check-pages.py                # excel-m*.html · excel-b*.html 전부
 
 보는 것 넷
   · 차례의 `#앵커` 가 **실제 section id** 와 하나씩 맞는가 (순서까지)
@@ -42,11 +42,11 @@ def check(path):
     lessons = set()
     for root, _, files in os.walk(u"강의예제"):
         for f in files:
-            m = re.match(r"^([0-9A]-\d\d)_", f)
+            m = re.match(r"^([0-9AB]-\d\d)_", f)
             if m:
                 lessons.add(m.group(1))
     for code in set(re.findall(r"<code>([^<]+)</code>", s)):
-        m = re.match(r"^([0-9A]-\d\d)[_.]", code)
+        m = re.match(r"^([0-9AB]-\d\d)[_.]", code)
         if m and m.group(1) not in lessons:
             bad.append(u"그런 강의 번호가 없음: %s" % code)
 
@@ -57,7 +57,7 @@ def main():
     args = sys.argv[1:]
     if not args:
         args = sorted(f for f in os.listdir(".")
-                      if re.match(r"^excel-m\d+\.html$", f))
+                      if re.match(r"^excel-[mb]\d+\.html$", f))
     total = 0
     for path in args:
         bad = check(path)

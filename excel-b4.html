@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="ko" data-subject="excel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>엑셀 기초 4장 — 행·열·시트 다루기</title>
+<meta name="description" content="엑셀 기초 4장. 행과 열 이름, 칸 너비 넓히기와 ##### 의 뜻, 줄 끼워 넣기, 내용만 지우기와 줄 없애기의 차이, 줄 옮기기, 시트 다루기.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="excel.html">← 엑셀 과목 첫 화면으로</a>
+    <p class="eyebrow">1과목 · 엑셀 · 기초 4장</p>
+    <h1>행·열·시트<br><em>다루기</em></h1>
+    <p class="lede">
+      줄을 넓히고, 사이에 끼워 넣고, 지우는 법입니다.
+      표를 만들다 보면 <b>반드시 필요해집니다.</b>
+      특히 <b>「지웠는데 빈 줄이 남아요」</b> 는
+      여기를 안 보고 넘어가서 생기는 일입니다.
+    </p>
+    <div class="facts">
+      <span><b>앞 장</b> 3장 — 고치고 되돌리기</span>
+      <span><b>소요</b> 45분</span>
+      <span><b>예제</b> B-04_행열_연습.xlsx</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#name">행과 열 — 이름부터</a></li>
+      <li><a href="#width">칸 너비 넓히기</a></li>
+      <li><a href="#insert">사이에 줄 끼워 넣기</a></li>
+      <li><a href="#remove">지우기와 삭제</a></li>
+      <li><a href="#reorder">줄 옮기기</a></li>
+      <li><a href="#sheet">시트 다루기</a></li>
+      <li><a href="#try">해 보기</a></li>
+      <li><a href="#check">4장 확인 목록</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════
+         네 과목 어느 것부터 봐도 되도록, 이 장은 과목마다 똑같이 들어 있습니다.
+         고칠 때는 네 곳을 함께 고쳐 주세요. -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에, 손동작 세 가지</h2>
+      <p class="sub">
+        이 세 가지만 알면 무엇을 눌러도 겁낼 것이 없습니다.
+        네 과목 모두에서 똑같이 씁니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">앞 장에서 이미 보셨다면</span>
+        <p>
+          같은 장이 과목마다, 그리고 장마다 들어 있습니다.
+          이미 읽으셨으면 <a href="#name">01장</a>으로 건너뛰세요.
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>손동작</th><th>하는 일</th><th>언제 쓰나</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></td>
+              <td>방금 한 일을 되돌립니다</td>
+              <td>잘못 눌렀을 때. 여러 번 눌러도 됩니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">S</span></td>
+              <td>저장합니다</td>
+              <td>수시로. 한 줄 쓸 때마다 눌러도 좋습니다</td>
+            </tr>
+            <tr>
+              <td>마우스 <b>오른쪽</b> 단추</td>
+              <td>지금 고른 것에 할 수 있는 일 목록을 띄웁니다</td>
+              <td>무엇을 눌러야 할지 모를 때</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">이 장은 오른쪽 단추를 많이 씁니다</span>
+        <p>
+          줄을 끼워 넣고 지우고 옮기는 일은
+          <b>거의 다 오른쪽 단추 안에</b> 있습니다.
+          외울 것이 없습니다. <b>눌러서 목록을 보면 됩니다.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="name">
+      <span class="sec-tag">01 — 이름</span>
+      <h2>행과 열 — 이름부터</h2>
+      <p class="sub">
+        헷갈리는 두 단어입니다. 한 번만 정리하고 갑시다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이름</th><th>방향</th><th>어디에 번호가 붙나</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>행</b></td>
+              <td><b>가로</b>줄</td>
+              <td><b>왼쪽</b>에 1, 2, 3 …</td>
+            </tr>
+            <tr>
+              <td><b>열</b></td>
+              <td><b>세로</b>줄</td>
+              <td><b>위</b>에 A, B, C …</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">헷갈리면 이렇게 외우세요</span>
+        <p>
+          <b>행</b>은 사람이 <b>줄 서 있는</b> 모양(가로),
+          <b>열</b>은 <b>기둥이 서 있는</b> 모양(세로)입니다.
+        </p>
+      </div>
+
+      <h3>줄 전체를 고르기</h3>
+      <p>
+        위쪽의 <b>A · B</b> 같은 글자를 한 번 누르면 그 <b>세로줄 전체</b>가 선택됩니다.
+        왼쪽의 <b>1 · 2</b> 같은 번호를 누르면 그 <b>가로줄 전체</b>가 선택됩니다.
+      </p>
+      <p>
+        줄 전체를 고른 뒤에 글자를 굵게 하거나 색을 넣으면
+        <b>그 줄 전부에 한꺼번에</b> 적용됩니다. 하나씩 할 필요가 없습니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">여러 줄을 한꺼번에 고르려면</span>
+        <p>
+          <b>A</b> 를 누르고 <b>D</b> 까지 죽 끌면 네 줄이 한꺼번에 잡힙니다.
+          떨어져 있는 줄을 고르려면 <span class="kbd">Ctrl</span> 을 누른 채로 하나씩 누르세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="width">
+      <span class="sec-tag">02 — 너비</span>
+      <h2>칸 너비 넓히기</h2>
+      <p class="sub">
+        글자가 잘려 보이거나 <b>#####</b> 이 뜰 때입니다.
+      </p>
+
+      <div class="note warn">
+        <span class="note-label">##### 은 오류가 아닙니다</span>
+        <p>
+          숫자 칸에 <b>#####</b> 이 뜨는 것은 고장이 아닙니다.
+          <b>칸이 좁아서 숫자를 다 못 보여주겠다</b>는 뜻입니다.
+          넓히면 그대로 나옵니다.
+        </p>
+        <p>
+          글자는 좁아도 <b>옆으로 삐져나와</b> 보입니다.
+          숫자만 <b>#####</b> 이 됩니다 — 잘려 보이면 <b>금액을 오해</b>하게 되니까요.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">넓히는 법 셋</span>
+        <ol class="steps">
+          <li>
+            <b>두 번 눌러 저절로 맞추기 — 가장 편합니다</b>
+            <p>위쪽 <b>A와 B 글자 사이의 세로 선</b>에 마우스를 올리면
+              모양이 <b>좌우 화살표</b>로 바뀝니다. 그 자리를 <b>두 번 빠르게</b> 누르세요.
+              <b>가장 긴 글자에 딱 맞게</b> 저절로 넓어집니다.</p>
+          </li>
+          <li>
+            <b>끌어서 직접 정하기</b>
+            <p>같은 자리에서 마우스 왼쪽 단추를 <b>누른 채로</b> 좌우로 끕니다.</p>
+          </li>
+          <li>
+            <b>여러 줄을 한꺼번에</b>
+            <p>위쪽 <b>A</b> 를 누르고 <b>D</b> 까지 죽 끈 다음,
+              <b>아무 경계선이나</b> 두 번 누르면 고른 줄이 전부 제 너비로 맞춰집니다.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="note">
+        <span class="note-label">행 높이도 똑같습니다</span>
+        <p>
+          왼쪽 행 번호 <b>사이의 가로 선</b>에서 같은 식으로 하시면 됩니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="insert">
+      <span class="sec-tag">03 — 끼워 넣기</span>
+      <h2>사이에 줄 끼워 넣기</h2>
+      <p class="sub">
+        다 적고 나서 <b>"아, 한 줄 빠뜨렸다"</b> 할 때입니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">세 걸음입니다</span>
+        <ol class="steps">
+          <li>
+            <b>끼워 넣을 자리의 줄을 고릅니다</b>
+            <p>새 줄이 들어갈 자리의 <b>번호</b>(또는 글자)를 누릅니다.
+              새 줄은 고른 줄의 <b>위쪽</b>(세로줄이면 <b>왼쪽</b>)에 생깁니다.</p>
+          </li>
+          <li>
+            <b>마우스 오른쪽 단추를 누릅니다</b>
+            <p>할 수 있는 일 목록이 나옵니다.</p>
+          </li>
+          <li>
+            <b>「삽입」 을 누릅니다</b>
+            <p>빈 줄이 하나 생기고 <b>아래 내용은 한 칸씩 밀려 내려갑니다.</b>
+              내용이 사라지는 것이 아니니 안심하세요.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="note">
+        <span class="note-label">여러 줄을 한꺼번에 끼워 넣으려면</span>
+        <p>
+          <b>넣고 싶은 줄 수만큼</b> 먼저 고른 뒤에 삽입하세요.
+          세 줄을 고르고 삽입하면 <b>세 줄</b>이 한 번에 들어갑니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="remove">
+      <span class="sec-tag">04 — 지우기</span>
+      <h2>지우기와 삭제</h2>
+      <p class="sub">
+        <b>기초에서 가장 헷갈리는 곳</b>입니다. 둘은 완전히 다른 일입니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이렇게 하면</th><th>이렇게 됩니다</th><th>줄은</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="kbd">Delete</span> 로 <b>지우기</b></td>
+              <td><b>내용만</b> 지워집니다</td>
+              <td><b>빈 줄로 그대로 남습니다</b></td>
+            </tr>
+            <tr>
+              <td>오른쪽 단추 → <b>삭제</b></td>
+              <td>줄 <b>자체가 없어집니다</b></td>
+              <td>아래 내용이 <b>위로 올라옵니다</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">"지웠는데 빈 줄이 남아 있어요"</span>
+        <p>
+          <span class="kbd">Delete</span> 를 쓰신 것입니다.
+          줄을 <b>아예 없애려면</b> 행 번호를 오른쪽 눌러 <b>「삭제」</b> 를 고르세요.
+        </p>
+        <p>
+          빈 줄이 남아 있으면 나중에 <b>정렬·필터가 거기서 끊깁니다.</b>
+          1장에서 본 <span class="kbd">Ctrl</span>+<span class="kbd">↓</span> 가
+          중간에 서는 것도 같은 이유입니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">둘 다 되돌릴 수 있습니다</span>
+        <p>
+          잘못 삭제했으면 <span class="kbd">Ctrl</span>+<span class="kbd">Z</span>.
+          내용까지 그대로 돌아옵니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 ═══════════ -->
+    <section id="reorder">
+      <span class="sec-tag">05 — 옮기기</span>
+      <h2>줄 옮기기</h2>
+      <p class="sub">
+        순서를 바꾸고 싶을 때는 <b>잘라내서 끼워 넣는 것</b>이 가장 안전합니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">세 걸음입니다</span>
+        <ol class="steps">
+          <li>
+            <b>옮길 줄을 고르고 오른쪽 단추 → 「잘라내기」</b>
+            <p>줄 둘레에 <b>점선이 움직입니다.</b> 아직 사라지지 않았습니다.</p>
+          </li>
+          <li>
+            <b>새로 들어갈 자리의 줄을 고릅니다</b>
+            <p>그 줄의 <b>위쪽</b>에 들어갑니다.</p>
+          </li>
+          <li>
+            <b>오른쪽 단추 → 「잘라낸 셀 삽입」</b>
+            <p>줄이 <b>밀려 들어갑니다.</b></p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">그냥 「붙여넣기」 를 누르면 덮어씁니다</span>
+        <p>
+          <b>붙여넣기</b>는 그 자리에 있던 내용을 <b>지워 버립니다.</b>
+          줄을 <b>밀어 넣고</b> 싶으면 반드시 <b>「잘라낸 셀 삽입」</b> 을 고르세요.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">손에 익으면</span>
+        <p>
+          <span class="kbd">Ctrl</span>+<span class="kbd">X</span> 잘라내기 ·
+          <span class="kbd">Ctrl</span>+<span class="kbd">C</span> 복사 ·
+          <span class="kbd">Ctrl</span>+<span class="kbd">V</span> 붙여넣기입니다.
+        </p>
+        <p>
+          급하지 않습니다. <b>오른쪽 단추로도 전부 됩니다.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 06 ═══════════ -->
+    <section id="sheet">
+      <span class="sec-tag">06 — 시트</span>
+      <h2>시트 다루기</h2>
+      <p class="sub">
+        화면 맨 아래 <b>Sheet1</b> 같은 작은 딱지입니다.
+        <b>종이 한 장</b>이라고 보시면 됩니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>하고 싶은 일</th><th>이렇게</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>새 종이 추가</td><td>딱지 옆의 <b>＋</b> 를 누릅니다</td></tr>
+            <tr><td>이름 바꾸기</td><td>딱지를 <b>두 번 누르고</b> 새 이름을 칩니다</td></tr>
+            <tr><td>옮기기</td><td>딱지를 <b>끌어서</b> 좌우로 옮깁니다</td></tr>
+            <tr><td>색 넣기</td><td>딱지에 오른쪽 단추 → <b>탭 색</b></td></tr>
+            <tr><td>지우기</td><td>딱지에 오른쪽 단추 → <b>삭제</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">시트 삭제만은 되돌릴 수 없습니다</span>
+        <p>
+          거의 모든 것을 <span class="kbd">Ctrl</span>+<span class="kbd">Z</span> 로
+          되돌릴 수 있지만, <b>시트를 지운 것만은 돌아오지 않습니다.</b>
+          지우기 전에 한 번 더 확인하세요.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">시트 사이를 옮겨 다니려면</span>
+        <p>
+          <span class="kbd">Ctrl</span>+<span class="kbd">PgDn</span> 다음 시트 ·
+          <span class="kbd">Ctrl</span>+<span class="kbd">PgUp</span> 이전 시트입니다.
+        </p>
+        <p>
+          <b>1월 · 2월</b> 처럼 이름을 붙여 쓰면 편합니다.
+          다만 처음에는 <b>한 장으로 충분합니다.</b> 이런 게 있다는 것만 알아 두세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 07 ═══════════ -->
+    <section id="try">
+      <span class="sec-tag">07 — 실습</span>
+      <h2>해 보기</h2>
+      <p class="sub">
+        예제 <code>B-04_행열_연습.xlsx</code> — 시트가 셋입니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">해 보기 — B-04_행열_연습.xlsx</span>
+        <ol class="steps">
+          <li>
+            <b>「줄과 칸」 시트를 엽니다</b>
+            <p>금액 칸(C열)이 <b>#####</b> 으로 보입니다. 오류가 아닙니다.</p>
+          </li>
+          <li>
+            <b>두 번 눌러 넓힙니다</b>
+            <p>위쪽 <b>C와 D 사이 세로 선</b>에 마우스를 올려 좌우 화살표가 되면
+              <b>두 번 빠르게</b> 누르세요. 숫자가 나타납니다.</p>
+          </li>
+          <li>
+            <b>D열도 같이 맞춥니다</b>
+            <p><b>B</b> 를 누르고 <b>D</b> 까지 끈 다음, 아무 경계선이나 두 번 누르세요.
+              세 줄이 <b>한꺼번에</b> 맞춰집니다.</p>
+          </li>
+          <li>
+            <b>줄을 하나 끼워 넣습니다</b>
+            <p><b>7행</b>(토너) 번호를 오른쪽 눌러 <b>「삽입」</b>.
+              빈 줄이 생기고 아래가 밀려 내려갑니다. 거기에 아무 품목이나 적어 보세요.</p>
+          </li>
+          <li>
+            <b>지우기와 삭제를 견줍니다</b>
+            <p>방금 넣은 줄을 <span class="kbd">Delete</span> 로 지워 보세요 —
+              <b>빈 줄이 남습니다.</b> 이번에는 행 번호를 오른쪽 눌러 <b>「삭제」</b> —
+              <b>줄 자체가 사라집니다.</b></p>
+          </li>
+          <li>
+            <b>줄을 옮겨 봅니다</b>
+            <p>맨 아래 <b>책상</b> 줄을 잘라내고,
+              맨 위 <b>복사용지</b> 줄에서 <b>「잘라낸 셀 삽입」</b>.
+              순서가 바뀝니다.</p>
+          </li>
+          <li>
+            <b>시트를 하나 더 만듭니다</b>
+            <p>아래에 <b>1월 · 2월</b> 시트가 있습니다. <b>＋</b> 를 눌러 한 장 더 만들고
+              이름을 <b>3월</b> 로 바꾸세요. 매출도 아무 숫자나 적어 보시고요.</p>
+          </li>
+        </ol>
+        <p><b>이렇게 되면 된 것입니다</b> — <b>#####</b> 이 숫자로 바뀌고,
+          <b>지우기와 삭제가 다르다는 것을 눈으로 봤으면</b> 된 것입니다.</p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">답이 궁금하면</span>
+        <p>
+          <code>B-04_행열_연습_완성.xlsx</code> 에는 <b>3월 시트까지</b> 들어 있고
+          열 너비도 맞춰져 있습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 08 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">08 — 마무리</span>
+      <h2>4장 확인 목록</h2>
+      <p class="sub">
+        직접 해본 것에 체크하세요. 체크한 것은 다음에 들어와도 그대로 남아 있습니다.
+      </p>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span><b>행은 가로, 열은 세로</b>라는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>글자나 번호를 눌러 <b>줄 전체를 골라</b> 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>#####</b> 이 오류가 아니라 <b>칸이 좁은 것</b>임을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>경계선을 <b>두 번 눌러</b> 너비를 저절로 맞춰 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>여러 열을 <b>한꺼번에</b> 맞춰 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>줄을 하나 <b>끼워 넣어</b> 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>내용만 지우기</b>와 <b>줄 없애기</b>의 차이를 직접 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>「잘라낸 셀 삽입」</b> 으로 줄을 옮겨 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>그냥 <b>붙여넣기</b>는 덮어쓴다는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>시트를 만들고 <b>이름을 바꿔</b> 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>시트 삭제만은 되돌릴 수 없다</b>는 것을 안다</span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">여기까지 하셨으면</span>
+        <p>
+          <b>표를 마음대로 주무를 수 있게 되셨습니다.</b>
+          넣고, 고치고, 줄을 다루는 것 — <b>적는 법은 여기까지</b>입니다.
+        </p>
+        <p>
+          5장은 <b>저장</b>입니다. 짧지만 중요합니다.
+          <b>덮어쓰기와 다른 이름으로 저장</b>을 구별 못 해서
+          원본을 날리는 일이 생각보다 자주 납니다.
+        </p>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-b3.html">← 3장: 고치고 되돌리기</a>
+        <a href="excel-b5.html">5장: 저장하고 내보내기 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

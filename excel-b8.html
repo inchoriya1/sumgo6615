@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="ko" data-subject="excel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>엑셀 기초 8장 — 참조와 조건</title>
+<meta name="description" content="엑셀 기초 8장. 수식을 끌면 주소가 따라 움직이는 이유, 달러 표시로 고정하기, F4 키, IF로 조건 나누기, 비교 기호 다섯.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="excel.html">← 엑셀 과목 첫 화면으로</a>
+    <p class="eyebrow">1과목 · 엑셀 · 기초 8장</p>
+    <h1>참조와<br><em>조건</em></h1>
+    <p class="lede">
+      기초 열 장 중 <b>가장 어려운 장</b>입니다.
+      그런데 <b>여기서 막히는 분이 가장 많아서</b> 건너뛰지 않는 편이 낫습니다.
+      <b>"왜 첫 줄만 맞고 아래는 다 0이지?"</b> —
+      이 질문의 답이 여기 있습니다. 천천히 읽으세요.
+    </p>
+    <div class="facts">
+      <span><b>앞 장</b> 7장 — 계산 시키기</span>
+      <span><b>소요</b> 50분</span>
+      <span><b>예제</b> B-08_참조와_조건.xlsx</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#relative">왜 끌어내려도 맞을까</a></li>
+      <li><a href="#dollar">못 움직이게 고정하기</a></li>
+      <li><a href="#if">조건 나누기</a></li>
+      <li><a href="#compare">비교 기호</a></li>
+      <li><a href="#try">해 보기</a></li>
+      <li><a href="#check">8장 확인 목록</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════
+         네 과목 어느 것부터 봐도 되도록, 이 장은 과목마다 똑같이 들어 있습니다.
+         고칠 때는 네 곳을 함께 고쳐 주세요. -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에, 손동작 세 가지</h2>
+      <p class="sub">
+        이 세 가지만 알면 무엇을 눌러도 겁낼 것이 없습니다.
+        네 과목 모두에서 똑같이 씁니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">앞 장에서 이미 보셨다면</span>
+        <p>
+          같은 장이 과목마다, 그리고 장마다 들어 있습니다.
+          이미 읽으셨으면 <a href="#relative">01장</a>으로 건너뛰세요.
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>손동작</th><th>하는 일</th><th>언제 쓰나</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></td>
+              <td>방금 한 일을 되돌립니다</td>
+              <td>잘못 눌렀을 때. 여러 번 눌러도 됩니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">S</span></td>
+              <td>저장합니다</td>
+              <td>수시로. 한 줄 쓸 때마다 눌러도 좋습니다</td>
+            </tr>
+            <tr>
+              <td>마우스 <b>오른쪽</b> 단추</td>
+              <td>지금 고른 것에 할 수 있는 일 목록을 띄웁니다</td>
+              <td>무엇을 눌러야 할지 모를 때</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">어려우면 03장은 건너뛰셔도 됩니다</span>
+        <p>
+          <b>01·02장(달러 표시)</b> 은 꼭 하셔야 합니다. 안 하면 계산이 틀립니다.
+        </p>
+        <p>
+          <b>03장(조건 나누기)</b> 은 지금 안 하셔도 아무 지장이 없습니다.
+          나중에 필요해지면 그때 다시 오세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="relative">
+      <span class="sec-tag">01 — 따라 움직임</span>
+      <h2>왜 끌어내려도 맞을까</h2>
+      <p class="sub">
+        7장에서 <b>=C6*D6</b> 을 아래로 끌었더니
+        다음 줄에 <b>=C7*D7</b> 이 저절로 들어갔습니다. 왜 그럴까요.
+      </p>
+
+      <div class="note">
+        <span class="note-label">엑셀은 주소를 글자로 기억하지 않습니다</span>
+        <p>
+          엑셀은 수식을 <b>글자 그대로 복사하지 않습니다.</b>
+          <b>"왼쪽 두 번째 칸 곱하기 왼쪽 첫 번째 칸"</b> 이라는
+          <b>위치 관계</b>로 기억하고 있습니다.
+        </p>
+        <p>
+          그래서 수식이 한 줄 아래로 가면 <b>주소도 한 줄 아래</b>를 봅니다.
+        </p>
+      </div>
+
+      <p>
+        이것을 <b>상대 참조</b>라고 부릅니다.
+        이름은 어려워도 뜻은 간단합니다 —
+        <b>수식이 옮겨 가면 주소도 그만큼 따라 움직인다</b>는 것입니다.
+      </p>
+      <p>
+        <b>대부분은 이게 우리가 원하는 동작</b>입니다.
+        그래서 엑셀은 아무것도 안 해도 이렇게 합니다.
+      </p>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="dollar">
+      <span class="sec-tag">02 — 고정</span>
+      <h2>못 움직이게 고정하기</h2>
+      <p class="sub">
+        그런데 <b>따라 움직이면 곤란한 경우</b>가 있습니다.
+        <b>이 장의 핵심</b>입니다.
+      </p>
+
+      <div class="note warn">
+        <span class="note-label">이런 일이 벌어집니다</span>
+        <p>
+          <b>F3</b> 칸에 할인율 <b>15%</b> 를 적어 두고
+          <b>=C6*F3</b> 이라고 쓴 뒤 아래로 끌면,
+          다음 줄에는 <b>=C7*F4</b> 가 들어갑니다.
+        </p>
+        <p>
+          <b>F4 는 빈 칸입니다.</b> 그래서 답이 <b>0</b> 이 되어 버립니다.
+        </p>
+        <p>
+          <b>"왜 첫 줄만 맞고 아래는 다 0이지?"</b> 하는 상황이 바로 이것입니다.
+        </p>
+      </div>
+
+      <p>
+        환율 · 할인율 · 단가처럼 <b>한 칸에 적어 두고 모두가 같이 보는 숫자</b>가 있습니다.
+        이럴 때 주소가 따라 움직이면 계산이 전부 틀립니다.
+      </p>
+
+      <h3>달러 표시($)를 붙입니다</h3>
+      <p>
+        주소 앞에 <b>달러 표시</b>를 붙이면 <b>그 자리가 못 움직이게</b> 됩니다.
+        <b>F3</b> 대신 <b>$F$3</b> 이라고 쓰는 것입니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이렇게 쓰면</th><th>끌어내렸을 때</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>=C6*F3</b><br>고정 안 함</td>
+              <td>F4 · F5 로 <b>밀려 내려갑니다</b> → 0</td>
+            </tr>
+            <tr>
+              <td><b>=C6*$F$3</b><br>고정함</td>
+              <td>끌어내려도 <b>늘 F3 을 봅니다</b> → 맞습니다</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">달러를 손으로 치지 마세요 — F4 키</span>
+        <p>
+          수식을 쓰다가 주소 부분(<b>F3</b>)에 커서를 두고
+          <span class="kbd">F4</span> 키를 <b>한 번</b> 누르면
+          <b>$F$3</b> 으로 저절로 바뀝니다.
+        </p>
+        <p>
+          <span class="kbd">F4</span> 를 계속 누르면
+          <b>$F$3 → F$3 → $F3 → F3</b> 순서로 돌아갑니다.
+          <b>처음에는 맨 앞의 $F$3 만 쓰셔도 충분합니다.</b>
+        </p>
+      </div>
+
+      <h3>달러 표시 읽는 법</h3>
+      <p>
+        달러는 <b>바로 뒤에 오는 것</b>을 붙잡습니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이렇게 쓰면</th><th>뜻</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>F3</b></td><td>둘 다 따라 움직입니다</td></tr>
+            <tr><td><b>$F$3</b></td><td>둘 다 고정. <b>가장 많이 씁니다</b></td></tr>
+            <tr><td><b>$F3</b></td><td>F열만 고정. 옆으로 끌어도 F 그대로</td></tr>
+            <tr><td><b>F$3</b></td><td>3행만 고정. 아래로 끌어도 3 그대로</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">처음에는 이렇게만 하세요</span>
+        <p>
+          <b>"이 칸은 늘 여기를 봐야 한다"</b> 싶으면
+          그 주소에 커서를 두고 <span class="kbd">F4</span> 를 <b>한 번</b> 누른다.
+        </p>
+        <p>
+          가운데 두 가지(<b>$F3</b> · <b>F$3</b>)는
+          표를 <b>가로세로로 함께</b> 채울 때 쓰는 것입니다.
+          <b>지금 몰라도 아무 지장이 없습니다.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="if">
+      <span class="sec-tag">03 — 조건</span>
+      <h2>조건 나누기</h2>
+      <p class="sub">
+        <b>"~이면 이렇게, 아니면 저렇게"</b> 를 시키는 법입니다.
+        어려우면 <b>건너뛰셔도 됩니다.</b>
+      </p>
+
+      <p>
+        점수가 70점 이상이면 <b>"합격"</b>, 아니면 <b>"불합격"</b>.
+        금액이 5만 원 넘으면 <b>"무료 배송"</b>, 아니면 <b>"3000원"</b>.
+      </p>
+      <p>
+        사람이 하나하나 보고 적던 것을 <b>엑셀이 대신 판단하게</b> 하는 것입니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">쓰는 모양 — 조각이 셋입니다</span>
+        <p>
+          <b>=IF( 무엇을 볼까 , 맞으면 , 틀리면 )</b>
+        </p>
+        <p>
+          예: <b>=IF(C6&gt;=70,"합격","불합격")</b>
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>조각</th><th>뜻</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>C6&gt;=70</b></td><td>C6이 70 이상인가? — <b>물어보는</b> 부분</td></tr>
+            <tr><td><b>"합격"</b></td><td>맞으면 이 글자를 넣어라</td></tr>
+            <tr><td><b>"불합격"</b></td><td>틀리면 이 글자를 넣어라</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">글자에는 큰따옴표를 씌웁니다</span>
+        <p>
+          글자를 넣을 때는 <b>"합격"</b> 처럼 큰따옴표로 감쌉니다.
+          숫자를 넣을 때는 따옴표 없이 <b>3000</b> 이라고만 씁니다.
+        </p>
+        <p>
+          따옴표를 빠뜨리면 <b>#NAME?</b> 이 나옵니다.
+          <b>"그런 이름은 모르겠는데요"</b> 라는 뜻입니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">수식이 어려우면 단추로</span>
+        <p>
+          <b>수식 탭 → 함수 삽입</b> 을 누르면
+          <b>세 칸을 따로 채우는 창</b>이 나옵니다.
+          쉼표와 괄호를 직접 안 써도 됩니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="compare">
+      <span class="sec-tag">04 — 기호</span>
+      <h2>비교 기호</h2>
+      <p class="sub">
+        <b>IF</b> 안에서 물어볼 때 쓰는 기호 다섯입니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>기호</th><th>뜻</th><th>예</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>&gt;</b></td><td>보다 크다 (초과)</td><td>C6&gt;70 — 70은 빠집니다</td></tr>
+            <tr><td><b>&lt;</b></td><td>보다 작다 (미만)</td><td>C6&lt;70</td></tr>
+            <tr><td><b>&gt;=</b></td><td>크거나 같다 (이상)</td><td>C6&gt;=70 — <b>70도 들어갑니다</b></td></tr>
+            <tr><td><b>&lt;=</b></td><td>작거나 같다 (이하)</td><td>C6&lt;=70</td></tr>
+            <tr><td><b>=</b></td><td>같다</td><td>C6=70</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">이상과 초과가 헷갈리시면</span>
+        <p>
+          <b>등호가 붙어 있으면 그 숫자를 포함</b>합니다.
+        </p>
+        <p>
+          <b>&gt;=70</b> 은 딱 <b>70점도 합격</b>입니다.<br>
+          <b>&gt;70</b> 은 <b>71점부터</b> 합격입니다.
+        </p>
+        <p>
+          <b>딱 걸치는 사람</b>에서 항상 사고가 납니다.
+          조건을 쓰고 나면 <b>경계에 있는 줄을 꼭 확인</b>하세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 ═══════════ -->
+    <section id="try">
+      <span class="sec-tag">05 — 실습</span>
+      <h2>해 보기</h2>
+      <p class="sub">
+        예제 <code>B-08_참조와_조건.xlsx</code> — 시트가 둘입니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">해 보기 — B-08_참조와_조건.xlsx</span>
+        <ol class="steps">
+          <li>
+            <b>「$ 고정」 시트를 엽니다</b>
+            <p><b>F3</b> 에 할인율 <b>15%</b> 가 한 칸 있고,
+              품목 다섯 줄의 <b>할인액(D열)이 노랗게 비어</b> 있습니다.</p>
+          </li>
+          <li>
+            <b>일부러 틀리게 해 봅니다</b>
+            <p><b>D6</b> 에 <b>=C6*F3</b> 이라고 쓰고
+              <span class="kbd">Enter</span>. 첫 줄은 맞습니다.</p>
+          </li>
+          <li>
+            <b>끌어내려 보세요</b>
+            <p>D6을 끌어 D10까지. <b>아래 네 줄이 전부 0</b> 입니다.
+              <b>이 장면을 꼭 보세요.</b> 이게 그 유명한 사고입니다.</p>
+          </li>
+          <li>
+            <b>무엇이 들어갔는지 봅니다</b>
+            <p><b>D7</b> 을 눌러 수식 입력줄을 보세요. <b>=C7*F4</b> 입니다.
+              F4는 빈 칸이라 0이 된 것입니다.</p>
+          </li>
+          <li>
+            <b>F4 키로 고칩니다</b>
+            <p>D6 으로 돌아가 <span class="kbd">F2</span> 로 들어간 뒤,
+              <b>F3</b> 부분에 커서를 두고 <span class="kbd">F4</span> 를 한 번.
+              <b>$F$3</b> 이 됩니다. <span class="kbd">Enter</span> 후 다시 끌어내리세요.</p>
+          </li>
+          <li>
+            <b>이번에는 다 맞습니다</b>
+            <p>D7을 눌러 보면 <b>=C7*$F$3</b> 입니다.
+              <b>F3 은 그대로</b> 있고 C만 따라 내려왔습니다.</p>
+          </li>
+          <li>
+            <b>할인율을 바꿔 봅니다</b>
+            <p><b>F3</b> 을 <b>20%</b> 로 고치세요.
+              <b>다섯 줄이 한꺼번에</b> 바뀝니다. 이게 고정의 쓸모입니다.</p>
+          </li>
+          <li>
+            <b>「IF 조건」 시트로 갑니다</b>
+            <p>여섯 명의 점수가 있고 <b>판정(D열)이 비어</b> 있습니다.</p>
+          </li>
+          <li>
+            <b>D6 에 IF 를 씁니다</b>
+            <p><b>=IF(C6&gt;=70,"합격","불합격")</b> 을 치고 끌어내리세요.</p>
+          </li>
+          <li>
+            <b>경계를 확인합니다</b>
+            <p><b>정다온(70점)</b> 이 <b>합격</b> 으로 나와야 맞습니다.
+              <b>&gt;=</b> 를 <b>&gt;</b> 로 바꿔 보시면 불합격이 됩니다. 직접 해 보세요.</p>
+          </li>
+        </ol>
+        <p><b>이렇게 되면 된 것입니다</b> — 할인율 한 칸을 고쳤을 때
+          <b>다섯 줄이 한꺼번에 바뀌면</b> 된 것입니다.</p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">답이 궁금하면</span>
+        <p>
+          <code>B-08_참조와_조건_완성.xlsx</code> 를 여세요.
+          칸을 눌러 <b>수식 입력줄</b>에서 <b>$</b> 가 어디 붙었는지 보시면 됩니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 06 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">06 — 마무리</span>
+      <h2>8장 확인 목록</h2>
+      <p class="sub">
+        직접 해본 것에 체크하세요. 체크한 것은 다음에 들어와도 그대로 남아 있습니다.
+      </p>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span>수식을 끌면 <b>주소가 따라 움직인다</b>는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>일부러 틀리게 끌어 <b>아래가 전부 0이 되는 것</b>을 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>수식 입력줄에서 <b>무엇이 들어갔는지</b> 확인해 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>$F$3</b> 처럼 붙이면 고정된다는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><span class="kbd">F4</span> 키로 <b>$ 를 자동으로</b> 붙여 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>고정한 칸 하나를 고쳤더니 <b>여러 줄이 한꺼번에</b> 바뀌는 것을 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>=IF(조건, 맞으면, 틀리면)</b> 의 조각 셋을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>글자에는 <b>큰따옴표</b>를 씌운다는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><b>&gt;=</b> 와 <b>&gt;</b> 의 차이를 <b>경계 점수로</b> 확인했다</span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">여기까지 하셨으면</span>
+        <p>
+          <b>「시키는 법」은 여기까지입니다.</b>
+          7장과 8장 둘만으로 실무에서 쓰는 계산의 <b>대부분</b>이 됩니다.
+        </p>
+        <p>
+          9장부터는 <b>보기 좋게 만드는 법</b>입니다.
+          여기서 <b>2장의 「쉼표를 직접 치지 마세요」</b> 가 왜 그랬는지
+          드디어 답이 나옵니다.
+        </p>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-b7.html">← 7장: 계산 시키기</a>
+        <a href="excel-b9.html">9장: 보기 좋게 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

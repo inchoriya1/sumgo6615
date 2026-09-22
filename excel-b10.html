@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="ko" data-subject="excel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>엑셀 기초 10장 — 정리하고 내보내기</title>
+<meta name="description" content="엑셀 기초 10장. 안전하게 정렬하는 법, 필터로 원하는 것만 보기, 틀 고정, 차트 만들기, 한 장에 맞춰 인쇄하고 PDF로 내보내기.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="excel.html">← 엑셀 과목 첫 화면으로</a>
+    <p class="eyebrow">1과목 · 엑셀 · 기초 10장</p>
+    <h1>정리하고,<br><em>내보내기</em></h1>
+    <p class="lede">
+      <b>기초의 마지막 장</b>입니다.
+      줄 세우고 · 보고 싶은 것만 골라 보고 · 그림으로 만들고 · 인쇄합니다.
+      여기 <b>엑셀에서 가장 큰 사고</b>가 하나 숨어 있습니다 —
+      <b>정렬</b>입니다. 그것만은 꼭 읽어 주세요.
+    </p>
+    <div class="facts">
+      <span><b>앞 장</b> 9장 — 보기 좋게</span>
+      <span><b>소요</b> 50분</span>
+      <span><b>예제</b> B-10_정리하고_내보내기.xlsx</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#sort">줄 세우기</a></li>
+      <li><a href="#filter">원하는 것만 보기</a></li>
+      <li><a href="#freeze">머리글 붙잡아 두기</a></li>
+      <li><a href="#chart">그림으로 보기</a></li>
+      <li><a href="#print">인쇄와 PDF</a></li>
+      <li><a href="#try">해 보기</a></li>
+      <li><a href="#check">10장 확인 목록</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════
+         네 과목 어느 것부터 봐도 되도록, 이 장은 과목마다 똑같이 들어 있습니다.
+         고칠 때는 네 곳을 함께 고쳐 주세요. -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에, 손동작 세 가지</h2>
+      <p class="sub">
+        이 세 가지만 알면 무엇을 눌러도 겁낼 것이 없습니다.
+        네 과목 모두에서 똑같이 씁니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">앞 장에서 이미 보셨다면</span>
+        <p>
+          같은 장이 과목마다, 그리고 장마다 들어 있습니다.
+          이미 읽으셨으면 <a href="#sort">01장</a>으로 건너뛰세요.
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>손동작</th><th>하는 일</th><th>언제 쓰나</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></td>
+              <td>방금 한 일을 되돌립니다</td>
+              <td>잘못 눌렀을 때. 여러 번 눌러도 됩니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">S</span></td>
+              <td>저장합니다</td>
+              <td>수시로. 한 줄 쓸 때마다 눌러도 좋습니다</td>
+            </tr>
+            <tr>
+              <td>마우스 <b>오른쪽</b> 단추</td>
+              <td>지금 고른 것에 할 수 있는 일 목록을 띄웁니다</td>
+              <td>무엇을 눌러야 할지 모를 때</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">이 장은 저장하기 전에 한 번 더 확인하세요</span>
+        <p>
+          정렬은 <span class="kbd">Ctrl</span>+<span class="kbd">Z</span> 로 되돌아갑니다.
+          <b>단, 저장하고 닫기 전까지만</b>입니다.
+        </p>
+        <p>
+          중요한 표라면 <b>5장</b>에서 배운 대로
+          <span class="kbd">F12</span> 로 <b>사본을 하나 만들어 두고</b> 시작하세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="sort">
+      <span class="sec-tag">01 — 정렬</span>
+      <h2>줄 세우기</h2>
+      <p class="sub">
+        가나다순으로, 또는 큰 것부터 다시 줄을 세우는 일입니다.
+        <b>여기에 엑셀에서 가장 큰 사고가 숨어 있습니다.</b>
+      </p>
+
+      <div class="note warn">
+        <span class="note-label">가장 큰 사고 — 한 열만 정렬하기</span>
+        <p>
+          <b>점수 칸만 고르고</b> 정렬하면, 점수만 자리를 옮기고
+          <b>이름·부서는 그 자리에 그대로</b> 있습니다.
+        </p>
+        <p>
+          그러면 <b>김세민의 점수가 박정화의 줄로</b> 가 버립니다.
+          표가 통째로 어긋나는데 <b>겉으로는 멀쩡해 보입니다.</b>
+        </p>
+        <p>
+          <b>이걸 모르고 저장해 버리면 되돌릴 수 없습니다.</b>
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">안전하게 정렬하는 법</span>
+        <ol class="steps">
+          <li>
+            <b>표 안의 아무 칸이나 한 번 누릅니다</b>
+            <p><b>여러 칸을 고르지 마세요.</b> 한 칸만 누르는 것이 요령입니다.
+              그러면 엑셀이 <b>표 전체를 알아서</b> 인식합니다.</p>
+          </li>
+          <li>
+            <b>데이터 탭 → 정렬</b>
+            <p>화면 위 데이터 탭에 있습니다.</p>
+          </li>
+          <li>
+            <b>기준 열을 고릅니다</b>
+            <p>정렬 기준에서 <b>평가점수</b> 처럼 고르세요.
+              <b>머리글 이름이 그대로</b> 목록에 나옵니다.</p>
+          </li>
+          <li>
+            <b>순서를 고르고 확인</b>
+            <p>숫자는 <b>작은 것부터 / 큰 것부터</b>,
+              글자는 <b>오름차순(가나다) / 내림차순</b>입니다.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">이 창이 뜨면 잘 보세요</span>
+        <p>
+          엑셀이 <b>「선택 영역 확장」</b> 과 <b>「현재 선택 영역으로 정렬」</b> 중
+          무엇을 할지 물어볼 때가 있습니다.
+        </p>
+        <p>
+          <b>거의 항상 「선택 영역 확장」이 맞습니다.</b>
+          <b>"옆 칸들도 같이 데려가겠다"</b> 는 뜻입니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">머리글까지 같이 정렬돼 버렸다면</span>
+        <p>
+          정렬 창의 <b>「내 데이터에 머리글 표시」</b> 에 체크가 되어 있는지 보세요.
+          체크가 없으면 엑셀이 <b>첫 줄도 자료로 보고</b> 같이 줄 세웁니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">원래 순서로 꼭 돌아가야 한다면</span>
+        <p>
+          맨 왼쪽에 <b>번호 열</b>을 하나 만들어 두세요.
+          (<b>6장</b>에서 배운 <b>1 · 2</b> 넣고 끌기입니다)
+        </p>
+        <p>
+          그 번호로 정렬하면 <b>언제든 원래 순서로</b> 돌아옵니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="filter">
+      <span class="sec-tag">02 — 필터</span>
+      <h2>원하는 것만 보기</h2>
+      <p class="sub">
+        줄이 수백 개일 때 <b>보고 싶은 것만 남기고 나머지는 잠깐 감추는</b> 기능입니다.
+        <b>지우는 것이 아닙니다.</b>
+      </p>
+
+      <div class="note">
+        <span class="note-label">거는 법</span>
+        <ol class="steps">
+          <li>
+            <b>표 안의 아무 칸이나 누릅니다</b>
+            <p>정렬과 똑같습니다. <b>한 칸만</b> 누르세요.</p>
+          </li>
+          <li>
+            <b>데이터 탭 → 필터</b>
+            <p>머리글 칸마다 <b>작은 삼각형</b>이 생깁니다.
+              손에 익으면 <span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">L</span>.</p>
+          </li>
+          <li>
+            <b>보고 싶은 열의 삼각형을 누릅니다</b>
+            <p>그 열에 든 <b>모든 값의 목록</b>이 체크 상자와 함께 나옵니다.</p>
+          </li>
+          <li>
+            <b>필요 없는 것의 체크를 끕니다</b>
+            <p><b>「모두 선택」 을 한 번 꺼서</b> 전부 끈 다음,
+              보고 싶은 것만 다시 켜는 것이 빠릅니다.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">"자료가 없어졌어요" — 숨어 있는 것입니다</span>
+        <p>
+          걸러진 열의 삼각형은 <b>깔때기 모양</b>으로 바뀝니다.
+          그리고 왼쪽 <b>줄 번호가 파란색</b>이 되고 번호가 <b>건너뜁니다</b>(1, 4, 7 …).
+        </p>
+        <p>
+          <b>줄 번호가 건너뛰고 있으면 숨어 있는 것</b>입니다. 지워진 게 아닙니다.
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>하고 싶은 일</th><th>이렇게</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>한 열의 거르기만 풀기</td><td>그 열 삼각형 → <b>필터 해제</b></td></tr>
+            <tr><td>전부 다시 보이게</td><td>데이터 탭 → <b>지우기</b></td></tr>
+            <tr><td>삼각형 자체를 없애기</td><td>데이터 탭 → <b>필터</b> 를 한 번 더</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">걸러 놓은 채로 인쇄하면</span>
+        <p>
+          <b>보이는 줄만 인쇄됩니다.</b> 편리한 점이기도 하지만,
+          걸러 놓은 걸 잊고 인쇄하면 <b>자료가 빠진 종이</b>가 나옵니다.
+        </p>
+        <p>
+          인쇄 전에 <b>줄 번호가 1, 2, 3 으로 이어지는지</b> 한 번 보세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="freeze">
+      <span class="sec-tag">03 — 틀 고정</span>
+      <h2>머리글 붙잡아 두기</h2>
+      <p class="sub">
+        줄이 길어지면 아래로 내려갈수록 <b>머리글이 안 보입니다.</b>
+        이 숫자가 점수인지 연도인지 몰라 위아래로 오르내리게 됩니다.
+      </p>
+
+      <p>
+        <b>보기 탭 → 틀 고정 → 첫 행 고정.</b>
+        첫 줄 아래에 가느다란 선이 하나 생기고,
+        아래로 아무리 내려가도 <b>첫 줄이 붙어 있습니다.</b>
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>메뉴</th><th>붙잡는 것</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>첫 행 고정</b></td><td>맨 위 한 줄</td></tr>
+            <tr><td><b>첫 열 고정</b></td><td>맨 왼쪽 한 줄 (이름 칸 등)</td></tr>
+            <tr><td><b>틀 고정</b></td><td>지금 고른 칸의 <b>위쪽과 왼쪽 전부</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">둘 다 붙잡고 싶으면</span>
+        <p>
+          붙잡고 싶은 <b>줄의 아래, 열의 오른쪽</b>에 있는 칸을 누른 뒤
+          <b>틀 고정</b>을 고르세요.
+        </p>
+        <p>
+          머리글이 5행이고 이름이 B열이라면 <b>C6</b> 칸을 누르고 틀 고정입니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">인쇄할 때는 따로 해야 합니다</span>
+        <p>
+          <b>틀 고정은 화면에서만</b> 됩니다.
+          인쇄하면 <b>둘째 장부터 머리글이 없습니다.</b>
+        </p>
+        <p>
+          종이마다 머리글을 넣으려면
+          <b>페이지 레이아웃 탭 → 인쇄 제목 → 반복할 행</b> 에서
+          머리글 행을 골라 주세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="chart">
+      <span class="sec-tag">04 — 차트</span>
+      <h2>그림으로 보기</h2>
+      <p class="sub">
+        숫자를 막대나 선으로 바꾸면 <b>남을 설득하기 쉬워집니다.</b>
+        만드는 데 <b>세 번</b>이면 됩니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">세 걸음입니다</span>
+        <ol class="steps">
+          <li>
+            <b>그림으로 만들 칸을 고릅니다</b>
+            <p><b>머리글까지 함께</b> 고르세요.
+              머리글을 빼면 그림에 <b>이름이 안 나옵니다.</b>
+              떨어져 있는 열은 <span class="kbd">Ctrl</span> 을 누른 채 끄세요.</p>
+          </li>
+          <li>
+            <b>삽입 탭을 누릅니다</b>
+            <p>여러 가지 그림 모양이 나옵니다.</p>
+          </li>
+          <li>
+            <b>세로 막대형을 고릅니다</b>
+            <p>무엇을 골라야 할지 모르시면 <b>추천 차트</b> 를 누르세요.
+              엑셀이 어울리는 것을 몇 개 보여줍니다.</p>
+          </li>
+        </ol>
+      </div>
+
+      <h3>어떤 그림을 고를까</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이런 것을 보여줄 때</th><th>이 그림</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>여럿을 <b>견주어</b> 볼 때 (부서별 인원)</td><td><b>세로 막대형</b></td></tr>
+            <tr><td>시간에 따라 <b>변해 가는</b> 것 (월별 추이)</td><td><b>꺾은선형</b></td></tr>
+            <tr><td>전체에서 차지하는 <b>몫</b> (비율)</td><td><b>원형</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">원형은 조각이 적을 때만</span>
+        <p>
+          원형 그림은 조각이 <b>대여섯 개를 넘으면</b> 알아보기 어렵습니다.
+          많을 때는 <b>막대형이 훨씬 읽기 좋습니다.</b>
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">제목은 반드시 넣으세요</span>
+        <p>
+          그림을 누르면 오른쪽 위에 작은 단추 세 개가 붙습니다.
+          가장 위의 <b>＋</b> 를 누르면 <b>제목 · 값 표시 · 범례</b> 를 켜고 끌 수 있습니다.
+        </p>
+        <p>
+          그림 제목을 두 번 눌러 <b>「부서별 인원」</b> 처럼 고쳐 두면
+          <b>남이 봐도 알 수 있습니다.</b>
+        </p>
+      </div>
+
+      <p>
+        그림 <b>테두리를 잡고 끌면</b> 옮겨지고,
+        <b>모서리 동그라미를 끌면</b> 커집니다.
+        <b>숫자를 고치면 그림도 저절로 바뀝니다.</b> 다시 만들 필요가 없습니다.
+      </p>
+    </section>
+
+    <!-- ═══════════ 05 ═══════════ -->
+    <section id="print">
+      <span class="sec-tag">05 — 인쇄</span>
+      <h2>인쇄와 PDF</h2>
+      <p class="sub">
+        엑셀은 <b>화면과 종이가 가장 많이 다른</b> 프로그램입니다.
+        그냥 인쇄하면 표가 <b>여러 장으로 잘려서</b> 나옵니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">먼저 미리 보기부터</span>
+        <p>
+          <b>파일 → 인쇄</b>(또는 <span class="kbd">Ctrl</span>+<span class="kbd">P</span>)를 누르면
+          오른쪽에 <b>종이 모양</b>이 나옵니다.
+          여기서 <b>몇 장으로 나오는지</b> 먼저 보세요.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">표가 잘려 나올 때 — 이것 하나면 됩니다</span>
+        <ol class="steps">
+          <li>
+            <b>인쇄 화면 왼쪽 맨 아래를 봅니다</b>
+            <p><b>「현재 설정된 용지」</b> 같은 글자가 적힌 칸이 있습니다.</p>
+          </li>
+          <li>
+            <b>「한 페이지에 모든 열 맞추기」 를 고릅니다</b>
+            <p>가로로 잘리던 것이 <b>한 장 안에</b> 들어옵니다.
+              표가 옆으로 넓을 때 <b>가장 많이 쓰는 설정</b>입니다.</p>
+          </li>
+          <li>
+            <b>그래도 넘치면 용지 방향을 바꿉니다</b>
+            <p>같은 화면에서 <b>세로 방향 → 가로 방향</b>.
+              옆으로 넓은 표는 가로가 훨씬 잘 들어갑니다.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">「한 페이지에 시트 맞추기」 는 조심</span>
+        <p>
+          이것을 고르면 <b>세로까지 억지로 우겨넣습니다.</b>
+          줄이 많으면 <b>글자가 개미만 해져서</b> 읽을 수 없게 됩니다.
+        </p>
+        <p>
+          <b>「한 페이지에 모든 열 맞추기」 까지만</b> 쓰시는 것이 안전합니다.
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>하고 싶은 일</th><th>어디에서</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>여백 줄이기</td><td>인쇄 화면 왼쪽 <b>여백 → 좁게</b></td></tr>
+            <tr><td>종이 가운데 놓기</td><td>인쇄 화면 아래 <b>페이지 설정 → 여백 → 가로 가운데</b></td></tr>
+            <tr><td>장마다 머리글 반복</td><td>페이지 레이아웃 → <b>인쇄 제목 → 반복할 행</b></td></tr>
+            <tr><td>표의 일부만 인쇄</td><td>고른 뒤 페이지 레이아웃 → <b>인쇄 영역 → 설정</b></td></tr>
+            <tr><td>칸 선도 함께 인쇄</td><td>페이지 레이아웃 → <b>눈금선의 인쇄</b> 체크</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">화면의 옅은 칸 선은 인쇄되지 않습니다</span>
+        <p>
+          엑셀 화면에 늘 보이는 <b>옅은 회색 칸 선</b>은 종이에 안 나옵니다.
+          종이에 선이 나오게 하려면 <b>9장에서 직접 그린 테두리</b>가 있어야 합니다.
+        </p>
+      </div>
+
+      <h3>PDF로 만들기</h3>
+      <p>
+        <b>PDF는 인쇄 설정 그대로</b> 만들어집니다.
+        먼저 <b>미리 보기에서 잘 나오는지 확인</b>하고,
+        <b>파일 → 다른 이름으로 저장 → 파일 형식에서 PDF</b>.
+        (<b>5장</b>에서 해 보신 그것입니다)
+      </p>
+
+      <div class="note">
+        <span class="note-label">인쇄 전 마지막 점검 세 가지</span>
+        <p>
+          <b>① 필터가 걸려 있지 않은가</b> — 줄 번호가 1, 2, 3 으로 이어지는지.<br>
+          <b>② 몇 장으로 나오는가</b> — 미리 보기 아래 장수를 확인.<br>
+          <b>③ 잘린 열은 없는가</b> — 오른쪽 끝까지 보이는지.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 06 ═══════════ -->
+    <section id="try">
+      <span class="sec-tag">06 — 실습</span>
+      <h2>해 보기</h2>
+      <p class="sub">
+        예제 <code>B-10_정리하고_내보내기.xlsx</code> — 사원 명단 열두 줄입니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">해 보기 — B-10_정리하고_내보내기.xlsx</span>
+        <ol class="steps">
+          <li>
+            <b>먼저 사본을 만듭니다</b>
+            <p><span class="kbd">F12</span> 로 <b>명단_연습.xlsx</b>.
+              정렬은 저장하면 못 되돌리니 <b>습관을 들이세요.</b></p>
+          </li>
+          <li>
+            <b>일부러 사고를 내 봅니다</b>
+            <p><b>E열(평가점수)만</b> 고르고 데이터 → 정렬.
+              <b>「현재 선택 영역으로 정렬」</b> 을 고르세요.
+              <b>이름과 점수가 어긋납니다.</b> 이게 그 사고입니다.</p>
+          </li>
+          <li>
+            <b>되돌립니다</b>
+            <p><span class="kbd">Ctrl</span>+<span class="kbd">Z</span>.
+              <b>저장 전이라 돌아옵니다.</b></p>
+          </li>
+          <li>
+            <b>이번에는 제대로 정렬합니다</b>
+            <p>표 안 <b>아무 칸 하나만</b> 누르고 데이터 → 정렬 →
+              기준 <b>평가점수</b> → <b>큰 것부터</b>. 줄이 통째로 따라옵니다.</p>
+          </li>
+          <li>
+            <b>필터를 겁니다</b>
+            <p><span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">L</span> →
+              <b>부서</b> 삼각형 → 「모두 선택」 끄고 <b>영업팀</b> 만 켜기.
+              <b>줄 번호가 건너뛰는 것</b>을 보세요.</p>
+          </li>
+          <li>
+            <b>필터를 풉니다</b>
+            <p>데이터 탭 → <b>지우기</b>. 전부 다시 보입니다.</p>
+          </li>
+          <li>
+            <b>틀 고정을 겁니다</b>
+            <p><b>B6</b> 을 누르고 <b>보기 → 틀 고정 → 틀 고정</b>.
+              아래로 내려가도 머리글이 남습니다.</p>
+          </li>
+          <li>
+            <b>「차트용」 시트에서 그림을 만듭니다</b>
+            <p><b>B5:C11</b> 을 <b>머리글까지</b> 고르고
+              <b>삽입 → 세로 막대형</b>. 제목을 <b>「부서별 인원」</b> 으로 고치세요.</p>
+          </li>
+          <li>
+            <b>숫자를 바꿔 봅니다</b>
+            <p>인원 하나를 고치면 <b>막대가 저절로 바뀝니다.</b></p>
+          </li>
+          <li>
+            <b>인쇄 미리 보기를 엽니다</b>
+            <p><span class="kbd">Ctrl</span>+<span class="kbd">P</span>.
+              <b>몇 장</b>으로 나오는지 보고,
+              <b>「한 페이지에 모든 열 맞추기」</b> 를 걸어 보세요.</p>
+          </li>
+          <li>
+            <b>PDF 로 내보냅니다</b>
+            <p><span class="kbd">F12</span> → 파일 형식 <b>PDF</b>.
+              열어서 <b>잘린 열이 없는지</b> 확인하세요.</p>
+          </li>
+        </ol>
+        <p><b>이렇게 되면 된 것입니다</b> — 정렬해도 <b>줄이 통째로 따라오고</b>,
+          PDF 가 <b>한 장에 깔끔히</b> 나오면 된 것입니다.</p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">답이 궁금하면</span>
+        <p>
+          <code>B-10_정리하고_내보내기_완성.xlsx</code> 에는
+          <b>틀 고정과 필터가 걸린 상태</b>로 들어 있습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 07 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">07 — 마무리</span>
+      <h2>10장 확인 목록</h2>
+      <p class="sub">
+        직접 해본 것에 체크하세요. 체크한 것은 다음에 들어와도 그대로 남아 있습니다.
+      </p>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span><b>한 열만 정렬하면 표가 어긋난다</b>는 것을 직접 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>정렬 전에 <b>한 칸만 누른다</b>는 요령을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><b>「선택 영역 확장」</b> 이 맞다는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>원래 순서로 돌아가려면 <b>번호 열</b>이 필요하다는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>필터를 걸고 <b>줄 번호가 건너뛰는 것</b>을 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>필터는 <b>숨기는 것이지 지우는 것이 아니라는</b> 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><b>틀 고정</b>으로 머리글을 붙잡아 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>틀 고정은 <b>화면에서만</b> 되고 인쇄는 따로라는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>차트를 만들 때 <b>머리글까지 고른다</b>는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>차트에 <b>제목을 달아</b> 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>「한 페이지에 모든 열 맞추기」</b> 를 써 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>인쇄 전 <b>세 가지 점검</b>을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>PDF 로 내보내 <b>잘린 열이 없는지</b> 확인했다</span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">기초 열 장을 다 하셨습니다</span>
+        <p>
+          <b>엑셀을 켜지도 못하던 데서 여기까지 오셨습니다.</b>
+          표를 만들고 · 계산을 시키고 · 보기 좋게 꾸미고 ·
+          정리해서 남에게 보낼 수 있게 되셨습니다.
+        </p>
+        <p>
+          <b>이 정도면 사무실에서 쓰는 일의 대부분이 됩니다.</b>
+          나머지는 <b>필요해질 때</b> 배우시면 됩니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">다음은 — 마스터 클래스</span>
+        <p>
+          더 하고 싶으시면 <a href="excel-m1.html">마스터 클래스</a> 가 있습니다.
+          <b>남이 만든 엉망인 표를 고치는 법</b>, <b>피벗 테이블</b>,
+          <b>VLOOKUP 같은 찾기 함수</b>, <b>차트를 제대로 고르는 법</b> —
+          아홉 장입니다.
+        </p>
+        <p>
+          다만 <b>서두르지 마세요.</b> 기초 열 장을 <b>손에 익히는 것</b>이 먼저입니다.
+          며칠 지나 다시 한 바퀴 돌아보시는 편이 훨씬 남습니다.
+        </p>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-b9.html">← 9장: 보기 좋게</a>
+        <a href="excel.html">엑셀 과목 첫 화면 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

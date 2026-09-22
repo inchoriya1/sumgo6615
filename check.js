@@ -43,7 +43,17 @@
 
   /* '먼저 볼 곳' 이름과 주소 */
   var PARTS = {
-    'basic':    { label: '어느 과목이든 00장 — 손동작 세 가지', href: 'excel-1.html#start' },
+    'basic':    { label: '어느 과목이든 00장 — 손동작 세 가지', href: 'excel-b1.html#start' },
+    'excel-b1':  { label: '엑셀 기초 1장 — 엑셀 열기, 화면과 칸 주소',  href: 'excel-b1.html' },
+    'excel-b2':  { label: '엑셀 기초 2장 — 입력하기, 숫자·글자·날짜',   href: 'excel-b2.html' },
+    'excel-b3':  { label: '엑셀 기초 3장 — 고치고 되돌리기',            href: 'excel-b3.html' },
+    'excel-b4':  { label: '엑셀 기초 4장 — 행·열·시트 다루기',          href: 'excel-b4.html' },
+    'excel-b5':  { label: '엑셀 기초 5장 — 저장하고 내보내기',          href: 'excel-b5.html' },
+    'excel-b6':  { label: '엑셀 기초 6장 — 자동 채우기',                href: 'excel-b6.html' },
+    'excel-b7':  { label: '엑셀 기초 7장 — 계산 시키기',                href: 'excel-b7.html' },
+    'excel-b8':  { label: '엑셀 기초 8장 — 참조와 조건',                href: 'excel-b8.html' },
+    'excel-b9':  { label: '엑셀 기초 9장 — 보기 좋게',                  href: 'excel-b9.html' },
+    'excel-b10': { label: '엑셀 기초 10장 — 정리하고 내보내기',         href: 'excel-b10.html' },
     'excel-1':  { label: '엑셀 1부 — 처음 켜고, 표 하나 만들기', href: 'excel-1.html' },
     'excel-2':  { label: '엑셀 2부 — 계산을 시키기',             href: 'excel-2.html' },
     'excel-3':  { label: '엑셀 3부 — 보기 좋게, 찾기 쉽게',      href: 'excel-3.html' },

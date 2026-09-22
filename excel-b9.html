@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="ko" data-subject="excel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>엑셀 기초 9장 — 보기 좋게</title>
+<meta name="description" content="엑셀 기초 9장. 겉모습과 속 값은 다르다는 것, 쉼표·통화·백분율 붙이기, 글자와 테두리, 제목 줄과 셀 병합, 조건에 따라 색 입히기와 데이터 막대.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="excel.html">← 엑셀 과목 첫 화면으로</a>
+    <p class="eyebrow">1과목 · 엑셀 · 기초 9장</p>
+    <h1>보기<br><em>좋게</em></h1>
+    <p class="lede">
+      여기에 <b>기초에서 가장 중요한 생각 하나</b>가 들어 있습니다 —
+      <b>겉모습을 바꾸는 것은 속 값을 바꾸는 것이 아닙니다.</b>
+      2장에서 <b>"쉼표를 직접 치지 마세요"</b> 라고 한 이유가
+      드디어 여기서 풀립니다.
+    </p>
+    <div class="facts">
+      <span><b>앞 장</b> 8장 — 참조와 조건</span>
+      <span><b>소요</b> 45분</span>
+      <span><b>예제</b> B-09_서식_연습.xlsx</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#look">겉과 속은 다릅니다</a></li>
+      <li><a href="#number">숫자에 옷 입히기</a></li>
+      <li><a href="#font">글자와 테두리</a></li>
+      <li><a href="#merge">제목 줄과 병합</a></li>
+      <li><a href="#cond">조건에 따라 색 입히기</a></li>
+      <li><a href="#try">해 보기</a></li>
+      <li><a href="#check">9장 확인 목록</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════
+         네 과목 어느 것부터 봐도 되도록, 이 장은 과목마다 똑같이 들어 있습니다.
+         고칠 때는 네 곳을 함께 고쳐 주세요. -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에, 손동작 세 가지</h2>
+      <p class="sub">
+        이 세 가지만 알면 무엇을 눌러도 겁낼 것이 없습니다.
+        네 과목 모두에서 똑같이 씁니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">앞 장에서 이미 보셨다면</span>
+        <p>
+          같은 장이 과목마다, 그리고 장마다 들어 있습니다.
+          이미 읽으셨으면 <a href="#look">01장</a>으로 건너뛰세요.
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>손동작</th><th>하는 일</th><th>언제 쓰나</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></td>
+              <td>방금 한 일을 되돌립니다</td>
+              <td>잘못 눌렀을 때. 여러 번 눌러도 됩니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">S</span></td>
+              <td>저장합니다</td>
+              <td>수시로. 한 줄 쓸 때마다 눌러도 좋습니다</td>
+            </tr>
+            <tr>
+              <td>마우스 <b>오른쪽</b> 단추</td>
+              <td>지금 고른 것에 할 수 있는 일 목록을 띄웁니다</td>
+              <td>무엇을 눌러야 할지 모를 때</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">이 장은 순서가 늘 같습니다</span>
+        <p>
+          <b>① 바꿀 칸을 마우스로 고른다 → ② 단추를 누른다.</b>
+        </p>
+        <p>
+          <b>단추부터 누르면 아무 일도 안 일어납니다.</b>
+          안 되는 것 같으면 <b>고르는 것을 빠뜨린 것</b>입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="look">
+      <span class="sec-tag">01 — 핵심</span>
+      <h2>겉과 속은 다릅니다</h2>
+      <p class="sub">
+        <b>1000</b> 을 <b>1,000원</b> 으로 보이게 하는 일입니다.
+        여기에 이 장에서 가장 중요한 생각이 들어 있습니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">이 장의 핵심 생각</span>
+        <p>
+          <b>겉모습을 바꾸는 것은 속 값을 바꾸는 것이 아닙니다.</b>
+        </p>
+        <p>
+          <b>1,000원</b> 이라고 보이게 해도 엑셀 속에는
+          여전히 <b>1000</b> 이라는 숫자가 들어 있습니다.
+          그래서 <b>계산은 그대로 됩니다.</b>
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>어떻게 했나</th><th>속은</th><th>더하면</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>1,000</b> 이라고 <b>직접 침</b></td>
+              <td>글자</td>
+              <td><b>0 이 나옵니다</b></td>
+            </tr>
+            <tr>
+              <td><b>1000</b> 을 치고 <b>쉼표 단추</b></td>
+              <td>숫자</td>
+              <td><b>제대로 계산됩니다</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        이것이 <b>2장</b>에서 <b>"쉼표를 직접 치지 말라"</b> 고 한 이유입니다.
+        쉼표는 <b>지금 여기서 단추로 붙이는 것</b>이지 치는 것이 아니었습니다.
+      </p>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="number">
+      <span class="sec-tag">02 — 숫자</span>
+      <h2>숫자에 옷 입히기</h2>
+      <p class="sub">
+        숫자가 든 칸들을 <b>죽 끌어서 고르고</b>, 홈 탭의 단추를 누르면 됩니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>단추</th><th>이렇게 보입니다</th><th>언제</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>쉼표 (,)</b></td><td>1000 → <b>1,000</b></td><td>돈·수량 등 큰 숫자에 늘</td></tr>
+            <tr><td><b>통화 (₩)</b></td><td>1000 → <b>₩1,000</b></td><td>금액인 것을 분명히 할 때</td></tr>
+            <tr><td><b>백분율 (%)</b></td><td>0.1 → <b>10%</b></td><td>비율·할인율</td></tr>
+            <tr><td><b>소수 자릿수</b></td><td>3.14 → <b>3.1</b></td><td>소수점 아래를 줄이거나 늘릴 때</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">백분율에서 자주 나는 사고</span>
+        <p>
+          <b>10%</b> 로 보이게 하려면 칸에 <b>0.1</b> 을 넣어야 합니다.
+          <b>10</b> 을 넣고 백분율 단추를 누르면 <b>1000%</b> 가 됩니다.
+        </p>
+        <p>
+          엑셀에게 백분율은 <b>"100을 곱해서 보여줘"</b> 라는 뜻이기 때문입니다.
+        </p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">보이는 숫자와 계산되는 숫자가 다를 수 있습니다</span>
+        <p>
+          소수 자릿수를 줄이면 <b>3.14</b> 가 <b>3.1</b> 로 보입니다.
+          그러나 속에는 여전히 <b>3.14</b> 가 있어서 <b>계산은 3.14 로</b> 됩니다.
+        </p>
+        <p>
+          그래서 화면의 숫자를 눈으로 더한 값과 합계가
+          <b>1원씩 안 맞는 일</b>이 생깁니다. <b>고장이 아닙니다.</b>
+          지금은 이런 일이 있다는 것만 알아 두세요.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">더 자세히 정하고 싶으면</span>
+        <p>
+          칸을 고르고 <span class="kbd">Ctrl</span>+<span class="kbd">1</span>
+          (또는 오른쪽 단추 → <b>셀 서식</b>)을 누르면
+          날짜 모양 · 소수 자릿수 · 통화 기호를 목록에서 골라 정할 수 있습니다.
+        </p>
+        <p>
+          <b>2장</b>에서 전화번호 때문에 썼던 <b>텍스트</b> 도 여기에 있습니다. 같은 창입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="font">
+      <span class="sec-tag">03 — 다듬기</span>
+      <h2>글자와 테두리</h2>
+      <p class="sub">
+        표가 <b>표처럼 보이게</b> 하는 일입니다.
+        <b>홈 탭 하나에 다 있습니다.</b>
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>하고 싶은 일</th><th>홈 탭에서</th><th>손에 익으면</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>굵게</td><td><b>가</b> 모양의 굵은 단추</td><td><span class="kbd">Ctrl</span>+<span class="kbd">B</span></td></tr>
+            <tr><td>기울임</td><td>기울어진 <b>가</b> 단추</td><td><span class="kbd">Ctrl</span>+<span class="kbd">I</span></td></tr>
+            <tr><td>밑줄</td><td>밑줄 그어진 <b>가</b> 단추</td><td><span class="kbd">Ctrl</span>+<span class="kbd">U</span></td></tr>
+            <tr><td>글자 색</td><td><b>가</b> 아래 색이 칠해진 단추</td><td>—</td></tr>
+            <tr><td>칸 배경색</td><td><b>페인트통</b> 모양 단추</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">색 단추는 두 부분입니다</span>
+        <p>
+          <b>단추 자체</b>를 누르면 지금 보이는 색이 칠해지고,
+          <b>옆의 작은 삼각형</b>을 누르면 색을 고르는 창이 나옵니다.
+        </p>
+      </div>
+
+      <h3>테두리 그리기</h3>
+      <div class="note">
+        <span class="note-label">세 걸음입니다</span>
+        <ol class="steps">
+          <li>
+            <b>표 전체를 마우스로 죽 끕니다</b>
+            <p>머리글부터 합계 줄까지 전부 고르세요.</p>
+          </li>
+          <li>
+            <b>홈 탭의 테두리 단추 옆 삼각형</b>
+            <p>네모 모양 단추입니다. <b>삼각형을 눌러야</b> 목록이 나옵니다.</p>
+          </li>
+          <li>
+            <b>「모든 테두리」 를 고릅니다</b>
+            <p>칸마다 선이 그어집니다. 이제 표처럼 보입니다.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="note">
+        <span class="note-label">가운데 맞춤 — 숫자는 건드리지 마세요</span>
+        <p>
+          <b>머리글은 가운데</b>, <b>숫자는 오른쪽 그대로</b> 두는 것이 보기 좋습니다.
+        </p>
+        <p>
+          숫자를 가운데로 맞추면 <b>자릿수가 어긋나 보여서</b> 읽기 나빠집니다.
+          게다가 <b>2장</b>에서 본 <b>왼쪽·오른쪽 구별</b>도 못 하게 됩니다.
+        </p>
+      </div>
+
+      <h3>서식만 복사하기 — 붓 단추</h3>
+      <p>
+        공들여 꾸민 칸의 <b>모양만</b> 다른 칸에 그대로 입힐 수 있습니다.
+        홈 탭 왼쪽의 <b>붓 모양 단추</b>입니다.
+      </p>
+      <p>
+        잘 꾸며진 칸을 하나 누르고 → <b>붓 단추</b> → 모양을 입힐 칸을 끄세요.
+        <b>내용은 그대로 두고 모양만</b> 옮겨 옵니다.
+      </p>
+      <p>
+        붓 단추를 <b>두 번 누르면</b> 여러 곳에 계속 칠할 수 있습니다.
+        끝내려면 <span class="kbd">Esc</span>.
+      </p>
+
+      <div class="note">
+        <span class="note-label">꾸미기는 적을수록 좋습니다</span>
+        <p>
+          색을 여러 개 쓰고 글꼴을 섞으면 <b>오히려 읽기 어려워집니다.</b>
+        </p>
+        <p>
+          <b>머리글에 색 하나 · 테두리 · 합계 줄 굵게</b> — 이 셋이면 충분합니다.
+          색은 <b>연한 것</b>이 좋습니다. 진하면 글자가 안 보입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="merge">
+      <span class="sec-tag">04 — 제목</span>
+      <h2>제목 줄과 병합</h2>
+      <p class="sub">
+        표 위에 <b>「분기별 지점 매출」</b> 같은 제목을 넣고 싶을 때입니다.
+        여러 칸을 하나로 합치는 것을 <b>병합</b>이라고 합니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">세 걸음입니다</span>
+        <ol class="steps">
+          <li>
+            <b>표 위에 빈 줄을 하나 만듭니다</b>
+            <p>행 번호에 오른쪽 단추 → <b>삽입</b>. (4장에서 한 것입니다)</p>
+          </li>
+          <li>
+            <b>제목이 들어갈 만큼 끕니다</b>
+            <p>표 너비만큼 가로로 죽 끄세요.</p>
+          </li>
+          <li>
+            <b>홈 탭 → 병합하고 가운데 맞춤</b>
+            <p>칸들이 하나가 되고 글자가 가운데로 갑니다. 제목을 적으세요.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">병합은 꼭 필요한 곳에만</span>
+        <p>
+          병합한 칸이 있으면 나중에 <b>정렬과 필터가 안 됩니다.</b>
+          엑셀이 <b>"이 작업을 하려면 셀 크기가 같아야 합니다"</b> 라며 거부합니다.
+        </p>
+        <p>
+          그러니 <b>표 안에서는 병합하지 마세요.</b>
+          <b>맨 위 제목 줄처럼 표 바깥</b>에만 쓰시면 안전합니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 ═══════════ -->
+    <section id="cond">
+      <span class="sec-tag">05 — 자동</span>
+      <h2>조건에 따라 색 입히기</h2>
+      <p class="sub">
+        <b>"300만 원 넘는 칸은 빨갛게"</b> 같은 것을 <b>시켜 두는</b> 기능입니다.
+        한 번 시켜 두면 <b>숫자가 바뀔 때마다 색이 저절로</b> 따라 바뀝니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">7장에서 배운 것과 같은 생각입니다</span>
+        <p>
+          합계를 손으로 적지 않고 <b>시켜 두었더니</b> 저절로 바뀌었습니다.
+          <b>색도 마찬가지</b>입니다. 손으로 칠하지 말고 <b>조건을 시켜 두세요.</b>
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">큰 값에 색 넣기</span>
+        <ol class="steps">
+          <li>
+            <b>숫자 칸들을 고릅니다</b>
+            <p><b>머리글은 빼고</b> 숫자만 고르세요.</p>
+          </li>
+          <li>
+            <b>홈 탭 → 조건부 서식</b>
+            <p>홈 탭 <b>오른쪽</b>에 있습니다.</p>
+          </li>
+          <li>
+            <b>셀 강조 규칙 → 보다 큼</b>
+            <p>작은 창이 하나 나옵니다.</p>
+          </li>
+          <li>
+            <b>기준 숫자를 적고 확인</b>
+            <p><b>3000000</b> 이라고 적어 보세요.
+              그보다 큰 칸만 <b>연한 빨강</b>으로 칠해집니다.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="note">
+        <span class="note-label">지금 해보세요</span>
+        <p>
+          숫자를 바꿔서 300만을 넘게 해보세요. <b>색이 저절로 생깁니다.</b>
+          다시 줄이면 <b>색이 사라집니다.</b>
+        </p>
+      </div>
+
+      <h3>막대로 크기 보여주기</h3>
+      <p>
+        <b>조건부 서식 → 데이터 막대</b> 를 고르면
+        칸 안에 <b>가로 막대</b>가 생깁니다. 숫자가 클수록 막대가 깁니다.
+      </p>
+      <p>
+        표를 훑어볼 때 <b>어디가 크고 작은지 한눈에</b> 들어옵니다.
+        숫자를 하나씩 읽지 않아도 됩니다.
+      </p>
+
+      <div class="note warn">
+        <span class="note-label">지우개로는 안 지워집니다</span>
+        <p>
+          조건부 서식으로 생긴 색은 <b>배경색 단추로 없앨 수 없습니다.</b>
+          <b>조건 자체를 지워야</b> 합니다.
+        </p>
+        <p>
+          <b>조건부 서식 → 규칙 지우기 → 시트 전체에서 규칙 지우기</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 06 ═══════════ -->
+    <section id="try">
+      <span class="sec-tag">06 — 실습</span>
+      <h2>해 보기</h2>
+      <p class="sub">
+        예제 <code>B-09_서식_연습.xlsx</code> — 꾸미기 전의 <b>밋밋한 표</b>입니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">해 보기 — B-09_서식_연습.xlsx</span>
+        <ol class="steps">
+          <li>
+            <b>「꾸미기 전」 시트를 엽니다</b>
+            <p>테두리도 쉼표도 없는 표입니다. <b>숫자가 읽기 어렵습니다.</b>
+              순서대로 다듬어 봅시다.</p>
+          </li>
+          <li>
+            <b>열 너비를 맞춥니다</b>
+            <p><b>B</b> 부터 <b>E</b> 까지 위쪽 글자를 죽 끌어 고르고,
+              아무 경계선이나 두 번 누릅니다. (4장에서 한 것입니다)</p>
+          </li>
+          <li>
+            <b>숫자에 쉼표를 붙입니다</b>
+            <p><b>C5:E9</b> 를 고르고 홈 탭의 <b>쉼표(,)</b> 단추.
+              <b>4,200,000</b> 처럼 됩니다.</p>
+          </li>
+          <li>
+            <b>머리글을 꾸밉니다</b>
+            <p><b>B4:E4</b> 를 고르고 <b>굵게</b> →
+              <b>페인트통</b>으로 연한 색 → <b>가운데 맞춤</b>.</p>
+          </li>
+          <li>
+            <b>테두리를 그립니다</b>
+            <p><b>B4:E9</b> 를 고르고 <b>테두리 → 모든 테두리</b>.</p>
+          </li>
+          <li>
+            <b>제목을 답니다</b>
+            <p><b>B2</b> 에 이미 제목이 있습니다. <b>B2:E2</b> 를 고르고
+              <b>병합하고 가운데 맞춤</b> → 굵게 → 글자 크기 키우기.</p>
+          </li>
+          <li>
+            <b>여기서 확인하실 것 — 가장 중요합니다</b>
+            <p>빈 칸에 <b>=SUM(C5:C9)</b> 를 넣어 보세요.
+              <b>쉼표를 붙였는데도 합계가 제대로 나옵니다.</b>
+              <b>겉모습만 바뀌었기 때문</b>입니다.</p>
+          </li>
+          <li>
+            <b>「조건부 서식」 시트로 갑니다</b>
+            <p><b>C6:E10</b> 을 고르고 <b>조건부 서식 → 셀 강조 규칙 → 보다 큼</b> →
+              <b>3000000</b>.</p>
+          </li>
+          <li>
+            <b>숫자를 바꿔 봅니다</b>
+            <p>색이 안 든 칸의 숫자를 <b>400만</b> 으로 바꿔 보세요.
+              <b>색이 저절로 생깁니다.</b></p>
+          </li>
+          <li>
+            <b>데이터 막대도 걸어 봅니다</b>
+            <p>같은 범위에 <b>조건부 서식 → 데이터 막대</b>.
+              어디가 큰지 <b>숫자를 안 읽어도</b> 보입니다.</p>
+          </li>
+        </ol>
+        <p><b>이렇게 되면 된 것입니다</b> — 쉼표를 붙인 뒤에도
+          <b>합계가 그대로 나오면</b> 된 것입니다.</p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">답이 궁금하면</span>
+        <p>
+          <code>B-09_서식_연습_완성.xlsx</code> 의 <b>「꾸미기 전」</b> 시트가
+          <b>다 꾸며진 모습</b>입니다. 견주어 보세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 07 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">07 — 마무리</span>
+      <h2>9장 확인 목록</h2>
+      <p class="sub">
+        직접 해본 것에 체크하세요. 체크한 것은 다음에 들어와도 그대로 남아 있습니다.
+      </p>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span><b>겉모습을 바꿔도 속 값은 그대로</b>라는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>쉼표를 붙인 뒤에도 <b>합계가 나오는 것</b>을 직접 확인했다</span></label></li>
+        <li><label><input type="checkbox"><span>백분율은 <b>0.1 을 넣어야 10%</b> 가 된다는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>소수를 줄여도 <b>속 값으로 계산된다</b>는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><span class="kbd">Ctrl</span>+<span class="kbd">1</span> 로 <b>셀 서식</b> 창을 열어 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>머리글을 <b>굵게 + 색 + 가운데</b> 로 꾸며 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>모든 테두리</b>를 그려 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><b>숫자는 가운데로 맞추지 않는다</b>는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><b>붓 단추</b>로 모양만 복사해 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>병합은 <b>표 바깥 제목에만</b> 쓴다는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><b>조건부 서식</b>을 걸고 숫자를 바꿔 <b>색이 따라오는 것</b>을 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>조건부 서식 색은 <b>규칙을 지워야</b> 없어진다는 것을 안다</span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">여기까지 하셨으면</span>
+        <p>
+          <b>남에게 보여줄 수 있는 표</b>가 됐습니다.
+          그리고 2장의 그 당부가 왜 그랬는지도 아시게 됐습니다.
+        </p>
+        <p>
+          마지막 10장은 <b>정리하고 내보내는 법</b>입니다.
+          줄 세우고 · 골라 보고 · 그림으로 만들고 · 인쇄까지 —
+          <b>기초의 마지막 장</b>입니다.
+        </p>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-b8.html">← 8장: 참조와 조건</a>
+        <a href="excel-b10.html">10장: 정리하고 내보내기 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

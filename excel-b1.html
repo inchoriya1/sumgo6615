@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="ko" data-subject="excel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>엑셀 기초 1장 — 엑셀 열기, 화면과 칸 주소</title>
+<meta name="description" content="엑셀을 처음 켜보는 분을 위한 기초 1장. 엑셀이 뭐 하는 것인가, 화면 이름 익히기, 칸 이름(A1) 읽는 법, 마우스 없이 움직이는 법.">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="excel.html">← 엑셀 과목 첫 화면으로</a>
+    <p class="eyebrow">1과목 · 엑셀 · 기초 1장</p>
+    <h1>엑셀 열기,<br><em>화면과 칸 주소</em></h1>
+    <p class="lede">
+      엑셀은 어려운 프로그램이 아닙니다.
+      네모 칸이 잔뜩 그려진 종이라고 생각하시면 됩니다.
+      1장에서는 그 종이를 <b>펴고, 어디가 어디인지 알아보는 것</b>까지만 합니다.
+      글자를 넣는 것은 2장, 계산은 7장에서 합니다.
+    </p>
+    <div class="facts">
+      <span><b>대상</b> 엑셀을 처음 켜보는 분</span>
+      <span><b>소요</b> 40분</span>
+      <span><b>준비물</b> 엑셀만 있으면 됩니다</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#start">시작하기 전에</a></li>
+      <li><a href="#what">엑셀이 뭐 하는 것인가</a></li>
+      <li><a href="#screen">화면 이름 익히기</a></li>
+      <li><a href="#address">칸 이름 읽는 법</a></li>
+      <li><a href="#move">움직이는 법</a></li>
+      <li><a href="#try">해 보기</a></li>
+      <li><a href="#check">1장 확인 목록</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 00 ═══════════
+         네 과목 어느 것부터 봐도 되도록, 이 장은 과목마다 똑같이 들어 있습니다.
+         고칠 때는 네 곳을 함께 고쳐 주세요. -->
+    <section id="start">
+      <span class="sec-tag">00 — 준비</span>
+      <h2>시작하기 전에, 손동작 세 가지</h2>
+      <p class="sub">
+        이 세 가지만 알면 무엇을 눌러도 겁낼 것이 없습니다.
+        네 과목 모두에서 똑같이 씁니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">다른 과목에서 이미 보셨다면</span>
+        <p>
+          같은 장이 과목마다 들어 있습니다.
+          이미 읽으셨으면 <a href="#what">01장</a>으로 건너뛰세요.
+        </p>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>손동작</th><th>하는 일</th><th>언제 쓰나</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></td>
+              <td>방금 한 일을 되돌립니다</td>
+              <td>잘못 눌렀을 때. 여러 번 눌러도 됩니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">S</span></td>
+              <td>저장합니다</td>
+              <td>수시로. 한 줄 쓸 때마다 눌러도 좋습니다</td>
+            </tr>
+            <tr>
+              <td>마우스 <b>오른쪽</b> 단추</td>
+              <td>지금 고른 것에 할 수 있는 일 목록을 띄웁니다</td>
+              <td>무엇을 눌러야 할지 모를 때</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">가장 중요한 이야기</span>
+        <p>
+          <b>잘못 눌러서 컴퓨터가 고장 나는 일은 없습니다.</b>
+          지금부터 하는 모든 것은 되돌릴 수 있습니다.
+          겁내지 말고 여기저기 눌러보세요. 그게 가장 빨리 배우는 방법입니다.
+        </p>
+      </div>
+
+      <p>
+        <span class="kbd">Ctrl</span> + <span class="kbd">Z</span> 는
+        "컨트롤 키를 <b>누른 채로</b> Z를 한 번 누른다"는 뜻입니다.
+        두 개를 동시에 탁 치는 게 아니라, 왼손으로 Ctrl을 꾹 누르고 있는 상태에서
+        오른손으로 Z를 톡 누른 뒤 둘 다 놓으면 됩니다.
+      </p>
+    </section>
+
+    <!-- ═══════════ 01 ═══════════ -->
+    <section id="what">
+      <span class="sec-tag">01 — 이해</span>
+      <h2>엑셀이 뭐 하는 것인가</h2>
+      <p class="sub">
+        "표 만드는 프로그램"이라고들 하는데, 절반만 맞는 말입니다.
+      </p>
+
+      <p>
+        엑셀은 <b>칸이 그려진 종이</b>입니다.
+        여기까지는 공책과 다를 게 없습니다.
+        다른 점은 딱 하나입니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">엑셀의 전부</span>
+        <p>
+          이 종이는 <b>"저 칸과 저 칸을 더해라"라고 시켜 둘 수 있습니다.</b>
+          한 번 시켜 두면, 나중에 숫자를 고쳐도 <b>답이 저절로 다시 나옵니다.</b>
+        </p>
+      </div>
+
+      <p>
+        계산기와 무엇이 다른지가 여기서 갈립니다.
+        계산기는 숫자를 바꾸면 <b>처음부터 다시 눌러야</b> 합니다.
+        엑셀은 숫자만 바꾸면 <b>아래 합계가 알아서 바뀝니다.</b>
+      </p>
+
+      <h3>이런 일에 씁니다</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이런 것을</th><th>엑셀로 하면</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>모임 회비 걷은 것 정리</td>
+              <td>낸 사람에 금액을 적으면 <b>모인 돈이 저절로</b> 나옵니다</td>
+            </tr>
+            <tr>
+              <td>가게 하루 매출 적기</td>
+              <td>날마다 한 줄씩 적으면 <b>한 달 합계</b>가 따라 올라갑니다</td>
+            </tr>
+            <tr>
+              <td>주소·연락처 명단</td>
+              <td>가나다순으로 <b>줄 세우고</b>, 찾고 싶은 사람만 볼 수 있습니다</td>
+            </tr>
+            <tr>
+              <td>물건 목록과 값</td>
+              <td>수량과 단가를 적으면 <b>금액이 저절로</b> 계산됩니다</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>열 장으로 나누어 배웁니다</h3>
+      <p>
+        엑셀은 단추가 많아 보이지만, 배우는 순서는 늘 같습니다.
+        <b>적는 법 → 시키는 법 → 보기 좋게 하는 법</b> 순서입니다.
+        한 장은 <b>40~50분</b>, 앉은자리에서 하나씩 끝내시면 됩니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>묶음</th><th>장</th><th>여기서 하는 일</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="3"><b>적는 법</b></td>
+              <td><b>1장</b> (지금)</td>
+              <td>엑셀을 켜고 <b>어디가 어디인지</b> 알아봅니다</td>
+            </tr>
+            <tr>
+              <td><b>2~4장</b></td>
+              <td>글자와 숫자를 <b>넣고 · 고치고 · 줄을 다룹니다</b></td>
+            </tr>
+            <tr>
+              <td><b>5~6장</b></td>
+              <td><b>저장</b>하고, 손으로 안 쳐도 되는 <b>자동 채우기</b></td>
+            </tr>
+            <tr>
+              <td rowspan="2"><b>시키는 법</b></td>
+              <td><b>7장</b></td>
+              <td><b>계산을 시킵니다.</b> 엑셀의 핵심입니다</td>
+            </tr>
+            <tr>
+              <td><b>8장</b></td>
+              <td>주소 고정(<code>$</code>)과 <b>조건 나누기</b></td>
+            </tr>
+            <tr>
+              <td rowspan="2"><b>보기 좋게</b></td>
+              <td><b>9장</b></td>
+              <td>서식으로 <b>읽히는 표</b>를 만듭니다</td>
+            </tr>
+            <tr>
+              <td><b>10장</b></td>
+              <td>줄 세우고 · 골라 보고 · <b>그림과 인쇄</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">1장에서는 글자도 넣지 않습니다</span>
+        <p>
+          이상하게 들리시겠지만, <b>일부러</b> 그렇습니다.
+          엑셀을 처음 켜면 가장 먼저 막히는 것이
+          <b>"지금 내가 어디에 있는지 모르겠다"</b>는 것입니다.
+        </p>
+        <p>
+          그래서 1장은 <b>화면을 읽는 것</b>만 합니다.
+          이게 되면 2장부터는 훨씬 수월합니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 02 ═══════════ -->
+    <section id="screen">
+      <span class="sec-tag">02 — 화면</span>
+      <h2>화면 이름 익히기</h2>
+      <p class="sub">
+        이름을 알아야 설명을 알아들을 수 있습니다.
+        여섯 군데만 외우면 됩니다. 아니, 외우지 말고 그냥 한 번 보세요.
+      </p>
+
+      <figure>
+        <div class="fig-frame">
+          <svg viewBox="0 0 760 392" role="img"
+               aria-label="엑셀 화면 그림. 리본, 수식 입력줄, 열 이름, 행 번호, 셀, 시트 탭의 위치를 번호로 표시했습니다.">
+
+            <!-- 창 테두리 -->
+            <rect x="60" y="16" width="520" height="280" rx="8"
+                  fill="var(--panel)" stroke="var(--rule-2)" stroke-width="1.5"/>
+
+            <!-- ① 리본 -->
+            <rect x="60.75" y="16.75" width="518.5" height="41.5" rx="7"
+                  fill="var(--code-bg)"/>
+            <rect x="60.75" y="40" width="518.5" height="18" fill="var(--code-bg)"/>
+            <line x1="60" y1="58" x2="580" y2="58" stroke="var(--rule)" stroke-width="1"/>
+            <text x="78" y="42" font-size="12.5" class="mid">홈</text>
+            <text x="112" y="42" font-size="12.5" class="dim">삽입</text>
+            <text x="158" y="42" font-size="12.5" class="dim">페이지 레이아웃</text>
+            <text x="268" y="42" font-size="12.5" class="dim">수식</text>
+            <text x="314" y="42" font-size="12.5" class="dim">데이터</text>
+            <text x="374" y="42" font-size="12.5" class="dim">검토</text>
+            <text x="420" y="42" font-size="12.5" class="dim">보기</text>
+            <line x1="72" y1="50" x2="96" y2="50" stroke="var(--accent)" stroke-width="2.5"/>
+
+            <!-- ② 수식 입력줄 -->
+            <line x1="60" y1="86" x2="580" y2="86" stroke="var(--rule)" stroke-width="1"/>
+            <text x="74" y="77" font-size="12" class="dim" font-style="italic">fx</text>
+            <rect x="96" y="64" width="472" height="17" rx="3"
+                  fill="var(--paper)" stroke="var(--rule)" stroke-width="1"/>
+            <text x="104" y="77" font-size="12" fill="var(--accent)">=SUM(D2:D3)</text>
+
+            <!-- ③ 열 이름 -->
+            <rect x="60" y="86" width="520" height="22" fill="var(--code-bg)"/>
+            <text x="156" y="102" font-size="12" text-anchor="middle" class="mid">A</text>
+            <text x="277" y="102" font-size="12" text-anchor="middle" class="mid">B</text>
+            <text x="398" y="102" font-size="12" text-anchor="middle" class="mid">C</text>
+            <text x="519" y="102" font-size="12" text-anchor="middle" font-weight="700"
+                  fill="var(--accent)">D</text>
+
+            <!-- ④ 행 번호 -->
+            <rect x="60" y="108" width="36" height="160" fill="var(--code-bg)"/>
+            <text x="78" y="133" font-size="12" text-anchor="middle" class="mid">1</text>
+            <text x="78" y="173" font-size="12" text-anchor="middle" class="mid">2</text>
+            <text x="78" y="213" font-size="12" text-anchor="middle" class="mid">3</text>
+            <text x="78" y="253" font-size="12" text-anchor="middle" font-weight="700"
+                  fill="var(--accent)">4</text>
+
+            <!-- 표 머리 줄(1행) 바탕 -->
+            <rect x="96" y="108" width="484" height="40" fill="var(--accent-dim)"/>
+
+            <!-- 격자 -->
+            <g stroke="var(--rule)" stroke-width="1">
+              <line x1="96"  y1="148" x2="580" y2="148"/>
+              <line x1="96"  y1="188" x2="580" y2="188"/>
+              <line x1="96"  y1="228" x2="580" y2="228"/>
+              <line x1="60"  y1="268" x2="580" y2="268"/>
+              <line x1="96"  y1="86"  x2="96"  y2="268"/>
+              <line x1="217" y1="86"  x2="217" y2="268"/>
+              <line x1="338" y1="86"  x2="338" y2="268"/>
+              <line x1="459" y1="86"  x2="459" y2="268"/>
+            </g>
+
+            <!-- 표 내용 -->
+            <g font-size="12.5">
+              <text x="108" y="133" font-weight="700">품목</text>
+              <text x="229" y="133" font-weight="700">수량</text>
+              <text x="350" y="133" font-weight="700">단가</text>
+              <text x="471" y="133" font-weight="700">금액</text>
+
+              <text x="108" y="173">사과</text>
+              <text x="325" y="173" text-anchor="end">3</text>
+              <text x="446" y="173" text-anchor="end">1,000</text>
+              <text x="567" y="173" text-anchor="end">3,000</text>
+
+              <text x="108" y="213">배</text>
+              <text x="325" y="213" text-anchor="end">2</text>
+              <text x="446" y="213" text-anchor="end">2,000</text>
+              <text x="567" y="213" text-anchor="end">4,000</text>
+
+              <text x="108" y="253" font-weight="700">합계</text>
+              <text x="567" y="253" text-anchor="end" font-weight="700"
+                    fill="var(--accent)">7,000</text>
+            </g>
+
+            <!-- ⑤ 선택된 셀 D4 -->
+            <rect x="459.5" y="228.5" width="120" height="39"
+                  fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+
+            <!-- ⑥ 시트 탭 -->
+            <rect x="68" y="274" width="82" height="18" rx="4"
+                  fill="var(--paper)" stroke="var(--rule-2)" stroke-width="1"/>
+            <text x="109" y="287" font-size="11.5" text-anchor="middle" class="mid">Sheet1</text>
+            <text x="164" y="287" font-size="13" class="dim">＋</text>
+
+            <!-- 번호 배지 + 지시선 -->
+            <g stroke="var(--rule-2)" stroke-width="1.2">
+              <line x1="580" y1="37"  x2="592" y2="37"/>
+              <line x1="580" y1="72"  x2="592" y2="72"/>
+              <line x1="580" y1="97"  x2="592" y2="97"/>
+              <line x1="580" y1="248" x2="592" y2="248"/>
+              <line x1="48"  y1="188" x2="60"  y2="188"/>
+              <line x1="48"  y1="283" x2="68"  y2="283"/>
+            </g>
+            <g fill="var(--accent)">
+              <circle cx="604" cy="37"  r="11"/>
+              <circle cx="604" cy="72"  r="11"/>
+              <circle cx="604" cy="97"  r="11"/>
+              <circle cx="604" cy="248" r="11"/>
+              <circle cx="36"  cy="188" r="11"/>
+              <circle cx="36"  cy="283" r="11"/>
+            </g>
+            <g font-size="12" font-weight="700" text-anchor="middle" fill="var(--paper)">
+              <text x="604" y="41.5">1</text>
+              <text x="604" y="76.5">2</text>
+              <text x="604" y="101.5">3</text>
+              <text x="604" y="252.5">5</text>
+              <text x="36"  y="192.5">4</text>
+              <text x="36"  y="287.5">6</text>
+            </g>
+
+            <!-- 아래 설명 -->
+            <line x1="36" y1="316" x2="724" y2="316" stroke="var(--rule)" stroke-width="1"/>
+            <g font-size="13">
+              <g fill="var(--accent)">
+                <circle cx="44" cy="336" r="8"/>
+                <circle cx="44" cy="360" r="8"/>
+                <circle cx="44" cy="384" r="8"/>
+                <circle cx="394" cy="336" r="8"/>
+                <circle cx="394" cy="360" r="8"/>
+                <circle cx="394" cy="384" r="8"/>
+              </g>
+              <g font-size="11" font-weight="700" text-anchor="middle" fill="var(--paper)">
+                <text x="44"  y="339.5">1</text>
+                <text x="44"  y="363.5">2</text>
+                <text x="44"  y="387.5">3</text>
+                <text x="394" y="339.5">4</text>
+                <text x="394" y="363.5">5</text>
+                <text x="394" y="387.5">6</text>
+              </g>
+              <text x="60"  y="340">리본 — 단추가 모여 있는 곳</text>
+              <text x="60"  y="364">수식 입력줄 — 이 칸에 든 진짜 내용</text>
+              <text x="60"  y="388">열 이름 — 세로줄. A, B, C …</text>
+              <text x="410" y="340">행 번호 — 가로줄. 1, 2, 3 …</text>
+              <text x="410" y="364">셀 — 칸 하나. 지금은 D4 칸이 선택됨</text>
+              <text x="410" y="388">시트 — 종이 한 장. 여러 장 만들 수 있음</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption>
+          <b>칸 하나하나를 '셀'</b>이라고 부릅니다. 셀에는 이름이 있습니다.
+          세로줄 이름(D)과 가로줄 번호(4)를 붙여서 <b>D4</b>라고 부릅니다.
+          자리 번호 같은 것입니다. 앞으로 "D4에 적으세요"라는 말이 계속 나옵니다.
+        </figcaption>
+      </figure>
+
+      <h3>수식 입력줄이 왜 따로 있나요</h3>
+      <p>
+        칸에는 <b>7,000</b>이라고 보이는데 수식 입력줄에는
+        <code>=SUM(D2:D3)</code> 이라고 적혀 있을 수 있습니다.
+        둘 다 맞습니다.
+      </p>
+      <p>
+        칸에 보이는 것은 <b>계산 결과</b>이고,
+        수식 입력줄에 있는 것은 <b>어떻게 계산하라고 시켰는지</b>입니다.
+        칸을 하나 눌러놓고 수식 입력줄을 보는 습관을 들이면,
+        남이 만든 엑셀 파일도 읽을 수 있게 됩니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">지금은 몰라도 됩니다</span>
+        <p>
+          <code>=SUM(D2:D3)</code> 이 무슨 뜻인지는 <b>7장</b>에서 합니다.
+          지금은 <b>"칸에 보이는 것과 수식 입력줄에 있는 것이 다를 수 있다"</b>
+          이것만 알아 두세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 ═══════════ -->
+    <section id="address">
+      <span class="sec-tag">03 — 주소</span>
+      <h2>칸 이름 읽는 법</h2>
+      <p class="sub">
+        자리 번호입니다. 이것만 알면 설명을 따라올 수 있습니다.
+      </p>
+
+      <p>
+        극장 좌석표를 떠올리시면 됩니다. <b>다열 4번</b> 하듯이,
+        엑셀은 <b>세로줄 이름</b>과 <b>가로줄 번호</b>를 붙여서 칸을 부릅니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>이렇게 부르면</th><th>이 자리입니다</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>A1</b></td><td>맨 왼쪽 위, 첫 칸</td></tr>
+            <tr><td><b>B1</b></td><td>A1의 <b>오른쪽</b> 칸</td></tr>
+            <tr><td><b>A2</b></td><td>A1의 <b>아래</b> 칸</td></tr>
+            <tr><td><b>D4</b></td><td>왼쪽에서 네 번째 줄, 위에서 네 번째 칸</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-label">헷갈릴 때 확인하는 법</span>
+        <p>
+          지금 고른 칸의 이름은 <b>화면 왼쪽 위 작은 상자</b>(이름 상자)에 늘 떠 있습니다.
+          "D4에 적으세요"라는 말이 나오면, 아무 칸이나 누르고
+          그 상자가 <b>D4</b>가 될 때까지 옮기면 됩니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">더 빠른 길 — 이름 상자에 직접 칩니다</span>
+        <p>
+          그 상자를 <b>누르고 D4 라고 친 뒤 <span class="kbd">Enter</span></b> 를 누르면
+          한 번에 그 칸으로 갑니다. 멀리 있는 칸일수록 편합니다.
+        </p>
+      </div>
+
+      <h3>글자는 왜 A 다음에 B 인가</h3>
+      <p>
+        세로줄은 <b>A · B · C …</b> 로 가다가 Z 다음에 <b>AA · AB · AC</b> 로 이어집니다.
+        가로줄은 <b>1 · 2 · 3 …</b> 입니다.
+        숫자끼리 겹치면 헷갈리니 <b>한쪽은 글자, 한쪽은 숫자</b>로 해 둔 것입니다.
+      </p>
+    </section>
+
+    <!-- ═══════════ 04 ═══════════ -->
+    <section id="move">
+      <span class="sec-tag">04 — 이동</span>
+      <h2>움직이는 법</h2>
+      <p class="sub">
+        마우스 말고도 있습니다. 손이 키보드에 있을 때는 이쪽이 훨씬 빠릅니다.
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>누르면</th><th>이렇게 됩니다</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>화살표 키 <span class="kbd">↑</span> <span class="kbd">↓</span> <span class="kbd">←</span> <span class="kbd">→</span></td>
+              <td>한 칸씩 옮겨 갑니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Tab</span></td>
+              <td><b>오른쪽</b> 칸으로 갑니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Enter</span></td>
+              <td><b>아래</b> 칸으로 갑니다</td>
+            </tr>
+            <tr>
+              <td><span class="kbd">Ctrl</span> + <span class="kbd">Home</span></td>
+              <td>맨 처음 칸(A1)으로 한 번에 돌아옵니다</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">멀리 갔을 때 돌아오는 법</span>
+        <p>
+          화살표 키를 오래 누르고 있으면 화면이 <b>저 멀리</b>까지 갑니다.
+          칸 이름이 <b>BQ3400</b> 같은 것이 되어도 고장이 아닙니다.
+          엑셀 종이가 그만큼 큰 것뿐입니다.
+        </p>
+        <p>
+          <span class="kbd">Ctrl</span> + <span class="kbd">Home</span> 을 누르면
+          <b>맨 처음 칸으로 즉시 돌아옵니다.</b> 이것만 알아 두시면 됩니다.
+        </p>
+      </div>
+
+      <div class="note">
+        <span class="note-label">엑셀 종이는 얼마나 큰가</span>
+        <p>
+          세로줄이 <b>16,384개</b>, 가로줄이 <b>1,048,576개</b> 있습니다.
+          다 쓸 일은 평생 없습니다. 그냥 <b>모자랄 걱정은 안 하셔도 된다</b>는 뜻입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 ═══════════ -->
+    <section id="try">
+      <span class="sec-tag">05 — 실습</span>
+      <h2>해 보기</h2>
+      <p class="sub">
+        예제 파일이 필요 없습니다. <b>빈 통합 문서</b> 하나만 열면 됩니다.
+      </p>
+
+      <div class="note">
+        <span class="note-label">해 보기 — 빈 통합 문서</span>
+        <ol class="steps">
+          <li>
+            <b>엑셀을 켜고 「새 통합 문서」를 고릅니다</b>
+            <p>빈 칸이 잔뜩 뜨면 준비 끝입니다.</p>
+          </li>
+          <li>
+            <b>이름 상자를 찾습니다</b>
+            <p>화면 <b>왼쪽 위 작은 상자</b>입니다. 지금 <b>A1</b> 이라고 떠 있을 겁니다.</p>
+          </li>
+          <li>
+            <b>화살표 키로 D4 까지 갑니다</b>
+            <p><span class="kbd">→</span> 세 번, <span class="kbd">↓</span> 세 번.
+              이름 상자가 <b>D4</b> 로 바뀌는지 보세요.</p>
+          </li>
+          <li>
+            <b>일부러 멀리 가 봅니다</b>
+            <p><span class="kbd">↓</span> 를 <b>꾹 누른 채로</b> 5초쯤 기다리세요.
+              이름 상자가 <b>D2000</b> 같은 것이 됩니다. 고장 아닙니다.</p>
+          </li>
+          <li>
+            <b>돌아옵니다</b>
+            <p><span class="kbd">Ctrl</span> + <span class="kbd">Home</span>.
+              한 번에 <b>A1</b> 로 돌아옵니다.</p>
+          </li>
+          <li>
+            <b>이름 상자에 직접 쳐 봅니다</b>
+            <p>이름 상자를 누르고 <b>C10</b> 이라고 친 뒤 <span class="kbd">Enter</span>.
+              단번에 갑니다.</p>
+          </li>
+          <li>
+            <b>수식 입력줄을 봅니다</b>
+            <p>아무 칸에나 <b>자기 이름</b>을 치고 <span class="kbd">Enter</span>.
+              그 칸을 다시 누르면 <b>수식 입력줄에도 같은 글자</b>가 뜹니다.</p>
+          </li>
+        </ol>
+        <p><b>이렇게 되면 된 것입니다</b> — <b>이름 상자만 보면 지금 어디인지 알 수 있고</b>,
+          길을 잃어도 <span class="kbd">Ctrl</span>+<span class="kbd">Home</span> 으로 돌아올 수 있으면 된 것입니다.</p>
+      </div>
+
+      <div class="note warn">
+        <span class="note-label">아직 저장하지 않으셔도 됩니다</span>
+        <p>
+          지금 친 이름은 지워도 됩니다. <b>저장은 5장</b>에서 제대로 배웁니다.
+          그냥 닫으면서 <b>「저장 안 함」</b> 을 누르셔도 아무 일 없습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 06 ═══════════ -->
+    <section id="check">
+      <span class="sec-tag">06 — 마무리</span>
+      <h2>1장 확인 목록</h2>
+      <p class="sub">
+        직접 해본 것에 체크하세요. 체크한 것은 다음에 들어와도 그대로 남아 있습니다.
+      </p>
+
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span>엑셀을 켜서 <b>빈 통합 문서</b>를 열었다</span></label></li>
+        <li><label><input type="checkbox"><span>리본 · 수식 입력줄 · 이름 상자가 <b>어디인지</b> 안다</span></label></li>
+        <li><label><input type="checkbox"><span>세로줄은 <b>글자</b>, 가로줄은 <b>숫자</b>라는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span><b>D4</b> 같은 칸 이름이 무슨 뜻인지 안다</span></label></li>
+        <li><label><input type="checkbox"><span>이름 상자에서 <b>지금 고른 칸 이름</b>을 확인해 봤다</span></label></li>
+        <li><label><input type="checkbox"><span>이름 상자에 <b>직접 쳐서</b> 그 칸으로 가 봤다</span></label></li>
+        <li><label><input type="checkbox"><span><span class="kbd">Tab</span> 은 옆 칸, <span class="kbd">Enter</span> 는 아래 칸이라는 것을 안다</span></label></li>
+        <li><label><input type="checkbox"><span>일부러 멀리 갔다가 <span class="kbd">Ctrl</span>+<span class="kbd">Home</span> 으로 <b>돌아와 봤다</b></span></label></li>
+        <li><label><input type="checkbox"><span>칸에 보이는 것과 <b>수식 입력줄</b>이 다를 수 있다는 것을 안다</span></label></li>
+      </ul>
+
+      <div class="note">
+        <span class="note-label">여기까지 하셨으면</span>
+        <p>
+          <b>길을 잃지 않게 되셨습니다.</b>
+          앞으로 나오는 "D4에 적으세요" 같은 말을 이제 다 알아들으실 수 있습니다.
+        </p>
+        <p>
+          2장에서는 드디어 <b>글자와 숫자를 넣습니다.</b>
+          별것 아닌 것 같은데, 여기서 <b>숫자가 글자로 들어가는 사고</b>가 가장 많이 납니다.
+          그것만 피하면 나머지는 쉽습니다.
+        </p>
+      </div>
+
+      <div class="next-up">
+        <a href="excel.html">← 엑셀 과목 첫 화면</a>
+        <a href="excel-b2.html">2장: 입력하기 →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
