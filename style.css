@@ -111,6 +111,12 @@
 
 /* ───────── 기본 ───────── */
 * { box-sizing: border-box; }
+
+/* hidden 을 붙인 것은 무조건 안 보이게.
+   브라우저 기본 규칙([hidden]{display:none})은 힘이 약해서
+   .card{display:grid} · .subjects{display:grid} 같은 이 파일의 규칙에
+   그냥 덮여 버립니다. 감췄는데 그대로 보이는 사고가 여기서 납니다. */
+[hidden] { display: none !important; }
 body {
   margin: 0;
   background: var(--paper);
