@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="ko" data-subject="hangul">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>한글 요약 — 세 부를 한 장씩</title>
+<meta name="description" content="한글 세 부의 요약. 부마다 한 장씩, 배운 것과 기억할 것을 정리했습니다. 인쇄해서 옆에 두고 보세요.">
+<link rel="stylesheet" href="style.css">
+<!-- 화면이 번쩍이지 않도록, 저장된 설정을 먼저 적용합니다 -->
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="hangul.html">← 한글 과목 첫 화면으로</a>
+    <p class="eyebrow">3과목 · 한글 · 요약</p>
+    <h1>한글,<br><em>한 장씩 정리</em></h1>
+    <p class="lede">
+      강의안을 다 보신 뒤에 보는 종이입니다. 여기서 처음 배우지는 마세요.
+      한 부가 <b>한 장</b>이니, <span class="nb"><span class="kbd">Ctrl</span> + <span class="kbd">P</span></span>를 눌러
+      필요한 부만 뽑아서 옆에 놓고 쓰시면 됩니다.
+    </p>
+    <div class="facts">
+      <span><b>쓰는 법</b> 강의안을 본 뒤 복습용</span>
+      <span><b>분량</b> 세 부 · 세 장</span>
+      <span><b>원문</b> 각 장 끝에 링크</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#h1">1부 — 글을 쓰고 모양 잡기</a></li>
+      <li><a href="#h2">2부 — 표와 그림 넣기</a></li>
+      <li><a href="#h3">3부 — 문서답게 만들고 인쇄하기</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 1부 ═══════════ -->
+    <section id="h1" class="sheet">
+      <span class="sec-tag">한글 1부 · 90분</span>
+      <h2>글을 쓰고 모양 잡기</h2>
+      <p class="sheet-line">
+        한글 화면에는 <b>진짜 종이</b>가 보입니다. 화면에 보이는 그대로 인쇄됩니다.
+        1부는 안내문 한 장을 쓰고 글자와 줄의 모양을 잡는 일입니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 부에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>00</b><span>손동작 세 가지 — 되돌리기 · 저장 · 오른쪽 단추.</span></li>
+            <li><b>01</b><span>한글은 <b>우리나라 서류</b>에 강합니다. 워드와 무엇이 다른지 봤습니다.</span></li>
+            <li><b>02</b><span>화면 이름. 커서는 <b>글자가 들어갈 자리</b>입니다.</span></li>
+            <li><b>03</b><span>「여름 휴가 안내」를 썼습니다. 줄은 <b>저절로</b> 넘어갑니다.</span></li>
+            <li><b>04</b><span><b>글자 모양</b> — 글자 하나하나에 걸립니다.</span></li>
+            <li><b>05</b><span><b>문단 모양</b> — 줄 전체에 걸립니다. 정돈은 거의 여기서 갈립니다.</span></li>
+            <li><b>06</b><span>저장과 PDF. 한글은 확장자 고르는 일이 특히 중요합니다.</span></li>
+            <li><b>07</b><span>처음에 다들 겪는 증상들.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">손이 기억할 것</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">Z</span></td><td>방금 한 일 되돌리기</td></tr>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">S</span></td><td>저장. 수시로 누르세요</td></tr>
+                <tr><td><span class="kbd">Alt</span>+<span class="kbd">L</span></td><td>글자 모양 창</td></tr>
+                <tr><td><span class="kbd">Alt</span>+<span class="kbd">T</span></td><td>문단 모양 창</td></tr>
+                <tr><td>낱말 <b>두 번</b> 누르기</td><td>낱말 하나 고르기</td></tr>
+                <tr><td>공문이라면</td><td>본문은 <b>양쪽 정렬</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">가장 흔한 습관 — 고치셔야 합니다</span>
+            <p>
+              <b>스페이스바로 가운데를 맞추지 마세요.</b> 글자만 바꿔도 다 어긋납니다.
+              <b>가운데 정렬</b> 단추를 쓰세요. 문장 중간에 <span class="kbd">Enter</span> 도 치지 않습니다.
+            </p>
+          </div>
+
+          <div class="note">
+            <span class="note-label">남에게 보낼 때</span>
+            <p>
+              받는 사람에게 한글 프로그램이 없을 수 있습니다.
+              <b>PDF로 보내세요.</b> 모양이 그대로 갑니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <span class="sum-h">막히면</span>
+      <ul class="sum-fix">
+        <li><b>줄 간격이 답답해 보입니다</b><span>문단 모양에서 줄 간격을 160% 정도로 올리세요.</span></li>
+        <li><b>빈 줄로 간격을 벌렸습니다</b><span>문단 아래 간격을 쓰면 인쇄에서 흐트러지지 않습니다.</span></li>
+        <li><b>글꼴이 여러 가지로 섞였습니다</b><span>두 가지를 넘기지 마세요. 모양만 복사하면 금방 통일됩니다.</span></li>
+      </ul>
+
+      <div class="next-up">
+        <a href="hangul-1.html">1부 강의안 다시 보기 →</a>
+      </div>
+    </section>
+
+    <!-- ═══════════ 2부 ═══════════ -->
+    <section id="h2" class="sheet">
+      <span class="sec-tag">한글 2부 · 100분</span>
+      <h2>표와 그림 넣기</h2>
+      <p class="sheet-line">
+        <b>공문과 안내문의 절반은 표</b>입니다. 2부는 표를 만들고 꾸미고,
+        칸을 합치고 나누고, 그림을 글과 어울리게 놓는 일입니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 부에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>01</b><span>무엇을 넣든 <b>입력 메뉴</b> 하나에 있습니다.</span></li>
+            <li><b>02</b><span>표 만들기. 마지막 칸에서 <span class="kbd">Tab</span> 을 누르면 줄이 늘어납니다.</span></li>
+            <li><b>03</b><span>표 꾸미기 — 머리 줄 배경색, 선 굵기, 표 마당.</span></li>
+            <li><b>04</b><span>칸 합치기 · 나누기. 신청서 · 이력서는 전부 이걸로 만듭니다.</span></li>
+            <li><b>05</b><span>그림 넣기 — <b>문서에 포함</b>에 반드시 체크.</span></li>
+            <li><b>06</b><span>글과 어울리게 놓기. 한글에서 <b>가장 많이 헤매는 곳</b>입니다.</span></li>
+            <li><b>07</b><span>글상자 · 도형 · 특수 문자. 건너뛰셔도 됩니다.</span></li>
+            <li><b>08</b><span>2부에서 겪는 증상들.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">손이 기억할 것</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td><span class="kbd">Tab</span></td><td>표 안에서 다음 칸</td></tr>
+                <tr><td>마지막 칸 + <span class="kbd">Tab</span></td><td>줄이 하나 늘어납니다</td></tr>
+                <tr><td><span class="kbd">F5</span></td><td>칸 고르기 — 한 번 · 두 번 · 세 번</td></tr>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">Z</span></td><td>표를 잘못 건드렸을 때</td></tr>
+                <tr><td>그림 배치</td><td>처음에는 <b>자리 차지</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">스페이스바로 칸을 맞추지 마세요</span>
+            <p>
+              줄을 맞추려고 띄어쓰기를 늘리면 <b>인쇄에서 반드시 어긋납니다.</b>
+              칸을 맞출 일이면 <b>표</b>를 쓰세요. 선을 안 보이게 하면 표처럼 안 보입니다.
+            </p>
+          </div>
+
+          <div class="note warn">
+            <span class="note-label">그림이 자꾸 도망갈 때</span>
+            <p>
+              배치가 <b>어울림</b>이나 <b>글 뒤로</b>가 되어 있습니다.
+              <b>자리 차지</b>로 바꾸면 글이 그림을 밀고 얌전해집니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <span class="sum-h">막히면</span>
+      <ul class="sum-fix">
+        <li><b><span class="kbd">Delete</span> 로 줄이 안 없어집니다</b><span>내용만 지워집니다. 줄을 고른 뒤 오른쪽 단추 → 줄 지우기.</span></li>
+        <li><b>선을 바꿨는데 엉뚱한 곳이 바뀝니다</b><span>어느 선에 걸지 먼저 눌러야 합니다. 표 안 칸을 고른 상태에서 하세요.</span></li>
+        <li><b>표가 다음 쪽으로 잘립니다</b><span>표 속성에서 여러 쪽 지원을 켜거나 줄 높이를 줄이세요.</span></li>
+      </ul>
+
+      <div class="next-up">
+        <a href="hangul-2.html">2부 강의안 다시 보기 →</a>
+      </div>
+    </section>
+
+    <!-- ═══════════ 3부 ═══════════ -->
+    <section id="h3" class="sheet">
+      <span class="sec-tag">한글 3부 · 100분</span>
+      <h2>문서답게 만들고 인쇄하기</h2>
+      <p class="sheet-line">
+        내용은 2부에서 다 만들었습니다. 3부는 여백을 잡고, 쪽 번호와 머리말로
+        <b>공문 모양</b>을 갖추고, 종이로 뽑는 일입니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 부에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>01</b><span>편집 용지에서 종이 크기와 여백 — <b>여기가 곧 결과물</b>입니다.</span></li>
+            <li><b>02</b><span>쪽 번호와 머리말 · 꼬리말. 번호는 <b>저절로</b> 다시 매겨집니다.</span></li>
+            <li><b>03</b><span>공문 모양 갖추기 — 게시판에 붙일 수 있는 안내문이 됐습니다.</span></li>
+            <li><b>04</b><span>스타일 — 같은 모양을 한 번에. 어려우면 건너뜁니다.</span></li>
+            <li><b>05</b><span>찾기와 바꾸기, 맞춤법 검사.</span></li>
+            <li><b>06</b><span>문서마당 — 이미 만들어진 서식을 가져다 씁니다.</span></li>
+            <li><b>07</b><span>인쇄와 PDF. 한글은 보이는 대로 나옵니다.</span></li>
+            <li><b>08</b><span>3부에서 겪는 증상들.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">손이 기억할 것</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">Enter</span></td><td>쪽 나누기 — <span class="kbd">Enter</span> 를 연타하지 마세요</td></tr>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">F</span></td><td>찾기</td></tr>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">H</span></td><td>바꾸기</td></tr>
+                <tr><td><span class="kbd">F7</span></td><td>편집 용지 — 여백 잡기</td></tr>
+                <tr><td>인쇄 전</td><td>미리 보기로 <b>몇 장</b>인지 봅니다</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">한글 과목 전체에서 기억할 세 가지</span>
+            <p>
+              하나 — 스페이스바로 자리를 맞추지 않습니다.<br>
+              둘 — 문장 중간에 <span class="kbd">Enter</span> 를 치지 않습니다.<br>
+              셋 — 남에게 보낼 때는 <b>PDF</b>로 보냅니다.
+            </p>
+          </div>
+
+          <div class="note warn">
+            <span class="note-label">모두 바꾸기는 조심해서</span>
+            <p>
+              짧은 낱말로 모두 바꾸면 엉뚱한 곳까지 바뀝니다.
+              <b>하나씩 바꾸기</b>로 확인하며 하세요.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <span class="sum-h">막히면</span>
+      <ul class="sum-fix">
+        <li><b>머리말이 본문과 섞입니다</b><span>머리말 영역은 색이 다릅니다. 다 쓰고 <b>닫기</b>를 눌러야 본문으로 돌아옵니다.</span></li>
+        <li><b>빈 쪽이 한 장 더 나옵니다</b><span>맨 끝에 <span class="kbd">Enter</span> 가 남아 있습니다. <span class="kbd">Backspace</span> 로 지우세요.</span></li>
+        <li><b>받은 사람이 파일을 못 엽니다</b><span>한글 프로그램이 없는 것입니다. PDF로 다시 보내세요.</span></li>
+      </ul>
+
+      <div class="next-up">
+        <a href="hangul-3.html">3부 강의안 다시 보기 →</a>
+        <a href="hangul.html">← 한글 과목 첫 화면</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

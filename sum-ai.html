@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="ko" data-subject="ai">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 요약 — 다섯 부를 한 장씩</title>
+<meta name="description" content="AI에게 말로 시키기 다섯 부의 요약. 부마다 한 장씩, 시키는 말과 조심할 것을 정리했습니다. 인쇄해서 옆에 두고 보세요.">
+<link rel="stylesheet" href="style.css">
+<!-- 화면이 번쩍이지 않도록, 저장된 설정을 먼저 적용합니다 -->
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="ai.html">← AI 과목 첫 화면으로</a>
+    <p class="eyebrow">5과목 · AI에게 말로 시키기 · 요약</p>
+    <h1>AI에게 말로 시키기,<br><em>한 장씩 정리</em></h1>
+    <p class="lede">
+      강의안을 다 보신 뒤에 보는 종이입니다. 이 과목은 외울 것이 아니라
+      <b>시킬 때마다 꺼내 보는 것</b>이라서, 특히 인쇄해 두면 값을 합니다.
+      한 부가 <b>한 장</b>입니다.
+    </p>
+    <div class="facts">
+      <span><b>쓰는 법</b> 시킬 때 옆에 놓고</span>
+      <span><b>분량</b> 다섯 부 · 다섯 장</span>
+      <span><b>원문</b> 각 장 끝에 링크</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#a1">1부 — 시작하기</a></li>
+      <li><a href="#a2">2부 — 파일과 폴더 맡기기</a></li>
+      <li><a href="#a3">3부 — 엑셀 맡기기</a></li>
+      <li><a href="#a4">4부 — 한글·워드 맡기기</a></li>
+      <li><a href="#a5">5부 — 파워포인트 맡기기</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 1부 ═══════════ -->
+    <section id="a1" class="sheet">
+      <span class="sec-tag">AI 1부 · 90분</span>
+      <h2>시작하기</h2>
+      <p class="sheet-line">
+        이 부가 이 과목의 전부입니다. 뒤의 네 부는 여기서 배운 <b>네 조각</b>을
+        상황마다 바꿔 넣은 것뿐입니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 부에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>00</b><span>마음가짐 셋 — 우리말로, 틀리게 말해도 되고, <b>시키기 전에 물어보게</b>.</span></li>
+            <li><b>01</b><span>클로드 · 커서 · 안티그라비티는 <b>같은 물건</b>입니다. 하나만 있으면 됩니다.</span></li>
+            <li><b>02</b><span>어느 것을 켜든 찾을 것 세 가지. <b>단추 이름은 외우지 마세요.</b></span></li>
+            <li><b>03</b><span>시키는 말의 <b>네 조각</b> — 이 장이 이 과목의 전부입니다.</span></li>
+            <li><b>04</b><span>어디에나 붙여 쓰는 다섯 마디.</span></li>
+            <li><b>05</b><span>잘못됐을 때 되돌리기. 되돌아갈 길을 <b>미리</b> 만들어 둡니다.</span></li>
+            <li><b>06</b><span>처음 쓰는 분들이 겪는 것들.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">시키는 말의 네 조각</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td><b>무엇을</b></td><td>어느 폴더 · 어느 파일인지</td></tr>
+                <tr><td><b>어떻게</b></td><td>기준을 정해 줍니다</td></tr>
+                <tr><td><b>어디에</b></td><td>결과를 어디에 둘지</td></tr>
+                <tr><td><b>어떤 모양으로</b></td><td>표로 · 목록으로 · 파일로</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">무엇을 시키든 끝에 붙이는 말</span>
+            <p>
+              <b>「먼저 보여 주고 멈춰 줘.」</b><br>
+              이 한 마디가 사고를 거의 다 막습니다. 보고 나서 「그대로 해 줘」 하면 됩니다.
+            </p>
+          </div>
+
+          <div class="note warn">
+            <span class="note-label">「지워 줘」라고 하지 마세요</span>
+            <p>
+              <b>「지울것 폴더로 옮겨 줘」</b>라고 하세요. 지운 것은 돌아오지 않지만
+              옮긴 것은 돌아옵니다. 연습은 <b>진짜 파일로 하지 마세요.</b>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <span class="sum-h">막히면</span>
+      <ul class="sum-fix">
+        <li><b>엉뚱한 것을 합니다</b><span>말이 흐릿했던 것입니다. 네 조각 중 빠진 것을 찾아 더 적어 주세요.</span></li>
+        <li><b>없는 이야기를 합니다</b><span>지어내는 일이 있습니다. 「근거가 어디야?」라고 물어보세요.</span></li>
+        <li><b>앞의 이야기와 섞입니다</b><span>새 일은 <b>새 대화</b>로 시작하세요.</span></li>
+      </ul>
+
+      <div class="next-up">
+        <a href="ai-1.html">1부 강의안 다시 보기 →</a>
+      </div>
+    </section>
+
+    <!-- ═══════════ 2부 ═══════════ -->
+    <section id="a2" class="sheet">
+      <span class="sec-tag">AI 2부 · 90분</span>
+      <h2>파일과 폴더 맡기기</h2>
+      <p class="sheet-line">
+        가장 먼저, 가장 자주 쓰게 되는 일입니다. 바탕 화면에 300개가 쌓여 있어도
+        몇 분이면 됩니다. 다만 <b>순서를 지켜야</b> 사고가 안 납니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 부에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>01</b><span>정리의 세 단계 — <b>보기 → 정하기 → 보여 달라고 하기.</b></span></li>
+            <li><b>02</b><span>무엇이 있는지부터 표로 받습니다. 파일이 안 바뀌니 마음껏.</span></li>
+            <li><b>03</b><span>바탕 화면 정리. <b>옮긴목록</b>을 남기게 시켰습니다.</span></li>
+            <li><b>04</b><span>이름 한꺼번에 바꾸기. 먼저 <b>대조표</b>를 받습니다.</span></li>
+            <li><b>05</b><span>찾기와 중복 정리. 중복이라도 <b>지우게 하지 않습니다.</b></span></li>
+            <li><b>06</b><span>파일을 다루다 겪는 일들.</span></li>
+            <li><b>07</b><span>그대로 베껴 쓰는 말 모음.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">그대로 베껴 쓰는 말</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td>볼 때</td><td>「이 폴더에 무엇이 있는지 표로 보여 줘」</td></tr>
+                <tr><td>정리할 때</td><td>「종류별로 나눌 계획을 표로 먼저 보여 줘」</td></tr>
+                <tr><td>옮길 때</td><td>「옮긴목록.txt 를 남겨 줘」</td></tr>
+                <tr><td>이름 바꿀 때</td><td>「다섯 개만 먼저, 대조표로 보여 줘」</td></tr>
+                <tr><td>치울 때</td><td>「지우지 말고 지울것 폴더로 옮겨 줘」</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">이 부에서 파일은 진짜로 움직입니다</span>
+            <p>
+              <b>옮긴목록이 되돌릴 수 있는 유일한 길</b>입니다. 안 남기고 옮기면
+              무엇이 어디로 갔는지 아무도 모릅니다. 연습 폴더로 먼저 해 보세요.
+            </p>
+          </div>
+
+          <div class="note warn">
+            <span class="note-label">확장자를 건드리지 않게</span>
+            <p>
+              이름을 바꿀 때 <code>.jpg</code> <code>.xlsx</code> 같은 뒤 글자는
+              그대로 두라고 말해 주세요. 백 개를 한 번에 하지 말고 나눠서 하세요.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <span class="sum-h">막히면</span>
+      <ul class="sum-fix">
+        <li><b>「그 밖의 것」이 너무 많습니다</b><span>나누는 기준이 안 맞는 것입니다. 기준을 고쳐 다시 시키세요.</span></li>
+        <li><b>옮긴 뒤 개수가 안 맞습니다</b><span>「몇 개를 옮겼는지 세어 줘」로 확인하고, 옮긴목록과 견줘 보세요.</span></li>
+        <li><b>어디 뒀는지 모릅니다</b><span>「이런 이름이 든 파일을 온 컴퓨터에서 찾아 줘」라고 하세요.</span></li>
+      </ul>
+
+      <div class="next-up">
+        <a href="ai-2.html">2부 강의안 다시 보기 →</a>
+      </div>
+    </section>
+
+    <!-- ═══════════ 3부 ═══════════ -->
+    <section id="a3" class="sheet">
+      <span class="sec-tag">AI 3부 · 100분</span>
+      <h2>엑셀 맡기기</h2>
+      <p class="sheet-line">
+        손으로 하면 반나절 걸리는 일이 몇 분에 끝납니다. 다만 <b>숫자는 틀리면 큰일</b>이라,
+        확인시키는 말을 함께 씁니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 부에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>01</b><span>맡기면 좋은 일과 직접 할 일을 가립니다.</span></li>
+            <li><b>02</b><span>흩어진 글을 엑셀에 붙일 수 있는 <b>표</b>로 바꿉니다.</span></li>
+            <li><b>03</b><span>지저분한 표를 쓸 수 있는 표로. <b>원래 파일은 그대로 두고.</b></span></li>
+            <li><b>04</b><span>합계와 평균. <b>묶어서 세는 일</b>이 진짜 값어치입니다.</span></li>
+            <li><b>05</b><span>여러 파일을 한 장으로. <b>출처 줄</b>을 꼭 넣습니다.</span></li>
+            <li><b>06</b><span>엑셀이 부리는 심술을 미리 막아 둡니다.</span></li>
+            <li><b>07~08</b><span>겪는 일들과, 그대로 베껴 쓰는 말 모음.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">엑셀 일에 늘 붙이는 말</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td>안전</td><td>「원래 파일은 그대로 두고 사본에 해 줘」</td></tr>
+                <tr><td>확인</td><td>「몇 건을 고쳤는지 알려 줘」</td></tr>
+                <tr><td>붙여넣기</td><td>「탭으로 나눠 줘」</td></tr>
+                <tr><td>합칠 때</td><td>「어느 파일에서 왔는지 출처 줄을 넣어 줘」</td></tr>
+                <tr><td>심술 막기</td><td>「전화번호 · 사번은 글자로 넣어 줘」</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">숫자는 반드시 눈으로 한 번</span>
+            <p>
+              받은 합계 <b>하나를 골라 엑셀에서 직접</b> 내 보세요. 맞으면 나머지도
+              대개 맞습니다. 이 확인 없이 보고서로 올리지 마세요.
+            </p>
+          </div>
+
+          <div class="note warn">
+            <span class="note-label">0 과 「자료 없음」은 다릅니다</span>
+            <p>
+              빈 칸을 0 으로 채우면 평균이 달라집니다. 어느 쪽인지 정해서 말해 주세요.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <span class="sum-h">막히면</span>
+      <ul class="sum-fix">
+        <li><b>합계가 이상합니다</b><span>합친 뒤 줄 수가 맞는지부터 확인시키세요. 줄이 빠졌거나 두 번 들어간 것입니다.</span></li>
+        <li><b>앞자리 0이 사라졌습니다</b><span>엑셀이 숫자로 본 것입니다. 글자로 넣어 달라고 미리 말하세요.</span></li>
+        <li><b>세로줄 이름이 파일마다 다릅니다</b><span>「이 이름으로 맞춰 줘」라고 내가 이름을 정해 주세요.</span></li>
+      </ul>
+
+      <div class="next-up">
+        <a href="ai-3.html">3부 강의안 다시 보기 →</a>
+      </div>
+    </section>
+
+    <!-- ═══════════ 4부 ═══════════ -->
+    <section id="a4" class="sheet">
+      <span class="sec-tag">AI 4부 · 100분</span>
+      <h2>한글 · 워드 맡기기</h2>
+      <p class="sheet-line">
+        빈 화면을 보고 첫 줄을 못 쓰는 일이 없어집니다. 원칙은 한 줄 —
+        <b>초안은 받되 마지막은 내가.</b>
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 부에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>01</b><span>글은 정답이 없습니다. 그래서 맡기는 방식도 다릅니다.</span></li>
+            <li><b>02</b><span>긴 문서 요약 — 파일이 안 바뀌니 <b>가장 안전한 일</b>입니다.</span></li>
+            <li><b>03</b><span>안내문 초안 받기. 모르는 것은 <code>[ ]</code> 로 비워 두게 합니다.</span></li>
+            <li><b>04</b><span>내가 쓴 글 다듬기 — 이쪽이 더 쓸모 있습니다.</span></li>
+            <li><b>05</b><span>말투 바꾸기. 공문투 ↔ 쉬운 말.</span></li>
+            <li><b>06</b><span>PDF에서 필요한 것만 꺼내기.</span></li>
+            <li><b>07~08</b><span>겪는 일들과, 그대로 베껴 쓰는 말 모음.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">글 일에 늘 붙이는 말</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td>요약할 때</td><td>「누구에게 · 몇 줄로 · 어디를 보고」를 정해 줍니다</td></tr>
+                <tr><td>초안 받을 때</td><td>「모르는 것은 <code>[ ]</code> 로 비워 둬」</td></tr>
+                <tr><td>다듬을 때</td><td>「<b>내용은 그대로 두고</b> 읽기 좋게만」</td></tr>
+                <tr><td>확인</td><td>「고친 곳 목록을 알려 줘」</td></tr>
+                <tr><td>숫자</td><td>「날짜와 금액이 원문과 맞는지 확인해 줘」</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">받은 글을 그대로 내보내지 마세요</span>
+            <p>
+              한 번 소리 내어 읽어 보세요. <b>내 말투가 아닌 문장</b>과
+              <b>확인 안 된 날짜 · 금액</b>이 거의 늘 하나씩 있습니다.
+            </p>
+          </div>
+
+          <div class="note warn">
+            <span class="note-label">두 가지 조심</span>
+            <p>
+              한글(<code>.hwp</code>)은 다루기 어려울 수 있습니다 — 안 되면 내용을 붙여 넣으세요.
+              <b>계약서는 참고만</b> 하세요. 스캔한 PDF는 글자가 아니라 사진입니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <span class="sum-h">막히면</span>
+      <ul class="sum-fix">
+        <li><b>초안이 마음에 안 듭니다</b><span>한 번에 좋아지지 않습니다. 「더 짧게」 「더 딱딱하게」로 고쳐 가세요.</span></li>
+        <li><b>세 가지 안을 보고 싶습니다</b><span>「세 가지 안으로 한 번에 보여 줘」라고 하세요.</span></li>
+        <li><b>PDF에서 표가 깨져 나옵니다</b><span>사진인 PDF일 수 있습니다. 「이 PDF가 글자인지 사진인지 알려 줘」로 먼저 확인.</span></li>
+      </ul>
+
+      <div class="next-up">
+        <a href="ai-4.html">4부 강의안 다시 보기 →</a>
+      </div>
+    </section>
+
+    <!-- ═══════════ 5부 ═══════════ -->
+    <section id="a5" class="sheet">
+      <span class="sec-tag">AI 5부 · 90분</span>
+      <h2>파워포인트 맡기기</h2>
+      <p class="sheet-line">
+        힘든 것은 꾸미기가 아니라 <b>무슨 이야기를 몇 장에 나눌지</b>입니다.
+        그 뼈대를 받아 놓고 시작하면 나머지는 쉽습니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 부에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>01</b><span>파일을 <b>통째로</b> 만들어 달라고 하지 않습니다. 대개 못 씁니다.</span></li>
+            <li><b>02</b><span>뼈대부터 — 이 장이 핵심입니다.</span></li>
+            <li><b>03</b><span>장별 초안 받기. 「장마다 세 줄」로 못박습니다.</span></li>
+            <li><b>04</b><span>슬라이드로 옮기기 — 10분이면 됩니다.</span></li>
+            <li><b>05</b><span>발표 대본과 예상 질문. 여기가 가장 값어치 있습니다.</span></li>
+            <li><b>06~07</b><span>겪는 일들과, 그대로 베껴 쓰는 말 모음.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">일하는 순서 — 이 넷</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td><b>1. 뼈대</b></td><td>「무엇을 얻으려는 발표인지」를 알려 주고 장 구성을 받습니다</td></tr>
+                <tr><td><b>2. 내용</b></td><td>「장마다 세 줄」로 초안을 받습니다</td></tr>
+                <tr><td><b>3. 옮기기</b></td><td>파워포인트에 붙여 넣고 디자인 단추</td></tr>
+                <tr><td><b>4. 대본</b></td><td>장마다 할 말 + 예상 질문 열 개</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">내가 말할 수 있는 것만 넣으세요</span>
+            <p>
+              받은 뼈대에서 <b>내가 모르는 장은 빼세요.</b> 발표 중에 질문받으면
+              대답할 수 없습니다. 뺀 내용은 따로 모아 두면 됩니다.
+            </p>
+          </div>
+
+          <div class="note warn">
+            <span class="note-label">붙여 넣은 뒤 반드시</span>
+            <p>
+              <b>글자가 저절로 작아졌는지</b> 보세요. 작아졌다면 그 장에 글이 많은 것입니다.
+              나눠줄 요약은 슬라이드 노트가 아니라 <b>따로</b> 만드세요.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <span class="sum-h">막히면</span>
+      <ul class="sum-fix">
+        <li><b>글이 너무 많이 나왔습니다</b><span>「장마다 세 줄로 줄여 줘」라고 다시 시키세요.</span></li>
+        <li><b>장 수가 너무 많습니다</b><span>발표 시간을 알려 주면 맞춰 줄여 줍니다 — 「10분짜리로」.</span></li>
+        <li><b>모르는 질문을 받으면</b><span>「확인해서 알려드리겠습니다」가 정답입니다. 지어내지 마세요.</span></li>
+      </ul>
+
+      <div class="next-up">
+        <a href="ai-5.html">5부 강의안 다시 보기 →</a>
+        <a href="ai.html">← AI 과목 첫 화면</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="ko" data-subject="excel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>엑셀 마스터 요약 — 여덟 장과 부록을 한 장씩</title>
+<meta name="description" content="엑셀 마스터 클래스 여덟 장과 부록의 요약. 장마다 한 장씩, 핵심과 제일 큰 사고를 정리했습니다. 인쇄해서 옆에 두고 보세요.">
+<link rel="stylesheet" href="style.css">
+<!-- 화면이 번쩍이지 않도록, 저장된 설정을 먼저 적용합니다 -->
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="excel.html">← 엑셀 과목 첫 화면으로</a>
+    <p class="eyebrow">1과목 · 엑셀 · 마스터 클래스 요약</p>
+    <h1>엑셀 마스터,<br><em>장마다 한 장씩</em></h1>
+    <p class="lede">
+      강의안을 다 보신 뒤에 보는 종이입니다. 여기서 처음 배우지는 마세요 —
+      마스터 클래스는 <b>따라 해 보는 것</b>이 전부라서 요약만 읽으면 남지 않습니다.
+      한 장이 <b>한 쪽</b>이니 지금 보는 장만 뽑아 두고 쓰시면 됩니다.
+    </p>
+    <div class="facts">
+      <span><b>쓰는 법</b> 강의안을 본 뒤 복습용</span>
+      <span><b>분량</b> 여덟 장과 부록 · 아홉 쪽</span>
+      <span><b>원문</b> 각 쪽 끝에 링크</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#m1">1장 — 처음에 해 두면 평생 편한 것들</a></li>
+      <li><a href="#m2">2장 — 남이 만든 엉망인 표</a></li>
+      <li><a href="#m3">3장 — 같은 표인데 읽히는 표</a></li>
+      <li><a href="#m4">4장 — 남에게 넘기기 전에</a></li>
+      <li><a href="#m5">5장 — 수천 줄에서 필요한 것만</a></li>
+      <li><a href="#m6">6장 — 자료가 늘어도 보고서는 그대로</a></li>
+      <li><a href="#m7">7장 — 열 몇 개면 거의 다 됩니다</a></li>
+      <li><a href="#m8">8장 — 그림이 거짓말하지 않게</a></li>
+      <li><a href="#m9">부록 — 한 걸음 더</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 1장 ═══════════ -->
+    <section id="m1" class="sheet">
+      <span class="sec-tag">마스터 1장 · 120분</span>
+      <h2>처음에 해 두면 평생 편한 것들</h2>
+      <p class="sheet-line">
+        손이 빠른 사람과의 차이는 재주가 아니라 <b>처음에 해 둔 설정 몇 가지</b>와
+        원리를 알고 쓰는 기능 몇 개입니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 장에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>01</b><span>기본 글꼴 · 자동 고침 · 빠른실행 도구모음 — <b>딱 한 번만</b> 해 둡니다.</span></li>
+            <li><b>02</b><span>기본기 — 범위 끝으로 한 번에 가기, 행 높이 · 열 너비 한 번에.</span></li>
+            <li><b>03</b><span>찾기 및 바꾸기의 <b>옵션 단추</b> 안에 답이 있습니다. 서식으로도 찾습니다.</span></li>
+            <li><b>04</b><span>채우기 셋 — 자동 채우기 · 사용자 목록 · <b>빠른 채우기</b>.</span></li>
+            <li><b>05</b><span>날짜는 <b>숫자</b>입니다. 24시간 넘는 합계는 <code>[h]:mm</code>.</span></li>
+            <li><b>06</b><span>셀 참조와 연산자 — <b>1장에서 가장 중요한 장</b>입니다.</span></li>
+            <li><b>07</b><span>오류 여섯 가지의 뜻. 초록 삼각형은 오류가 아닙니다.</span></li>
+            <li><b>08</b><span>단축키 스무 개. 전부 외우지 말고 <b>오늘 세 개만</b>.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">손이 기억할 것</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td><span class="kbd">F4</span></td><td><code>$</code> 순환. 외우지 말고 누르세요</td></tr>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">↓</span></td><td>한 열을 끝까지 고르기</td></tr>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">E</span></td><td>빠른 채우기 — 예를 보여 주면 따라 합니다</td></tr>
+                <tr><td><span class="kbd">Alt</span>+<span class="kbd">숫자</span></td><td>빠른실행 도구모음 단추</td></tr>
+                <tr><td><code>[h]:mm</code></td><td>24시간을 넘는 시간 합계</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">이 장에서 제일 큰 사고</span>
+            <p>
+              <b>날짜처럼 보이는 글자.</b> 왼쪽에 붙어 있으면 날짜가 아니라 글자이고,
+              그러면 날짜 계산이 전부 안 됩니다. <code>#REF!</code> 는 되돌릴 수 없습니다.
+            </p>
+          </div>
+
+          <div class="note warn">
+            <span class="note-label">빠른 채우기는 값입니다</span>
+            <p>
+              <span class="kbd">Ctrl</span>+<span class="kbd">E</span> 결과는 수식이 아니라 <b>값</b>이라
+              원본을 고쳐도 따라 바뀌지 않습니다. 채운 뒤 아래쪽 몇 줄을 눈으로 보세요.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-m1.html">1장 강의안 다시 보기 →</a>
+      </div>
+    </section>
+
+    <!-- ═══════════ 2장 ═══════════ -->
+    <section id="m2" class="sheet">
+      <span class="sec-tag">마스터 2장 · 110분</span>
+      <h2>남이 만든 엉망인 표를 쓸 수 있게</h2>
+      <p class="sheet-line">
+        <b>보기 좋은 표와 계산되는 표는 다릅니다.</b> 이 장은 그 둘 사이를 오가는 법이고,
+        나머지는 전부 「세로방향 블록쌓기」의 응용입니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 장에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>01</b><span><b>세로방향 블록쌓기</b> — 규칙은 셋뿐. 2장에서 제일 중요합니다.</span></li>
+            <li><b>02</b><span>셀 병합이 왜 문제인가. 병합 대신 <b>선택 영역의 가운데로</b> · 그룹.</span></li>
+            <li><b>03</b><span>병합을 풀면 쏟아지는 빈 칸을 <b>네 단계</b>로 한 번에 채웁니다.</span></li>
+            <li><b>04</b><span>유효성 검사 IME 로 한 · 영 자동 전환.</span></li>
+            <li><b>05</b><span>조건부 서식을 <b>수식으로</b> 만들어 단어를 강조.</span></li>
+            <li><b>06</b><span>숫자 단위 두 가지 방법과 행 · 열 바꾸기.</span></li>
+            <li><b>07</b><span>중복 못 넣게 막기, 이름 관리자.</span></li>
+            <li><b>08~09</b><span>시트 비교, 텍스트 나누기 · 여러 줄 합치기.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">손이 기억할 것</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td>빈 칸 채우기</td><td><span class="kbd">F5</span> → 빈 셀 → <code>=↑</code> → <span class="kbd">Ctrl</span>+<span class="kbd">Enter</span></td></tr>
+                <tr><td>마지막 한 걸음</td><td>채운 뒤 <b>값으로 굳히기</b></td></tr>
+                <tr><td><code>#,##0,,</code></td><td>백만 단위로 접어 보이기</td></tr>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">J</span></td><td>줄바꿈 찾기 — 화면에 안 보입니다</td></tr>
+                <tr><td>나누기 전</td><td><b>빈 열</b>을 미리 만듭니다</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">이 장에서 제일 큰 사고</span>
+            <p>
+              빈 칸을 그냥 두면 <b>합계가 142 에서 404 로</b> 바뀝니다 —
+              직접 보신 그 장면입니다. <b>빈 칸과 0 은 다릅니다.</b>
+            </p>
+          </div>
+
+          <div class="note warn">
+            <span class="note-label">텍스트 나누기 3단계</span>
+            <p>
+              그냥 넘기면 <code>007</code> 이 <code>7</code> 이 됩니다.
+              3단계에서 그 열을 <b>텍스트</b>로 지정하세요. 오른쪽 칸도 덮어씁니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-m2.html">2장 강의안 다시 보기 →</a>
+      </div>
+    </section>
+
+    <!-- ═══════════ 3장 ═══════════ -->
+    <section id="m3" class="sheet">
+      <span class="sec-tag">마스터 3장 · 80분</span>
+      <h2>같은 표인데 읽히는 표</h2>
+      <p class="sheet-line">
+        값을 하나도 안 고치고 <b>보이는 방식만</b> 바꿉니다. 그래서 다시 계산할 일이 없습니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 장에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>01</b><span>겉과 속은 다릅니다. 서식을 입혀도 <b>수식 입력줄의 값</b>은 그대로.</span></li>
+            <li><b>02</b><span>표시 형식 <b>칸 네 개</b> — 양수 ; 음수 ; 0 ; 글자.</span></li>
+            <li><b>03</b><span>읽히는 표의 규칙 다섯. 가운데 맞춤은 쓰지 않습니다.</span></li>
+            <li><b>04</b><span>조건부 서식 다섯 갈래 — 값 · 순위 · 글자 · <b>수식</b> · 둘 함께.</span></li>
+            <li><b>05</b><span>데이터 막대와 아이콘. 기본값은 거의 틀립니다.</span></li>
+            <li><b>06</b><span>스파크라인 — 합계만 보면 안 보이는 것을 보여 줍니다.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">손이 기억할 것</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">1</span></td><td>셀 서식 창</td></tr>
+                <tr><td><code>(aaa)</code></td><td>날짜에 요일 붙이기</td></tr>
+                <tr><td><code>000000</code></td><td>앞자리 0 살리기</td></tr>
+                <tr><td>맨 뒤 쉼표</td><td>천 단위로 접기</td></tr>
+                <tr><td>줄 전체 칠하기</td><td><code>=$F5&lt;240</code> — <b>열 앞에만</b> <code>$</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">이 장에서 제일 큰 사고</span>
+            <p>
+              <b>단위를 접고 적지 않는 것</b>입니다. 백만 단위로 접었으면
+              표 위에 <b>「(단위: 백만원)」</b>을 적으세요. 안 적으면 읽는 사람이 천 배를 틀립니다.
+            </p>
+          </div>
+
+          <div class="note warn">
+            <span class="note-label">막대 범위에 합계를 넣지 마세요</span>
+            <p>
+              합계가 제일 길어서 나머지가 다 납작해집니다.
+              아이콘 기준도 백분위 대신 <b>실제 숫자</b>로 바꾸세요.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-m3.html">3장 강의안 다시 보기 →</a>
+      </div>
+    </section>
+
+    <!-- ═══════════ 4장 ═══════════ -->
+    <section id="m4" class="sheet">
+      <span class="sec-tag">마스터 4장 · 130분</span>
+      <h2>남에게 넘기기 전에</h2>
+      <p class="sheet-line">
+        보냈더니 <code>#REF!</code> 가 떴다고 합니다. 표가 두 장으로 잘렸다고 합니다.
+        받은 사람이 수식을 지워 놓았습니다. 이 장은 <b>그 셋을 막는 일</b>입니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 장에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>01</b><span>눈금선 · 머리글 끄기, <b>입력 칸은 파란 글자</b>, 틀 고정.</span></li>
+            <li><b>02</b><span>외부 참조를 찾아 끊습니다. 밖에 기대면 남의 컴퓨터에서 깨집니다.</span></li>
+            <li><b>03</b><span>출처 적기, 만든 사람 이름 지우기, 파일 이름은 <code>YYYYMMDD_</code>.</span></li>
+            <li><b>04</b><span>가볍게 만들기 — <span class="kbd">Ctrl</span>+<span class="kbd">End</span> · <code>.xlsb</code> · 피벗 캐시.</span></li>
+            <li><b>05</b><span>유효성 검사 · 시트 보호 · 통합 문서 보호. <b>실수를 막는 것</b>입니다.</span></li>
+            <li><b>06</b><span>인쇄 영역 · 방향 · 여백 · 가운데 맞춤.</span></li>
+            <li><b>07</b><span>인쇄 제목으로 둘째 장부터 머리글 반복, 쪽 번호, 직인.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">손이 기억할 것</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">End</span></td><td>쓸데없이 남은 빈 서식 찾기</td></tr>
+                <tr><td><span class="kbd">F5</span> → 옵션 → 상수</td><td>입력 칸만 골라 잡기</td></tr>
+                <tr><td>배율</td><td>손으로 맞추지 말고 <b>너비 1페이지 · 높이 자동</b></td></tr>
+                <tr><td>순서</td><td>잠금을 <b>먼저 풀고</b> 시트를 보호합니다</td></tr>
+                <tr><td>끝나면</td><td><b>[그룹]을 먼저 풉니다</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">되돌릴 수 없는 것 셋</span>
+            <p>
+              <b>연결 끊기 · 문서 검사 · 인쇄 영역</b>은 되돌리기가 안 됩니다.
+              원본에 하지 말고 <b>사본</b>에 하세요. 암호를 걸었으면 적어 두세요.
+            </p>
+          </div>
+
+          <div class="note warn">
+            <span class="note-label">유효성 검사의 한계</span>
+            <p>
+              <b>붙여넣기는 못 막습니다.</b> 잘못된 값이 들어올 수 있다고 보고,
+              중요한 칸은 시트 보호까지 함께 거세요.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-m4.html">4장 강의안 다시 보기 →</a>
+      </div>
+    </section>
+
+    <!-- ═══════════ 5장 ═══════════ -->
+    <section id="m5" class="sheet">
+      <span class="sec-tag">마스터 5장 · 100분</span>
+      <h2>수천 줄에서 필요한 것만</h2>
+      <p class="sheet-line">
+        정렬하면 표가 어긋나고, 필터를 걸어도 합계는 그대로이고, 조건이 셋을 넘으면 손을 놓습니다.
+        이 장은 <b>그 셋을 하나씩</b> 풉니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 장에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>01</b><span>자료 표의 다섯 규칙. 열두 장을 <b>시트 그룹</b>으로 한 번에 고쳤습니다.</span></li>
+            <li><b>02</b><span>정렬 — 기준 겹치기, 사용자 지정 목록으로 우리 회사 순서.</span></li>
+            <li><b>03</b><span>자동 필터 <b>세 갈래</b>, 와일드카드, 이익률 + 상위 10.</span></li>
+            <li><b>04</b><span><code>SUBTOTAL</code> — 걸러진 것만 더합니다.</span></li>
+            <li><b>05</b><span>고급 필터 — 조건을 <b>표로 적습니다.</b></span></li>
+            <li><b>06</b><span>파워 쿼리 맛보기 — 「다른 열 피벗 해제」. 건너뛰어도 됩니다.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">손이 기억할 것</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td>정렬 전</td><td>표 안 <b>한 칸만</b> 누릅니다</td></tr>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">L</span></td><td>필터 켜기 · 끄기</td></tr>
+                <tr><td><code>SUBTOTAL(9,…)</code></td><td>걸러진 것만 합계</td></tr>
+                <tr><td>9 와 109</td><td>109 는 <b>숨긴 줄</b>도 뺍니다</td></tr>
+                <tr><td>고급 필터</td><td>가로는 <b>그리고</b>, 세로는 <b>또는</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">이 장에서 제일 큰 사고</span>
+            <p>
+              <b>소계가 섞인 표를 그냥 더하면 합계가 두 배</b>가 됩니다(2,144 → 1,072 을
+              보신 그 표입니다). 한 열만 잡고 정렬하면 표가 깨집니다.
+            </p>
+          </div>
+
+          <div class="note warn">
+            <span class="note-label">필터가 걸린 상태에서</span>
+            <p>
+              <b>붙여넣기를 하지 마세요.</b> 숨은 줄에 엉뚱하게 들어갑니다.
+              시트 그룹 편집이 끝나면 <b>곧바로 그룹을 푸세요.</b>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-m5.html">5장 강의안 다시 보기 →</a>
+      </div>
+    </section>
+
+    <!-- ═══════════ 6장 ═══════════ -->
+    <section id="m6" class="sheet">
+      <span class="sec-tag">마스터 6장 · 120분</span>
+      <h2>자료가 늘어도 보고서는 그대로</h2>
+      <p class="sheet-line">
+        매달 같은 보고서를 처음부터 다시 만드는 일이 이 장 하나로 없어집니다.
+        사람이 하는 일은 <b>자료를 붙이고 단추 하나</b>입니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 장에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>01</b><span>엑셀 표(<span class="kbd">Ctrl</span>+<span class="kbd">T</span>) — 범위가 저절로 늘어납니다.</span></li>
+            <li><b>02</b><span>피벗을 만들기 전 점검 넷.</span></li>
+            <li><b>03</b><span>피벗 <b>네 칸</b>. 값 표시 형식으로 누계 · 비율 · 차이.</span></li>
+            <li><b>04</b><span>숫자를 구간으로, 날짜를 달 · 분기 · 주로 묶기.</span></li>
+            <li><b>05</b><span>보고서 모양 다듬기, 지역마다 시트 하나씩 자동으로.</span></li>
+            <li><b>06</b><span>슬라이서 · 시간 표시 막대 — 움직이는 보고서.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">손이 기억할 것</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">T</span></td><td>엑셀 표로 만들기</td></tr>
+                <tr><td><span class="kbd">Alt</span>+<span class="kbd">F5</span></td><td>피벗 새로 고침</td></tr>
+                <tr><td>「개수」가 나오면</td><td>그 열에 <b>글자가 섞인</b> 것입니다</td></tr>
+                <tr><td>그룹이 회색</td><td>날짜 열에 글자가 섞인 것</td></tr>
+                <tr><td>슬라이서 연결</td><td><b>같은 캐시</b>여야 묶입니다</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">이 장에서 제일 큰 사고</span>
+            <p>
+              <b>계산 항목</b>으로 만든 「차이」 줄이 <b>총합계에 같이 더해집니다</b> —
+              83,000 이 76,000 으로 나오는 그 경우입니다. 비율은 <b>계산 필드</b>로 만드세요.
+            </p>
+          </div>
+
+          <div class="note warn">
+            <span class="note-label">자료를 고쳤는데 피벗이 그대로</span>
+            <p>
+              피벗은 <b>저절로 안 바뀝니다.</b> 새로 고침을 누르거나
+              「파일을 열 때 새로 고침」을 켜 두세요.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-m6.html">6장 강의안 다시 보기 →</a>
+      </div>
+    </section>
+
+    <!-- ═══════════ 7장 ═══════════ -->
+    <section id="m7" class="sheet">
+      <span class="sec-tag">마스터 7장 · 170분 — 셋으로 나눠 보세요</span>
+      <h2>열 몇 개면 거의 다 됩니다</h2>
+      <p class="sheet-line">
+        함수는 사백 개가 넘지만 실무에서 쓰는 것은 스무 개 남짓이고,
+        그중 <b>열 개가 거의 전부</b>를 합니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 장에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>01</b><span>세고 더하기 — <code>COUNT</code>/<code>COUNTA</code>, <code>LARGE</code>, <b><code>SUMIF(S)</code></b>.</span></li>
+            <li><b>02</b><span>판단 — <code>IF</code>, <code>AND</code>/<code>OR</code>, 중첩 IF.</span></li>
+            <li><b>03</b><span>찾아오기 — <code>VLOOKUP</code> · <code>IFERROR</code> · <code>INDEX</code>+<code>MATCH</code>.</span></li>
+            <li><b>04</b><span>글자 다루기 — <code>LEFT</code>/<code>MID</code>/<code>RIGHT</code>, <code>TRIM</code>, <code>FIND</code>, <code>TEXT</code>.</span></li>
+            <li><b>05</b><span>날짜 계산 — <code>DATE</code>, <code>DATEDIF</code>.</span></li>
+            <li><b>06</b><span>새 함수 — <code>FILTER</code> · <code>XLOOKUP</code> · <code>UNIQUE</code>(되는 버전만).</span></li>
+            <li><b>07</b><span>외워서 쓰는 공식 셋. 원리는 몰라도 됩니다.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">손이 기억할 것</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">A</span></td><td>함수 인수 창 — 뭐였는지 안 외웁니다</td></tr>
+                <tr><td><span class="kbd">F9</span></td><td>수식 일부를 잡고 속 들여다보기</td></tr>
+                <tr><td><code>SUMIF</code> ↔ <code>SUMIFS</code></td><td><b>순서가 반대</b>입니다</td></tr>
+                <tr><td><code>VLOOKUP</code></td><td>네 번째 칸에 반드시 <code>0</code></td></tr>
+                <tr><td>중첩 <code>IF</code></td><td><b>큰 것부터</b> 씁니다</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">이 장에서 제일 큰 사고</span>
+            <p>
+              <b><code>TRIM</code> 이 못 떼는 공백</b>이 있습니다(<code>CHAR(160)</code>).
+              <code>VLOOKUP</code> 이 <code>#N/A</code> 인데 눈으로는 같아 보이면
+              <code>LEN</code> 으로 글자 수를 세 보세요.
+            </p>
+          </div>
+
+          <div class="note warn">
+            <span class="note-label">IFERROR 는 조심</span>
+            <p>
+              <b>모든 오류를 가립니다</b> — 그래서 위험합니다. 먼저 제대로 되는지
+              확인한 뒤 <b>맨 마지막에</b> 씌우세요.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-m7.html">7장 강의안 다시 보기 →</a>
+      </div>
+    </section>
+
+    <!-- ═══════════ 8장 ═══════════ -->
+    <section id="m8" class="sheet">
+      <span class="sec-tag">마스터 8장 · 80분</span>
+      <h2>그림이 거짓말하지 않게</h2>
+      <p class="sheet-line">
+        차트는 만들기가 어려운 게 아닙니다(<span class="kbd">Alt</span>+<span class="kbd">F1</span>).
+        어려운 것은 <b>어느 것을 고르느냐</b>와 <b>잘못 읽히지 않게</b> 하는 것입니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 장에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>01</b><span>어느 차트를 고르나. 차트 없이 <b>표로도</b> 됩니다.</span></li>
+            <li><b>02</b><span>실무 차트 다섯 — 꺾은선 · 세로 막대 · 가로 막대 · 누적 · 원형.</span></li>
+            <li><b>03</b><span>혼합 차트와 보조 축. 보조 축은 <b>착시를 만듭니다.</b></span></li>
+            <li><b>04</b><span>간트 차트 — 앞 막대를 투명하게.</span></li>
+            <li><b>05</b><span>거짓말하지 않는 차트 — 지울 것부터 지우고, 색은 셋, 제목에 <b>결론</b>.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">손이 기억할 것</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td><span class="kbd">Alt</span>+<span class="kbd">F1</span></td><td>범위를 잡고 차트 만들기</td></tr>
+                <tr><td>가로 막대</td><td>「항목을 거꾸로」를 체크 — 순서가 뒤집힙니다</td></tr>
+                <tr><td>예상치</td><td>실선이 아니라 <b>점선</b>으로</td></tr>
+                <tr><td>강조</td><td>하나만 진하게, 나머지는 회색</td></tr>
+                <tr><td>확인</td><td><b>흑백으로 인쇄</b>해 구별되는지 봅니다</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">차트가 거짓말하는 흔한 것</span>
+            <p>
+              <b>막대는 반드시 0부터</b> 시작해야 합니다. 축을 250부터 그리면
+              2.3배 차이가 <b>8.8배</b>로 보입니다. 3차원 효과는 쓰지 않습니다.
+            </p>
+          </div>
+
+          <div class="note warn">
+            <span class="note-label">원형 차트</span>
+            <p>
+              되도록 쓰지 마세요. 쓸 거면 <b>조각을 적게</b> 하고
+              이름과 %를 조각에 직접 붙이세요.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-m8.html">8장 강의안 다시 보기 →</a>
+      </div>
+    </section>
+
+    <!-- ═══════════ 부록 ═══════════ -->
+    <section id="m9" class="sheet">
+      <span class="sec-tag">마스터 부록 · 50분</span>
+      <h2>한 걸음 더</h2>
+      <p class="sheet-line">
+        <b>안 보셔도 됩니다.</b> 여덟 장으로 실무는 다 됩니다. 다만 세 가지는
+        「이런 게 있다」만 알아 두면 언젠가 떠오릅니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 쪽에서 본 것</span>
+          <ul class="sum-list">
+            <li><b>01</b><span>그림으로 채우는 차트. 덤으로 <b>색조합표</b> 시트.</span></li>
+            <li><b>02</b><span>데이터 모델 피벗 — 숫자가 아니라 <b>글자를 모으는</b> 피벗.</span></li>
+            <li><b>03</b><span>시계열 예측 — <b>계절성</b>이 핵심입니다.</span></li>
+            <li><b>04</b><span>막혔을 때 어디를 보나.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">기억할 것</span>
+          <div class="note stop">
+            <span class="note-label">데이터 모델은 못 돌아옵니다</span>
+            <p>
+              한 번 켜면 되돌릴 수 없습니다. <b>사본에서</b> 해 보세요.
+              02 · 03장은 엑셀 버전을 탑니다 — 안 되면 건너뛰면 됩니다.
+            </p>
+          </div>
+
+          <div class="note warn">
+            <span class="note-label">예측은 「이대로 가면」입니다</span>
+            <p>
+              맞는다는 뜻이 아닙니다. 오차 범위를 함께 보고,
+              보고서에는 <b>가정을 적어</b> 두세요.
+            </p>
+          </div>
+
+          <div class="note">
+            <span class="note-label">여덟 장을 다 하셨다면</span>
+            <p>
+              복습 파일과 종합문제가 장마다 있습니다.
+              <b>며칠 뒤에</b> 풀어 보시는 것이 가장 남습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-up">
+        <a href="excel-m9.html">부록 강의안 다시 보기 →</a>
+        <a href="excel.html">← 엑셀 과목 첫 화면</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

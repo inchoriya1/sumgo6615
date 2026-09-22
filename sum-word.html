@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ko" data-subject="word">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>워드 요약 — 세 부를 한 장씩</title>
+<meta name="description" content="워드 세 부의 요약. 부마다 한 장씩, 배운 것과 기억할 것을 정리했습니다. 인쇄해서 옆에 두고 보세요.">
+<link rel="stylesheet" href="style.css">
+<!-- 화면이 번쩍이지 않도록, 저장된 설정을 먼저 적용합니다 -->
+<script>
+(function(){try{
+  var d=document.documentElement;
+  var t=localStorage.getItem('sumgo-theme');
+  if(t==='dark'||t==='light') d.setAttribute('data-theme',t);
+  var s=localStorage.getItem('sumgo-size');
+  if(s==='large'||s==='xlarge') d.setAttribute('data-size',s);
+}catch(e){}})();
+</script>
+</head>
+<body>
+
+<div class="shell with-rail">
+
+  <header class="masthead">
+    <a class="back" href="word.html">← 워드 과목 첫 화면으로</a>
+    <p class="eyebrow">4과목 · 워드 · 요약</p>
+    <h1>워드,<br><em>한 장씩 정리</em></h1>
+    <p class="lede">
+      강의안을 다 보신 뒤에 보는 종이입니다. 여기서 처음 배우지는 마세요.
+      한 부가 <b>한 장</b>이니, <span class="nb"><span class="kbd">Ctrl</span> + <span class="kbd">P</span></span>를 눌러
+      필요한 부만 뽑아서 옆에 놓고 쓰시면 됩니다.
+    </p>
+    <div class="facts">
+      <span><b>쓰는 법</b> 강의안을 본 뒤 복습용</span>
+      <span><b>분량</b> 세 부 · 세 장</span>
+      <span><b>원문</b> 각 장 끝에 링크</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="목차">
+    <p class="rail-title">차례</p>
+    <ol class="toc">
+      <li><a href="#w1">1부 — 문서를 쓰고 모양 잡기</a></li>
+      <li><a href="#w2">2부 — 스타일로 문서 짜기</a></li>
+      <li><a href="#w3">3부 — 긴 문서 다루고 인쇄하기</a></li>
+    </ol>
+
+    <div class="prefs">
+      <p class="prefs-title">글자 크기</p>
+      <div class="size-set" role="group" aria-label="글자 크기">
+        <button type="button" data-size-set="normal" aria-pressed="true">보통</button>
+        <button type="button" data-size-set="large"  aria-pressed="false">크게</button>
+        <button type="button" data-size-set="xlarge" aria-pressed="false">아주 크게</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button">☾ 어두운 화면으로</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 1부 ═══════════ -->
+    <section id="w1" class="sheet">
+      <span class="sec-tag">워드 1부 · 80분</span>
+      <h2>문서를 쓰고 모양 잡기</h2>
+      <p class="sheet-line">
+        워드는 엑셀 · 파워포인트와 <b>같은 식구</b>입니다. 화면이 거의 같아서
+        앞 과목을 보셨다면 절반은 이미 아시는 셈입니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 부에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>00</b><span>손동작 세 가지 — 되돌리기 · 저장 · 오른쪽 단추.</span></li>
+            <li><b>01</b><span>한글과 워드, 언제 무엇을 쓰나. 워드는 <b>회사 · 해외</b>에 강합니다.</span></li>
+            <li><b>02</b><span>화면 이름. 리본이 사라졌을 때 되살리는 법.</span></li>
+            <li><b>03</b><span>「상반기 활동 보고」를 썼습니다. 2 · 3부에서 계속 씁니다.</span></li>
+            <li><b>04</b><span><b>글자 모양</b>과 <b>문단 모양</b> — 전부 홈 탭에 있습니다.</span></li>
+            <li><b>05</b><span>저장과 PDF. 자동 저장이 켜져 있습니다.</span></li>
+            <li><b>06</b><span>워드가 멋대로 고칠 때 — <span class="kbd">Ctrl</span>+<span class="kbd">Z</span> 한 번.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">손이 기억할 것</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">Z</span></td><td>되돌리기. 자동 고침도 이걸로</td></tr>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">S</span></td><td>저장</td></tr>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">Enter</span></td><td>새 쪽 — <span class="kbd">Enter</span> 연타 대신</td></tr>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">E</span></td><td>가운데 정렬</td></tr>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">J</span></td><td>양쪽 정렬 — 보고서는 이것</td></tr>
+                <tr><td>낱말 두 번 · 문단 <b>세 번</b></td><td>골라내기</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">가장 흔한 습관 둘</span>
+            <p>
+              <b>스페이스바로 자리를 맞추지 않습니다.</b> 정렬 단추를 쓰세요.<br>
+              <b>문장 중간에 <span class="kbd">Enter</span> 를 치지 않습니다.</b> 줄은 저절로 넘어갑니다.
+            </p>
+          </div>
+
+          <div class="note">
+            <span class="note-label">빈 줄 대신</span>
+            <p>
+              간격은 <span class="kbd">Enter</span> 를 두 번 치는 대신
+              <b>문단 뒤 간격</b>으로 주세요. 나중에 흐트러지지 않습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <span class="sum-h">막히면</span>
+      <ul class="sum-fix">
+        <li><b>워드가 글자를 멋대로 바꿉니다</b><span>자동 고침입니다. 바로 <span class="kbd">Ctrl</span>+<span class="kbd">Z</span> 를 누르면 내가 친 대로 돌아옵니다.</span></li>
+        <li><b>단추 줄(리본)이 사라졌습니다</b><span>리본 오른쪽 끝의 화살표를 누르거나 탭 이름을 두 번 누르세요.</span></li>
+        <li><b>저장 안 하고 닫았습니다</b><span>파일 → 정보 → 저장되지 않은 문서 복구를 보세요.</span></li>
+      </ul>
+
+      <div class="next-up">
+        <a href="word-1.html">1부 강의안 다시 보기 →</a>
+      </div>
+    </section>
+
+    <!-- ═══════════ 2부 ═══════════ -->
+    <section id="w2" class="sheet">
+      <span class="sec-tag">워드 2부 · 90분</span>
+      <h2>스타일로 문서 짜기</h2>
+      <p class="sheet-line">
+        이 부 하나가 <b>워드를 배우는 이유</b>입니다. 글자를 크게 만드는 것과
+        「이건 제목이다」라고 <b>알려주는 것</b>은 다릅니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 부에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>01</b><span>스타일은 겉모습이 아니라 <b>뜻</b>을 알려주는 것입니다.</span></li>
+            <li><b>02</b><span>큰 제목에 <b>제목 1</b>, 작은 제목에 <b>제목 2</b> 를 걸었습니다.</span></li>
+            <li><b>03</b><span>스타일 자체를 고치면 <b>모든 제목이 같이</b> 바뀝니다.</span></li>
+            <li><b>04</b><span>목록과 번호 — 직접 치지 말고 단추를 씁니다.</span></li>
+            <li><b>05</b><span>표 넣기. 없던 것을 넣을 때는 <b>삽입 탭</b>.</span></li>
+            <li><b>06</b><span>사진 넣기. 어려운 것은 <b>자리 잡기</b>입니다.</span></li>
+            <li><b>07</b><span>2부에서 겪는 증상들.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">손이 기억할 것</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td>스타일 걸기</td><td>끌지 않아도 됩니다 — <b>커서만</b> 두면 걸립니다</td></tr>
+                <tr><td>보기 → <b>탐색 창</b></td><td>제목 목록이 나오고, 끌어 순서를 바꿉니다</td></tr>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">Space</span></td><td>글자 모양만 기본으로</td></tr>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">Q</span></td><td>문단 모양만 기본으로</td></tr>
+                <tr><td>사진 배치</td><td>처음에는 <b>텍스트 줄 안으로</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">이것이 스타일의 값어치</span>
+            <p>
+              제목에 스타일을 걸어 두면 <b>3부에서 목차가 단추 두 번</b>으로 만들어집니다.
+              글자만 크게 해 둔 제목은 목차에 <b>나오지 않습니다.</b>
+            </p>
+          </div>
+
+          <div class="note warn">
+            <span class="note-label">번호를 직접 치지 마세요</span>
+            <p>
+              1. 2. 3. 을 손으로 치면 중간에 항목을 끼워 넣을 때 전부 다시 쳐야 합니다.
+              <b>번호 매기기</b> 단추를 쓰면 저절로 다시 매겨집니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <span class="sum-h">막히면</span>
+      <ul class="sum-fix">
+        <li><b>스타일이 이상해졌습니다</b><span>그 문단에 커서를 두고 <span class="kbd">Ctrl</span>+<span class="kbd">Q</span>, <span class="kbd">Ctrl</span>+<span class="kbd">Space</span> 로 털어낸 뒤 다시 거세요.</span></li>
+        <li><b>표가 종이 밖으로 나갑니다</b><span>표를 고른 뒤 레이아웃 → 자동 맞춤 → 창에 자동으로 맞춤.</span></li>
+        <li><b>사진이 글을 밀어냅니다</b><span>배치가 어울림입니다. 텍스트 줄 안으로 바꾸면 얌전해집니다.</span></li>
+      </ul>
+
+      <div class="next-up">
+        <a href="word-2.html">2부 강의안 다시 보기 →</a>
+      </div>
+    </section>
+
+    <!-- ═══════════ 3부 ═══════════ -->
+    <section id="w3" class="sheet">
+      <span class="sec-tag">워드 3부 · 100분</span>
+      <h2>긴 문서 다루고 인쇄하기</h2>
+      <p class="sheet-line">
+        2부에서 스타일을 걸어 둔 <b>보람을 여기서 확인</b>합니다. 단추 두 번으로 목차가
+        만들어지고, 내용을 고치면 목차가 따라 바뀝니다.
+      </p>
+
+      <div class="sum-cols">
+        <div>
+          <span class="sum-h">이 부에서 한 일</span>
+          <ul class="sum-list">
+            <li><b>01</b><span>여백과 용지 — 전부 <b>레이아웃 탭</b>에 있습니다.</span></li>
+            <li><b>02</b><span>쪽 번호와 머리글. 첫 쪽에만 안 나오게 하는 법.</span></li>
+            <li><b>03</b><span>참조 → 목차 → <b>자동 목차</b>. 워드를 배우는 이유의 결론입니다.</span></li>
+            <li><b>04</b><span>구역 나누기 — 워드에서 <b>가장 어려운 곳</b>. 건너뛰어도 됩니다.</span></li>
+            <li><b>05</b><span>찾기와 바꾸기, 맞춤법 검사.</span></li>
+            <li><b>06</b><span>메모와 변경 내용 추적 — 회사에서 반드시 만납니다.</span></li>
+            <li><b>07</b><span>인쇄와 PDF. 목차 연결을 살려 내보내는 법.</span></li>
+            <li><b>08</b><span>3부에서 겪는 증상들.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="sum-h">손이 기억할 것</span>
+          <div class="tbl-wrap">
+            <table>
+              <tbody>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">Enter</span></td><td>새 쪽</td></tr>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">H</span></td><td>바꾸기</td></tr>
+                <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">P</span></td><td>인쇄 — 오른쪽에 그대로 보입니다</td></tr>
+                <tr><td>인쇄 전</td><td>목차에서 오른쪽 단추 → <b>필드 업데이트</b></td></tr>
+                <tr><td>보내기 전</td><td>메모와 고친 자국을 <b>정리</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note stop">
+            <span class="note-label">인쇄 전에 반드시</span>
+            <p>
+              <b>목차는 저절로 다시 만들어지지 않습니다.</b> 내용을 고쳤으면
+              목차를 누르고 <b>업데이트</b>를 하세요. 안 하면 쪽 번호가 다 틀립니다.
+            </p>
+          </div>
+
+          <div class="note warn">
+            <span class="note-label">목차에 안 나오는 제목이 있다면</span>
+            <p>
+              그 제목에 <b>스타일이 안 걸린 것</b>입니다. 글자만 크게 해 둔 것이라
+              워드는 제목으로 보지 않습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <span class="sum-h">막히면</span>
+      <ul class="sum-fix">
+        <li><b>빈 쪽이 한 장 더 나옵니다</b><span>맨 끝의 빈 문단 때문입니다. <span class="kbd">Backspace</span> 로 지우세요.</span></li>
+        <li><b>받은 문서가 이상하게 보입니다</b><span>변경 내용 추적이 켜져 있습니다. 검토 탭에서 표시를 끄거나 적용하세요.</span></li>
+        <li><b>목차 쪽부터 번호를 다시 매기고 싶습니다</b><span>구역 나누기가 필요합니다. 3부 04장을 보세요.</span></li>
+      </ul>
+
+      <div class="next-up">
+        <a href="word-3.html">3부 강의안 다시 보기 →</a>
+        <a href="word.html">← 워드 과목 첫 화면</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

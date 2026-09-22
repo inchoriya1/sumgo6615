@@ -921,6 +921,80 @@ footer p:last-child { margin-bottom: 0; }
 
 .q-count { margin-left: 14px; color: var(--ink-3); font-size: .92em; }
 
+/* ══════════════════ 요약 쪽 (sum-*.html) ══════════════════
+
+   부마다 한 장씩, 강의를 다 본 뒤에 손에 들고 보는 종이입니다.
+   내용은 강의안의 장 제목·부제·확인 목록에서 추린 것이라
+   강의안을 고치면 여기도 같이 고쳐야 합니다.
+
+   화면에서는 죽 이어서 보고, 인쇄하면 한 부가 한 쪽으로 떨어집니다
+   (.sheet 마다 break-after: page).
+   ══════════════════════════════════════════════════════════ */
+
+.sheet { margin-bottom: 84px; }
+
+/* 한 줄 요약 — 이 부가 무엇이었는지 한 문장으로 */
+.sheet-line {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.6;
+  border-left: 4px solid var(--accent);
+  padding-left: 18px;
+  margin: 0 0 26px;
+  max-width: var(--measure);
+  text-wrap: pretty;
+}
+
+/* 두 칸 — 왼쪽은 배운 것, 오른쪽은 기억할 것 */
+.sum-cols {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 0 50px;
+  align-items: start;
+  max-width: var(--measure);
+}
+.sum-cols > div { min-width: 0; }
+.sum-cols > div > :first-child { margin-top: 0; }
+
+/* 칸 이름표 */
+.sum-h {
+  display: block;
+  font-size: .81em;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid var(--rule);
+}
+
+/* 장별 한 줄 — 번호와 내용을 두 칸으로 */
+.sum-list { list-style: none; padding: 0; margin: 0 0 26px; max-width: var(--measure); }
+.sum-list > li {
+  display: grid;
+  grid-template-columns: 2.4em 1fr;
+  gap: 0 12px;
+  margin-bottom: 13px;
+  line-height: 1.55;
+}
+.sum-list > li > b {
+  font-family: var(--mono);
+  font-size: .88em;
+  font-weight: 700;
+  color: var(--ink-3);
+  padding-top: .12em;
+}
+.sum-list em { font-style: normal; color: var(--ink-2); }
+
+/* 막히면 — 증상과 해결을 짧게 */
+.sum-fix { list-style: none; padding: 0; margin: 0; max-width: var(--measure); }
+.sum-fix > li { margin-bottom: 11px; line-height: 1.55; }
+.sum-fix > li > b { display: block; font-weight: 600; }
+.sum-fix > li > span { color: var(--ink-2); }
+
+@media (max-width: 900px) {
+  .sum-cols { grid-template-columns: 1fr; gap: 0; }
+}
+
 /* ══════════════════ 인쇄 ══════════════════ */
 @media print {
   :root, :root[data-theme="dark"], :root[data-theme="light"] {
@@ -1007,4 +1081,34 @@ footer p:last-child { margin-bottom: 0; }
     font-family: var(--mono); font-size: 8pt; color: var(--ink-3);
     word-break: break-all;
   }
+
+  /* ── 요약 쪽 — 한 부가 한 장 ── */
+  /* 첫 장은 표지(머리말 + 차례)이고, 부 하나가 그다음 장부터 한 장씩입니다.
+     break-after 로 하면 표지에 1부가 끼어들어 두 장으로 넘칩니다. */
+  .sheet {
+    margin-bottom: 0;
+    break-before: page; page-break-before: always;
+  }
+  .sheet + .sheet { border-top: 0; padding-top: 0; }
+
+  /* 아래 값들은 A4(본문 폭 182mm ≈ 688px, 높이 265mm ≈ 1002px)에 한 부가
+     들어가도록 재서 맞춘 것입니다. 이 상태에서 가장 큰 쪽(엑셀 1부)이 912px.
+     두 칸을 한 칸으로 펴면 1,200px 가 넘어 두 장으로 넘칩니다 — 그래서
+     종이에서도 두 칸을 그대로 씁니다. 값을 늘리기 전에 한 번 뽑아 보세요. */
+  .sheet > h2 { font-size: 17pt; margin: 0 0 6pt; }
+  .sheet .sec-tag { margin-bottom: 5pt; }
+  .sheet-line { font-size: 11.5pt; margin: 0 0 10pt; padding-left: 12pt; }
+  .sum-cols { gap: 0 26pt; }
+  .sum-h { margin: 0 0 7pt; padding-bottom: 4pt; }
+  .sum-list, .sum-fix { margin-bottom: 12pt; }
+  .sum-list > li, .sum-fix > li {
+    break-inside: avoid; page-break-inside: avoid;
+    margin-bottom: 5pt; line-height: 1.45;
+  }
+  .sheet .note { padding: 8pt 11pt; margin: 0 0 9pt; }
+  .sheet .note-label { margin-bottom: 3pt; }
+  .sheet .note p { margin: 0 0 5pt; }
+  .sheet .note p:last-child { margin-bottom: 0; }
+  .sheet .tbl-wrap { margin: 0 0 10pt; }
+  .sheet th, .sheet td { padding: 4.5pt 7pt; line-height: 1.45; }
 }
